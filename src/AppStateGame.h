@@ -31,7 +31,6 @@ public:
 	}
 
 	void onActivate();
-	void onEvent(sf::Event *Event);
 	void onLoop();
 	void onRender(sf::RenderWindow *display);
 	void onDeactivate();

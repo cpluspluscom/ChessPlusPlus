@@ -1,10 +1,5 @@
 #include "AppStateGame.h"
 
-void AppStateGame::onEvent(sf::Event *Event)
-{
-	SFMLEvent::OnEvent(Event);
-}
-
 void AppStateGame::onRender( sf::RenderWindow *display )
 {
 

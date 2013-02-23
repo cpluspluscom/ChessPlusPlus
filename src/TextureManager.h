@@ -1,8 +1,7 @@
 #ifndef _TEXTUREMANAGER_H
 	#define _TEXTUREMANAGER_H
 #include "ResourceManager.h"
-#include <SFML.hpp>
-
+#include <SFML/Graphics.hpp>
 #ifdef _DEBUG
 	#include <iostream>
 	using std::cout; using std::endl;

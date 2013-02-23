@@ -160,7 +160,7 @@ void SFMLEvent::OnLostFocus() {
 }
 void SFMLEvent::OnGainedFocus() {
 }
-void SFMLEvent::OnTextEntered(UINT32 unicode) {
+void SFMLEvent::OnTextEntered(uint unicode) {
 }
 void SFMLEvent::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) {
 }

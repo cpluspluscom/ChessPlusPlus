@@ -1,7 +1,7 @@
 #ifndef _SDLEVENT_H
 	#define _SDLEVENT_H
 
-#include <SFML.hpp>
+#include <SFML/Window.hpp>
 
 class SFMLEvent
 {
@@ -15,7 +15,7 @@ public:
 	virtual void OnResized(uint w, uint h);
 	virtual void OnLostFocus();
 	virtual void OnGainedFocus();
-	virtual void OnTextEntered(UINT32 unicode);
+	virtual void OnTextEntered(uint unicode);
 	virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system);
 	virtual void OnKeyReleased(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system);
 	virtual void OnMouseWheelMoved(int delta, int x, int y);

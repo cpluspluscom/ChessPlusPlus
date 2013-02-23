@@ -18,7 +18,7 @@ private:
 	ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, deleter_type>&);
 
 private:
-	typedef std::shared_ptr<T> ptr_t;
+	typedef std::unique_ptr<T, deleter_type> ptr_t;
 	typedef typename std::map<std::string, ptr_t> map_t;
 	typedef typename map_t::iterator map_i;
 
@@ -60,19 +60,19 @@ public:
 	//   Returns a shared_ptr to the resource associated with the file name 'key' if it exists in memory.
 	//   Otherwise it loads the texture into memory, and returns a shared_ptr of the resource.
 	//************************************
-	ptr_t Load(const std::string &key)
+	T *Load(const std::string &key)
 	{
 		map_i i = m_map.find(key);
 		if(i != m_map.end())
-			return i->second; //return resource if exists
+			return i->second.get(); //return resource if exists
 
 		//else, load resource
-		ptr_t p(onLoadResource(key), deleter_type());
+		ptr_t p(onLoadResource(key));
 		if(p.get() == NULL)
 			throw std::exception("Error loading Image!"); //figure out better way to throw exceptions later
 
 		m_map.insert(std::make_pair(key, std::move(p)));
-		return m_map[key];
+		return m_map[key].get();
 	}
 
 private:

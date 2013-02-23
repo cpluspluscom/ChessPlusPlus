@@ -23,7 +23,7 @@ struct TextureDeleter
 	void operator()(sf::Texture *texture)
 	{
 		#ifdef _DEBUG
-			cout << "Deleting texture -- ref count reached zero." << endl;
+			cout << "Deleting texture - unique_ptr has been deleted." << endl;
 		#endif
 		delete texture;
 	}

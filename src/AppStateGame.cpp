@@ -17,15 +17,21 @@ void AppStateGame::onLoop()
 
 void AppStateGame::onActivate()
 {
-	cout << "AppStateGame activated." << endl; //<--- placeholder for proof of concept
+#ifdef _DEBUG
+		cout << "AppStateGame activated." << endl; //<--- placeholder for proof of concept
+#endif // _DEBUG
 }
 
 void AppStateGame::onDeactivate()
 {
-	cout << "AppStateGame deactivated." << endl; //<--- placeholder for proof of concept
+#ifdef _DEBUG
+		cout << "AppStateGame deactivated." << endl; //<--- placeholder for proof of concept
+#endif // _DEBUG
 }
 
 void AppStateGame::OnLButtonPressed(int x, int y)
 {
-	cout << "Left button clicked." << endl;
+#ifdef _DEBUG
+         cout << "Left button clicked." << endl;
+#endif // _DEBUG
 }

@@ -13,8 +13,16 @@ class AppStateGame : public AppState
 {
 public:
 	AppStateGame(const AppStateGame&);
-	AppStateGame() {cout << "in ctor" << endl;}
-	~AppStateGame() {cout << "in dtor" << endl;}
+	AppStateGame() { 
+#ifdef _DEBUG
+	        cout << "in ctor" << endl;
+#endif // _DEBUG
+    }
+	~AppStateGame() {
+#ifdef _DEBUG
+	        cout << "in dtor" << endl;
+#endif // _DEBUG
+    }
 
 	static AppStateGame *getInstance() //singleton class
 	{

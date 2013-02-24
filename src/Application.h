@@ -7,20 +7,20 @@ namespace chesspp
 {
     class Application
     {
-	sf::RenderWindow display;
+        sf::RenderWindow display;
         bool running;
-	AppState* state;
-	
+        AppState* state;
+	    void OnEvent(sf::Event *Event);
+
     public:  
-	Application();
-	~Application();
-	
-	template <class NewState> void ChangeState()
-	{
-		delete state;
-		state = new NewState;
-	}
-	
+        Application();
+        ~Application();
+
+        template<class NewState> void ChangeState()
+        {
+            delete state;
+            state = new NewState;
+        }
         int Exec();
     }; 
 }

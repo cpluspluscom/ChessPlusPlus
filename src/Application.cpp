@@ -4,7 +4,7 @@
 namespace chesspp
 {
     Application::Application()
-    :  	display(sf::VideoMode(640, 640), "ChessPlusPlus"), 
+    :  	display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close),
 	    running(true),
 	    state(new AppStateGame(this))
     {

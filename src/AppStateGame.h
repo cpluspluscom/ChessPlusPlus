@@ -10,16 +10,19 @@
 
 namespace chesspp
 {
+    class Application;
     class AppStateGame : public AppState
     {
-	Application* app;    
+	    Application* app;    
 	    
     public:
-        AppStateGame(Application*);
+        AppStateGame(Application* _app) : app(_app) {}
         virtual ~AppStateGame() {}
         
         virtual int id();
         virtual void OnRender(sf::RenderWindow &display);
+
+        virtual void OnLButtonPressed(int x, int y); //example implementation
     }; 
 }
 

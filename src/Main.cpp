@@ -2,6 +2,6 @@
 
 int main()
 {
-	Application app;
+	chesspp::Application app;
 	return app.Exec();
 }

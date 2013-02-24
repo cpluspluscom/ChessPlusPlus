@@ -4,24 +4,28 @@
 #include "AppState.h"
 #include "AppStateGame.h"
 
-//enumeration for all of the states in the game.
-enum {
-	APPSTATE_NONE = 0,
-	APPSTATE_INTRO,
-	APPSTATE_GAME,
-	APPSTATE_OUTRO
-};
-
-class AppStateManager
+namespace chesspp
 {
-public:
-	static void onEvent(sf::Event *Event);
-	static void onLoop();
-	static void onRender(sf::RenderWindow *display);
+    //enumeration for all of the states in the game.
+    enum {
+        APPSTATE_NONE = 0,
+        APPSTATE_INTRO,
+        APPSTATE_GAME,
+        APPSTATE_OUTRO
+    };
 
-	static AppState *getActiveAppState() {return activeAppState;}
-	static void setActiveAppState(int ID);
-private:
-	static AppState *activeAppState;
-};
+    class AppStateManager
+    {
+    public:
+        static void onEvent(sf::Event *Event);
+        static void onLoop();
+        static void onRender(sf::RenderWindow *display);
+
+        static AppState *getActiveAppState() {return activeAppState;}
+        static void setActiveAppState(int ID);
+    private:
+        static AppState *activeAppState;
+    }; 
+}
+
 #endif

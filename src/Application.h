@@ -5,27 +5,30 @@
 #include "SFMLEvent.h"
 #include <iostream>
 
-class Application : public SFMLEvent
+namespace chesspp
 {
-public:
-	Application() : running(true) {}
+    class Application : public SFMLEvent
+    {
+    public:
+        Application() : running(true) {}
 
-	Application(const Application&) {}
-	Application &operator=(const Application&) {}
+        Application(const Application&) {}
+        Application &operator=(const Application&) {}
 
-	bool onInit();
-	void onEvent(sf::Event *Event);
-	void onLoop();
-	void onRender();
-	void onCleanup();
-	
-	int Exec();
+        bool onInit();
+        void onEvent(sf::Event *Event);
+        void onLoop();
+        void onRender();
+        void onCleanup();
 
-	virtual void OnClosed(); //example of Event handling.
+        int Exec();
 
-private:
-	sf::RenderWindow *display;
-	bool running;
-};
+        virtual void OnClosed(); //example of Event handling.
+
+    private:
+        sf::RenderWindow *display;
+        bool running;
+    }; 
+}
 
 #endif

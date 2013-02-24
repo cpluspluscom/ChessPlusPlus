@@ -1,1 +1,13 @@
 #http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.filters
+*.opensdf
+
+ChessPlusPlus/
+Debug/
+Release/
+libs/SFML-4fbefe7/build-vs11/

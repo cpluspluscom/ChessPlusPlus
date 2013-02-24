@@ -22,7 +22,7 @@ struct TextureDeleter
 	void operator()(sf::Texture *texture)
 	{
 		#ifdef _DEBUG
-			cout << "Deleting texture -- ref count reached zero." << endl;
+			cout << "Deleting texture - unique_ptr has been deleted." << endl;
 		#endif
 		delete texture;
 	}
@@ -56,7 +56,8 @@ protected:
 	sf::Texture *onLoadResource(const std::string &location)
 	{
 		sf::Texture *ret = new sf::Texture();
-		ret->loadFromFile(location);
+		if(!ret->loadFromFile(location))
+            return NULL;
 
 		#ifdef _DEBUG
 			cout << "Loaded " << location << " into memory." << endl;

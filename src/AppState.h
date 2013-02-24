@@ -10,7 +10,7 @@ public:
 	virtual ~AppState() {}
 
 	virtual void onActivate() = 0;
-	virtual void onEvent(sf::Event *Event) = 0;
+	void onEvent(sf::Event *Event) { SFMLEvent::OnEvent(Event); }
 	virtual void onLoop() = 0;
 	virtual void onRender(sf::RenderWindow *display) = 0;
 	virtual void onDeactivate() = 0;

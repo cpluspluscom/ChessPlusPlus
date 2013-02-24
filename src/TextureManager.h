@@ -57,7 +57,8 @@ protected:
 	sf::Texture *onLoadResource(const std::string &location)
 	{
 		sf::Texture *ret = new sf::Texture();
-		ret->loadFromFile(location);
+		if(!ret->loadFromFile(location))
+            return NULL;
 
 		#ifdef _DEBUG
 			cout << "Loaded " << location << " into memory." << endl;

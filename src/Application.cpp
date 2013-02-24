@@ -22,14 +22,13 @@ namespace chesspp
 
     void Application::onRender()
     {
-        AppStateManager::onRender(display); //pass display to the app state.
+        AppStateManager::onRender(&display); //pass display to the app state.
 
-        display->display(); //flip the display
+        display.display(); //flip the display
     }
 
     void Application::onCleanup()
     {
-	    delete display
         //cleanup things that need to be cleaned up
     }
 
@@ -41,7 +40,7 @@ namespace chesspp
         sf::Event Event;
         while(running)
         {
-            while(display->pollEvent(Event))
+            while(display.pollEvent(Event))
                 onEvent(&Event);
 
             onLoop();

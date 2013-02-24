@@ -1,6 +1,6 @@
 #ifndef _APPSTATEMANAGER_H
 	#define _APPSTATEMANAGER_H
-#include <SFML.hpp>
+#include "SFML.hpp"
 #include "AppState.h"
 #include "AppStateGame.h"
 

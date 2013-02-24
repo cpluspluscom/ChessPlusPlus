@@ -1,7 +1,7 @@
 #ifndef _SDLEVENT_H
 	#define _SDLEVENT_H
 
-#include <SFML.hpp>
+#include "SFML.hpp"
 
 namespace chesspp
 {

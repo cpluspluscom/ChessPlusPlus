@@ -1,6 +1,6 @@
 #ifndef _APPSTATEGAME_H
 	#define _APPSTATEGAME_H
-#include <SFML.hpp>
+#include "SFML.hpp"
 #include "TextureManager.h"
 #include "AppState.h"
 

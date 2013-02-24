@@ -162,7 +162,7 @@ namespace chesspp
     }
     void SFMLEvent::OnGainedFocus() {
     }
-    void SFMLEvent::OnTextEntered(UINT32 unicode) {
+    void SFMLEvent::OnTextEntered(sf::Uint32 unicode) {
     }
     void SFMLEvent::OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) {
     }

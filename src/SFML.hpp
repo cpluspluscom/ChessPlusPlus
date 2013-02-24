@@ -8,6 +8,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+#ifndef __GNUC__
 #if defined(_DEBUG) || defined(DEBUG)
     #if defined(SFML_STATIC)
         #pragma comment(lib,"sfml-graphics-s-d.lib")
@@ -41,5 +42,6 @@
         #pragma comment(lib,"sfml-main.lib")
     #endif
 #endif
+#endif //__GNUC__
 
 #endif // SFMLFULL_INCLUDED

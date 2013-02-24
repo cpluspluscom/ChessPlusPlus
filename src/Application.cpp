@@ -8,6 +8,7 @@ namespace chesspp
 	    running(true),
 	    state(new AppStateGame(this))
     {
+        display.setVerticalSyncEnabled(true);
     }
 
     int Application::Exec()

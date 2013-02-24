@@ -27,7 +27,7 @@ protected:
 	inline virtual ~ResourceManager() {}
 
 	//pure virtual, defined depending on what is being loaded.
-	virtual T *onLoadResource(const std::string &key) {return NULL;}
+	virtual T *onLoadResource(const std::string &key) = 0;
 
 public:
 	//************************************
@@ -37,17 +37,10 @@ public:
 	// Returns:   void
 	// Parameter: const std::string & key
 	//   Deletes the entry of a key in the resource map. 
-	//   Should only be called when the resource is no longer being used by any other object
-	//   Otherwise the resource will not deallocate right away. shared_ptr will only deallocate
-	//   A resource once the reference count reaches 0. 
+    //   This will call deleter_type to deallocate the resource from memory as well.
 	//************************************
 	void Free(const std::string &key) {
 		map_i i = m_map.find(key);
-
-		#ifdef _DEBUG //reference count should be 1 before calling Free.
-			cout << "Reference count of " << key << " before erase(): " << i->second.use_count() << endl;
-		#endif
-
 		m_map.erase(i);
 	}
 
@@ -57,8 +50,8 @@ public:
 	// Access:    public 
 	// Returns:   ptr_t
 	// Parameter: const std::string & key
-	//   Returns a shared_ptr to the resource associated with the file name 'key' if it exists in memory.
-	//   Otherwise it loads the texture into memory, and returns a shared_ptr of the resource.
+	//   Returns a pointer to the resource associated with the file name 'key' if it exists in memory.
+	//   Otherwise it loads the texture into memory, and returns a pointer of the resource.
 	//************************************
 	T *Load(const std::string &key)
 	{

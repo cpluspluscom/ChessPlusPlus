@@ -4,8 +4,6 @@ namespace chesspp
 {
     bool Application::onInit()
     {
-        //initialize display and such here
-        display = new sf::RenderWindow(sf::VideoMode(640, 640), "ChessPlusPlus");
         //start the first active app state (will be intro in the future)
         AppStateManager::setActiveAppState(APPSTATE_GAME);
         return true;
@@ -31,6 +29,7 @@ namespace chesspp
 
     void Application::onCleanup()
     {
+	    delete display
         //cleanup things that need to be cleaned up
     }
 

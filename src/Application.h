@@ -10,7 +10,7 @@ namespace chesspp
     class Application : public SFMLEvent
     {
     public:
-        Application() : running(true) {}
+        Application() : running(true), display(sf::VideoMode(640, 640), "ChessPlusPlus") {}
 
         Application(const Application&) {}
         Application &operator=(const Application&) {}
@@ -26,7 +26,7 @@ namespace chesspp
         virtual void OnClosed(); //example of Event handling.
 
     private:
-        sf::RenderWindow *display;
+        sf::RenderWindow display;
         bool running;
     }; 
 }

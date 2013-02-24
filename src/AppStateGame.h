@@ -13,16 +13,8 @@ class AppStateGame : public AppState
 {
 public:
 	AppStateGame(const AppStateGame&);
-	AppStateGame() { 
-#ifdef _DEBUG
-	        cout << "in ctor" << endl;
-#endif // _DEBUG
-    }
-	~AppStateGame() {
-#ifdef _DEBUG
-	        cout << "in dtor" << endl;
-#endif // _DEBUG
-    }
+	AppStateGame() {}
+	~AppStateGame() {}
 
 	static AppStateGame *getInstance() //singleton class
 	{
@@ -35,7 +27,7 @@ public:
 	void onRender(sf::RenderWindow *display);
 	void onDeactivate();
 
-	//Event handler example. SFLMEvent interface redirects certain events into function calls.
+	//Event handler example. SFMLEvent interface redirects certain events into function calls.
 	virtual void OnLButtonPressed(int x, int y);
 
 private:

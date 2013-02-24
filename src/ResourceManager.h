@@ -3,7 +3,7 @@
 
 #include <map>
 #include <memory>
-#include "exception.h"
+#include "Exception.h"
 
 #ifdef _DEBUG
 	#include <iostream>
@@ -27,7 +27,7 @@ namespace chesspp
 
     protected:
         inline ResourceManager() {}
-        inline virtual ~ResourceManager() {}
+        inline ~ResourceManager() {}
 
         //pure virtual, defined depending on what is being loaded.
         virtual T *onLoadResource(const std::string &key) = 0;

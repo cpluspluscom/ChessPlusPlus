@@ -3,6 +3,7 @@
 
 #include <map>
 #include <memory>
+#include "exception.h"
 
 #ifdef _DEBUG
 	#include <iostream>
@@ -64,7 +65,7 @@ namespace chesspp
             //else, load resource
             ptr_t p(onLoadResource(key));
             if(p.get() == NULL)
-                throw std::exception("Error loading Image!"); //figure out better way to throw exceptions later
+                throw chesspp::exception("Error loading Image at " + key); //figure out better way to throw exceptions later
 
             m_map.insert(std::make_pair(key, std::move(p)));
             return *m_map[key].get();

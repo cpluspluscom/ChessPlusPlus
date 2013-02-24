@@ -17,7 +17,7 @@ namespace chesspp
         virtual void OnResized(uint w, uint h);
         virtual void OnLostFocus();
         virtual void OnGainedFocus();
-        virtual void OnTextEntered(UINT32 unicode);
+        virtual void OnTextEntered(Uint32 unicode);
         virtual void OnKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system);
         virtual void OnKeyReleased(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system);
         virtual void OnMouseWheelMoved(int delta, int x, int y);

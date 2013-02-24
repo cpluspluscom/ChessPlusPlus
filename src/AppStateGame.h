@@ -12,15 +12,14 @@ namespace chesspp
 {
     class AppStateGame : public AppState
     {
+	Application* app;    
+	    
     public:
-        AppStateGame() {}
+        AppStateGame(Application*);
         virtual ~AppStateGame() {}
         
         virtual int id();
         virtual void OnRender(sf::RenderWindow &display);
-	
-    private:
-        //members of game can go here, board, etc etc.
     }; 
 }
 

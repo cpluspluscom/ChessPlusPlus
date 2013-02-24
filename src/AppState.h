@@ -1,18 +1,18 @@
 #ifndef _APPSTATE_H
 #define _APPSTATE_H
 
+#include "Event.h"
 #include <SFML/Graphics.hpp>
 
 namespace chesspp
 {
     //pure virtual abstract base class for game state management. 
-    class AppState
+    class AppState : public Event
     {
     public:
         AppState() {}
         virtual ~AppState() {}
 
-        virtual void OnEvent(sf::Event& event) {} //Nothing by default
         virtual int id() = 0;
         virtual void OnRender(sf::RenderWindow &display) = 0;
     }; 

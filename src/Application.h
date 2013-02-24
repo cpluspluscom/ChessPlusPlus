@@ -14,7 +14,13 @@ namespace chesspp
     public:  
 	Application();
 	~Application();
-		
+	
+	template <class NewState> void ChangeState()
+	{
+		delete state;
+		state = new NewState;
+	}
+	
         int Exec();
     }; 
 }

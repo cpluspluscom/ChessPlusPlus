@@ -9,11 +9,12 @@ namespace chesspp
 {
     class Application : public SFMLEvent
     {
+    protected:
+	Application(const Application&);
+        Application &operator=(const Application&);
+	    
     public:
-        Application() : running(true), display(sf::VideoMode(640, 640), "ChessPlusPlus") {}
-
-        Application(const Application&) {}
-        Application &operator=(const Application&) {}
+        Application() :  display(sf::VideoMode(640, 640), "ChessPlusPlus"), running(true) {}
 
         bool onInit();
         void onEvent(sf::Event *Event);

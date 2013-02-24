@@ -1,8 +1,8 @@
 #include "AppStateGame.h"
 
-void AppStateGame::onRender( sf::RenderWindow *display )
+void AppStateGame::onRender(sf::RenderWindow *display)
 {
-
+    display->draw(sf::Sprite(TextureManager::getInstance().Load("../res/img/chessboard_640x640.png")));
 }
 
 void AppStateGame::onLoop()

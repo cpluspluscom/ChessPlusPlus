@@ -2,21 +2,20 @@
 #define _EXCEPTION_H
 
 #include <string>
+#include <exception>
 
 namespace chesspp
 {
-    class exception
-    {
-    protected:
-	exception &operator=(const exception &) throw();
-	
+    class exception : public std::exception
+    {	
     public:
         exception() throw() {}
-        exception(const std::string &_e) throw() : e(_e) {}
-        exception(const exception &) throw() {}
         virtual ~exception() throw() {};
+        exception(const exception &) throw() {}
 
-        virtual std::string what() const throw() {return e;}
+        exception(const std::string &_e) throw() : e(_e) {}
+        virtual const char *what() { return e.c_str(); }
+        
     private:
         std::string e;
     };

@@ -50,14 +50,14 @@ public:
 	// Access:    public 
 	// Returns:   ptr_t
 	// Parameter: const std::string & key
-	//   Returns a pointer to the resource associated with the file name 'key' if it exists in memory.
-	//   Otherwise it loads the texture into memory, and returns a pointer of the resource.
+	//   Returns a reference to the resource associated with the file name 'key' if it exists in memory.
+	//   Otherwise it loads the texture into memory, and returns a reference to the the resource.
 	//************************************
-	T *Load(const std::string &key)
+	T &Load(const std::string &key)
 	{
 		map_i i = m_map.find(key);
 		if(i != m_map.end())
-			return i->second.get(); //return resource if exists
+			return *i->second.get(); //return resource if exists
 
 		//else, load resource
 		ptr_t p(onLoadResource(key));
@@ -65,7 +65,7 @@ public:
 			throw std::exception("Error loading Image!"); //figure out better way to throw exceptions later
 
 		m_map.insert(std::make_pair(key, std::move(p)));
-		return m_map[key].get();
+		return *m_map[key].get();
 	}
 
 private:

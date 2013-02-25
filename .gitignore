@@ -6,8 +6,10 @@
 *.vcxproj
 *.filters
 *.opensdf
+*.DS_Store
 
 ChessPlusPlus/
 Debug/
 Release/
 libs/SFML-4fbefe7/build_vs11/
+libs/SFML-4fbefe7/build_osx/

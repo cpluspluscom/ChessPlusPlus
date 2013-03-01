@@ -30,7 +30,7 @@ namespace chesspp
         inline ~ResourceManager() {}
 
         //pure virtual, defined depending on what is being loaded.
-        virtual T *onLoadResource(const std::string &key) = 0;
+        virtual T *onLoadResource(const key_type &key) = 0;
 
     public:
         //************************************
@@ -42,7 +42,7 @@ namespace chesspp
         //   Deletes the entry of a key in the resource map. 
         //   This will call deleter_type to deallocate the resource from memory as well.
         //************************************
-        void Free(const std::string &key) {
+        void Free(const key_type &key) {
             map_i i = m_map.find(key);
             m_map.erase(i);
         }

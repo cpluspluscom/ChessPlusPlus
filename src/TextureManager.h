@@ -56,7 +56,7 @@ namespace chesspp
         // Parameter: const std::string & location
         //   Method that loads an sf::Texture from file name 'location'. 
         //************************************
-        sf::Texture *onLoadResource(const std::string &location)
+        virtual sf::Texture *onLoadResource(const std::string &location)
         {
             sf::Texture *ret = new sf::Texture();
             if(!ret->loadFromFile(location))

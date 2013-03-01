@@ -54,6 +54,7 @@ namespace chesspp
 		const Position& getBoardPos(void) const;
 		const Position& getTexturePos(void) const;
 		Color getColor(void) const;
+        Type getType(void) const;
 		const posList& getTrajectory(void);
 
 		// We need to know these things :)

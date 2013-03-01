@@ -12,17 +12,17 @@
 
 namespace chesspp
 {
-    template <class T, class deleter_type = std::default_delete<T>>
+    template <class T, class key_type, class deleter_type = std::default_delete<T>>
     class ResourceManager
     {
     private:
         //no copying
-        ResourceManager(const ResourceManager<T, deleter_type>&);
-        ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, deleter_type>&);
+        ResourceManager(const ResourceManager<T, key_type, deleter_type>&);
+        ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, key_type, deleter_type>&);
 
     private:
         typedef std::unique_ptr<T, deleter_type> ptr_t;
-        typedef typename std::map<std::string, ptr_t> map_t;
+        typedef typename std::map<key_type, ptr_t> map_t;
         typedef typename map_t::iterator map_i;
 
     protected:

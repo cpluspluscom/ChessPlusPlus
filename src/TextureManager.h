@@ -31,7 +31,7 @@ namespace chesspp
         }
     };
 
-    class TextureManager : public ResourceManager<sf::Texture, TextureDeleter>
+    class TextureManager : public ResourceManager<sf::Texture, std::string, TextureDeleter>
     {
     private:
         inline TextureManager() {}

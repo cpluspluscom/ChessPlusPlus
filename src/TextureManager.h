@@ -58,7 +58,6 @@ namespace chesspp
         //************************************
         sf::Texture *onLoadResource(const std::string &location)
         {
-	    cout << "Loading texture: " << location << endl;
             sf::Texture *ret = new sf::Texture();
             if(!ret->loadFromFile(location))
                 return NULL;

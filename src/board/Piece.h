@@ -9,8 +9,6 @@
 //      textureX = givenValX
 //      textureY = givenValY + ( this->color == WHITE ? 0 : 80 )
 
-
-
 #include "board\logger.h"
 
 // The contigousness of this container does not matter
@@ -23,13 +21,25 @@ namespace chesspp
 	class Board;
 	typedef std::vector<Position> posList;
 
-	enum Color {WHITE, BLACK};
+	enum Color {
+        WHITE = 0, 
+        BLACK
+    };
+    enum Type {
+        PAWN = 0,
+        ROOK,
+        KNIGHT,
+        BISHOP,
+        QUEEN,
+        KING
+    };
 
 	class Piece
 	{
 	private:
-		Position texturePos;   // Where in the texture is this pieece? (hardcoded)
+		Position texturePos;   // Where in the texture is this piece? (hardcoded)
 		const Color color;     // What color is this piece (WHITE, BLACK)
+        const Type type;       // What type this piece is. 
 
 	protected:
 
@@ -38,7 +48,7 @@ namespace chesspp
 
 	public:
 
-		Piece(const Position& bPos, const Position& tPos, Color c);
+		Piece(const Position& bPos, const Position& tPos, Color c, Type t);
 
 		// Standard Accesors
 		const Position& getBoardPos(void) const;

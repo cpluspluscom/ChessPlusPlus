@@ -4,7 +4,7 @@ namespace chesspp
 {
 
 Bishop::Bishop(const Position& bPos, Color c)
-	:Piece(bPos, Position(80 * 3,0), c)
+	:Piece(bPos, Position(80 * 3,0), c, Type::BISHOP)
 {
 
 }

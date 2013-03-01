@@ -3,7 +3,7 @@
 namespace chesspp
 {
 Rook::Rook(const Position& bPos, Color c)
-	:Piece(bPos, Position(80 * 1,0), c)
+	:Piece(bPos, Position(80 * 1,0), c, Type::ROOK)
 {
 
 }

@@ -2,8 +2,8 @@
 
 namespace chesspp
 {
-Piece::Piece(const Position& bPos, const Position& tPos, Color c)
-	:boardPos(bPos), color(c)
+Piece::Piece(const Position& bPos, const Position& tPos, Color c, Type t)
+	:boardPos(bPos), color(c), type(t)
 {
 	int tX = tPos.getX();
 	int tY = tPos.getY() + ( c == WHITE ? 0 : 80 );

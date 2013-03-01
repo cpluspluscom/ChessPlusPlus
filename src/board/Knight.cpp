@@ -3,7 +3,7 @@
 namespace chesspp
 {
 Knight::Knight(const Position& bPos, Color c)
-	:Piece(bPos, Position(80 * 2,0), c)
+	:Piece(bPos, Position(80 * 2,0), c, Type::KNIGHT)
 {
 
 }

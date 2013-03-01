@@ -3,7 +3,7 @@
 namespace chesspp
 {
 King::King(const Position& bPos, Color c)
-	:Piece(bPos, Position(80 * 5,0), c)
+	:Piece(bPos, Position(80 * 5,0), c, Type::KING)
 {
 
 }

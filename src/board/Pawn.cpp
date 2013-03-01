@@ -4,7 +4,7 @@ namespace chesspp
 {
 
 Pawn::Pawn(const Position& bPos, Color c)
-	:Piece(bPos, Position(0,0), c), firstMove(true)
+	:Piece(bPos, Position(0,0), c, Type::PAWN), firstMove(true)
 {
 
 }

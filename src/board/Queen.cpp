@@ -3,7 +3,7 @@
 namespace chesspp
 {
 Queen::Queen(const Position& bPos, Color c)
-	:Piece(bPos, Position(80 * 4,0), c)
+	:Piece(bPos, Position(80 * 4,0), c, Type::QUEEN)
 {
 
 }

@@ -9,12 +9,12 @@
 //      textureX = givenValX
 //      textureY = givenValY + ( this->color == WHITE ? 0 : 80 )
 
-#include "board\logger.h"
+#include "logger.h"
 
 // The contigousness of this container does not matter
 // It could be sorted for std::lower_bound?  I don't think time is an issue
 #include <vector>
-#include "board\Position.h"
+#include "Position.h"
 
 namespace chesspp
 {
@@ -92,7 +92,7 @@ namespace chesspp
 }
 
 // This is handy, thanks.
-#include "board\Board.h"
+#include "Board.h"
 
 #endif
 

@@ -6,8 +6,8 @@ DEBUG_LIBS_Linux = -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 RELEASE_LIBS_Linux = -lsfml-system -lsfml-window -lsfml-graphics
 
 COMPILER_Darwin = clang++
-CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib-libc++
-DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework -sfml-window -framework -sfml-graphics
+CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib=libc++
+DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework sfml-window -framework sfml-graphics
 RELEASE_LIBS_Darwin = $(DEBUG_LIBS)
 
 COMPILER = $(COMPILER_$(UNAME))

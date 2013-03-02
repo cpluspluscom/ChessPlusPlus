@@ -5,16 +5,16 @@
 //   Trying to avoid c++11 at this point.  Does everyone here have it?
 
 
-#include "board\logger.h"
+#include "logger.h"
 
-#include "board\Position.h"
-#include "board\Piece.h"
-#include "board\Pawn.h"
-#include "board\Rook.h"
-#include "board\Bishop.h"
-#include "board\Knight.h"
-#include "board\Queen.h"
-#include "board\King.h"
+#include "Position.h"
+#include "Piece.h"
+#include "Pawn.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Queen.h"
+#include "King.h"
 
 // For loading new_game.txt
 #include <fstream>
@@ -71,12 +71,12 @@ namespace chesspp
 		// Given screen coordinates, set the currentPiece to the proper piece
 		// Note that this uses magic number 80 to know how large the screen is
 		void setCurrent(int screenX, int screenY);
-		Piece* getCurrent(void);
+		Piece* getCurrent(void) const;
 
 		// Set the selected piece to the parameter
 		// At this point, toSelect is always currentPiece
 		void setSelected(Piece* toSelect);
-		Piece* getSelected(void);
+		Piece* getSelected(void) const;
 
 		// Move a piece from one place to another
 		// The parameters should be changed to two Positions

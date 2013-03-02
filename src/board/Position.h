@@ -13,13 +13,15 @@ namespace chesspp
 // WIDTH is used throughout the game logic
 #define WIDTH 8
 
-enum Direction {NORTH,
-                NORTH_EAST,
-                EAST,
-                SOUTH_EAST,
-                SOUTH, SOUTH_WEST,
-                WEST,
-                NORTH_WEST};
+enum Direction {
+    NORTH,
+    NORTH_EAST,
+    EAST,
+    SOUTH_EAST,
+    SOUTH, SOUTH_WEST,
+    WEST,
+    NORTH_WEST};
+
 
 class Position
 {

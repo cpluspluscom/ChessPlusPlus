@@ -131,7 +131,7 @@ void Board::setCurrent(int screenX, int screenY)
 	else
 		currentPiece = pieces.at(idx);
 }
-Piece* Board::getCurrent(void)
+Piece* Board::getCurrent(void) const
 {
 	return currentPiece;
 }
@@ -139,7 +139,7 @@ void Board::setSelected(Piece* toSelect)
 {
 	selectedPiece = toSelect;
 }
-Piece* Board::getSelected(void)
+Piece* Board::getSelected(void) const
 {
 	return selectedPiece;
 }

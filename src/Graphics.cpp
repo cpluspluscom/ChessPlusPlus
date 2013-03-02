@@ -71,16 +71,16 @@ namespace chesspp
                     drawValidMove(iter->getX(), iter->getY());
                 }
 
-                // Draw the non-selected pieces
-                for (auto iter = b->pieces.begin(); iter != b->pieces.end(); iter++)
-                {
-                    if (!*iter || *iter == b->getSelected()) continue;
-                    drawPiece(*iter);
-                }
+            // Draw the non-selected pieces
+            for (auto iter = b->pieces.begin(); iter != b->pieces.end(); iter++)
+            {
+                if (!*iter || *iter == b->getSelected()) continue;
+                drawPiece(*iter);
+            }
 
-                // Draw the selected piece
-                if (b->getSelected())
-                    drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));
+            // Draw the selected piece
+            if (b->getSelected())
+                drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));
         }
     }
 }

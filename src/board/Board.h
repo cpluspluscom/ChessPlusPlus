@@ -68,9 +68,9 @@ namespace chesspp
 		// Returns the Piece* at pos.  NULL if pos is out of bounds
 		Piece* at(const Position& pos) const;
 
-		// Given screen coordinates, set the currentPiece to the proper piece
-		// Note that this uses magic number 80 to know how large the screen is
-		void setCurrent(int screenX, int screenY);
+        // Given screen coordinates, set the currentPiece to the proper piece
+        // Note that this uses magic number 80 to know how large the screen is
+        void setCurrent(int screenX, int screenY);
 		Piece* getCurrent(void) const;
 
 		// Set the selected piece to the parameter

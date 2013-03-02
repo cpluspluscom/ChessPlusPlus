@@ -6,7 +6,7 @@ namespace chesspp
     Application::Application()
     :  	display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close),
 	    running(true),
-	    state(new AppStateGame(this))
+	    state(new AppStateGame(this, &display))
     {
         display.setVerticalSyncEnabled(true);
     }
@@ -19,7 +19,7 @@ namespace chesspp
             while(display.pollEvent(Event))
                 OnEvent(&Event);
 
-            state->OnRender(display);
+            state->OnRender();
 	        display.display();
         }
    

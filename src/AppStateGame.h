@@ -2,7 +2,8 @@
 	#define _APPSTATEGAME_H
 #include "SFML.hpp"
 #include "TextureManager.h"
-#include "board\Board.h"
+#include "Graphics.h"
+#include "board/Board.h"
 
 #ifdef _DEBUG
 	#include <iostream>
@@ -14,26 +15,16 @@ namespace chesspp
     class Application;
     class AppStateGame : public AppState
     {
-	    Application* app;    
-
-        // Adding some variables to avoid initializing for every render
-        // I know that this doesn't go with the flow, but the only way I see it now.
-        sf::Sprite background;
-        sf::Sprite pieces;
-        sf::Sprite validMove;
-
-        std::string backgroundPath;
-        std::string piecePath;
-        std::string validMovePath;
-
+	    Application* app;
         Board* board;
+        graphics::GraphicsHandler graphics;
 	    
     public:
-        AppStateGame(Application* _app);
+        AppStateGame(Application* _app, sf::RenderWindow *_display);
         virtual ~AppStateGame() {}
         
         virtual int id();
-        virtual void OnRender(sf::RenderWindow &display);
+        virtual void OnRender();
 
         virtual void OnLButtonPressed(int x, int y);
         virtual void OnLButtonReleased(int x, int y);

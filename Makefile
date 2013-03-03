@@ -19,8 +19,7 @@ DEBUG_PREPROCESSOR = -D_DEBUG
 RELEASE_PREPROCESSOR = -D_RELEASE
 
 EXECUTABLE = chesspp
-TARGETDIR = ../bin
-TARGET = $(TARGETDIR)/$(EXECUTABLE)
+TARGET = ../$(EXECUTABLE)
 SOURCE = $(shell cd src ; ls *.cpp) $(shell cd src ; ls board/*.cpp)
 
 all: debug
@@ -33,10 +32,6 @@ release: CXX_PREPROCESSOR=$(RELEASE_PREPROCESSOR)
 release: LIBS=$(RELEASE_LIBS)
 release: main
 
-main: | bin
-	cd src; \
+main:
+	cd src;
 	$(COMPILER) $(CXX_FLAGS) $(CXX_PREPROCESSOR) -o $(TARGET) $(SOURCE) $(LIBS)
-
-bin:
-	mkdir bin
-

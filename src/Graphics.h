@@ -18,6 +18,9 @@ namespace chesspp
     {
         class GraphicsHandler
         {
+            sf::Sprite board, pieces, validMove;
+            uint16_t cell_size;
+            sf::RenderWindow *display;
         
         public:
             GraphicsHandler(sf::RenderWindow *_display);
@@ -39,12 +42,6 @@ namespace chesspp
 
             //Draws the entire game.
             void drawBoard(const Board *b);
-
-
-        private:
-            sf::Sprite board, pieces, validMove;
-            const int cell_size;
-            sf::RenderWindow *display;
         };
     }
 }

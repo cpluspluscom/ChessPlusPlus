@@ -5,7 +5,7 @@ namespace chesspp
     AppStateGame::AppStateGame( Application* _app, sf::RenderWindow *_display ) : app(_app), AppState(_display), graphics(display)
     {
         board = new Board();
-        board->newGame(configuration::instance().getBoardInitialLayout());
+        board->newGame(boardConfig.getInitialLayout());
     }
 
     int AppStateGame::id() { return 1; }

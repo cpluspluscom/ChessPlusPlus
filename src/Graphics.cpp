@@ -6,15 +6,18 @@ namespace chesspp
     {
 
 
-        GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) 
-            : display(_display),
-            cell_size(configuration::instance().getCellWidth())
+        GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) : display(_display)
         {
             try 
             {
-                board = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_board()));
-                pieces = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_pieces()));
-                validMove = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_validMove()));
+                configuration::BoardConfig boardConfig;
+                configuration::GraphicsConfig graphicsConfig;
+
+                board = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_board()));
+                pieces = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_pieces()));
+                validMove = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_validMove()));
+
+                cell_size = boardConfig.getCellWidth();
             }
             catch (chesspp::exception &e) 
             {

@@ -18,7 +18,9 @@ namespace chesspp
     {
 	    Application* app;
         Board* board;
+
         graphics::GraphicsHandler graphics;
+        configuration::BoardConfig boardConfig;
 	    
     public:
         AppStateGame(Application* _app, sf::RenderWindow *_display);

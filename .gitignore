@@ -6,8 +6,13 @@
 *.vcxproj
 *.filters
 *.opensdf
+*.exe
+
+debug.txt
 
 ChessPlusPlus/
 Debug/
 Release/
 libs/SFML-4fbefe7/build_vs11/
+*.pdb
+*.ilk

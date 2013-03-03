@@ -3,6 +3,7 @@
 #include "SFML.hpp"
 #include "TextureManager.h"
 #include "Graphics.h"
+#include "Configuration.h"
 #include "board/Board.h"
 
 #ifdef _DEBUG

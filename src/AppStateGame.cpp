@@ -1,15 +1,11 @@
 #include "AppState.h"
 
-const std::string FILEPATH = "C:/Users/Steve/Documents/Visual Studio 2012/Projects/ChessPlusPlus/";
-
 namespace chesspp
 {
     AppStateGame::AppStateGame( Application* _app, sf::RenderWindow *_display ) : app(_app), AppState(_display), graphics(display)
     {
-
-        std::string gamePath(FILEPATH + "res/games/new_game.txt");
         board = new Board();
-        board->newGame(gamePath);
+        board->newGame(configuration::instance().getBoardInitialLayout());
     }
 
     int AppStateGame::id() { return 1; }

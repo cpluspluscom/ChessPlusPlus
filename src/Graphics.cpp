@@ -6,17 +6,16 @@ namespace chesspp
     {
 
 
-        GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) : display(_display), 
-            backgroundPath(file_path + "res/img/chessboard_640x640.png"), // Hardcoded. Will change in the future.
-            piecePath(file_path + "res/img/chess_pieces_80x80_each.png"), //
-            validMovePath(file_path + "res/img/valid_move.png")           //
+        GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) 
+            : display(_display),
+            cell_size(configuration::instance().getCellWidth())
         {
             try 
             {
-                board = sf::Sprite(TextureManager::getInstance().Load(backgroundPath));
-                pieces = sf::Sprite(TextureManager::getInstance().Load(piecePath));
-                validMove = sf::Sprite(TextureManager::getInstance().Load(validMovePath));
-            } 
+                board = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_board()));
+                pieces = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_pieces()));
+                validMove = sf::Sprite(TextureManager::getInstance().Load(configuration::instance().getSpritePath_validMove()));
+            }
             catch (chesspp::exception &e) 
             {
 #ifdef _DEBUG

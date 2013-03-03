@@ -3,6 +3,7 @@
 
 #include "SFML.hpp"
 #include "TextureManager.h"
+#include "Configuration.h"
 #include "board/Piece.h"
 #include "board/logger.h"
 
@@ -15,11 +16,6 @@ namespace chesspp
 {
     namespace graphics
     {
-        const std::string file_path = "C:/Users/Steve/Documents/Visual Studio 2012/Projects/ChessPlusPlus/";
-        const int cell_size = 80; 
-        const int board_width = 8;
-        const int board_height = 0; //Working on a game configuration interface so these don't have to be hard coded.
-
         class GraphicsHandler
         {
         
@@ -47,7 +43,7 @@ namespace chesspp
 
         private:
             sf::Sprite board, pieces, validMove;
-            std::string backgroundPath, piecePath, validMovePath;
+            const int cell_size;
             sf::RenderWindow *display;
         };
     }

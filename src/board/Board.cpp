@@ -227,6 +227,7 @@ bool Board::move(Piece* toMove, int screenX, int screenY)
 		(*iter)->updateTrajectory(this, moveFrom, moveTo);
 	}
 
+    this->currentPiece = NULL; //reset currentPiece to avoid segfault.
 	return true;
 }
 

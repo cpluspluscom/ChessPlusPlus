@@ -55,7 +55,7 @@ namespace chesspp
 		const Position& getTexturePos(void) const;
 		Color getColor(void) const;
         Type getType(void) const;
-		const posList& getTrajectory(void);
+		const posList& getTrajectory(void) const;
 
 		// We need to know these things :)
 		// If a piece moves, it's trajectory needs to be checked for a king

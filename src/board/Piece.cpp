@@ -26,7 +26,7 @@ namespace chesspp
 	    return color;
     }
 
-    const posList& Piece::getTrajectory(void)
+    const posList& Piece::getTrajectory(void) const
     {
 	    return trajectory;
     }

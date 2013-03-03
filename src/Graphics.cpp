@@ -61,16 +61,16 @@ namespace chesspp
             Piece* pCurrent = b->getCurrent();
             Piece* pSelect  = b->getSelected();
             if (pSelect)
-                for (posList::const_iterator iter = pSelect->getTrajectory().begin(); iter != pSelect->getTrajectory().end(); iter++)
+                for (auto iter = pSelect->getTrajectory().begin(); iter != pSelect->getTrajectory().end(); iter++)
                 {
-                    if(!iter->isValid()) continue;
-                    drawValidMove(iter->getX(), iter->getY());
+                    if(iter->isValid())
+                        drawValidMove(iter->getX(), iter->getY());
                 }
             else if (pCurrent)
-                for (posList::const_iterator iter = pCurrent->getTrajectory().begin(); iter != pCurrent->getTrajectory().end(); iter++)
+                for (auto &iter: pCurrent->getTrajectory())
                 {
-                    if(!iter->isValid()) continue;
-                    drawValidMove(iter->getX(), iter->getY());
+                    if(iter.isValid())
+                        drawValidMove(iter.getX(), iter.getY());
                 }
 
             // Draw the non-selected pieces

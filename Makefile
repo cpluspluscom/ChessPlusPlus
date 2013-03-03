@@ -33,5 +33,5 @@ release: LIBS=$(RELEASE_LIBS)
 release: main
 
 main:
-	cd src;
+	cd src; \
 	$(COMPILER) $(CXX_FLAGS) $(CXX_PREPROCESSOR) -o $(TARGET) $(SOURCE) $(LIBS)

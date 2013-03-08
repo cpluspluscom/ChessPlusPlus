@@ -7,12 +7,15 @@
 *.filters
 *.opensdf
 *.exe
+*.pdb
+*.ilk
+*.DS_Store
 
+chesspp
 debug.txt
 
 ChessPlusPlus/
 Debug/
 Release/
 libs/SFML-4fbefe7/build_vs11/
-*.pdb
-*.ilk
+bin/

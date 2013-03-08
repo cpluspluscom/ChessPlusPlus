@@ -9,11 +9,14 @@
     #include <unistd.h>
 #elif defined(_WIN32)
     #include <Windows.h>
+#elif defined(__APPLE__)
+    #include <mach-o/dyld.h>
 #endif
 
 
 #include "Exception.h"
 #include "XMLReader.h"
+#include "board/logger.h"
 
 namespace chesspp
 {
@@ -22,34 +25,51 @@ namespace chesspp
         class configuration
         {
         protected:
-            std::string executable_path;
-            std::string getExecutablePath()
+            std::string res_path;
+            
+            //Linux and Windows, resource path is defined as the absolute path the folder where the application executable is stored.
+            //    <exe_location>/res/img/... should be where resources are stored.
+            //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
+            //    <.app>/Contents/Resources/res/img... should be where resources are stored.
+            std::string getResourcePath()
             {
                 char buf[1024];
+                uint32_t size = sizeof(buf);
                 memset(buf, 0, sizeof(buf));
                 std::string ret;
                 #if defined(__linux__)
                      if(readlink("/proc/self/exe", buf, sizeof(buf)) == -1)
                          throw chesspp::exception("Unable to determine executable path on Linux.");
                      ret = buf;
+                     ret = ret.substr(0, ret.find_last_of('/')+1);
 
                 #elif defined(_WIN32)
                      if(GetModuleFileNameA(NULL, buf, sizeof(buf)) == 0)
                          throw chesspp::exception("Unable to determine executable path on Windows.");
                      ret = buf;
                      boost::replace_all(ret, "\\", "/");
+                     ret = ret.substr(0, ret.find_last_of('/')+1);
+                
+                #elif defined(__APPLE__)
+                     if (_NSGetExecutablePath(buf, &size) != 0)
+                         throw chesspp::exception("Unable to determine executable path on OS x. (Buffer size too small?)");
+                     ret = buf;
+                     ret = ret.substr(0, ret.find_last_of('/')+1) + "../Resources/";
+                     //Need to go up one directory because the exe is stored in <.app>/Contents/MacOS/,
+                     //And we need <.app>/Contents/Resources
 
                 #else
                       throw chesspp::exception("Unknown OS. Unable to determine executable path.");
                 #endif	
 
-                return ret.substr(0, ret.find_last_of('/')+1);
+                return ret;
             }
 
             XMLReader reader;
         public:
-            configuration(const std::string &configFile) : executable_path(getExecutablePath()), reader(executable_path + "/" + configFile) {}
+            configuration(const std::string &configFile) : res_path(getResourcePath()), reader(getResourcePath() + configFile) {}
             virtual ~configuration() {}
+            
         };
 
         class BoardConfig : public configuration
@@ -61,7 +81,7 @@ namespace chesspp
         public:
             BoardConfig() : configuration("config.xml") 
             {
-                initial_layout = reader.getProperty<std::string>("chesspp.data.board.initial_layout");
+                initial_layout = res_path + reader.getProperty<std::string>("chesspp.data.board.initial_layout");
                 board_width = reader.getProperty<uint8_t>("chesspp.data.board.width");
                 board_height = reader.getProperty<uint8_t>("chesspp.data.board.height");
                 cell_width = reader.getProperty<uint16_t>("chesspp.data.board.cell_width");
@@ -82,9 +102,9 @@ namespace chesspp
         public:
             GraphicsConfig() : configuration("config.xml")
             {
-                path_board = reader.getProperty<std::string>("chesspp.images.board");
-                path_pieces = reader.getProperty<std::string>("chesspp.images.pieces");
-                path_validMove = reader.getProperty<std::string>("chesspp.images.validMove");
+                path_board = res_path + reader.getProperty<std::string>("chesspp.images.board");
+                path_pieces = res_path + reader.getProperty<std::string>("chesspp.images.pieces");
+                path_validMove = res_path + reader.getProperty<std::string>("chesspp.images.validMove");
             }
 
             std::string getSpritePath_board() { return path_board; }

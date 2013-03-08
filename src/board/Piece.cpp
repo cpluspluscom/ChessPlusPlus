@@ -3,7 +3,7 @@
 namespace chesspp
 {
     Piece::Piece(const Position& bPos, const Position& tPos, Color c, Type t)
-	    :boardPos(bPos), color(c), type(t)
+	    : color(c), type(t), boardPos(bPos)
     {
 	    int tX = tPos.getX();
 	    int tY = tPos.getY() + ( c == WHITE ? 0 : 80 );

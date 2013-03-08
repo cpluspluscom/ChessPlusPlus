@@ -42,13 +42,14 @@ namespace chesspp
         const Type type;       // What type this piece is. 
 
 	protected:
-
+        
 		posList trajectory;    // The list of possible Positions (see OnValidity.txt)
 		Position boardPos;     // The position on the baord this piece is
 
 	public:
 
 		Piece(const Position& bPos, const Position& tPos, Color c, Type t);
+        virtual ~Piece() {}
 
 		// Standard Accesors
 		const Position& getBoardPos(void) const;

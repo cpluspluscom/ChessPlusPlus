@@ -7,11 +7,13 @@ RELEASE_LIBS_Linux = -lsfml-system -lsfml-window -lsfml-graphics
 
 COMPILER_Darwin = clang++
 CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib=libc++
-DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework sfml-window -framework sfml-graphics
+CXX_INCLUDE_Darwin = -I/opt/local/include
+DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework sfml-window -framework sfml-graphics 
 RELEASE_LIBS_Darwin = $(DEBUG_LIBS)
 
 COMPILER = $(COMPILER_$(UNAME))
 CXX_FLAGS = $(CXX_FLAGS_$(UNAME))
+CXX_INCLUDE = $(CXX_INCLUDE_$(UNAME))
 DEBUG_LIBS = $(DEBUG_LIBS_$(UNAME))
 RELEASE_LIBS = $(RELEASE_LIBS_$(UNAME))
 
@@ -34,4 +36,8 @@ release: main
 
 main:
 	cd src; \
-	$(COMPILER) $(CXX_FLAGS) $(CXX_PREPROCESSOR) -o $(TARGET) $(SOURCE) $(LIBS)
+	$(COMPILER) $(CXX_FLAGS) $(CXX_PREPROCESSOR) -o $(TARGET) $(CXX_INCLUDE) $(SOURCE) $(LIBS)
+
+ifeq ($(UNAME), Darwin)
+	sh MacOS/bundle.sh
+endif

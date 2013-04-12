@@ -12,17 +12,17 @@
 
 namespace chesspp
 {
-    template <class T, class deleter_type = std::default_delete<T>>
+    template <class T, class key_type, class deleter_type = std::default_delete<T>>
     class ResourceManager
     {
     private:
         //no copying
-        ResourceManager(const ResourceManager<T, deleter_type>&);
-        ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, deleter_type>&);
+        ResourceManager(const ResourceManager<T, key_type, deleter_type>&);
+        ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, key_type, deleter_type>&);
 
     private:
         typedef std::unique_ptr<T, deleter_type> ptr_t;
-        typedef typename std::map<std::string, ptr_t> map_t;
+        typedef typename std::map<key_type, ptr_t> map_t;
         typedef typename map_t::iterator map_i;
 
     protected:
@@ -30,7 +30,7 @@ namespace chesspp
         inline ~ResourceManager() {}
 
         //pure virtual, defined depending on what is being loaded.
-        virtual T *onLoadResource(const std::string &key) = 0;
+        virtual T *onLoadResource(const key_type &key) = 0;
 
     public:
         //************************************
@@ -42,7 +42,7 @@ namespace chesspp
         //   Deletes the entry of a key in the resource map. 
         //   This will call deleter_type to deallocate the resource from memory as well.
         //************************************
-        void Free(const std::string &key) {
+        void Free(const key_type &key) {
             map_i i = m_map.find(key);
             m_map.erase(i);
         }

@@ -31,7 +31,7 @@ namespace chesspp
         }
     };
 
-    class TextureManager : public ResourceManager<sf::Texture, TextureDeleter>
+    class TextureManager : public ResourceManager<sf::Texture, std::string, TextureDeleter>
     {
     private:
         inline TextureManager() {}
@@ -56,9 +56,8 @@ namespace chesspp
         // Parameter: const std::string & location
         //   Method that loads an sf::Texture from file name 'location'. 
         //************************************
-        sf::Texture *onLoadResource(const std::string &location)
+        virtual sf::Texture *onLoadResource(const std::string &location)
         {
-	    cout << "Loading texture: " << location << endl;
             sf::Texture *ret = new sf::Texture();
             if(!ret->loadFromFile(location))
                 return NULL;

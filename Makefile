@@ -1,0 +1,43 @@
+UNAME = $(shell uname -s)
+
+COMPILER_Linux = g++
+CXX_FLAGS_Linux = -Wall -std=c++11
+DEBUG_LIBS_Linux = -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
+RELEASE_LIBS_Linux = -lsfml-system -lsfml-window -lsfml-graphics
+
+COMPILER_Darwin = clang++
+CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib=libc++
+CXX_INCLUDE_Darwin = -I/opt/local/include
+DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework sfml-window -framework sfml-graphics 
+RELEASE_LIBS_Darwin = $(DEBUG_LIBS)
+
+COMPILER = $(COMPILER_$(UNAME))
+CXX_FLAGS = $(CXX_FLAGS_$(UNAME))
+CXX_INCLUDE = $(CXX_INCLUDE_$(UNAME))
+DEBUG_LIBS = $(DEBUG_LIBS_$(UNAME))
+RELEASE_LIBS = $(RELEASE_LIBS_$(UNAME))
+
+DEBUG_PREPROCESSOR = -D_DEBUG
+RELEASE_PREPROCESSOR = -D_RELEASE
+
+EXECUTABLE = chesspp
+TARGET = ../$(EXECUTABLE)
+SOURCE = $(shell cd src ; ls *.cpp) $(shell cd src ; ls board/*.cpp)
+
+all: debug
+
+debug: CXX_PREPROCESSOR=$(DEBUG_PREPROCESSOR)
+debug: LIBS=$(DEBUG_LIBS)
+debug: main
+
+release: CXX_PREPROCESSOR=$(RELEASE_PREPROCESSOR)
+release: LIBS=$(RELEASE_LIBS)
+release: main
+
+main:
+	cd src; \
+	$(COMPILER) $(CXX_FLAGS) $(CXX_PREPROCESSOR) -o $(TARGET) $(CXX_INCLUDE) $(SOURCE) $(LIBS)
+
+ifeq ($(UNAME), Darwin)
+	sh MacOS/bundle.sh
+endif

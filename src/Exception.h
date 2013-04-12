@@ -7,7 +7,8 @@
 namespace chesspp
 {
     class exception : public std::exception
-    {	
+    {
+        using std::exception::what;
     public:
         exception() throw() {}
         virtual ~exception() throw() {};

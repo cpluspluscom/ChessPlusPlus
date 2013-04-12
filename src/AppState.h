@@ -10,11 +10,14 @@ namespace chesspp
     class AppState : public SFMLEvent
     {
     public:
-        AppState() {}
+        AppState(sf::RenderWindow *_display) : display(_display) {}
         virtual ~AppState() {}
 
         virtual int id() = 0;
-        virtual void OnRender(sf::RenderWindow &display) = 0;
+        virtual void OnRender() = 0;
+
+    protected:
+        sf::RenderWindow *display;
     }; 
 }
 

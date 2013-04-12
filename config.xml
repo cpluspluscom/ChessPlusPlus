@@ -1,0 +1,16 @@
+<chesspp>
+	<data>
+		<board>
+			<initial_layout>res/games/new_game.txt</initial_layout>
+			<width>8</width>
+			<height>8</height>
+			<cell_width>80</cell_width>
+			<cell_height>80</cell_height>
+		</board>
+	</data>
+	<images>
+		<board>res/img/chessboard_640x640.png</board>
+		<pieces>res/img/chess_pieces_80x80_each.png</pieces>
+		<validMove>res/img/valid_move.png</validMove>
+	</images>
+</chesspp>

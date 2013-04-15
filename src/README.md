@@ -6,7 +6,8 @@ Style Guide & Coding Conventions
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
 - Prefer to use file extensions .cpp and .hpp to aid in GitHub's language recognition algorithms (using .h may cause the file to be detected as C rather than C++)
 - Prefer `lowercase` namespace, parameter, and local variable names.
-- Prefer `UpperCamelCase` class and member function names
+- Prefer `UpperCamelCase` for class names
+- Prefer `lowerCamelCase` for member function names
 - Prefer `lower_case_underscore` private member names
 - Avoid using raw pointers when possible
 - Prefer creating `using` declarations to using raw primitive types

@@ -4,7 +4,7 @@ Style Guide & Coding Conventions
 - All files are to have a single blank line at their end, if possible.
 - Prefer C++11 features to C++03 features when possible, and avoid deprecated language features.
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
-- Prefer to use file extensions .cpp and .hh (using .h may cause the file to be detected as C or Objective-C rather than C++)
+- Prefer to use file extensions .cpp and .hpp (using .h may cause the file to be detected as C or Objective-C rather than C++)
 - Prefer `lowercase` namespace, parameter, and local variable names.
 - Prefer `UpperCamelCase` for class names
 - Prefer `lowerCamelCase` for member function names

@@ -10,11 +10,11 @@ namespace chesspp
     {
         using std::exception::what;
     public:
-        exception() throw() {}
-        virtual ~exception() throw() {};
-        exception(const exception &) throw() {}
+        exception() {}
+        virtual ~exception() {};
+        exception(const exception &) {}
 
-        exception(const std::string &_e) throw() : e(_e) {}
+        exception(const std::string &_e) : e(_e) {}
         virtual const char *what() { return e.c_str(); }
         
     private:

@@ -99,6 +99,6 @@ namespace chesspp
 }
 
 // This is handy, thanks.
-#include "Board.h"
+#include "Board.hpp"
 
 #endif

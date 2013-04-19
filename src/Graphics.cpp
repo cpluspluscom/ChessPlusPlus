@@ -4,8 +4,6 @@ namespace chesspp
 {
     namespace graphics
     {
-
-
         GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) : display(_display)
         {
             try 

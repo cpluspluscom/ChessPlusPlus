@@ -27,7 +27,7 @@
 
 namespace chesspp
 {
-    typedef std::vector<Piece*> pieceList;
+    using pieceList = std::vector<Piece*>;
 
     class Board
     {

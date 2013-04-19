@@ -10,43 +10,40 @@
 
 namespace chesspp
 {
-
-namespace Log
-{
-    class Debug
+    namespace Log
     {
-    private:
-        static std::ofstream out;
-    public:
-
-        // The debugLevel determins if there is output
-        // the write() are passed their own level
-        // if the debugLevel is less than the passed value
-        // then data is written
-        // Ideally the debugLevel would be set in a file
-        // So that various levels of debugging can be done without a recompile
-        static int debugLevel;
-
-        template<typename T>
-        static void write(T data, int level = 0)
+        class Debug
         {
-            out.open("debug.txt", std::ios::app);
-            if (level > debugLevel) return;
-            out << data;
-            out.close();
-        }
-        template<typename T>
-        static void writeln(T data, int level = 0)
-        {
-            out.open("debug.txt", std::ios::app);
-            if (level > debugLevel) return;
-            out << data << std::endl;
-            out.close();
-        }
-    };
+        private:
+            static std::ofstream out;
+        public:
+
+            // The debugLevel determins if there is output
+            // the write() are passed their own level
+            // if the debugLevel is less than the passed value
+            // then data is written
+            // Ideally the debugLevel would be set in a file
+            // So that various levels of debugging can be done without a recompile
+            static int debugLevel;
+
+            template<typename T>
+            static void write(T data, int level = 0)
+            {
+                out.open("debug.txt", std::ios::app);
+                if (level > debugLevel) return;
+                out << data;
+                out.close();
+            }
+            template<typename T>
+            static void writeln(T data, int level = 0)
+            {
+                out.open("debug.txt", std::ios::app);
+                if (level > debugLevel) return;
+                out << data << std::endl;
+                out.close();
+            }
+        };
+    }
 }
 
-
-
-}
 #endif

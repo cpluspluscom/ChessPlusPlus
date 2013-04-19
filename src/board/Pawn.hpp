@@ -10,7 +10,6 @@
 
 namespace chesspp
 {
-
     class Pawn : public Piece
     {
     private:
@@ -26,6 +25,5 @@ namespace chesspp
         // this function changes "firstMove" to false
         virtual bool move(const Position& moveTo);
     };
-
 }
 #endif

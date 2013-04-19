@@ -10,15 +10,13 @@
 
 namespace chesspp
 {
+    class Rook : public Piece
+    {
+    private:
+    public:
+        Rook(const Position& bPos, Color c);
 
-class Rook : public Piece
-{
-private:
-public:
-    Rook(const Position& bPos, Color c);
-
-    virtual void makeTrajectory(const Board* board);
-};
-
+        virtual void makeTrajectory(const Board* board);
+    };
 }
 #endif

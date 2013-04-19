@@ -21,11 +21,13 @@ namespace chesspp
     class Board;
     typedef std::vector<Position> posList;
 
-    enum Color {
+    enum Color
+    {
         WHITE = 0,
         BLACK
     };
-    enum Type {
+    enum Type
+    {
         PAWN = 0,
         ROOK,
         KNIGHT,
@@ -49,7 +51,9 @@ namespace chesspp
     public:
 
         Piece(const Position& bPos, const Position& tPos, Color c, Type t);
-        virtual ~Piece() {}
+        virtual ~Piece()
+        {
+        }
 
         // Standard Accesors
         const Position& getBoardPos(void) const;
@@ -68,7 +72,9 @@ namespace chesspp
         virtual bool isKing(void);
 
         // Make pure virtual when all pieces have the function
-        virtual void makeTrajectory(const Board* board) {}
+        virtual void makeTrajectory(const Board* board)
+        {
+        }
 
         // Used by Queen, Bishop, and Rook
         // This function moves in Direction d until the end of the board

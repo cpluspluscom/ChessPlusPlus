@@ -8,9 +8,10 @@ Style Guide & Coding Conventions
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
 - Prefer to use file extensions .cpp and .hpp (using .h may cause the file to be detected as C or Objective-C rather than C++)
 - Prefer `lowercase` namespace, parameter, and local variable names.
-- Prefer `UpperCamelCase` for class names
+- Prefer `UpperCamelCase` for class and type names
 - Prefer `lowerCamelCase` for member function names
 - Prefer `lower_case_underscore` private member names
+- Prefer `lwrabbrcase` for namespace names
 - Braces should be on their own lines, even for empty definitions
 - Namespaces cause indentation to occur, inclusion guards do not
 - Avoid using raw pointers when possible

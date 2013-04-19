@@ -9,58 +9,56 @@
 
 namespace chesspp
 {
+    // WIDTH is used throughout the game logic
+    #define WIDTH 8
 
-// WIDTH is used throughout the game logic
-#define WIDTH 8
+    enum Direction
+    {
+        NORTH,
+        NORTH_EAST,
+        EAST,
+        SOUTH_EAST,
+        SOUTH, SOUTH_WEST,
+        WEST,
+        NORTH_WEST
+    };
 
-enum Direction {
-    NORTH,
-    NORTH_EAST,
-    EAST,
-    SOUTH_EAST,
-    SOUTH, SOUTH_WEST,
-    WEST,
-    NORTH_WEST};
+    class Position
+    {
+    private:
 
+        // The location of the piece
+        int x;
+        int y;
 
-class Position
-{
-private:
+        // A valid position is one that the Piece can move to
+        bool valid;
 
-    // The location of the piece
-    int x;
-    int y;
+    public:
+        Position(void);
+        Position(const Position& other);
+        Position(int x, int y);
 
-    // A valid position is one that the Piece can move to
-    bool valid;
+        // Standard accessors
+        bool inBounds(void) const;
+        bool isValid(void) const;
+        int getX(void) const;
+        int getY(void) const;
 
-public:
-    Position(void);
-    Position(const Position& other);
-    Position(int x, int y);
+        // Moves position relative to itself
+        void move(int x, int y);
+        // Move position relative it itself in the direction
+        void move(Direction d);
+        // Forces location of position
+        void set(int x, int y);
+        // Changes the validity
+        void setValid(bool v);
 
-    // Standard accessors
-    bool inBounds(void) const;
-    bool isValid(void) const;
-    int getX(void) const;
-    int getY(void) const;
+        bool operator==(const Position& other) const;
+        bool operator!=(const Position& other) const;  // Not Used
 
-    // Moves position relative to itself
-    void move(int x, int y);
-    // Move position relative it itself in the direction
-    void move(Direction d);
-    // Forces location of position
-    void set(int x, int y);
-    // Changes the validity
-    void setValid(bool v);
+        friend std::ostream& operator<<(std::ostream& out, const Position& pos);
 
-    bool operator==(const Position& other) const;
-    bool operator!=(const Position& other) const;  // Not Used
-
-    friend std::ostream& operator<<(std::ostream& out, const Position& pos);
-
-};
-
-
+    };
 }
 #endif

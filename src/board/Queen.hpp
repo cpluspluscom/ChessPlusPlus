@@ -1,23 +1,24 @@
-#ifndef LOWBISHOP_H
-#define LOWBISHOP_H
+#ifndef LOWQUEEN_H
+#define LOWQUEEN_H
 
 // Warning:
 //    Texture positions are hard coded into constructor
 //    I think they should at least be brought to the Board
 //    So they can be changed at once
 
-#include "Piece.h"
+#include "Piece.hpp"
 
 namespace chesspp
 {
 
-class Bishop : public Piece
+class Queen : public Piece
 {
 private:
 public:
-	Bishop(const Position& bPos, Color c);
+    Queen(const Position& bPos, Color c);
 
-	virtual void makeTrajectory(const Board* board);
+    virtual void makeTrajectory(const Board* board);
+
 };
 
 }

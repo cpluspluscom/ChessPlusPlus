@@ -4,12 +4,15 @@ Style Guide & Coding Conventions
 - All files are to have a single blank line at their end, if possible.
 - Prefer C++11 features to C++03 features when possible, and avoid deprecated language features.
 - When using C++11 features, try to use those which are supported by at least both clang++ and gcc
+- Prefer to use `<c____>` rather than `<____.h>` for C standard library headers
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
 - Prefer to use file extensions .cpp and .hpp (using .h may cause the file to be detected as C or Objective-C rather than C++)
 - Prefer `lowercase` namespace, parameter, and local variable names.
 - Prefer `UpperCamelCase` for class names
 - Prefer `lowerCamelCase` for member function names
 - Prefer `lower_case_underscore` private member names
+- Braces should be on their own lines, even for empty definitions
+- Namespaces cause indentation to occur, inclusion guards do not
 - Avoid using raw pointers when possible
 - Prefer creating `using` declarations to using raw primitive types
 - Avoid use of exceptions when possible

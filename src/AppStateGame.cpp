@@ -1,4 +1,4 @@
-#include "AppState.h"
+#include "AppState.hpp"
 
 namespace chesspp
 {
@@ -9,7 +9,7 @@ namespace chesspp
     }
 
     int AppStateGame::id() { return 1; }
-	
+
     void AppStateGame::OnRender()
     {
         graphics.drawBoard(board);
@@ -18,7 +18,7 @@ namespace chesspp
     void AppStateGame::OnLButtonPressed(int x, int y)
     {
         board->setSelected(board->getCurrent()); // No matter if NULL
-    } 
+    }
     void AppStateGame::OnMouseMoved(int x, int y)
     {
         board->setCurrent(x,y);

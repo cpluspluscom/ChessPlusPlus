@@ -1,4 +1,4 @@
-#include "Graphics.h"
+#include "Graphics.hpp"
 
 namespace chesspp
 {

@@ -1,13 +1,13 @@
 #ifndef _RESOURCEMANAGER_H
-	#define _RESOURCEMANAGER_H
+    #define _RESOURCEMANAGER_H
 
 #include <map>
 #include <memory>
-#include "Exception.h"
+#include "Exception.hpp"
 
 #ifdef _DEBUG
-	#include <iostream>
-	using std::cout; using std::endl;
+    #include <iostream>
+    using std::cout; using std::endl;
 #endif
 
 namespace chesspp
@@ -36,10 +36,10 @@ namespace chesspp
         //************************************
         // Method:    Free
         // FullName:  ResourceManager<T, deleter_type>::Free
-        // Access:    public 
+        // Access:    public
         // Returns:   void
         // Parameter: const std::string & key
-        //   Deletes the entry of a key in the resource map. 
+        //   Deletes the entry of a key in the resource map.
         //   This will call deleter_type to deallocate the resource from memory as well.
         //************************************
         void Free(const key_type &key) {
@@ -50,7 +50,7 @@ namespace chesspp
         //************************************
         // Method:    Load
         // FullName:  ResourceManager<T, deleter_type>::Load
-        // Access:    public 
+        // Access:    public
         // Returns:   ptr_t
         // Parameter: const std::string & key
         //   Returns a reference to the resource associated with the file name 'key' if it exists in memory.
@@ -73,7 +73,7 @@ namespace chesspp
 
     private:
         map_t m_map; //resource map
-    }; 
+    };
 }
 
 #endif

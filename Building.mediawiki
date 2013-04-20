@@ -6,7 +6,7 @@ Simply build via the <tt>Makefile</tt> in the root directory.
 == Windows ==
 On Windows, we recommend that you use [http://www.mingw.org/ MinGW], or [http://clang.llvm.org/ clang++] in combination with MinGW (the "[http://llvm.org/releases/download.html#3.2 experimental]" version for MinGW works on Windows).
 
-Make sure you list all cpp files (you can do *.cpp for each directory that contains cpp files) and that you link to the proper SFML libraries (and any boost libraries if the project at some point starts using ones that need compiling).
+Make sure you list all cpp files (you can do <tt>*.cpp</tt> for each directory that contains cpp files) and that you link to the proper SFML libraries (and any boost libraries if the project at some point starts using ones that need compiling).
 
 == Other ==
 [https://www.google.com/ Click here] for information on compiling on other platforms.

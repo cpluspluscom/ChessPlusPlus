@@ -1,12 +1,12 @@
 #ifndef _APPSTATE_H
 #define _APPSTATE_H
 
-#include "SFMLEvent.h"
+#include "SFMLEvent.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace chesspp
 {
-    //pure virtual abstract base class for game state management. 
+    //pure virtual abstract base class for game state management.
     class AppState : public SFMLEvent
     {
     public:
@@ -18,10 +18,10 @@ namespace chesspp
 
     protected:
         sf::RenderWindow *display;
-    }; 
+    };
 }
 
-#include "AppStateGame.h"
+#include "AppStateGame.hpp"
 /* Convenience header inclusion so we don't have to include each individual inheritor */
 
 #endif

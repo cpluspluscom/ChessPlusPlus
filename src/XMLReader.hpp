@@ -1,7 +1,7 @@
 #ifndef _XMLREADER_H
 #define _XMLREADER_H
 
-#include "Exception.h"
+#include "Exception.hpp"
 
 #include <string>
 #include <memory>
@@ -33,7 +33,7 @@ namespace chesspp
     public:
         XMLReader(const std::string &file) : impl(new XMLReaderImpl(file)) {};
         ~XMLReader() {}
-        
+
         template<typename T>
         T getProperty(const std::string &key)
         {

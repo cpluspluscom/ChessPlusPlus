@@ -1,5 +1,5 @@
 #ifndef _EVENT_H
-	#define _EVENT_H
+    #define _EVENT_H
 
 #include "SFML.hpp"
 
@@ -33,7 +33,7 @@ namespace chesspp
         virtual void OnJoystickMoved(uint joystickID, sf::Joystick::Axis axis, float position) {}
         virtual void OnJoystickConnected(uint joystickID) {}
         virtual void OnJoystickDisconnected(uint joystickID) {}
-    }; 
+    };
 }
 
 #endif

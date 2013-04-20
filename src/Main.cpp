@@ -1,7 +1,7 @@
-#include "Application.h"
+#include "Application.hpp"
 
 int main()
 {
-	chesspp::Application app;
-	return app.Exec();
+    chesspp::Application app;
+    return app.Exec();
 }

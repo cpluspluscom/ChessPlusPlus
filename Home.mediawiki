@@ -4,3 +4,4 @@ Check out the information on [[Building]] and on the [[Design]] of the project.
 
 Devolper IRC Channel:
 irc.freenode.net #ChessPlusPlus
+(You can join via [http://webchat.freenode.net/ webchat] if you don't have a client)

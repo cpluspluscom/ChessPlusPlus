@@ -1,1 +1,0 @@
-[![](https://raw.github.com/naraku9333/ChessPlusPlus/master/docs/Framework%20Flowchart.png)](https://raw.github.com/naraku9333/ChessPlusPlus/master/docs/Framework%20Flowchart.png)

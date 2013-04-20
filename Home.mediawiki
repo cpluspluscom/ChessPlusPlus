@@ -1,0 +1,3 @@
+Welcome to the ChessPlusPlus wiki! This is a [http://www.cplusplus.com/ cplusplus.com] community project to show the power and elegance of C++11, SFML, and boost.
+
+Click for information on [[Building]]

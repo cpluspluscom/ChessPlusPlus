@@ -33,18 +33,19 @@ namespace chesspp
             //    <.app>/Contents/Resources/res/img... should be where resources are stored.
             std::string getResourcePath()
             {
-                const uint32_t SIZE = 1024;
-                char buf[SIZE];
-                memset(buf, 0, SIZE);
+                
+                char buf[1024];
+                uint32_t size = sizeof(buf);
+                memset(buf, 0, size);
                 std::string ret;
                 #if defined(__linux__)
-                     if(readlink("/proc/self/exe", buf, SIZE) == -1)
+                     if(readlink("/proc/self/exe", buf, size) == -1)
                          throw chesspp::exception("Unable to determine executable path on Linux.");
                      ret = buf;
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
                 #elif defined(_WIN32)
-                     if(GetModuleFileNameA(NULL, buf, SIZE) == 0)
+                     if(GetModuleFileNameA(NULL, buf, size) == 0)
                          throw chesspp::exception("Unable to determine executable path on Windows.");
                      ret = buf;
                      boost::replace_all(ret, "\\", "/");

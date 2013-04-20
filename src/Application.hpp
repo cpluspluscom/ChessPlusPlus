@@ -1,7 +1,7 @@
 #ifndef _APPLICATION_H
-	#define _APPLICATION_H
+    #define _APPLICATION_H
 
-#include "AppState.h"
+#include "AppState.hpp"
 
 namespace chesspp
 {
@@ -10,9 +10,9 @@ namespace chesspp
         sf::RenderWindow display;
         bool running;
         AppState* state;
-	    void OnEvent(sf::Event *Event);
+        void OnEvent(sf::Event *Event);
 
-    public:  
+    public:
         Application();
         ~Application();
 
@@ -22,7 +22,7 @@ namespace chesspp
             state = new NewState;
         }
         int Exec();
-    }; 
+    };
 }
 
 #endif

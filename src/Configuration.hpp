@@ -1,8 +1,8 @@
 #ifndef _CONFIGURATION_H
 #define _CONFIGURATION_H
 
-#include <string.h>
-#include <stdint.h>
+#include <cstring>
+#include <cstdint>
 #include <boost/algorithm/string/replace.hpp>
 
 #if defined(__linux__)
@@ -14,9 +14,9 @@
 #endif
 
 
-#include "Exception.h"
-#include "XMLReader.h"
-#include "board/logger.h"
+#include "Exception.hpp"
+#include "XMLReader.hpp"
+#include "board/logger.hpp"
 
 namespace chesspp
 {
@@ -26,7 +26,7 @@ namespace chesspp
         {
         protected:
             std::string res_path;
-            
+
             //Linux and Windows, resource path is defined as the absolute path the folder where the application executable is stored.
             //    <exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
@@ -49,7 +49,7 @@ namespace chesspp
                      ret = buf;
                      boost::replace_all(ret, "\\", "/");
                      ret = ret.substr(0, ret.find_last_of('/')+1);
-                
+
                 #elif defined(__APPLE__)
                      if (_NSGetExecutablePath(buf, &size) != 0)
                          throw chesspp::exception("Unable to determine executable path on OS x. (Buffer size too small?)");
@@ -60,7 +60,7 @@ namespace chesspp
 
                 #else
                       throw chesspp::exception("Unknown OS. Unable to determine executable path.");
-                #endif	
+                #endif
 
                 return ret;
             }
@@ -69,7 +69,7 @@ namespace chesspp
         public:
             configuration(const std::string &configFile) : res_path(getResourcePath()), reader(getResourcePath() + configFile) {}
             virtual ~configuration() {}
-            
+
         };
 
         class BoardConfig : public configuration
@@ -79,7 +79,7 @@ namespace chesspp
             uint16_t cell_width, cell_height;
 
         public:
-            BoardConfig() : configuration("config.xml") 
+            BoardConfig() : configuration("config.xml")
             {
                 initial_layout = res_path + reader.getProperty<std::string>("chesspp.data.board.initial_layout");
                 board_width = reader.getProperty<uint8_t>("chesspp.data.board.width");
@@ -87,7 +87,7 @@ namespace chesspp
                 cell_width = reader.getProperty<uint16_t>("chesspp.data.board.cell_width");
                 cell_height = reader.getProperty<uint16_t>("chesspp.data.board.cell_height");
             }
-            
+
             std::string getInitialLayout() { return initial_layout; }
             uint8_t     getBoardWidth() { return board_width; }
             uint8_t     getBoardHeight() { return board_height; }
@@ -111,7 +111,7 @@ namespace chesspp
             std::string getSpritePath_pieces() { return path_pieces; }
             std::string getSpritePath_validMove() { return path_validMove; }
         };
-    } 
+    }
 }
 
 #endif

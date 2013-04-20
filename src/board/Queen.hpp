@@ -6,20 +6,18 @@
 //    I think they should at least be brought to the Board
 //    So they can be changed at once
 
-#include "Piece.h"
+#include "Piece.hpp"
 
 namespace chesspp
 {
+    class Queen : public Piece
+    {
+    private:
+    public:
+        Queen(const Position& bPos, Color c);
 
-class Queen : public Piece
-{
-private:
-public:
-	Queen(const Position& bPos, Color c);
+        virtual void makeTrajectory(const Board* board);
 
-	virtual void makeTrajectory(const Board* board);
-
-};
-
+    };
 }
 #endif

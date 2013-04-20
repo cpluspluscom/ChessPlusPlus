@@ -2,10 +2,10 @@
 #define _GRAPHICS_H
 
 #include "SFML.hpp"
-#include "TextureManager.h"
-#include "Configuration.h"
-#include "board/Piece.h"
-#include "board/logger.h"
+#include "TextureManager.hpp"
+#include "Configuration.hpp"
+#include "board/Piece.hpp"
+#include "board/logger.hpp"
 
 #ifdef _DEBUG
 #include <iostream>
@@ -21,7 +21,7 @@ namespace chesspp
             sf::Sprite board, pieces, validMove;
             uint16_t cell_size;
             sf::RenderWindow *display;
-        
+
         public:
             GraphicsHandler(sf::RenderWindow *_display);
 

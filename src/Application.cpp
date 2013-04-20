@@ -1,12 +1,12 @@
-#include "Application.h"
+#include "Application.hpp"
 #include <iostream>
 
 namespace chesspp
 {
     Application::Application()
-    :  	display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close),
-	    running(true),
-	    state(new AppStateGame(this, &display))
+    :   display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close),
+        running(true),
+        state(new AppStateGame(this, &display))
     {
         display.setVerticalSyncEnabled(true);
     }
@@ -20,16 +20,16 @@ namespace chesspp
                 OnEvent(&Event);
 
             state->OnRender();
-	        display.display();
+            display.display();
         }
-   
+
         return 0;
     }
 
     Application::~Application()
     {
-	    delete state; //Even if it's null, no matter.
-    } 
+        delete state; //Even if it's null, no matter.
+    }
 
     void Application::OnEvent(sf::Event *Event)
     {

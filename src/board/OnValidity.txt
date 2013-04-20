@@ -8,7 +8,7 @@ The trajectory of the piece is a list of Positions that, say the board where emt
 
 Validity is not to be confused with the Position being out-of-bounds.
   - There is inBounds() for that.
-  
+
 Given the example
 
 R * * b * * k
@@ -25,19 +25,15 @@ The rook can take the bishop because it is valid, but is blocked from the king
 
 This allows us to say something like:
   If the black king is in my trajectory and this Position is valid
-	then the king is in check
- 
+    then the king is in check
+
 It also allows for more complicated things:
-	Piece checking = the piece putting my king in check (which there can be more than one)
-	
-	if a move in my valid trajectory does not cause the king to become invalid in checkings's trajectory
-		then I can not move there
-	(ignoring the case where I capture checking)
-	
-	if I am in a piece's valid trajectory and my king is in that piece's invalid trajectory
-	and if I tried to move the king would become valid
-		then I can not move there
+    Piece checking = the piece putting my king in check (which there can be more than one)
 
+    if a move in my valid trajectory does not cause the king to become invalid in checkings's trajectory
+        then I can not move there
+    (ignoring the case where I capture checking)
 
-		
-	
+    if I am in a piece's valid trajectory and my king is in that piece's invalid trajectory
+    and if I tried to move the king would become valid
+        then I can not move there

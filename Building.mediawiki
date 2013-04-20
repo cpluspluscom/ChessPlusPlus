@@ -8,5 +8,7 @@ On Windows, we recommend that you use [http://www.mingw.org/ MinGW], or [http://
 
 Make sure you list all cpp files (you can do <tt>*.cpp</tt> for each directory that contains cpp files) and that you link to the proper SFML libraries (and any boost libraries if the project at some point starts using ones that need compiling).
 
+Also, note that the executable must be placed in the same folder as config.xml - the program gets resource paths based off of that location. If the executable is ran from any other location, the program will error out.
+
 == Other ==
 [https://www.google.com/ Click here] for information on compiling on other platforms.

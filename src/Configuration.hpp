@@ -51,7 +51,7 @@ namespace chesspp
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
                 #elif defined(__APPLE__)
-                     if (_NSGetExecutablePath(buf, &size) != 0)
+                     if (_NSGetExecutablePath(buf, SIZE) != 0)
                          throw chesspp::exception("Unable to determine executable path on OS x. (Buffer size too small?)");
                      ret = buf;
                      ret = ret.substr(0, ret.find_last_of('/')+1) + "../Resources/";

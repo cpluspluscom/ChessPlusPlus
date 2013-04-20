@@ -2,7 +2,10 @@
 
 namespace chesspp
 {
-    AppStateGame::AppStateGame( Application* _app, sf::RenderWindow *_display ) : app(_app), AppState(_display), graphics(display)
+    AppStateGame::AppStateGame( Application* _app, sf::RenderWindow *_display )
+        : AppState(_display)
+        , app(_app)
+        , graphics(display)
     {
         board = new Board();
         board->newGame(boardConfig.getInitialLayout());

@@ -2,6 +2,6 @@ Welcome to the ChessPlusPlus wiki! This is a [http://www.cplusplus.com/ cplusplu
 
 Check out the information on [[Building]] and on the [[Design]] of the project.
 
-Devolper IRC Channel:
+Devolper IRC Channel:<br/>
 irc.freenode.net #ChessPlusPlus
-(You can join via [http://webchat.freenode.net/ webchat] if you don't have a client)
+<br/>(You can join via [http://webchat.freenode.net/ webchat] if you don't have a client)

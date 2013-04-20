@@ -1,7 +1,7 @@
 Building the project is relatively simple. Firstly, you need to make sure you have [http://www.boost.org/ boost] and [http://www.sfml-dev.org/ SFML 2.0] installed and built properly. After that, it depends on your operating system and/or compiler.
 
 == *nix and *nix-like ==
-Simply build via the `Makefile` in the root directory.
+Simply build via the <tt>Makefile</tt> in the root directory.
 
 == Windows ==
 On Windows, we recommend that you use [http://www.mingw.org/ MinGW], or [http://clang.llvm.org/ clang++] in combination with MinGW (the "[http://llvm.org/releases/download.html#3.2 experimental]" version for MinGW works on Windows).

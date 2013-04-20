@@ -10,6 +10,7 @@
 *.pdb
 *.ilk
 *.DS_Store
+*.dll
 
 chesspp
 debug.txt
@@ -19,3 +20,4 @@ Debug/
 Release/
 libs/SFML-4fbefe7/build_vs11/
 bin/
+obj/

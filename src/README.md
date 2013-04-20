@@ -24,5 +24,6 @@ Style Guide & Coding Conventions
 - Use nameless scopes in functions to emphasize the lifetime of RAII objects
 - Place source file helper functions/classes in anonymous namespaces AND declare them static, so as to avoid name/symbol conflicts across irrelevant source files
 - Keep clear the separation between client and server behaviors and responsibilities
+- Prefer defining one-line accessor functions that don't cause coupling inside the header file.
 
 To suggest changes to this guide, fork the project, make amendments, submit the pull request, and partake in discussion of the changes.

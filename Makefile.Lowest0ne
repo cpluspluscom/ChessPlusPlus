@@ -17,21 +17,26 @@ $(ODIR)Queen.o $(ODIR)King.o $(ODIR)Logger.o $(ODIR)Piece.o $(ODIR)Position.o\
 $(ODIR)Board.o
 EXECUTABLE = ChessPlusPlus.exe
 
-LIBS =  -lsfml-system -lsfml-window -lsfml-graphics
+LIBS =  -DSFML_STATIC -lsfml-graphics-s -lsfml-window-s -lsfml-system-s
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(FLAGS) $(OBJECTS) -o $(EXECUTABLE)  $(LIBDIR) $(LIBS)
 
-$(ODIR)Application.o: $(SOURCEDIR)Application.cpp $(SOURCEDIR)Application.hpp
+$(ODIR)Application.o: $(SOURCEDIR)Application.cpp $(SOURCEDIR)Application.hpp\
+$(SOURCEDIR)AppState.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)Application.cpp -o $(ODIR)Application.o
 
-$(ODIR)AppStateGame.o: $(SOURCEDIR)AppStateGame.cpp $(SOURCEDIR)AppStateGame.hpp
+$(ODIR)AppStateGame.o: $(SOURCEDIR)AppStateGame.cpp $(SOURCEDIR)Graphics.hpp\
+$(SOURCEDIR)SFML.hpp $(SOURCEDIR)TextureManager.hpp $(SOURCEDIR)board/Board.hpp\
+$(SOURCEDIR)Configuration.hpp $(SOURCEDIR)AppStateGame.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)AppStateGame.cpp -o $(ODIR)AppStateGame.o
 
-$(ODIR)Graphics.o: $(SOURCEDIR)Graphics.cpp $(SOURCEDIR)Graphics.hpp
+$(ODIR)Graphics.o: $(SOURCEDIR)Graphics.cpp $(SOURCEDIR)Graphics.hpp\
+$(SOURCEDIR)SFML.hpp $(SOURCEDIR)TextureManager.hpp $(SOURCEDIR)board/Piece.hpp\
+$(SOURCEDIR)board/logger.hpp $(SOURCEDIR)Configuration.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)Graphics.cpp -o $(ODIR)Graphics.o
 
-$(ODIR)Main.o: $(SOURCEDIR)Main.cpp 
+$(ODIR)Main.o: $(SOURCEDIR)Main.cpp  $(SOURCEDIR)Application.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)Main.cpp -o $(ODIR)Main.o
 
 $(ODIR)Pawn.o: $(SOURCEDIR)board/Pawn.cpp $(SOURCEDIR)board/Pawn.hpp

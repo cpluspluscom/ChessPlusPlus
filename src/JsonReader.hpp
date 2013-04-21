@@ -27,7 +27,7 @@ namespace chesspp
                 throw Exception(std::string("Error loading JSON: ") + error, Exception(str)); //attached JSON as 'caused by'
             }
         }
-        JsonReader(std::istream &&s) noexcept(false) : JsonReader(static_cast<std::istream &>(s))
+        JsonReader(std::istream &&s) noexcept(false) : JsonReader(s)
         {
         }
         ~JsonReader() noexcept

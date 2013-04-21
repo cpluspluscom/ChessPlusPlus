@@ -1,16 +1,16 @@
+#include <iostream>
+
 #include "Application.hpp"
 
 int main()
 {
     try
     {
-        chesspp::Application app;
-        return app.Exec();
+        return chesspp::Application().Exec();
     }
-    catch (chesspp::exception& ex)
+    catch (chesspp::Exception &e)
     {
-        std::cout << "Caught in main: " << ex.what() << '\n';
+        std::clog << "Caught in main: " << e.fullMessage() << std::endl;
+        return -1;
     }
-    
-    return 0;
 }

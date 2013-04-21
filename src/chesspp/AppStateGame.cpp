@@ -7,7 +7,7 @@ namespace chesspp
         , app(_app)
         , graphics(display)
     {
-        board = new Board();
+        board = new board::Board();
         board->newGame(boardConfig.getInitialLayout());
     }
 

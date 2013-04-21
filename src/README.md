@@ -1,5 +1,7 @@
 Style Guide & Coding Conventions
 ================================
+
+## General
 - Indentation is to be consistently four spaces, not tabs or a mixture of spaces and tabs.
 - All files are to have a single blank line at their end, if possible.
 - Prefer C++11 features to C++03 features when possible, and avoid deprecated language features.
@@ -24,6 +26,46 @@ Style Guide & Coding Conventions
 - Use nameless scopes in functions to emphasize the lifetime of RAII objects
 - Place source file helper functions/classes in anonymous namespaces AND declare them static, so as to avoid name/symbol conflicts across irrelevant source files
 - Keep clear the separation between client and server behaviors and responsibilities
-- Prefer defining one-line accessor functions that don't cause coupling inside the header file.
+- Prefer inlining functions, ctors, and dtors, so long as they do not increase header file coupling.
+- Try to make as many functions `noexcept` as possible, or at least use the conditional `noexcept` syntax.
+- If a function is known for throwing exceptions, write `noexcept(false)` as a visual indicator.
+- Try to avoid excess or repetitive "access:" specifiers.
+- Avoid strange spaces before open parens and open braces and in other places unless you are lining up code with other code for readability and emphasis of relation.
+
+## Specifics
+One-liners should be **one line**, otherwise they should be in braces:
+```cpp
+if(condition) one(liner);
+//or
+if(condition)
+{
+    really(long(one, liner));
+}
+```
+
+Constructor initializer lists should have each element on their own line and have the same indentation level as the opening brace of the ctor:
+```cpp
+    OurClass()
+    : first(element)
+    , second(element)
+    , nth(element)
+    {
+        //...
+    }
+```
+
+The `const` keyword is to appear on the right side of types, to be consisten with other uses of the `const` keyword:
+```cpp
+char const*identifier;
+```
+It should also snuggle next to * and &
+
+\* and & should sunggle next to identifiers:
+```cpp
+void func(ns::ClassName *classname, ns::OtherClass const&otherclass) const
+{
+    //...
+}
+```
 
 To suggest changes to this guide, fork the project, make amendments, submit the pull request, and partake in discussion of the changes.

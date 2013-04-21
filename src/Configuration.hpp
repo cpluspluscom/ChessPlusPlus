@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdint>
 #include <boost/algorithm/string/replace.hpp>
+#include <fstream>
 
 #if defined(__linux__)
     #include <unistd.h>
@@ -15,14 +16,14 @@
 
 
 #include "Exception.hpp"
-#include "XMLReader.hpp"
+#include "JsonReader.hpp"
 #include "board/logger.hpp"
 
 namespace chesspp
 {
-    namespace configuration
+    namespace config
     {
-        class configuration
+        class Configuration
         {
         protected:
             std::string res_path;
@@ -31,62 +32,67 @@ namespace chesspp
             //    <exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
             //    <.app>/Contents/Resources/res/img... should be where resources are stored.
-            std::string getResourcePath()
+            static std::string getResourcePath()
             {
                 
                 char buf[1024];
-                uint32_t size = sizeof(buf);
+                std::uint32_t size = sizeof(buf);
                 memset(buf, 0, size);
                 std::string ret;
                 #if defined(__linux__)
                      if(readlink("/proc/self/exe", buf, size) == -1)
-                         throw chesspp::exception("Unable to determine executable path on Linux.");
+                         throw Exception("Unable to determine executable path on Linux.");
                      ret = buf;
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
                 #elif defined(_WIN32)
                      if(GetModuleFileNameA(NULL, buf, size) == 0)
-                         throw chesspp::exception("Unable to determine executable path on Windows.");
+                         throw Exception("Unable to determine executable path on Windows.");
                      ret = buf;
                      boost::replace_all(ret, "\\", "/");
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
                 #elif defined(__APPLE__)
                      if (_NSGetExecutablePath(buf, &size) != 0)
-                         throw chesspp::exception("Unable to determine executable path on OS x. (Buffer size too small?)");
+                         throw Exception("Unable to determine executable path on OS x. (Buffer size too small?)");
                      ret = buf;
                      ret = ret.substr(0, ret.find_last_of('/')+1) + "../Resources/";
                      //Need to go up one directory because the exe is stored in <.app>/Contents/MacOS/,
                      //And we need <.app>/Contents/Resources
 
                 #else
-                      throw chesspp::exception("Unknown OS. Unable to determine executable path.");
+                      throw Exception("Unknown OS. Unable to determine executable path.");
                 #endif
 
                 return ret;
             }
 
-            XMLReader reader;
+            JsonReader reader;
         public:
-            configuration(const std::string &configFile) : res_path(getResourcePath()), reader(getResourcePath() + configFile) {}
-            virtual ~configuration() {}
+            Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
+            {
+            }
+            virtual ~Configuration() noexcept
+            {
+            }
 
         };
 
-        class BoardConfig : public configuration
+        class BoardConfig : public Configuration
         {
             std::string initial_layout;
-            uint8_t board_width, board_height;
-            uint16_t cell_width, cell_height;
+            std::uint8_t board_width, board_height;
+            std::uint16_t cell_width, cell_height;
 
         public:
-            BoardConfig() : configuration("config.xml")
+            BoardConfig()
+            : Configuration("config.json")
+            , initial_layout (res_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
+            , board_width(reader()["chesspp"]["board"]["width"])
+            , board_height(reader()["chesspp"]["board"]["height"])
+            , cell_width(reader()["chesspp"]["board"]["cell_width"])
+            , cell_height(reader()["chesspp"]["board"]["cell_height"])
             {
-                initial_layout = res_path + reader.getProperty<std::string>("chesspp.data.board.initial_layout");
-                board_width = reader.getProperty<uint8_t>("chesspp.data.board.width");
-                board_height = reader.getProperty<uint8_t>("chesspp.data.board.height");
-                cell_width = reader.getProperty<uint16_t>("chesspp.data.board.cell_width");
-                cell_height = reader.getProperty<uint16_t>("chesspp.data.board.cell_height");
             }
 
             std::string getInitialLayout() { return initial_layout; }
@@ -96,16 +102,17 @@ namespace chesspp
             uint16_t    getCellHeight() { return cell_height; }
         };
 
-        class GraphicsConfig : public configuration
+        class GraphicsConfig : public Configuration
         {
             std::string path_board, path_pieces, path_validMove;
 
         public:
-            GraphicsConfig() : configuration("config.xml")
+            GraphicsConfig()
+            : Configuration("config.json")
+            , path_board(res_path + std::string(reader()["chesspp"]["board"]["images"]["board"]))
+            , path_pieces(res_path + std::string(reader()["chesspp"]["board"]["images"]["pieces"]))
+            , path_validMove(res_path + std::string(reader()["chesspp"]["board"]["images"]["validMove"]))
             {
-                path_board = res_path + reader.getProperty<std::string>("chesspp.images.board");
-                path_pieces = res_path + reader.getProperty<std::string>("chesspp.images.pieces");
-                path_validMove = res_path + reader.getProperty<std::string>("chesspp.images.validMove");
             }
 
             std::string getSpritePath_board() { return path_board; }

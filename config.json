@@ -1,0 +1,20 @@
+{
+    "chesspp":
+    {
+        "board":
+        {
+            "initial_layout": "res/games/new_game.txt",
+            "width": 8,
+            "height": 8,
+            "cell_width": 80,
+            "cell_height": 80,
+
+            "images":
+            {
+                "board": "res/img/chessboard_640x640.png",
+                "pieces": "res/img/chess_pieces_80x80_each.png",
+                "validMove": "res/img/valid_move.png"
+            }
+        }
+    }
+}

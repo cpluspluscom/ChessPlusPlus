@@ -8,8 +8,8 @@ namespace chesspp
         {
             try 
             {
-                configuration::BoardConfig boardConfig;
-                configuration::GraphicsConfig graphicsConfig;
+                config::BoardConfig boardConfig;
+                config::GraphicsConfig graphicsConfig;
 
                 board = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_board()));
                 pieces = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_pieces()));
@@ -17,7 +17,7 @@ namespace chesspp
 
                 cell_size = boardConfig.getCellWidth();
             }
-            catch (chesspp::exception &e) 
+            catch(Exception &e) 
             {
 #ifdef _DEBUG
                 cout << "Error: " << e.what() << endl;

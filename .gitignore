@@ -12,7 +12,7 @@
 *.DS_Store
 *.dll
 
-chesspp
+/chesspp
 debug.txt
 
 ChessPlusPlus/

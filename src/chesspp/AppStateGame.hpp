@@ -1,9 +1,9 @@
 #ifndef _APPSTATEGAME_H
     #define _APPSTATEGAME_H
-#include "SFML.hpp"
+#include "../SFML.hpp"
 #include "TextureManager.hpp"
-#include "Graphics.hpp"
-#include "Configuration.hpp"
+#include "graphics/Graphics.hpp"
+#include "config/Configuration.hpp"
 #include "board/Board.hpp"
 
 #ifdef _DEBUG
@@ -17,7 +17,7 @@ namespace chesspp
     class AppStateGame : public AppState
     {
         Application* app;
-        Board* board;
+        board::Board* board;
 
         graphics::GraphicsHandler graphics;
         config::BoardConfig boardConfig;

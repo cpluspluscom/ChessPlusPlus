@@ -15,9 +15,9 @@
 #endif
 
 
-#include "Exception.hpp"
-#include "JsonReader.hpp"
-#include "board/logger.hpp"
+#include "../Exception.hpp"
+#include "../util/JsonReader.hpp"
+#include "../log/logger.hpp"
 
 namespace chesspp
 {
@@ -67,7 +67,7 @@ namespace chesspp
                 return ret;
             }
 
-            JsonReader reader;
+            util::JsonReader reader;
         public:
             Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
             {

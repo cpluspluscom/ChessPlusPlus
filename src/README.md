@@ -56,13 +56,13 @@ Constructor initializer lists should have each element on their own line and hav
 
 The `const` keyword is to appear on the right side of types, to be consisten with other uses of the `const` keyword:
 ```cpp
-char const*identifier;
+char const *identifier;
 ```
-It should also snuggle next to * and &
+It should also _not_ snuggle next to * and &
 
 \* and & should sunggle next to identifiers:
 ```cpp
-void func(ns::ClassName *classname, ns::OtherClass const&otherclass) const
+void func(ns::ClassName *classname, ns::OtherClass const &otherclass) const
 {
     //...
 }

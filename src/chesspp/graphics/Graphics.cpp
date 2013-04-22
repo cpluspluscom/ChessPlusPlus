@@ -34,12 +34,12 @@ namespace chesspp
         {
             display->draw(board);
         }
-        void GraphicsHandler::drawPiece(Piece *p)
+        void GraphicsHandler::drawPiece(board::Piece *p)
         {
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getColor()*cell_size, cell_size, cell_size));
             drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
         }
-        void GraphicsHandler::drawPieceAt(Piece *p, const sf::Vector2i &pos)
+        void GraphicsHandler::drawPieceAt(board::Piece *p, const sf::Vector2i &pos)
         {
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getColor()*cell_size, cell_size, cell_size));
             pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));
@@ -50,14 +50,14 @@ namespace chesspp
         {
             drawSpriteAtCell(validMove, x, y);
         }
-        void GraphicsHandler::drawBoard(const Board *b)
+        void GraphicsHandler::drawBoard(const board::Board *b)
         {
             drawBackground();
 
             // Valid moves are drawn for the piece being hovered over
             // Or the piece that is currently selected
-            Piece* pCurrent = b->getCurrent();
-            Piece* pSelect  = b->getSelected();
+            board::Piece* pCurrent = b->getCurrent();
+            board::Piece* pSelect  = b->getSelected();
             if (pSelect)
                 for (auto &i: pSelect->getTrajectory())
                 {

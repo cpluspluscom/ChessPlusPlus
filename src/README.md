@@ -31,6 +31,7 @@ Style Guide & Coding Conventions
 - If a function is known for throwing exceptions, write `noexcept(false)` as a visual indicator.
 - Try to avoid excess or repetitive "access:" specifiers.
 - Avoid strange spaces before open parens and open braces and in other places unless you are lining up code with other code for readability and emphasis of relation.
+- There is no line character limit, but that is because you shouldn't have exceedingly long lines (unless they just have exceedingly long identifiers). Instead, avoid deeply nested compound expressions - they reduce readability and hinder understanding of what code is for and/or doing.
 
 ## Specifics
 One-liners should be **one line**, otherwise they should be in braces:

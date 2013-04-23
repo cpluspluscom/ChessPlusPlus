@@ -7,7 +7,7 @@
 #include <json.h>
 #include <cstdint>
 
-#include "../Exception.hpp"
+#include "chesspp/Exception.hpp"
 
 namespace chesspp
 {

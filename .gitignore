@@ -18,6 +18,6 @@ debug.txt
 ChessPlusPlus/
 Debug/
 Release/
-libs/SFML-4fbefe7/build_vs11/
+lib/
 bin/
 obj/

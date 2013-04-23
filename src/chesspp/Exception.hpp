@@ -3,8 +3,9 @@
 
 #include <string>
 #include <exception>
-#include <utility>
 #include <typeinfo>
+
+#include "util/Utilities.hpp"
 
 namespace chesspp
 {
@@ -52,7 +53,7 @@ namespace chesspp
         std::string fullMessage() const noexcept
         {
             std::string full = std::string(typeid(*this).name()) + " (::chespp::Exception): message = {" + e + "}";
-            if(!(by == *this)) //cannot use !=, `using rel_ops` is below
+            if(by != *this)
             {
                 full += ", caused by {";
                 if(typeid(by) == typeid(Exception))
@@ -68,7 +69,6 @@ namespace chesspp
             return full;
         }
     };
-    using std::rel_ops::operator!=; //to avoid defining above
 }
 
 #endif

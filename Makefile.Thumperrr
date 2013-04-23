@@ -6,7 +6,7 @@ DEBUG_LIBS_Linux = -lsfml-system-d -lsfml-window-d -lsfml-graphics-d
 RELEASE_LIBS_Linux = -lsfml-system -lsfml-window -lsfml-graphics
 
 COMPILER_Darwin = clang++
-CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib=libc++
+CXX_FLAGS_Darwin = -Wall -std=c++11 -stdlib=libc++ -isystem lib/boost/boost/ -isystem lib/SFML/include/ -DSFML_STATIC -isystem lib/json-parser/ -Llib/SFML/lib/
 CXX_INCLUDE_Darwin = -I/opt/local/include
 DEBUG_LIBS_Darwin = -framework SFML -framework sfml-system -framework sfml-window -framework sfml-graphics 
 RELEASE_LIBS_Darwin = $(DEBUG_LIBS)
@@ -22,7 +22,7 @@ RELEASE_PREPROCESSOR = -D_RELEASE
 
 EXECUTABLE = chesspp
 TARGET = ../$(EXECUTABLE)
-SOURCE = $(shell cd src ; ls *.cpp) $(shell cd src ; ls board/*.cpp)
+SOURCE = $(shell cd lib/json-parser ; ls *.c) $(shell cd src ; ls *.cpp) $(shell cd src/chesspp ; ls *.cpp) $(shell cd src/chesspp ; ls board/*.cpp) $(shell cd src/chesspp ; ls graphics/*.cpp) $(shell cd src/chesspp ; ls log/*.cpp)
 
 all: debug
 

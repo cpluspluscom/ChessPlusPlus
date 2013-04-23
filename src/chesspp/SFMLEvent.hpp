@@ -1,7 +1,7 @@
 #ifndef _EVENT_H
     #define _EVENT_H
 
-#include "../SFML.hpp"
+#include "SFML.hpp"
 
 namespace chesspp
 {

@@ -1,7 +1,7 @@
 #ifndef LOWBOARD_H
 #define LOWBOARD_H
 
-#include "../log/Logger.hpp"
+#include "chesspp/log/Logger.hpp"
 
 #include "Position.hpp"
 #include "Piece.hpp"

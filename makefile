@@ -1,6 +1,7 @@
-#CXX = g++
+CPP = g++
+CC = gcc
 CPPFLAGS += -std=c++11 -Wall -Wextra -pedantic-errors
-INCLUDE = -I.
+INCLUDE = -isystem lib/json-parser/ -Isrc
 
 ifeq ($(CFG),)
 CFG=debug
@@ -14,7 +15,7 @@ endif
 CPPFLAGS += $(INCLUDE)
 
 
-VPATH=src
+VPATH=src:src/board/:src/config/:src/graphics/:src/log/:src/util/
 TARGET=chesscpp.bin
 
 SRC = \
@@ -44,19 +45,22 @@ bin.$(CFG)/${TARGET}: ${OBJ}
 
 test:
 	echo $(OBJ)
+	echo $(DEP)
 
 deps.$(CFG)/%.d: %.cpp
 	mkdir -p $(dir $@)
-	$(CPP) -MM -MP $(INCLUDE) $< > $@;
+	$(CPP) -MM -MP $(CPPFLAGS) $< > $@;
 
 objs.$(CFG)/%.o: %.cpp
 	mkdir -p $(dir $@)
-	$(cPP) -c $(CPPFLAGS) $< -o $@
+	$(CPP) -c $(CPPFLAGS) $< -o $@
 
 .PHONY: clean deps
 
 clean:
-	rm -rf objs.$(CFG) bin.$(CFG)
+	-rm -r obj.debug deps.debug bin.debug
+	-rm -r obj.release deps.release bin.release
+
 
 
 # Unless "make clean" is called, include the dependency files

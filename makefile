@@ -3,6 +3,8 @@ CC = gcc
 CPPFLAGS += -std=c++11 -Wall -Wextra -pedantic-errors
 INCLUDE = -isystem lib/json-parser/ -Isrc
 
+LIB = `pkg-config --libs sfml-all` lib/json-parser/json.a
+
 ifeq ($(CFG),)
 CFG=debug
 endif
@@ -41,7 +43,7 @@ all: bin.$(CFG)/${TARGET}
 
 bin.$(CFG)/${TARGET}: ${OBJ}
 	mkdir -p $(dir $@)
-	$(CPP) $^ -o $@
+	$(CPP) $^ $(LIBDIR) $(LIB) -o $@
 
 test:
 	echo $(OBJ)

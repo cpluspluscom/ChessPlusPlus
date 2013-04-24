@@ -21,3 +21,5 @@ Release/
 libs/SFML-4fbefe7/build_vs11/
 bin/
 obj/
+deps.debug/
+objs.debug/

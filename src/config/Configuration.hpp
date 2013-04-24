@@ -15,9 +15,9 @@
 #endif
 
 
-#include "../Exception.hpp"
-#include "../util/JsonReader.hpp"
-#include "../log/logger.hpp"
+#include "Exception.hpp"
+#include "util/JsonReader.hpp"
+#include "log/Logger.hpp"
 
 namespace chesspp
 {

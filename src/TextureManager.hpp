@@ -1,7 +1,7 @@
 #ifndef _TEXTUREMANAGER_H
     #define _TEXTUREMANAGER_H
 #include "ResourceManager.hpp"
-#include "../SFML.hpp"
+#include "SFML.hpp"
 
 #ifdef _DEBUG
     #include <iostream>

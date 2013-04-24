@@ -49,9 +49,10 @@ test:
 	echo $(OBJ)
 	echo $(DEP)
 
+
 deps.$(CFG)/%.d: %.cpp
 	mkdir -p $(dir $@)
-	$(CPP) -MM -MP $(CPPFLAGS) $< > $@;
+	$(CPP) -MM -MP $(CPPFLAGS) $< | perl -pe 's#^(?=.*\.o)#objs.$(CFG)/#' > $@
 
 objs.$(CFG)/%.o: %.cpp
 	mkdir -p $(dir $@)
@@ -60,14 +61,12 @@ objs.$(CFG)/%.o: %.cpp
 .PHONY: clean deps
 
 clean:
-	-rm -r obj.debug deps.debug bin.debug
-	-rm -r obj.release deps.release bin.release
+	-rm -r objs.debug deps.debug bin.debug
+	-rm -r objs.release deps.release bin.release
 
 
 
 # Unless "make clean" is called, include the dependency files
 # which are auto-generated. Don't fail if they are missing
 # (-include), since they will be missing in the first invocation!
-ifneq ($(MAKECMDGOALS),clean)
 -include ${DEP}
-endif

@@ -7,16 +7,15 @@
 #include <fstream>
 
 #if defined(__linux__)
-    #include <unistd.h>
+#include <unistd.h>
 #elif defined(_WIN32)
-    #include <Windows.h>
+#include <Windows.h>
 #elif defined(__APPLE__)
-    #include <mach-o/dyld.h>
+#include <mach-o/dyld.h>
 #endif
 
 #include "Exception.hpp"
 #include "util/JsonReader.hpp"
-#include "log/Logger.hpp"
 
 namespace chesspp
 {
@@ -38,20 +37,20 @@ namespace chesspp
                 std::uint32_t size = sizeof(buf);
                 memset(buf, 0, size);
                 std::string ret;
-                #if defined(__linux__)
+#if defined(__linux__)
                      if(readlink("/proc/self/exe", buf, size) == -1)
                          throw Exception("Unable to determine executable path on Linux.");
                      ret = buf;
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
-                #elif defined(_WIN32)
+#elif defined(_WIN32)
                      if(GetModuleFileNameA(NULL, buf, size) == 0)
                          throw Exception("Unable to determine executable path on Windows.");
                      ret = buf;
                      boost::replace_all(ret, "\\", "/");
                      ret = ret.substr(0, ret.find_last_of('/')+1);
 
-                #elif defined(__APPLE__)
+#elif defined(__APPLE__)
                      if (_NSGetExecutablePath(buf, &size) != 0)
                          throw Exception("Unable to determine executable path on OS x. (Buffer size too small?)");
                      ret = buf;
@@ -59,9 +58,9 @@ namespace chesspp
                      //Need to go up one directory because the exe is stored in <.app>/Contents/MacOS/,
                      //And we need <.app>/Contents/Resources
 
-                #else
+#else
                       throw Exception("Unknown OS. Unable to determine executable path.");
-                #endif
+#endif
 
                 return ret;
             }

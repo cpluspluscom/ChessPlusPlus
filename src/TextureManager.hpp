@@ -1,12 +1,7 @@
 #ifndef _TEXTUREMANAGER_H
-    #define _TEXTUREMANAGER_H
+#define _TEXTUREMANAGER_H
 #include "ResourceManager.hpp"
 #include "SFML.hpp"
-
-#ifdef _DEBUG
-    #include <iostream>
-    using std::cout; using std::endl;
-#endif
 
 namespace chesspp
 {

@@ -1,5 +1,7 @@
 #include "Rook.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -11,9 +13,7 @@ namespace chesspp
         }
         void Rook::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("ROOK: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "ROOK: " << this->boardPos << " makeTrajectory" << std::endl;
 
             this->trajectory.clear();
 

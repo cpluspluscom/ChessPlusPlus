@@ -36,7 +36,7 @@ $(SOURCEDIR)config/Configuration.hpp $(SOURCEDIR)AppStateGame.hpp
 
 $(ODIR)Graphics.o: $(SOURCEDIR)graphics/Graphics.cpp $(SOURCEDIR)graphics/Graphics.hpp\
 $(SOURCEDIR)SFML.hpp $(SOURCEDIR)TextureManager.hpp $(SOURCEDIR)board/Piece.hpp\
-$(SOURCEDIR)log/logger.hpp $(SOURCEDIR)config/Configuration.hpp
+$(SOURCEDIR)config/Configuration.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)graphics/Graphics.cpp -o $(ODIR)Graphics.o
 
 $(ODIR)Main.o: $(SOURCEDIR)Main.cpp  $(SOURCEDIR)Application.hpp
@@ -59,9 +59,6 @@ $(ODIR)Queen.o: $(SOURCEDIR)board/Queen.cpp $(SOURCEDIR)board/Queen.hpp
 
 $(ODIR)King.o: $(SOURCEDIR)board/King.cpp $(SOURCEDIR)board/King.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)board/King.cpp -o $(ODIR)King.o
-
-$(ODIR)Logger.o: $(SOURCEDIR)log/Logger.cpp $(SOURCEDIR)log/Logger.hpp
-	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)log/Logger.cpp -o $(ODIR)Logger.o
 
 $(ODIR)Piece.o: $(SOURCEDIR)board/Piece.cpp $(SOURCEDIR)board/Piece.hpp
 	$(CC) $(OFLAG) $(INCLUDE) $(SOURCEDIR)board/Piece.cpp -o $(ODIR)Piece.o

@@ -1,5 +1,7 @@
 #include "Board.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -30,18 +32,13 @@ namespace chesspp
 
         bool Board::newGame(const std::string&fileName)
         {
-            // Log::Debug::write(T data, int debugLevel = 0)
-            // a static function to write to a file depending upon debug level
-            // if this is greater than the level in logger.cpp then nothing is logged
-
-            // Log::Debug::writeln is the same, just tacks a new line to the output
             std::ifstream in(fileName);
             if (!in)
             {
-                Log::Debug::writeln("Could not open: " + fileName);
+                std::clog << "Could not open: " + fileName << std::endl;
                 return false;
             }
-            Log::Debug::writeln(fileName + " opened");
+            std::clog << fileName + " opened" << std::endl;
 
             // The board needs to be cleared
             // I guess this should happen after the file is opened
@@ -55,7 +52,7 @@ namespace chesspp
             {
                 if (iter == pieces.end())
                 {
-                    Log::Debug::writeln("End of PieceList found before end of file");
+                    std::clog << "End of PieceList found before end of file" << std::endl;
                     return false;
                 }
 
@@ -78,17 +75,15 @@ namespace chesspp
                 case '*': /*No Piece Character */ break;
 
                 default:
-                    Log::Debug::writeln("Invalid character found in new_game.txt");
+                    std::clog << "Invalid character found in new_game.txt" << std::endl;
                     return false;
                 }
                 ++iter;
                 ++pos;
             }
 
-            if (pos == 64)
-                Log::Debug::writeln("File size matched pieces size");
-            else
-                Log::Debug::writeln("File size did not match pieces size");
+            if (pos == 64) std::clog << "File size matched pieces size" << std::endl;
+            else           std::clog << "File size did not match pieces size" << std::endl;
 
 
             in.close();
@@ -150,7 +145,7 @@ namespace chesspp
             // Is the piece NULL
             if (!toMove)
             {
-                Log::Debug::writeln("BM: called With Null");
+                std::cout << "BM: called With Null" << std::endl;
                 return false;
             }
 
@@ -161,7 +156,7 @@ namespace chesspp
                     inList = true;
             if (!inList)
             {
-                Log::Debug::writeln("BM: Piece not Found");
+                std::clog << "BM: Piece not Found" << std::endl;
                 return false;
             }
 
@@ -170,8 +165,9 @@ namespace chesspp
             int xPos = screenX / SIZE;
             int yPos = screenY / SIZE;
             Position moveTo(xPos, yPos);
-            if (!moveTo.inBounds()) {
-                Log::Debug::writeln("BM: Position out of bounds");
+            if (!moveTo.inBounds())
+            {
+                std::clog << "BM: Position out of bounds" << std::endl;
                 return false;
             }
 
@@ -184,14 +180,14 @@ namespace chesspp
             // (moveTo would also have to be valid in the trajectory, OnValidity.txt
             if (!toMove->move(moveTo))
             {
-                Log::Debug::writeln("BM: Couldn't move piece");
+                std::clog << "BM: Couldn't move piece" << std::endl;
                 return false;
             }
 
             // Is something very wrong? did Piece::move() actually fail?
             if (toMove->getBoardPos() != moveTo)
             {
-                Log::Debug::writeln("BM: Move didn't really work");
+                std::clog << "BM: Move didn't really work" << std::endl;
                 return false;
             }
 
@@ -200,8 +196,7 @@ namespace chesspp
             int idxTo = posToInt(moveTo);
             if (pieces.at(idxTo))
             {
-                Log::Debug::write("BM: Capturing piece: ");
-                Log::Debug::writeln(*pieces.at(idxTo));
+                std::clog << "BM: Capturing piece: " << *pieces.at(idxTo) << std::endl;
 
                 // At some point, we may want a capture list
                 // This would be the time to do it

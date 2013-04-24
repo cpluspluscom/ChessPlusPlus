@@ -1,14 +1,9 @@
 #ifndef _RESOURCEMANAGER_H
-    #define _RESOURCEMANAGER_H
+#define _RESOURCEMANAGER_H
 
 #include <map>
 #include <memory>
 #include "Exception.hpp"
-
-#ifdef _DEBUG
-    #include <iostream>
-    using std::cout; using std::endl;
-#endif
 
 namespace chesspp
 {

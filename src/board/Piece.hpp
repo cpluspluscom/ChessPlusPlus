@@ -9,8 +9,6 @@
 //      textureX = givenValX
 //      textureY = givenValY + ( this->color == WHITE ? 0 : 80 )
 
-#include "log/Logger.hpp"
-
 // The contigousness of this container does not matter
 // It could be sorted for std::lower_bound?  I don't think time is an issue
 #include <vector>

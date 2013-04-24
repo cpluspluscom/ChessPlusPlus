@@ -1,5 +1,7 @@
 #include "Pawn.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -12,9 +14,7 @@ namespace chesspp
         // Other pieces can be more automatic
         void Pawn::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("PAWN: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "PAWN: " << this->boardPos << "makeTrajectory" << std::endl;
 
             // Clear the old trajectory
             trajectory.clear();

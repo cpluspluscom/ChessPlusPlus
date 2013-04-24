@@ -1,5 +1,7 @@
 #include "Queen.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -12,9 +14,7 @@ namespace chesspp
 
         void Queen::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("QUEEN: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "QUEEN: " << this->boardPos << " makeTrajectory" << std::endl;
 
             this->trajectory.clear();
 

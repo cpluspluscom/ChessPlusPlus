@@ -7,11 +7,6 @@
 #include "config/Configuration.hpp"
 #include "board/Board.hpp"
 
-#ifdef _DEBUG
-    #include <iostream>
-    using std::cout; using std::cin; using std::endl;
-#endif
-
 namespace chesspp
 {
     class Application;

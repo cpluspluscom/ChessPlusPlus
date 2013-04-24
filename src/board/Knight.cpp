@@ -1,5 +1,7 @@
 #include "Knight.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -12,9 +14,7 @@ namespace chesspp
 
         void Knight::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("KNIGHT: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "KNIGHT: " << this->boardPos << " makeTrajectory" << std::endl;
 
             this->trajectory.clear();
 

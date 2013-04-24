@@ -1,5 +1,7 @@
 #include "Piece.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
@@ -11,7 +13,7 @@ namespace chesspp
             int tY = tPos.getY() + ( c == WHITE ? 0 : 80 );
             texturePos.set(tX, tY);
 
-            Log::Debug::writeln(*this);
+            std::clog << *this << std::endl;
         }
 
 
@@ -64,7 +66,7 @@ namespace chesspp
         }
         void Piece::updateTrajectory(const Board*board, const Position&oldPos, const Position&newPos)
         {
-            Log::Debug::writeln("Updating", 1);
+            std::clog << ">>> Updating" << std::endl;
 
             bool foundPos = false;
             for (posList::iterator iter = trajectory.begin(); iter != trajectory.end(); iter++)
@@ -83,8 +85,7 @@ namespace chesspp
         {
             if (!moveTo.inBounds())
             {
-                Log::Debug::write("PE: moveTo not in bounds: ");
-                Log::Debug::writeln(moveTo);
+                std::clog << "PE: moveTo not in bounds: " << moveTo << std::endl;
                 return false;
             }
 
@@ -94,15 +95,11 @@ namespace chesspp
                 if (*iter == moveTo &&iter->isValid())
                 {
                     this->boardPos = moveTo;
-                    Log::Debug::write("PE: moveTo success: ");
-                    Log::Debug::write(moveTo);
-                    Log::Debug::writeln(boardPos);
+                    std::clog << "PE: moveTo success: " << moveTo << " " << boardPos << std::endl;
                     return true;
                 }
             }
-            Log::Debug::write("PE: moveTo fail: ");
-            Log::Debug::write(moveTo);
-            Log::Debug::writeln(boardPos);
+            std::clog << "PE: moveTo fail: " << moveTo << " " << boardPos << std::endl;
             return false;
         }
         bool Piece::isPawn(void)

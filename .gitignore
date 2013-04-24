@@ -21,3 +21,5 @@ Release/
 lib/
 bin/
 obj/
+deps.debug/
+objs.debug/

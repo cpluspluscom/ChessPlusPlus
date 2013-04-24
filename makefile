@@ -1,3 +1,6 @@
+#usage 
+# make CFG=release
+
 CPP = g++
 CC = gcc
 CPPFLAGS += -std=c++11 -Wall -Wextra -pedantic-errors

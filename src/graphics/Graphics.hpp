@@ -1,11 +1,11 @@
 #ifndef _GRAPHICS_H
 #define _GRAPHICS_H
 
-#include "../../SFML.hpp"
-#include "../TextureManager.hpp"
-#include "../config/Configuration.hpp"
-#include "../board/Piece.hpp"
-#include "../log/Logger.hpp"
+#include "SFML.hpp"
+#include "TextureManager.hpp"
+#include "config/Configuration.hpp"
+#include "board/Piece.hpp"
+#include "log/Logger.hpp"
 
 #ifdef _DEBUG
 #include <iostream>

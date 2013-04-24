@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "chesspp/Application.hpp"
+#include "Application.hpp"
 
 int main()
 {

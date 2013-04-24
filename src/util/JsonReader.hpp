@@ -40,13 +40,13 @@ namespace chesspp
             class NestedValue
             {
                 friend class ::chesspp::util::JsonReader;
-                json_value const&value;
-                NestedValue(json_value const&value) noexcept : value(value)
+                json_value const &value;
+                NestedValue(json_value const &value) noexcept : value(value)
                 {
                 }
-                NestedValue &operator=(NestedValue const&) noexcept = delete;
+                NestedValue &operator=(NestedValue const &) noexcept = delete;
             public:
-                NestedValue(NestedValue const&) noexcept = default;
+                NestedValue(NestedValue const &) noexcept = default;
                 NestedValue(NestedValue &&) noexcept = default;
                 NestedValue &operator=(NestedValue &&) noexcept = default;
                 ~NestedValue() noexcept = default;
@@ -64,11 +64,11 @@ namespace chesspp
                     throw Exception("No parent json value");
                 }
                 
-                NestedValue operator[](std::string const&name) const noexcept(noexcept(name.c_str()))
+                NestedValue operator[](std::string const &name) const noexcept(noexcept(name.c_str()))
                 {
                     return value[name.c_str()];
                 }
-                NestedValue operator[](char const*name) //without this, ambiguity occurs
+                NestedValue operator[](char const *name) //without this, ambiguity occurs
                 {
                     return value[name];
                 }
@@ -78,7 +78,7 @@ namespace chesspp
                 }
                 operator std::string() const noexcept(noexcept(std::string("")))
                 {
-                    return static_cast<char const*>(value);
+                    return static_cast<char const *>(value);
                 }
                 //I tried an approach with templates, but the compiler was never able to deduce the corect template argument
                 operator std::  int8_t() const noexcept { return static_cast<std::  int8_t>(static_cast<json_int_t>(value)); }

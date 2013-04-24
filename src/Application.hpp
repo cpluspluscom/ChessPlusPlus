@@ -9,7 +9,7 @@ namespace chesspp
     {
         sf::RenderWindow display;
         bool running;
-        AppState* state;
+        AppState*state;
         void OnEvent(sf::Event *Event);
 
     public:

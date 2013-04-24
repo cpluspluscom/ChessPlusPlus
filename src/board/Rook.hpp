@@ -16,9 +16,9 @@ namespace chesspp
         {
         private:
         public:
-            Rook(const Position& bPos, Color c);
+            Rook(const Position&bPos, Color c);
 
-            virtual void makeTrajectory(const Board* board);
+            virtual void makeTrajectory(const Board*board);
         };
     }
 }

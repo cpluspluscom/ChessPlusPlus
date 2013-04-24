@@ -4,7 +4,7 @@ namespace chesspp
 {
     namespace board
     {
-        Piece::Piece(const Position& bPos, const Position& tPos, Color c, Type t)
+        Piece::Piece(const Position&bPos, const Position&tPos, Color c, Type t)
             : color(c), type(t), boardPos(bPos)
         {
             int tX = tPos.getX();
@@ -15,11 +15,11 @@ namespace chesspp
         }
 
 
-        const Position& Piece::getBoardPos(void) const
+        const Position&Piece::getBoardPos(void) const
         {
             return boardPos;
         }
-        const Position& Piece::getTexturePos(void) const
+        const Position&Piece::getTexturePos(void) const
         {
             return texturePos;
         }
@@ -28,11 +28,11 @@ namespace chesspp
             return color;
         }
 
-        const posList& Piece::getTrajectory(void) const
+        const posList&Piece::getTrajectory(void) const
         {
             return trajectory;
         }
-        void Piece::shootPath(const Board* board, const Direction d)
+        void Piece::shootPath(const Board*board, const Direction d)
         {
             Position pos = this->boardPos;
 
@@ -62,7 +62,7 @@ namespace chesspp
                 pos.move(d);
             }
         }
-        void Piece::updateTrajectory(const Board* board, const Position& oldPos, const Position& newPos)
+        void Piece::updateTrajectory(const Board*board, const Position&oldPos, const Position&newPos)
         {
             Log::Debug::writeln("Updating", 1);
 
@@ -79,7 +79,7 @@ namespace chesspp
         }
 
 
-        bool Piece::move(const Position& moveTo)
+        bool Piece::move(const Position&moveTo)
         {
             if (!moveTo.inBounds())
             {
@@ -91,7 +91,7 @@ namespace chesspp
 
             for (posList::iterator iter = trajectory.begin(); iter != trajectory.end(); iter++)
             {
-                if (*iter == moveTo && iter->isValid())
+                if (*iter == moveTo &&iter->isValid())
                 {
                     this->boardPos = moveTo;
                     Log::Debug::write("PE: moveTo success: ");
@@ -122,7 +122,7 @@ namespace chesspp
 
 
 
-        std::ostream& operator<<(std::ostream& out, const Piece& p)
+        std::ostream&operator<<(std::ostream&out, const Piece&p)
         {
             return out << "PIECE:  " << p.getBoardPos() << p.getTexturePos() << (p.getColor() == WHITE ? "WHITE" : "BLACK");
         }

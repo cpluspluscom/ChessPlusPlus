@@ -5,7 +5,7 @@ namespace chesspp
     namespace board
     {
         Board::Board(void)
-            :pieces(WIDTH * WIDTH),  // WIDTH comes from Position.h
+            :pieces(WIDTH *WIDTH),  // WIDTH comes from Position.h
              currentPiece(NULL),
              selectedPiece(NULL)
         {
@@ -28,7 +28,7 @@ namespace chesspp
             }
         }
 
-        bool Board::newGame(const std::string& fileName)
+        bool Board::newGame(const std::string&fileName)
         {
             // Log::Debug::write(T data, int debugLevel = 0)
             // a static function to write to a file depending upon debug level
@@ -75,7 +75,7 @@ namespace chesspp
                 case'q':*iter=new Queen( Position( pos%WIDTH, pos/WIDTH), BLACK);break;
                 case'k':*iter=new King(  Position( pos%WIDTH, pos/WIDTH), BLACK);break;
 
-                case '*': /* No Piece Character */ break;
+                case '*': /*No Piece Character */ break;
 
                 default:
                     Log::Debug::writeln("Invalid character found in new_game.txt");
@@ -106,17 +106,17 @@ namespace chesspp
             return true;
         }
 
-        int Board::posToInt(const Position& pos) const
+        int Board::posToInt(const Position&pos) const
         {
             // WIDTH defined in Position.h as 8
-            return pos.getY() * WIDTH + pos.getX();
+            return pos.getY() *WIDTH + pos.getX();
         }
 
-        bool Board::hasPosition(const Position& pos) const
+        bool Board::hasPosition(const Position&pos) const
         {
-            return pos.inBounds() && pieces.at(posToInt(pos)) != NULL;
+            return pos.inBounds() &&pieces.at(posToInt(pos)) != NULL;
         }
-        Piece* Board::at(const Position& pos) const
+        Piece*Board::at(const Position&pos) const
         {
             if (!pos.inBounds())
                 return NULL;
@@ -126,26 +126,26 @@ namespace chesspp
         void Board::setCurrent(int screenX, int screenY)
         {
             static const int SIZE = 80;  // The pixel count of a square
-            unsigned int idx = (screenY / SIZE) * WIDTH + (screenX / SIZE);
+            unsigned int idx = (screenY / SIZE) *WIDTH + (screenX / SIZE);
             if (idx >= pieces.size())
                 currentPiece = NULL;
             else
                 currentPiece = pieces.at(idx);
         }
-        Piece* Board::getCurrent(void) const
+        Piece*Board::getCurrent(void) const
         {
             return currentPiece;
         }
-        void Board::setSelected(Piece* toSelect)
+        void Board::setSelected(Piece*toSelect)
         {
             selectedPiece = toSelect;
         }
-        Piece* Board::getSelected(void) const
+        Piece*Board::getSelected(void) const
         {
             return selectedPiece;
         }
 
-        bool Board::move(Piece* toMove, int screenX, int screenY)
+        bool Board::move(Piece*toMove, int screenX, int screenY)
         {
             // Is the piece NULL
             if (!toMove)

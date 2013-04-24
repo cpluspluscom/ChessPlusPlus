@@ -20,13 +20,13 @@ namespace chesspp
             // Maybe named a little poorly
             // x and y are offsets from the piece
             // if this position is ou-of-bounds, then nothing is added
-            void addPosition(const Board* board, int x, int y);
+            void addPosition(const Board*board, int x, int y);
         public:
             // Construct
-            King(const Position& bPos, Color c);
+            King(const Position&bPos, Color c);
 
             // Make the trajectory, see OnValidity.txt for a some info
-            virtual void makeTrajectory(const Board* board);
+            virtual void makeTrajectory(const Board*board);
         };
     }
 }

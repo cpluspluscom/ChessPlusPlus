@@ -4,13 +4,13 @@ namespace chesspp
 {
     namespace board
     {
-        Pawn::Pawn(const Position& bPos, Color c)
+        Pawn::Pawn(const Position&bPos, Color c)
             :Piece(bPos, Position(0,0), c, Type::PAWN), firstMove(true)
         {
         }
 
         // Other pieces can be more automatic
-        void Pawn::makeTrajectory(const Board* board)
+        void Pawn::makeTrajectory(const Board*board)
         {
             Log::Debug::write("PAWN: ");
             Log::Debug::write(this->boardPos);
@@ -70,7 +70,7 @@ namespace chesspp
             // en-passent will have to be thought about
 
         }
-        bool Pawn::move(const Position& moveTo)
+        bool Pawn::move(const Position&moveTo)
         {
             bool moved = Piece::move(moveTo);
             if (moved) firstMove = false;

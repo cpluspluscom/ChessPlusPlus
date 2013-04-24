@@ -39,7 +39,7 @@ namespace chesspp
 
         public:
             Position(void);
-            Position(const Position& other);
+            Position(const Position&other);
             Position(int x, int y);
 
             // Standard accessors
@@ -57,10 +57,10 @@ namespace chesspp
             // Changes the validity
             void setValid(bool v);
 
-            bool operator==(const Position& other) const;
-            bool operator!=(const Position& other) const;  // Not Used
+            bool operator==(const Position&other) const;
+            bool operator!=(const Position&other) const;  // Not Used
 
-            friend std::ostream& operator<<(std::ostream& out, const Position& pos);
+            friend std::ostream&operator<<(std::ostream&out, const Position&pos);
 
         };
     }

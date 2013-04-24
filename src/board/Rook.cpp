@@ -4,12 +4,12 @@ namespace chesspp
 {
     namespace board
     {
-        Rook::Rook(const Position& bPos, Color c)
-            :Piece(bPos, Position(80 * 1,0), c, Type::ROOK)
+        Rook::Rook(const Position&bPos, Color c)
+            :Piece(bPos, Position(80 *1,0), c, Type::ROOK)
         {
 
         }
-        void Rook::makeTrajectory(const Board* board)
+        void Rook::makeTrajectory(const Board*board)
         {
             Log::Debug::write("ROOK: ");
             Log::Debug::write(this->boardPos);

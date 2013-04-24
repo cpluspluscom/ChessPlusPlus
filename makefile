@@ -52,7 +52,7 @@ test:
 
 deps.$(CFG)/%.d: %.cpp
 	mkdir -p $(dir $@)
-	$(CPP) -MM -MP $(CPPFLAGS) $< | perl -pe 's#^(?=.*\.o)#objs.$(CFG)/#' > $@
+	$(CPP) -MM -MP $(CPPFLAGS) $< | perl -pe 's#^(.*\.o)#deps.$(CFG)/$$1 objs.$(CFG)/$$1#' > $@
 
 objs.$(CFG)/%.o: %.cpp
 	mkdir -p $(dir $@)

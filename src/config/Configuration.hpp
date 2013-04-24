@@ -14,10 +14,9 @@
     #include <mach-o/dyld.h>
 #endif
 
-
-#include "chesspp/Exception.hpp"
-#include "chesspp/util/JsonReader.hpp"
-#include "chesspp/log/Logger.hpp"
+#include "Exception.hpp"
+#include "util/JsonReader.hpp"
+#include "log/Logger.hpp"
 
 namespace chesspp
 {

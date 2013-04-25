@@ -52,7 +52,7 @@ namespace chesspp
         }
         std::string fullMessage() const noexcept
         {
-            std::string full = std::string(typeid(*this).name()) + " (::chespp::Exception): message = {" + e + "}";
+            std::string full = std::string(typeid(*this).name()) + " (::chesspp::Exception): message = {" + e + "}";
             if(by != *this)
             {
                 full += ", caused by {";

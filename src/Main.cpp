@@ -1,9 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include <streambuf>
+#include <typeinfo>
 
 #include "Application.hpp"
 #include "Debug.hpp"
+#include "Exception.hpp"
 
 int main()
 {
@@ -13,9 +15,9 @@ int main()
     {
         return chesspp::Application().Exec();
     }
-    catch(chesspp::Exception &e)
+    catch(std::exception &e)
     {
-        std::clog << "Caught in main: " << e.fullMessage() << std::endl;
+        std::clog << typeid(e).name() << " caught in main: " << e.what() << std::endl;
         return -1;
     }
 }

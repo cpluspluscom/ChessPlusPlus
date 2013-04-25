@@ -26,7 +26,7 @@ namespace chesspp
                 if(json == nullptr)
                 {
                     //no manual cleanup needed
-                    throw Exception(std::string("Error loading JSON: ") + error, Exception(str)); //attached JSON as 'caused by'
+                    throw Exception(std::string("Error loading JSON: ") + error);
                 }
             }
             JsonReader(std::istream &&s) noexcept(false) : JsonReader(s)

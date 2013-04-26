@@ -9,7 +9,7 @@
 
 int main()
 {
-    LogUtil lu; //replaces std::clog, std::cerr, std::cout with file streams
+    LogUtil::EnableRedirection();
 
     try
     {

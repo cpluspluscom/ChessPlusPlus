@@ -42,9 +42,9 @@ SRC = \
 OBJ = $(patsubst %.cpp, objs.$(CFG)/%.o, ${SRC})
 DEP = $(patsubst %.cpp, deps.$(CFG)/%.d, ${SRC})
 
-all: bin.$(CFG)/${TARGET}
+all: ${TARGET}
 
-bin.$(CFG)/${TARGET}: ${OBJ}
+${TARGET}: ${OBJ}
 	mkdir -p $(dir $@)
 	$(CPP) $^ $(LIBDIR) $(LIB) -o $@
 
@@ -64,8 +64,8 @@ objs.$(CFG)/%.o: %.cpp
 .PHONY: clean deps
 
 clean:
-	-rm -r objs.debug deps.debug bin.debug
-	-rm -r objs.release deps.release bin.release
+	-rm -r objs.debug deps.debug ${TARGET}
+	-rm -r objs.release deps.release 
 
 
 

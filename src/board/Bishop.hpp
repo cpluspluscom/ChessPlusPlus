@@ -16,9 +16,9 @@ namespace chesspp
         {
         private:
         public:
-            Bishop(const Position& bPos, Color c);
+            Bishop(const Position&bPos, Color c);
 
-            virtual void makeTrajectory(const Board* board);
+            virtual void makeTrajectory(const Board*board);
         };
     }
 }

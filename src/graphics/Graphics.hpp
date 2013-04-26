@@ -5,12 +5,6 @@
 #include "TextureManager.hpp"
 #include "config/Configuration.hpp"
 #include "board/Piece.hpp"
-#include "log/Logger.hpp"
-
-#ifdef _DEBUG
-#include <iostream>
-using std::cout; using std::cin; using std::endl;
-#endif
 
 namespace chesspp
 {

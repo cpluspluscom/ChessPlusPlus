@@ -1,5 +1,5 @@
 #ifndef _APPLICATION_H
-    #define _APPLICATION_H
+#define _APPLICATION_H
 
 #include "AppState.hpp"
 
@@ -9,7 +9,7 @@ namespace chesspp
     {
         sf::RenderWindow display;
         bool running;
-        AppState* state;
+        AppState*state;
         void OnEvent(sf::Event *Event);
 
     public:

@@ -2,7 +2,7 @@
 
 namespace chesspp
 {
-    AppStateGame::AppStateGame( Application* _app, sf::RenderWindow *_display )
+    AppStateGame::AppStateGame( Application*_app, sf::RenderWindow *_display )
         : AppState(_display)
         , app(_app)
         , graphics(display)

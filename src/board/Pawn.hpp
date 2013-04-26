@@ -18,14 +18,14 @@ namespace chesspp
             bool firstMove;
 
         public:
-            Pawn(const Position& bPos, Color c);
+            Pawn(const Position&bPos, Color c);
 
             // Make the trajectory, see "OnValidity.txt" for more
-            virtual void makeTrajectory(const Board* board);
+            virtual void makeTrajectory(const Board*board);
 
             // In addition to calling Piece::move(),
             // this function changes "firstMove" to false
-            virtual bool move(const Position& moveTo);
+            virtual bool move(const Position&moveTo);
         };
     }
 }

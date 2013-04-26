@@ -22,6 +22,6 @@ namespace chesspp
 }
 
 #include "AppStateGame.hpp"
-/* Convenience header inclusion so we don't have to include each individual inheritor */
+/*Convenience header inclusion so we don't have to include each individual inheritor */
 
 #endif

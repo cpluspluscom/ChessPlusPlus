@@ -27,7 +27,7 @@ namespace chesspp
 
         void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, const int x, const int y)
         {
-            s.setPosition(x * cell_size, y * cell_size);
+            s.setPosition(x *cell_size, y *cell_size);
             display->draw(s);
         }
         void GraphicsHandler::drawBackground()
@@ -56,8 +56,8 @@ namespace chesspp
 
             // Valid moves are drawn for the piece being hovered over
             // Or the piece that is currently selected
-            board::Piece* pCurrent = b->getCurrent();
-            board::Piece* pSelect  = b->getSelected();
+            board::Piece*pCurrent = b->getCurrent();
+            board::Piece*pSelect  = b->getSelected();
             if (pSelect)
                 for (auto &i: pSelect->getTrajectory())
                 {
@@ -74,7 +74,7 @@ namespace chesspp
             // Draw the non-selected pieces
             for(auto &i: b->pieces)
             {
-                if(i && i != b->getSelected())
+                if(i &&i != b->getSelected())
                     drawPiece(i);
             }
 

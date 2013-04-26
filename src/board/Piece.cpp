@@ -1,25 +1,27 @@
 #include "Piece.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
     {
-        Piece::Piece(const Position& bPos, const Position& tPos, Color c, Type t)
+        Piece::Piece(const Position&bPos, const Position&tPos, Color c, Type t)
             : color(c), type(t), boardPos(bPos)
         {
             int tX = tPos.getX();
             int tY = tPos.getY() + ( c == WHITE ? 0 : 80 );
             texturePos.set(tX, tY);
 
-            Log::Debug::writeln(*this);
+            std::clog << *this << std::endl;
         }
 
 
-        const Position& Piece::getBoardPos(void) const
+        const Position&Piece::getBoardPos(void) const
         {
             return boardPos;
         }
-        const Position& Piece::getTexturePos(void) const
+        const Position&Piece::getTexturePos(void) const
         {
             return texturePos;
         }
@@ -28,11 +30,11 @@ namespace chesspp
             return color;
         }
 
-        const posList& Piece::getTrajectory(void) const
+        const posList&Piece::getTrajectory(void) const
         {
             return trajectory;
         }
-        void Piece::shootPath(const Board* board, const Direction d)
+        void Piece::shootPath(const Board*board, const Direction d)
         {
             Position pos = this->boardPos;
 
@@ -62,9 +64,9 @@ namespace chesspp
                 pos.move(d);
             }
         }
-        void Piece::updateTrajectory(const Board* board, const Position& oldPos, const Position& newPos)
+        void Piece::updateTrajectory(const Board*board, const Position&oldPos, const Position&newPos)
         {
-            Log::Debug::writeln("Updating", 1);
+            std::clog << ">>> Updating" << std::endl;
 
             bool foundPos = false;
             for (posList::iterator iter = trajectory.begin(); iter != trajectory.end(); iter++)
@@ -79,30 +81,25 @@ namespace chesspp
         }
 
 
-        bool Piece::move(const Position& moveTo)
+        bool Piece::move(const Position&moveTo)
         {
             if (!moveTo.inBounds())
             {
-                Log::Debug::write("PE: moveTo not in bounds: ");
-                Log::Debug::writeln(moveTo);
+                std::clog << "PE: moveTo not in bounds: " << moveTo << std::endl;
                 return false;
             }
 
 
             for (posList::iterator iter = trajectory.begin(); iter != trajectory.end(); iter++)
             {
-                if (*iter == moveTo && iter->isValid())
+                if (*iter == moveTo &&iter->isValid())
                 {
                     this->boardPos = moveTo;
-                    Log::Debug::write("PE: moveTo success: ");
-                    Log::Debug::write(moveTo);
-                    Log::Debug::writeln(boardPos);
+                    std::clog << "PE: moveTo success: " << moveTo << " " << boardPos << std::endl;
                     return true;
                 }
             }
-            Log::Debug::write("PE: moveTo fail: ");
-            Log::Debug::write(moveTo);
-            Log::Debug::writeln(boardPos);
+            std::clog << "PE: moveTo fail: " << moveTo << " " << boardPos << std::endl;
             return false;
         }
         bool Piece::isPawn(void)
@@ -122,7 +119,7 @@ namespace chesspp
 
 
 
-        std::ostream& operator<<(std::ostream& out, const Piece& p)
+        std::ostream&operator<<(std::ostream&out, const Piece&p)
         {
             return out << "PIECE:  " << p.getBoardPos() << p.getTexturePos() << (p.getColor() == WHITE ? "WHITE" : "BLACK");
         }

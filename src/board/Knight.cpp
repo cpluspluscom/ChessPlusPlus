@@ -1,20 +1,20 @@
 #include "Knight.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
     {
-        Knight::Knight(const Position& bPos, Color c)
-            :Piece(bPos, Position(80 * 2,0), c, Type::KNIGHT)
+        Knight::Knight(const Position&bPos, Color c)
+            :Piece(bPos, Position(80 *2,0), c, Type::KNIGHT)
         {
 
         }
 
-        void Knight::makeTrajectory(const Board* board)
+        void Knight::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("KNIGHT: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "KNIGHT: " << this->boardPos << " makeTrajectory" << std::endl;
 
             this->trajectory.clear();
 
@@ -28,13 +28,13 @@ namespace chesspp
             addPosition(board, -1, -2 );
         }
 
-        void Knight::addPosition(const Board* board, int x, int y)
+        void Knight::addPosition(const Board*board, int x, int y)
         {
             Position pos(this->boardPos.getX() + x, this->boardPos.getY() + y);
 
             if (!pos.inBounds())
                 return;
-            if (board->hasPosition(pos) && board->at(pos)->getColor() == this->getColor())
+            if (board->hasPosition(pos) &&board->at(pos)->getColor() == this->getColor())
                 pos.setValid(false);
             this->trajectory.push_back(pos);
 

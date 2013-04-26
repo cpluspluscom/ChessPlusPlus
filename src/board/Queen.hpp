@@ -16,9 +16,9 @@ namespace chesspp
         {
         private:
         public:
-            Queen(const Position& bPos, Color c);
+            Queen(const Position&bPos, Color c);
 
-            virtual void makeTrajectory(const Board* board);
+            virtual void makeTrajectory(const Board*board);
 
         };
     }

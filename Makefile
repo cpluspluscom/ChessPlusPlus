@@ -33,7 +33,6 @@ SRC = \
 	Rook.cpp \
 	Knight.cpp \
 	Piece.cpp \
-	Logger.cpp \
 	Main.cpp \
 	Graphics.cpp \
 	Application.cpp \

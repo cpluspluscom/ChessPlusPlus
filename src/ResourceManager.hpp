@@ -1,14 +1,9 @@
 #ifndef _RESOURCEMANAGER_H
-    #define _RESOURCEMANAGER_H
+#define _RESOURCEMANAGER_H
 
 #include <map>
 #include <memory>
 #include "Exception.hpp"
-
-#ifdef _DEBUG
-    #include <iostream>
-    using std::cout; using std::endl;
-#endif
 
 namespace chesspp
 {
@@ -38,7 +33,7 @@ namespace chesspp
         // FullName:  ResourceManager<T, deleter_type>::Free
         // Access:    public
         // Returns:   void
-        // Parameter: const std::string & key
+        // Parameter: const std::string &key
         //   Deletes the entry of a key in the resource map.
         //   This will call deleter_type to deallocate the resource from memory as well.
         //************************************
@@ -52,7 +47,7 @@ namespace chesspp
         // FullName:  ResourceManager<T, deleter_type>::Load
         // Access:    public
         // Returns:   ptr_t
-        // Parameter: const std::string & key
+        // Parameter: const std::string &key
         //   Returns a reference to the resource associated with the file name 'key' if it exists in memory.
         //   Otherwise it loads the texture into memory, and returns a reference to the the resource.
         //************************************

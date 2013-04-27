@@ -1,20 +1,20 @@
 #include "Queen.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace board
     {
-        Queen::Queen(const Position& bPos, Color c)
-            :Piece(bPos, Position(80 * 4,0), c, Type::QUEEN)
+        Queen::Queen(const Position&bPos, Color c)
+            :Piece(bPos, Position(80 *4,0), c, Type::QUEEN)
         {
 
         }
 
-        void Queen::makeTrajectory(const Board* board)
+        void Queen::makeTrajectory(const Board*board)
         {
-            Log::Debug::write("QUEEN: ");
-            Log::Debug::write(this->boardPos);
-            Log::Debug::writeln("makeTrajectory");
+            std::clog << "QUEEN: " << this->boardPos << " makeTrajectory" << std::endl;
 
             this->trajectory.clear();
 

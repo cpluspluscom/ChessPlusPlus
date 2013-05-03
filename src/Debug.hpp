@@ -19,11 +19,11 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
     LogUtil(LogUtil const &) = delete;
     LogUtil(LogUtil &&) = delete;
     LogUtil &operator=(LogUtil const &) = delete;
-    LogUtil &opertaor=(LogUtil &&) = delete;
+    LogUtil &operator=(LogUtil &&) = delete;
 public:
     static void EnableRedirection() noexcept
     {
-        static LogUtil;
+        static LogUtil lu;
     }
     ~LogUtil() noexcept
     {

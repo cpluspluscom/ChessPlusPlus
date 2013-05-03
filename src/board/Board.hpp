@@ -50,8 +50,8 @@ namespace chesspp
             Piece *currentPiece;
             Piece *selectedPiece;
 
-            Board();   // Set up the pieces
-            ~Board();  // Delete the pointers in pieces
+            Board();
+            ~Board() noexcept;
 
             // Loads the game from new_game.txt
             bool newGame(std::string const &fileName);

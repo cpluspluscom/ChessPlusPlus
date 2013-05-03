@@ -27,9 +27,9 @@ namespace chesspp
         virtual int id();
         virtual void OnRender();
 
-        virtual void OnLButtonPressed(int x, int y);
-        virtual void OnLButtonReleased(int x, int y);
-        virtual void OnMouseMoved(int x, int y);
+        virtual void OnLButtonPressed(int x, int y) noexcept;
+        virtual void OnLButtonReleased(int x, int y) noexcept;
+        virtual void OnMouseMoved(int x, int y) noexcept;
     };
 }
 

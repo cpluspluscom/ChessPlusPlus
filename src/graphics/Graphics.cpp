@@ -1,5 +1,7 @@
 #include "Graphics.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace graphics
@@ -20,7 +22,7 @@ namespace chesspp
             }
             catch(Exception &e) 
             {
-                std::cerr << "Error: " << e.what() << endl;
+                std::cerr << "Error: " << e.what() << std::endl;
             }
         }
 
@@ -78,7 +80,9 @@ namespace chesspp
             for(auto &i: b->pieces)
             {
                 if(i &&i != b->getSelected())
+                {
                     drawPiece(i);
+                }
             }
 
             // Draw the selected piece

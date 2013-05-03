@@ -21,15 +21,15 @@ namespace chesspp
         graphics.drawBoard(board);
     }
 
-    void AppStateGame::OnLButtonPressed(int x, int y)
+    void AppStateGame::OnLButtonPressed(int x, int y) noexcept
     {
         board->setSelected(board->getCurrent()); //No matter if nullptr
     }
-    void AppStateGame::OnMouseMoved(int x, int y)
+    void AppStateGame::OnMouseMoved(int x, int y) noexcept
     {
         board->setCurrent(x, y);
     }
-    void AppStateGame::OnLButtonReleased(int x, int y)
+    void AppStateGame::OnLButtonReleased(int x, int y) noexcept
     {
         //board knows what is selected, but I think this looks more clear
         board->move(board->getSelected(), x, y);

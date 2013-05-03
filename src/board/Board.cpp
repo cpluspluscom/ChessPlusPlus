@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "util/Utilities.hpp"
+
 namespace chesspp
 {
     namespace board

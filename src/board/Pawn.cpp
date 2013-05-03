@@ -6,13 +6,13 @@ namespace chesspp
 {
     namespace board
     {
-        Pawn::Pawn(const Position&bPos, Color c)
-            :Piece(bPos, Position(0,0), c, Type::PAWN), firstMove(true)
+        Pawn::Pawn(Position const &bPos, Color c)
+        : Piece(bPos, Position(0, 0), c, Type::PAWN), firstMove(true)
         {
         }
 
         // Other pieces can be more automatic
-        void Pawn::makeTrajectory(const Board*board)
+        void Pawn::makeTrajectory(Board const *board)
         {
             std::clog << "PAWN: " << this->boardPos << "makeTrajectory" << std::endl;
 
@@ -24,9 +24,9 @@ namespace chesspp
 
             // Set pos to left diagonal
             Position pos(this->getBoardPos().getX() - 1, this->getBoardPos().getY() + offset);
-            if (pos.inBounds())
+            if(pos.inBounds())
             {
-                if (!board->hasPosition(pos) || board->at(pos)->getColor() == this->getColor())
+                if(!board->hasPosition(pos) || board->at(pos)->getColor() == this->getColor())
                     pos.setValid(false);
                 trajectory.push_back(pos);
             }
@@ -35,19 +35,19 @@ namespace chesspp
             pos.setValid(true);
             pos.move(EAST);
 
-            if (pos.inBounds()) // Which happens, it is be a different piece otherwise
+            if(pos.inBounds()) // Which happens, it is be a different piece otherwise
             {
-                if (board->hasPosition(pos))
+                if(board->hasPosition(pos))
                     pos.setValid(false);
 
                 trajectory.push_back(pos);
             }
 
             // We keep the validity from before to check the position ahead
-            if (firstMove)
+            if(firstMove)
             {
                 pos.move(0, offset);         // Move Foward
-                if (board->hasPosition(pos))
+                if(board->hasPosition(pos))
                     pos.setValid(false);
 
                 trajectory.push_back(pos);
@@ -57,9 +57,9 @@ namespace chesspp
             // Move to the right again, the other diagonal
             pos.move(EAST);
             pos.setValid(true);
-            if (pos.inBounds())
+            if(pos.inBounds())
             {
-                if (!board->hasPosition(pos) || board->at(pos)->getColor() == this->getColor())
+                if(!board->hasPosition(pos) || board->at(pos)->getColor() == this->getColor())
                     pos.setValid(false);
                 trajectory.push_back(pos);
             }
@@ -70,10 +70,10 @@ namespace chesspp
             // en-passent will have to be thought about
 
         }
-        bool Pawn::move(const Position&moveTo)
+        bool Pawn::move(Position const &moveTo)
         {
             bool moved = Piece::move(moveTo);
-            if (moved) firstMove = false;
+            if(moved) firstMove = false;
             return moved;
         }
     }

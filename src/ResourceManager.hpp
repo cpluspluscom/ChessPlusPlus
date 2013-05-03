@@ -11,8 +11,8 @@ namespace chesspp
     class ResourceManager
     {
         //no copying
-        ResourceManager(const ResourceManager<T, key_type, deleter_type>&) = delete;
-        ResourceManager<T, deleter_type> &operator=(const ResourceManager<T, key_type, deleter_type>&) = delete;
+        ResourceManager(ResourceManager<T, key_type, deleter_type> const &) = delete;
+        ResourceManager<T, deleter_type> &operator=(ResourceManager<T, key_type, deleter_type> const &) = delete;
 
         using ptr_t = std::unique_ptr<T, deleter_type>;
         using map_t = typename std::map<key_type, ptr_t>;

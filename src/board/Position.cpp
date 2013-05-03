@@ -4,35 +4,26 @@ namespace chesspp
 {
     namespace board
     {
-        Position::Position(void)
-            :x(-1), y(-1), valid(true)
-        {
-
-        }
-        Position::Position(const Position&other)
-            :x(other.x), y(other.y), valid(other.valid)
-        {
-
-        }
         Position::Position(int x, int y)
-            :x(x), y(y), valid(true)
+        : x(x)
+        , y(y)
+        , valid(true)
         {
-
         }
 
-        bool Position::inBounds(void) const
+        bool Position::inBounds() const
         {
             return x >= 0 &&x < WIDTH &&y >= 0 &&y < WIDTH;
         }
-        bool Position::isValid(void) const
+        bool Position::isValid() const
         {
             return valid;
         }
-        int Position::getX(void) const
+        int Position::getX() const
         {
             return x;
         }
-        int Position::getY(void) const
+        int Position::getY() const
         {
             return y;
         }
@@ -66,18 +57,13 @@ namespace chesspp
             valid = v;
         }
 
-        bool Position::operator==(const Position&other) const
+        bool Position::operator==(Position const &other) const
         {
             return this->x == other.x &&this->y == other.y;
 
         }
-        bool Position::operator!=(const Position&other) const
-        {
-            // return !operator==(other); // ?
-            return this->x != other.x || this->y != other.y;
-        }
 
-        std::ostream&operator<<(std::ostream&out, const Position&pos)
+        std::ostream &operator<<(std::ostream &out, Position const &pos)
         {
             return out << "( " << pos.getX() << ", " << pos.getY() << ", " << ( pos.isValid()? 'V' : 'x' ) << ")";
         }

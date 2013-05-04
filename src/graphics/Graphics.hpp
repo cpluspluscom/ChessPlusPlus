@@ -1,5 +1,5 @@
-#ifndef _GRAPHICS_H
-#define _GRAPHICS_H
+#ifndef GraphicsHandlerClass_HeaderPlusPlus
+#define GraphicsHandlerClass_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "TextureManager.hpp"
@@ -14,10 +14,10 @@ namespace chesspp
         {
             sf::Sprite board, pieces, validMove;
             uint16_t cell_size;
-            sf::RenderWindow *display;
+            sf::RenderWindow &display;
 
         public:
-            GraphicsHandler(sf::RenderWindow *display);
+            GraphicsHandler(sf::RenderWindow &display);
 
             //Draws any sprite in the center of cell at (x, y). Assumes sprite is 80x80 as well.
             void drawSpriteAtCell(sf::Sprite &s, const int x, const int y);

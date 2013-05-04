@@ -1,5 +1,5 @@
-#ifndef _APPSTATEGAME_H
-#define _APPSTATEGAME_H
+#ifndef GameApllicationStateClass_HeaderPlusPlus
+#define GameApllicationStateClass_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "TextureManager.hpp"
@@ -7,22 +7,22 @@
 #include "config/Configuration.hpp"
 #include "board/Board.hpp"
 
+#include "AppState.hpp"
+
 namespace chesspp
 {
     class Application;
     class AppStateGame : public AppState
     {
         Application *app;
-        board::Board *board;
+        board::Board board;
 
         graphics::GraphicsHandler graphics;
         config::BoardConfig boardConfig;
 
     public:
-        AppStateGame(Application *_app, sf::RenderWindow *_display);
-        virtual ~AppStateGame()
-        {
-        }
+        AppStateGame(Application *app, sf::RenderWindow *display);
+        virtual ~AppStateGame() noexcept = default;
 
         virtual int id();
         virtual void OnRender();

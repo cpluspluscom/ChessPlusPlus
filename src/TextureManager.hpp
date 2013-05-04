@@ -1,10 +1,10 @@
-#ifndef _TEXTUREMANAGER_H
-#define _TEXTUREMANAGER_H
-
-#include <iostream>
+#ifndef TextureManagerClass_HeaderPlusPlus
+#define TextureManagerClass_HeaderPlusPlus
 
 #include "ResourceManager.hpp"
 #include "SFML.hpp"
+
+#include <iostream>
 
 
 namespace chesspp

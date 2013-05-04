@@ -1,5 +1,5 @@
-#ifndef __Miscellaneous_Utilities_HeaderPlusPlus__
-#define __Miscellaneous_Utilities_HeaderPlusPlus__
+#ifndef MiscellaneousUtilities_HeaderPlusPlus
+#define MiscellaneousUtilities_HeaderPlusPlus
 
 #include <type_traits>
 
@@ -12,6 +12,23 @@ namespace chesspp
     {
         return !(t == u);
     }
+
+    //Better version of std::make_signed that supports floating point types, usage is identical
+    template<typename T>
+    struct MakeSigned
+    {
+        static_assert(std::is_scalar<T>::value, "Template parameter must be a scalar type");
+        using type =
+            typename std::conditional
+            <
+                std::is_floating_point<T>::value,
+                std::common_type<T>,
+                std::make_signed<T>
+            >::type::type;
+    };
+    //Template alias to complement the above, used the same was as std::is_signed
+    template<typename T>
+    using IsSigned = typename std::is_same<T, typename MakeSigned<T>::type>/*::value*/;
 }
 
 #endif

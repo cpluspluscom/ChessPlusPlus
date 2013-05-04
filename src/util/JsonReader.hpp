@@ -1,13 +1,14 @@
-#ifndef __JavaScriptObjectNotation_Reader_HeaderPlusPlus__
-#define __JavaScriptObjectNotation_Reader_HeaderPlusPlus__
+#ifndef JSONReaderClass_HeaderPlusPlus
+#define JSONReaderClass_HeaderPlusPlus
+
+#include "Exception.hpp"
+
+#include <json.h>
 
 #include <string>
 #include <istream>
 #include <streambuf>
-#include <json.h>
 #include <cstdint>
-
-#include "Exception.hpp"
 
 namespace chesspp
 {

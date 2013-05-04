@@ -1,10 +1,10 @@
-#ifndef _EXCEPTION_H
-#define _EXCEPTION_H
+#ifndef ChessPlusPlusExceptionClass_HeaderPlusPlus
+#define ChessPlusPlusExceptionClass_HeaderPlusPlus
+
+#include "util/Utilities.hpp"
 
 #include <string>
 #include <exception>
-
-#include "util/Utilities.hpp"
 
 namespace chesspp
 {

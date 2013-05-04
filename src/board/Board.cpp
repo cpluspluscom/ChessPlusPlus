@@ -1,33 +1,19 @@
 #include "Board.hpp"
 
-#include <iostream>
+#include "Piece.hpp"
 
-#include "util/Utilities.hpp"
+#include <iostream>
 
 namespace chesspp
 {
     namespace board
     {
-        Board::Board()
-        : pieces(WIDTH*WIDTH)
-        {
-        }
-
-        Board::~Board() noexcept
-        {
-            resetBoard();  // This deletes the pointers
-        }
-
-        void Board::resetBoard()
-        {
-            for(auto iter = pieces.begin(); iter!=pieces.end(); ++iter)
-            {
-                delete *iter, *iter = nullptr;
-            }
-        }
+        Board::Board() = default; 
 
         bool Board::newGame(std::string const &fileName)
         {
+            //This code needs to be abstracted so it is more modular
+
             std::ifstream in(fileName);
             if(!in)
             {
@@ -36,46 +22,42 @@ namespace chesspp
             }
             std::clog << fileName + " opened" << std::endl;
 
-            // The board needs to be cleared
-            // I guess this should happen after the file is opened
-            this->resetBoard();
+            pieces.clear();
 
-            char ch;                    // To read from the file
-            auto iter = pieces.begin(); // To iterate :)
-            int pos = 0;                // To hopefully count 64 chars
+            char ch;     // To read from the file
+            int pos = 0; // To hopefully count 64 chars
 
             while(in >> ch)
             {
-                if(iter == pieces.end())
-                {
-                    std::clog << "End of PieceList found before end of file" << std::endl;
-                    return false;
-                }
-
+                Position_t p {pos%xsize, pos/xsize};
+                ++pos;
+                Piece *np = nullptr;
                 switch(ch)
                 {
-                case 'P':*iter=new Pawn  (Position(pos%WIDTH, pos/WIDTH), WHITE); break;
-                case 'R':*iter=new Rook  (Position(pos%WIDTH, pos/WIDTH), WHITE); break;
-                case 'N':*iter=new Knight(Position(pos%WIDTH, pos/WIDTH), WHITE); break;
-                case 'B':*iter=new Bishop(Position(pos%WIDTH, pos/WIDTH), WHITE); break;
-                case 'Q':*iter=new Queen (Position(pos%WIDTH, pos/WIDTH), WHITE); break;
-                case 'K':*iter=new King  (Position(pos%WIDTH, pos/WIDTH), WHITE); break;
+                case 'P': np = new Pawn  (*this, p, WHITE); break;
+                case 'R': np = new Rook  (*this, p, WHITE); break;
+                case 'N': np = new Knight(*this, p, WHITE); break;
+                case 'B': np = new Bishop(*this, p, WHITE); break;
+                case 'Q': np = new Queen (*this, p, WHITE); break;
+                case 'K': np = new King  (*this, p, WHITE); break;
 
-                case 'p':*iter=new Pawn  (Position(pos%WIDTH, pos/WIDTH), BLACK); break;
-                case 'r':*iter=new Rook  (Position(pos%WIDTH, pos/WIDTH), BLACK); break;
-                case 'n':*iter=new Knight(Position(pos%WIDTH, pos/WIDTH), BLACK); break;
-                case 'b':*iter=new Bishop(Position(pos%WIDTH, pos/WIDTH), BLACK); break;
-                case 'q':*iter=new Queen (Position(pos%WIDTH, pos/WIDTH), BLACK); break;
-                case 'k':*iter=new King  (Position(pos%WIDTH, pos/WIDTH), BLACK); break;
+                case 'p': np = new Pawn  (*this, p, BLACK); break;
+                case 'r': np = new Rook  (*this, p, BLACK); break;
+                case 'n': np = new Knight(*this, p, BLACK); break;
+                case 'b': np = new Bishop(*this, p, BLACK); break;
+                case 'q': np = new Queen (*this, p, BLACK); break;
+                case 'k': np = new King  (*this, p, BLACK); break;
 
-                case '*':                                                         break;
+                case '*':                                   break;
 
                 default:
                     std::clog << "Invalid character found in new_game.txt" << std::endl;
                     return false;
                 }
-                ++iter;
-                ++pos;
+                if(np)
+                {
+                    pieces[p] = np;
+                }
             }
 
             if(pos == 64) std::clog << "File size matched pieces size" << std::endl;
@@ -88,10 +70,9 @@ namespace chesspp
             // So the other color can respond to things that may have cuased check
             // It should be its own function, as it is needed in move() also.
 
-            for(auto iter = pieces.begin(); iter!=pieces.end(); ++iter)
+            for(auto iter = pieces.begin(); iter != pieces.end(); ++iter)
             {
-                if(!*iter) continue;
-                (*iter)->makeTrajectory(this);
+                (*iter)->makeTrajectory();
             }
             return true;
         }

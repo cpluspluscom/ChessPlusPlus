@@ -1,5 +1,8 @@
-#ifndef _CONFIGURATION_H
-#define _CONFIGURATION_H
+#ifndef ChessPlusPlusConfigurationManagerClasses_HeaderPlusPlus
+#define ChessPlusPlusConfigurationManagerClasses_HeaderPlusPlus
+
+#include "Exception.hpp"
+#include "util/JsonReader.hpp"
 
 #include <cstring>
 #include <cstdint>
@@ -13,9 +16,6 @@
 #elif defined(__APPLE__)
 #include <mach-o/dyld.h>
 #endif
-
-#include "Exception.hpp"
-#include "util/JsonReader.hpp"
 
 namespace chesspp
 {
@@ -67,12 +67,11 @@ namespace chesspp
 
             util::JsonReader reader;
         public:
-            Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
+            Configuration(const std::string &configFile) noexcept(false)
+            : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
             {
             }
-            virtual ~Configuration() noexcept
-            {
-            }
+            virtual ~Configuration() noexcept = default;
 
         };
 

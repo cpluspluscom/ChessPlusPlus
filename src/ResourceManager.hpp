@@ -1,32 +1,30 @@
-#ifndef _RESOURCEMANAGER_H
-#define _RESOURCEMANAGER_H
+#ifndef GameResourcesManagerClass_HeaderPlusPlus
+#define GameResourcesManagerClass_HeaderPlusPlus
+
+#include "Exception.hpp"
 
 #include <map>
 #include <memory>
-#include "Exception.hpp"
 
 namespace chesspp
 {
     template<class T, class key_type, class deleter_type = std::default_delete<T>>
     class ResourceManager
     {
-        //no copying
-        ResourceManager(ResourceManager<T, key_type, deleter_type> const &) = delete;
-        ResourceManager<T, deleter_type> &operator=(ResourceManager<T, key_type, deleter_type> const &) = delete;
+        ResourceManager(ResourceManager const &) = delete;
+        ResourceManager &operator=(ResourceManager const &) = delete;
 
         using ptr_t = std::unique_ptr<T, deleter_type>;
-        using map_t = typename std::map<key_type, ptr_t>;
+        using map_t = std::map<key_type, ptr_t>;
         using map_i = typename map_t::iterator;
 
         map_t m_map; //resource map
 
     protected:
-        ResourceManager() noexcept
-        {
-        }
-        ~ResourceManager() noexcept
-        {
-        }
+        ResourceManager() noexcept = default;
+        ResourceManager(ResourceManager &&) noexcept = default;
+        ResourceManager &operator=(ResourceManager &&) noexcept = default;
+        ~ResourceManager() noexcept = default;
 
         //pure virtual, defined depending on what is being loaded.
         virtual T *onLoadResource(key_type const &key) noexcept = 0;

@@ -1,11 +1,11 @@
-#ifndef _EVENT_H
-#define _EVENT_H
+#ifndef SFMLEventHandlerBaseClass_HeaderPlusPlus
+#define SFMLEventHandlerBaseClass_HeaderPlusPlus
 
 #include "SFML.hpp"
 
 namespace chesspp
 {
-    class SFMLEvent
+    class SFMLEventHandler
     {
     public:
         using uint = unsigned int;
@@ -34,9 +34,7 @@ namespace chesspp
         virtual void OnJoystickConnected     (uint joystickID)                                                        noexcept {}
         virtual void OnJoystickDisconnected  (uint joystickID)                                                        noexcept {}
 
-        virtual ~SFMLEvent() noexcept
-        {
-        }
+        virtual ~SFMLEventHandler() noexcept = default;
     };
 }
 

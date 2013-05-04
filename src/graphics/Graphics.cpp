@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace graphics
     {
-        GraphicsHandler::GraphicsHandler(sf::RenderWindow *display)
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow &display)
         : display(display)
         {
             try 
@@ -29,11 +29,11 @@ namespace chesspp
         void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, const int x, const int y)
         {
             s.setPosition(x*cell_size, y*cell_size);
-            display->draw(s);
+            display.draw(s);
         }
         void GraphicsHandler::drawBackground()
         {
-            display->draw(board);
+            display.draw(board);
         }
         void GraphicsHandler::drawPiece(board::Piece *p)
         {
@@ -45,7 +45,7 @@ namespace chesspp
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getColor()*cell_size, cell_size, cell_size));
             pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));
 
-            display->draw(pieces);
+            display.draw(pieces);
         }
         void GraphicsHandler::drawValidMove(const int x, const int y)
         {

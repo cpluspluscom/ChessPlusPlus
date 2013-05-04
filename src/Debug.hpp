@@ -1,5 +1,5 @@
-#ifndef __DebuggingLoggerUtility_HeaderPlusPlus__
-#define __DebuggingLoggerUtility_HeaderPlusPlus__
+#ifndef DebuggingLoggerUtilityClass_HeaderPlusPlus
+#define DebuggingLoggerUtilityClass_HeaderPlusPlus
 
 #include <iostream>
 #include <fstream>
@@ -13,9 +13,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
     std::streambuf *clogbuf {log ? std::clog.rdbuf(log.rdbuf()) : std::clog.rdbuf()}
                  , *cerrbuf {err ? std::cerr.rdbuf(err.rdbuf()) : std::cerr.rdbuf()}
                  , *coutbuf {out ? std::cout.rdbuf(out.rdbuf()) : std::cout.rdbuf()};
-    LogUtil() noexcept
-    {
-    }
+    LogUtil() noexcept = default;
     LogUtil(LogUtil const &) = delete;
     LogUtil(LogUtil &&) = delete;
     LogUtil &operator=(LogUtil const &) = delete;

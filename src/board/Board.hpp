@@ -1,57 +1,43 @@
-#ifndef LOWBOARD_H
-#define LOWBOARD_H
+#ifndef GeneralizedChessBoardClass_HeaderPlusPlus
+#define GeneralizedChessBoardClass_HeaderPlusPlus
 
-#include "Position.hpp"
-#include "Piece.hpp"
-#include "Pawn.hpp"
-#include "Rook.hpp"
-#include "Bishop.hpp"
-#include "Knight.hpp"
-#include "Queen.hpp"
-#include "King.hpp"
+#include "util/Position.hpp"
+#include "util/Utilities.hpp"
 
-// For loading new_game.txt
+#include <map>
 #include <fstream>
 #include <string>
-
-// The container for the board
-// This should stay contiguous, or at least accessable via []
-#include <vector>
-
+#include <memory>
+#include <cstdint>
 
 namespace chesspp
 {
     namespace board
     {
-        using PieceList = std::vector<Piece *>;
-
+        class Piece;
         class Board
         {
-        private:
-
-            //  Deletes all pointers and sets to NULL
-            //  Also called during destruction
-            void resetBoard();
-
-            // Not currently used
-            // The idea is to convert screenX and screenY to a valid idx
-            // and then return the Piece * found int pieces[idx]
-            // The code to do this is pretty simple though
-            Piece *screenToPiece(int screenX, int screenY);
-
         public:
-            // The container to hold the Piece*
-            // It is 64 large, NULL pointers mean there isn't a piece there
-            PieceList pieces;
+            //BoardSize_t can easily be changed here if we need larger than 255x255
+            using BoardSize_t = std::uint8_t;
+            //Position type is based on Board Size type
+            using Position_t = Position<BoardSize_t>;
+            //Pieces are mapped to their positions
+            using Pieces_t = std::map<Position_t, std::unique_ptr<Piece>>;
+        private:
+            BoardSize_t xsize, ysize;
+            Pieces_t pieces;
+        public:
 
-            // These two are for user interface
-            // A mouse over changes the current piece (which is allowed to be NULL)
-            // A mouse click on a non-NULL piece will set the selected piece
-            Piece *currentPiece;
-            Piece *selectedPiece;
+            //These two are for user interface
+            //A mouse over changes the current piece (which is allowed to be OOB)
+            //A mouse click on a non-OOB piece will set the selected piece
+            //(These should eventually be transferred out of the board class)
+            Position hoverPos;
+            Position selectedPos;
 
             Board();
-            ~Board() noexcept;
+            ~Board() noexcept = default;
 
             // Loads the game from new_game.txt
             bool newGame(std::string const &fileName);
@@ -82,4 +68,5 @@ namespace chesspp
         };
     }
 }
+
 #endif

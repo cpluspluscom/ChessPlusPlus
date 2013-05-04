@@ -1,32 +1,27 @@
-#ifndef _APPSTATE_H
-#define _APPSTATE_H
+#ifndef ApplicationStateBaseClass_HeaderPlusPlus
+#define ApplicationStateBaseClass_HeaderPlusPlus
 
-#include "SFMLEvent.hpp"
-#include <SFML/Graphics.hpp>
+#include "SFMLEventHandler.hpp"
+#include "SFML.hpp"
 
 namespace chesspp
 {
-    //pure virtual abstract base class for game state management.
-    class AppState : public SFMLEvent
+    //Pure virtual abstract base class for game state management
+    class AppState : public SFMLEventHandler
     {
     public:
-        AppState(sf::RenderWindow *_display)
-        : display(_display)
+        AppState(sf::RenderWindow &display)
+        : display(display)
         {
         }
-        virtual ~AppState()
-        {
-        }
+        virtual ~AppState() noexcept = default;
 
         virtual int id() = 0;
         virtual void OnRender() = 0;
 
     protected:
-        sf::RenderWindow *display;
+        sf::RenderWindow &display;
     };
 }
-
-#include "AppStateGame.hpp"
-/*Convenience header inclusion so we don't have to include each individual inheritor */
 
 #endif

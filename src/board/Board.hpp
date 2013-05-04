@@ -35,9 +35,9 @@ namespace chesspp
 
             // Not currently used
             // The idea is to convert screenX and screenY to a valid idx
-            // and then return the Piece*found int pieces[idx]
+            // and then return the Piece * found int pieces[idx]
             // The code to do this is pretty simple though
-            Piece*screenToPiece(int screenX, int screenY);
+            Piece *screenToPiece(int screenX, int screenY);
 
         public:
             // The container to hold the Piece*

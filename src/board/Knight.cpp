@@ -34,7 +34,7 @@ namespace chesspp
 
             if (!pos.inBounds())
                 return;
-            if (board->hasPosition(pos) &&board->at(pos)->getSuit() == this->getSuit())
+            if (board->hasPosition(pos) &&board->at(pos)->suit == this->suit)
                 pos.setValid(false);
             this->trajectory.push_back(pos);
 

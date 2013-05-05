@@ -37,12 +37,12 @@ namespace chesspp
         }
         void GraphicsHandler::drawPiece(board::Piece *p)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getSuit()*cell_size, cell_size, cell_size));
+            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
             drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
         }
         void GraphicsHandler::drawPieceAt(board::Piece *p, const sf::Vector2i &pos)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getSuit()*cell_size, cell_size, cell_size));
+            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
             pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));
 
             display.draw(pieces);

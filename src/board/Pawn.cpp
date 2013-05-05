@@ -20,13 +20,13 @@ namespace chesspp
             trajectory.clear();
 
             //Figure out if going up or down
-            int offset = this->getSuit() == BLACK ? 1 : -1;
+            int offset = this->suit == BLACK ? 1 : -1;
 
             //Set pos to left diagonal
             Position pos(this->getBoardPos().getX() - 1, this->getBoardPos().getY() + offset);
             if(pos.inBounds())
             {
-                if(!board->hasPosition(pos) || board->at(pos)->getSuit() == this->getSuit())
+                if(!board->hasPosition(pos) || board->at(pos)->suit == this->suit)
                     pos.setValid(false);
                 trajectory.push_back(pos);
             }
@@ -59,7 +59,7 @@ namespace chesspp
             pos.setValid(true);
             if(pos.inBounds())
             {
-                if(!board->hasPosition(pos) || board->at(pos)->getSuit() == this->getSuit())
+                if(!board->hasPosition(pos) || board->at(pos)->suit == this->suit)
                     pos.setValid(false);
                 trajectory.push_back(pos);
             }

@@ -35,6 +35,12 @@ namespace chesspp
 
             //Move a piece from one place to another
             bool move(Position_t const &source, Position_t const &target);
+
+            bool valid(Position_t pos) const noexcept
+            {
+                static Position_t bottomright (xsize, ysize);
+                return pos.isWithin(Position_t::ORIGIN, bottomright);
+            }
         };
     }
 }

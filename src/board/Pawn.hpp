@@ -1,10 +1,10 @@
 #ifndef LOWPAWN_H
 #define LOWPAWN_H
 
-// Warning:
-//    Texture positions are hard coded into constructor
-//    I think they should at least be brought to the Board
-//    So they can be changed at once
+//Warning:
+//Texture positions are hard coded into constructor
+//I think they should at least be brought to the Board
+//So they can be changed at once
 
 #include "Piece.hpp"
 
@@ -18,13 +18,13 @@ namespace chesspp
             bool firstMove;
 
         public:
-            Pawn(Position const &bPos, Color c);
+            Pawn(Position const &bPos, Suit c);
 
-            // Make the trajectory, see "OnValidity.txt" for more
+            //Make the trajectory, see "OnValidity.txt" for more
             virtual void makeTrajectory(Board const *board);
 
-            // In addition to calling Piece::move(),
-            // this function changes "firstMove" to false
+            //In addition to calling Piece::move(),
+            //this function changes "firstMove" to false
             virtual bool move(const Position&moveTo);
         };
     }

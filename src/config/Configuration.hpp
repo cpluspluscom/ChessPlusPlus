@@ -27,9 +27,9 @@ namespace chesspp
             static std::string res_path = getResourcePath();
 
             //Linux and Windows, resource path is defined as the absolute path the folder where the application executable is stored.
-            //    <exe_location>/res/img/... should be where resources are stored.
+            //<exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
-            //    <.app>/Contents/Resources/res/img... should be where resources are stored.
+            //<.app>/Contents/Resources/res/img... should be where resources are stored.
             static std::string getResourcePath()
             {
                 

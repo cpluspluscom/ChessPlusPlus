@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        Rook::Rook(Position const &bPos, Color c)
+        Rook::Rook(Position const &bPos, Suit c)
         : Piece(bPos, Position(80*1, 0), c, Type::ROOK)
         {
 

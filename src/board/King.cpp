@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        King::King(Position const &bPos, Color c)
+        King::King(Position const &bPos, Suit c)
         : Piece(bPos, Position(80*5, 0), c, Type::KING)
         {
         }
@@ -17,7 +17,7 @@ namespace chesspp
 
             if (!pos.inBounds())
                 return;
-            if (board->hasPosition(pos) && board->at(pos)->getColor() == this->getColor())
+            if (board->hasPosition(pos) && board->at(pos)->getSuit() == this->getSuit())
                 pos.setValid(false);
             this->trajectory.push_back(pos);
 
@@ -38,8 +38,8 @@ namespace chesspp
             this->addPosition(board, -1,  0);
             this->addPosition(board, -1,  -1);
 
-            // At this point, Positions that are on the board and not of the same color
-            // are in the trajectory.  This needs to be refined to remove check
+            //At this point, Positions that are on the board and not of the same suit
+            //are in the trajectory.  This needs to be refined to remove check
         }
     }
 }

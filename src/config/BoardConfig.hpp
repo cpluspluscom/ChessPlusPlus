@@ -37,11 +37,11 @@ namespace chesspp
                 initial_layout = std::move(layout);
             }
 
-            std::string initialLayout() const noexcept { return initial_layout; }
-            BoardSize_t boardWidth   () const noexcept { return board_width;    }
-            BoardSize_t boardHeight  () const noexcept { return board_height;   }
-            CellSize_t  cellWidth    () const noexcept { return cell_width;     }
-            CellSize_t  cellHeight   () const noexcept { return cell_height;    }
+            std::string const &initialLayout() const noexcept { return initial_layout; }
+            BoardSize_t        boardWidth   () const noexcept { return board_width;    }
+            BoardSize_t        boardHeight  () const noexcept { return board_height;   }
+            CellSize_t         cellWidth    () const noexcept { return cell_width;     }
+            CellSize_t         cellHeight   () const noexcept { return cell_height;    }
         };
     }
 }

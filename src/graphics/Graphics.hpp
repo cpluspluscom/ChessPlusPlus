@@ -25,7 +25,7 @@ namespace chesspp
             //Draws the board background.
             void drawBackground();
 
-            //Draws a piece of p.Type and p.Color to p.getBoardPos
+            //Draws a piece of p.Type and p.Suit to p.getBoardPos
             void drawPiece(board::Piece *p);
 
             //Separate version of drawPiece to draw a piece at any location on the screen.

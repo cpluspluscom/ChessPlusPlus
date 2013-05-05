@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        Queen::Queen(Position const &bPos, Color c)
+        Queen::Queen(Position const &bPos, Suit c)
             :Piece(bPos, Position(80*4,0), c, Type::QUEEN)
         {
 

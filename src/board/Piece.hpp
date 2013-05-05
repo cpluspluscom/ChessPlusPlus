@@ -1,94 +1,118 @@
 #ifndef ChessPieceBaseClass_HeaderPlusPlus
 #define ChessPieceBaseClass_HeaderPlusPlus
 
-// Warnings:
-//    Changing the dimensions or layout of the piece texture (the actual png)
-//    will break the use of a piece and it's derived classes
-// Notes:
-//    A piece's color determines what part of the texture it belongs to:
-//      textureX = givenValX
-//      textureY = givenValY + ( this->color == WHITE ? 0 : 80 )
+//Warnings:
+//Changing the dimensions or layout of the piece texture (the actual png)
+//will break the use of a piece and it's derived classes
+//Notes:
+//A piece's suit determines what part of the texture it belongs to:
+//textureX = givenValX
+//textureY = givenValY + ( this->suit == WHITE ? 0 : 80 )
 
 #include "util/Position.hpp"
 #include "Board.hpp"
 
-#include <vector>
+#include <set>
+#include <iostream>
+#include <typeinfo>
 
 namespace chesspp
 {
     namespace board
     {
-        enum Color //needs to be abstracted
+        enum class Suit //needs to be abstracted
         {
-            WHITE = 0,
+            WHITE,
             BLACK
         };
-        enum Type //needs to be abstracted
+        std::ostream &operator<<(std::ostream &os, Suit c)
         {
-            PAWN = 0,
-            ROOK,
-            KNIGHT,
-            BISHOP,
-            QUEEN,
-            KING
+            switch(c)
+            {
+            case Suit::WHITE:
+                os << "White";
+                break;
+            case Suit::BLACK:
+                os << "Black";
+                break;
+            }
+            os << " suit";
         };
 
         class Piece
         {
-            Position texturePos; //Where in the texture is this piece? (hardcoded)
-            Color const color;   //What color is this piece (WHITE, BLACK)
-            Type const type;     //What type this piece is.
-
         public:
             using Position_t = Board::Position_t;
-            using PosList_t = std::vector<Position_t>;
-        protected:
-            PosList_t trajectory; //The list of possible Positions
-            Position_t boardPos;  //The position on the baord this piece is
+            using PosList_t = std::set<Position_t>;
+        private:
+            Suit s;
+            PosList_t traj;
+            Position_t p;
+        public:
+            //const aliases for deriving classes
+            Suit const &suit;            //Which suit the chess piece is
+            PosList_t const &trajectory; //The list of possible Positions
+            Position_t const &pos;       //The position on the baord this piece is
 
             Board &b; //The board this piece belongs to
 
+            Piece(Board &b, Position_t const &pos, Suit s)
+            : b(b)
+            , p(pos)
+            , s(s)
+            , suit(s)
+            , trajectory(traj)
+            , pos(p)
+            {
+                std::clog << "Creation of " << *this << std::endl;
+            }
+            virtual ~Piece() = default;
+
+            //non-virtual, calls calcTrajectory(), which should call addTrajectory() for each possible tile
+            void makeTrajectory()
+            {
+                traj.clear();
+                calcTrajectory();
+            }
+        protected:
+            //should call addTrajectory() for each calculated trajectory
+            virtual void calcTrajectory() = 0;
+            //deriving classes should call this from makeTrajectory to add a calculated trajectory tile
+            void addTrajectory(Position_t tile)
+            {
+                if(b.valid(tile))
+                {
+                    traj.insert(tile);
+                }
+                else
+                {
+                    std::clog << "Invalid tile " << tile << " calculated for trajectory by " << *this << std::endl;
+                }
+            }
+            //further deriving classes can call this to remove a trajectory calculated by their parent class
+            void removeTrajectory(Position_t tile)
+            {
+                traj.erase(tile);
+            }
+
         public:
-            Piece(Board &b, Position_t const &bPos, Position_t const &tPos, Color c, Type t);
-            virtual ~Piece() = default; 
+            //Sets the piece position as instructed by the board and recalculates the trajectory
+            void move(Position_t const &to)
+            {
+                Position_t from = std::move(pos);
+                pos = to;
+                moveAnimation(from, to);
+                makeTrajectory();
+            }
+        private: //intentionally private, not protected
+            //Called by move(), plays the animation for moving
+            virtual void moveAnimation(Position_t const &from, Position_t const &to) = 0;
+        public:
 
-            Position_t const &getBoardPos() const;
-            Position_t const &getTexturePos() const;
-            Color getColor() const;
-            Type getType() const;
-            PosList const &getTrajectory() const;
-
-            //This needs to be abstracted, but for now
-            //we need to know these things :)
-            //If a piece moves, it's trajectory needs to be checked for a king
-            //If the king moves, the trajectory of a Pawn is a little different
-            //A pawn thinks the position ahead of it is valid
-            //Kings don't like to move into an enemy's valid position
-            //The converse for the pawn's diagonal
-            virtual bool isPawn() const;
-            virtual bool isKing() const;
-
-            virtual void makeTrajectory() = 0;
-
-            //Needs to be absracted, but for now
-            //Used by Queen, Bishop, and Rook
-            //This function moves in Direction d until the end of the board
-            //These Positions are added to the piece's trajectory
-            void shootPath(Direction d);
-
-            //This function is called for every piece after a piece moves
-            //If the two Positions are in the piece's trajectory
-            //Then makeTrajectory is called (makeTrajectory starts from scratch)
-            //Maybe there is a better way to do it ?
-            //Knights would be easy, would have to do virtual
-            void updateTrajectory(Position const &old, Position const &knew);
-
-            //Moves the piece. Most pieces use this.
-            //As of now, only Pawns do not because pawns have a "firstMove"
-            //Kings would also need to override this
-            virtual bool move(Position const &moveTo);
-
-            friend std::ostream &operator<<(std::ostream &out, Piece const &p);
+            friend std::ostream &operator<<(std::ostream &os, Piece const &p)            
+            {
+                return os << "Piece (" << typeid(p).name() << ") " << p.suit << " at " << p.pos;
+            }
         };
     }
 }

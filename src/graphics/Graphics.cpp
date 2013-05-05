@@ -37,12 +37,12 @@ namespace chesspp
         }
         void GraphicsHandler::drawPiece(board::Piece *p)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getColor()*cell_size, cell_size, cell_size));
+            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getSuit()*cell_size, cell_size, cell_size));
             drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
         }
         void GraphicsHandler::drawPieceAt(board::Piece *p, const sf::Vector2i &pos)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getColor()*cell_size, cell_size, cell_size));
+            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->getSuit()*cell_size, cell_size, cell_size));
             pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));
 
             display.draw(pieces);
@@ -55,8 +55,8 @@ namespace chesspp
         {
             drawBackground();
 
-            // Valid moves are drawn for the piece being hovered over
-            // Or the piece that is currently selected
+            //Valid moves are drawn for the piece being hovered over
+            //Or the piece that is currently selected
             board::Piece*pCurrent = b->getCurrent();
             board::Piece*pSelect  = b->getSelected();
             if (pSelect)
@@ -76,7 +76,7 @@ namespace chesspp
                     }
                 }
 
-            // Draw the non-selected pieces
+            //Draw the non-selected pieces
             for(auto &i: b->pieces)
             {
                 if(i &&i != b->getSelected())
@@ -85,7 +85,7 @@ namespace chesspp
                 }
             }
 
-            // Draw the selected piece
+            //Draw the selected piece
             if(b->getSelected())
             {
                 drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));

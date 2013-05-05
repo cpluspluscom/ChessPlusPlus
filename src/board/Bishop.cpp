@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        Bishop::Bishop(Position const &bPos, Color c)
+        Bishop::Bishop(Position const &bPos, Suit c)
         : Piece(bPos, Position(80*3, 0), c, Type::BISHOP)
         {
         }
@@ -17,7 +17,7 @@ namespace chesspp
 
             this->trajectory.clear();
 
-            // Do the diagonals
+            //Do the diagonals
             shootPath(board, NORTH_EAST);
             shootPath(board, SOUTH_EAST);
             shootPath(board, SOUTH_WEST);

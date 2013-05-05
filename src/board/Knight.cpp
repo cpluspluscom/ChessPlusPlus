@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        Knight::Knight(Position const &bPos, Color c)
+        Knight::Knight(Position const &bPos, Suit c)
         : Piece(bPos, Position(80*2, 0), c, Type::KNIGHT)
         {
 
@@ -34,7 +34,7 @@ namespace chesspp
 
             if (!pos.inBounds())
                 return;
-            if (board->hasPosition(pos) &&board->at(pos)->getColor() == this->getColor())
+            if (board->hasPosition(pos) &&board->at(pos)->getSuit() == this->getSuit())
                 pos.setValid(false);
             this->trajectory.push_back(pos);
 

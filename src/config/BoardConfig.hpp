@@ -3,32 +3,45 @@
 
 #include "Configuration.hpp"
 
+#include <string>
+#include <fstream>
+#include <streambuf>
+#include <cstdint>
+#include <utility>
+
 namespace chesspp
 {
     namespace config
     {
         class BoardConfig : public Configuration
         {
-            std::string initial_layout;
-            std::uint8_t board_width, board_height;
-            std::uint16_t cell_width, cell_height;
+        public:
+            using BoardSize_t = std::uint8_t;
+            using CellSize_t = std::uint16_t;
+        private:
+            std::string layout_path, initial_layout;
+            BoardSize_t board_width, board_height;
+            CellSize_t cell_width, cell_height;
 
         public:
             BoardConfig()
             : Configuration("config.json")
-            , initial_layout(res_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
-            , board_width                          (reader()["chesspp"]["board"]["width"]          )
-            , board_height                         (reader()["chesspp"]["board"]["height"]         )
-            , cell_width                           (reader()["chesspp"]["board"]["cell_width"]     )
-            , cell_height                          (reader()["chesspp"]["board"]["cell_height"]    )
+            , layout_path(res_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
+            , board_width                       (reader()["chesspp"]["board"]["width"]          )
+            , board_height                      (reader()["chesspp"]["board"]["height"]         )
+            , cell_width                        (reader()["chesspp"]["board"]["cell_width"]     )
+            , cell_height                       (reader()["chesspp"]["board"]["cell_height"]    )
             {
+                std::ifstream s {initial_layout};
+                std::string layout ((std::istreambuf_iterator<char>(s)), std::istreambuf_iterator<char>());
+                initial_layout = std::move(layout);
             }
 
-            std::string getInitialLayout() const noexcept { return initial_layout; }
-            uint8_t     getBoardWidth   () const noexcept { return board_width;    }
-            uint8_t     getBoardHeight  () const noexcept { return board_height;   }
-            uint16_t    getCellWidth    () const noexcept { return cell_width;     }
-            uint16_t    getCellHeight   () const noexcept { return cell_height;    }
+            std::string initialLayout() const noexcept { return initial_layout; }
+            BoardSize_t boardWidth   () const noexcept { return board_width;    }
+            BoardSize_t boardHeight  () const noexcept { return board_height;   }
+            CellSize_t  cellWidth    () const noexcept { return cell_width;     }
+            CellSize_t  cellHeight   () const noexcept { return cell_height;    }
         };
     }
 }

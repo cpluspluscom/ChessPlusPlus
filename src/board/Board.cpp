@@ -8,9 +8,9 @@ namespace chesspp
 {
     namespace board
     {
-        Board::Board() = default; 
-
-        bool Board::newGame(std::string const &fileName)
+        Board::Board(config::BoardConfig &conf)
+        : xsize(conf.getBoardWidth())
+        , ysize(conf.getBoardHeight())
         {
             //This code needs to be abstracted so it is more modular
 
@@ -77,48 +77,13 @@ namespace chesspp
             return true;
         }
 
-        int Board::posToInt(Position const &pos) const
+        Piece *Board::at(Position const &pos) const
         {
-            return pos.getY()*WIDTH + pos.getX();
-        }
-
-        bool Board::hasPosition(Position const &pos) const
-        {
-            return pos.inBounds() &&pieces.at(posToInt(pos)) != nullptr;
-        }
-        Piece*Board::at(Position const &pos) const
-        {
-            if(!pos.inBounds())
+            if(pieces.find(pos) == pieces.end())
             {
                 return nullptr;
             }
-            return pieces.at(posToInt(pos));
-        }
-
-        void Board::setCurrent(int screenX, int screenY)
-        {
-            static const int SIZE = 80;  // The pixel count of a square
-            unsigned int idx = (screenY / SIZE) *WIDTH + (screenX / SIZE);
-            if(idx >= pieces.size())
-            {
-                currentPiece = nullptr;
-            }
-            else
-            {
-                currentPiece = pieces.at(idx);
-            }
-        }
-        Piece*Board::getCurrent() const
-        {
-            return currentPiece;
-        }
-        void Board::setSelected(Piece *toSelect)
-        {
-            selectedPiece = toSelect;
-        }
-        Piece*Board::getSelected() const
-        {
-            return selectedPiece;
+            return pieces[pos];
         }
 
         bool Board::move(Piece *toMove, int screenX, int screenY)

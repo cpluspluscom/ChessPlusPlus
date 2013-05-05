@@ -1,12 +1,11 @@
 #ifndef GeneralizedChessBoardClass_HeaderPlusPlus
 #define GeneralizedChessBoardClass_HeaderPlusPlus
 
+#include "config/BoardConfig.hpp"
 #include "util/Position.hpp"
 #include "util/Utilities.hpp"
 
 #include <map>
-#include <fstream>
-#include <string>
 #include <memory>
 #include <cstdint>
 
@@ -18,8 +17,7 @@ namespace chesspp
         class Board
         {
         public:
-            //BoardSize_t can easily be changed here if we need larger than 255x255
-            using BoardSize_t = std::uint8_t;
+            using BoardSize_t = config::BoardConfig::BoardSize_t;
             //Position type is based on Board Size type
             using Position_t = Position<BoardSize_t>;
             //Pieces are mapped to their positions
@@ -27,44 +25,16 @@ namespace chesspp
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
+
         public:
-
-            //These two are for user interface
-            //A mouse over changes the current piece (which is allowed to be OOB)
-            //A mouse click on a non-OOB piece will set the selected piece
-            //(These should eventually be transferred out of the board class)
-            Position hoverPos;
-            Position selectedPos;
-
-            Board();
+            Board(config::BoardConfig &conf);
             ~Board() noexcept = default;
 
-            // Loads the game from new_game.txt
-            bool newGame(std::string const &fileName);
+            //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
+            Piece *at(Position_t const &pos) const;
 
-            // Given a Position return the corresponding pieces idx
-            int posToInt(Position const &pos) const;
-
-            // Returns true if pos is in bounds and pieces[pos] is not NULL
-            bool hasPosition(Position const &pos) const;
-            // Returns the Piece*at pos.  NULL if pos is out of bounds
-            Piece *at(Position const &pos) const;
-
-            // Given screen coordinates, set the currentPiece to the proper piece
-            // Note that this uses magic number 80 to know how large the screen is
-            void setCurrent(int screenX, int screenY);
-            Piece *getCurrent() const;
-
-            // Set the selected piece to the parameter
-            // At this point, toSelect is always currentPiece
-            void setSelected(Piece *toSelect);
-            Piece *getSelected() const;
-
-            // Move a piece from one place to another
-            // The parameters should be changed to two Positions
-            // But such a change would require Position to handle screen values
-            // In a network game, The two positions would be all that is needed
-            bool move(Piece *toMove, int screenX, int screenY);
+            //Move a piece from one place to another
+            bool move(Position_t const &source, Position_t const &target);
         };
     }
 }

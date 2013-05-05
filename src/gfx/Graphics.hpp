@@ -8,7 +8,7 @@
 
 namespace chesspp
 {
-    namespace graphics
+    namespace gfx
     {
         class GraphicsHandler
         {

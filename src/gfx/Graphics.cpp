@@ -4,7 +4,7 @@
 
 namespace chesspp
 {
-    namespace graphics
+    namespace gfx
     {
         GraphicsHandler::GraphicsHandler(sf::RenderWindow &display)
         : display(display)

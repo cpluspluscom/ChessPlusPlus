@@ -3,7 +3,7 @@
 
 #include "SFML.hpp"
 #include "TextureManager.hpp"
-#include "graphics/Graphics.hpp"
+#include "gfx/Graphics.hpp"
 #include "config/Configuration.hpp"
 #include "board/Board.hpp"
 

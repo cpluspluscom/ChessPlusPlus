@@ -20,7 +20,7 @@ endif
 CPPFLAGS += $(INCLUDE)
 
 
-VPATH=src:src/board/:src/config/:src/graphics/:src/log/:src/util/
+VPATH=src:src/board/:src/config/:src/gfx/:src/util/
 TARGET=chesscpp.bin
 
 SRC = \

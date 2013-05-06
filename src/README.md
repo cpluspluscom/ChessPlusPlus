@@ -7,6 +7,7 @@ Style Guide & Coding Conventions
 - Prefer C++11 features to C++03 features when possible, and avoid deprecated language features.
 - When using C++11 features, try to use those which are supported by at least both clang++ and gcc
 - Prefer to use `<c____>` rather than `<____.h>` for C standard library headers
+- Headers should be included in this order to reduce pollution: first ChessPlusPlus headers, then library headers, then C++ standard headers.
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
 - Prefer to use file extensions .cpp and .hpp (using .h may cause the file to be detected as C or Objective-C rather than C++)
 - Prefer `lowercase` for parameter and local variable names.

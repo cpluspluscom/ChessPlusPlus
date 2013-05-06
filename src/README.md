@@ -15,7 +15,6 @@ Style Guide & Coding Conventions
 - Prefer `lowerCamelCase` for member function names
 - Prefer `lower_case_underscore` for private member names
 - Prefer `lwrabbrcase` for namespace names
-- Prefer to not use "get" or "set" in the names of getters and setters
 - Braces should be on their own lines, even for empty definitions
 - Namespaces cause indentation to occur, inclusion guards do not
 - Avoid using raw pointers when possible

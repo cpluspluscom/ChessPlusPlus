@@ -47,8 +47,8 @@ namespace chesspp
             // These two are for user interface
             // A mouse over changes the current piece (which is allowed to be NULL)
             // A mouse click on a non-NULL piece will set the selected piece
-            Piece *currentPiece;
-            Piece *selectedPiece;
+            Piece *currentPiece = nullptr;
+            Piece *selectedPiece = nullptr;
 
             Board();
             ~Board() noexcept;

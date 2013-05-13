@@ -9,14 +9,15 @@ namespace chesspp
     {
         sf::RenderWindow display;
         bool running;
-        AppState*state;
+        AppState *state;
         void OnEvent(sf::Event *Event);
 
     public:
         Application();
         ~Application();
 
-        template<class NewState> void ChangeState()
+        template<class NewState>
+        void ChangeState()
         {
             delete state;
             state = new NewState;

@@ -4,9 +4,9 @@
 namespace chesspp
 {
     Application::Application()
-    :   display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close),
-        running(true),
-        state(new AppStateGame(this, &display))
+    : display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close)
+    , running(true)
+    , state(new AppStateGame(this, &display))
     {
         display.setVerticalSyncEnabled(true);
     }
@@ -17,7 +17,9 @@ namespace chesspp
         while(running)
         {
             while(display.pollEvent(Event))
+            {
                 OnEvent(&Event);
+            }
 
             state->OnRender();
             display.display();
@@ -28,7 +30,7 @@ namespace chesspp
 
     Application::~Application()
     {
-        delete state; //Even if it's null, no matter.
+        delete state;
     }
 
     void Application::OnEvent(sf::Event *Event)

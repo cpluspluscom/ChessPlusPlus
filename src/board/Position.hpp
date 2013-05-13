@@ -38,15 +38,14 @@ namespace chesspp
             bool valid;
 
         public:
-            Position(void);
-            Position(const Position&other);
-            Position(int x, int y);
+            Position(int x = -1, int y = -1);
+            Position(Position const &other) = default;
 
             // Standard accessors
-            bool inBounds(void) const;
-            bool isValid(void) const;
-            int getX(void) const;
-            int getY(void) const;
+            bool inBounds() const;
+            bool isValid() const;
+            int getX() const;
+            int getY() const;
 
             // Moves position relative to itself
             void move(int x, int y);
@@ -57,11 +56,9 @@ namespace chesspp
             // Changes the validity
             void setValid(bool v);
 
-            bool operator==(const Position&other) const;
-            bool operator!=(const Position&other) const;  // Not Used
+            bool operator==(Position const &other) const;
 
-            friend std::ostream&operator<<(std::ostream&out, const Position&pos);
-
+            friend std::ostream&operator<<(std::ostream &out, Position const &pos);
         };
     }
 }

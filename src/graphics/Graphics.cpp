@@ -1,10 +1,13 @@
 #include "Graphics.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     namespace graphics
     {
-        GraphicsHandler::GraphicsHandler( sf::RenderWindow *_display ) : display(_display)
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow *display)
+        : display(display)
         {
             try 
             {
@@ -19,15 +22,13 @@ namespace chesspp
             }
             catch(Exception &e) 
             {
-#ifdef _DEBUG
-                cout << "Error: " << e.what() << endl;
-#endif
+                std::cerr << "Error: " << e.what() << std::endl;
             }
         }
 
         void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, const int x, const int y)
         {
-            s.setPosition(x *cell_size, y *cell_size);
+            s.setPosition(x*cell_size, y*cell_size);
             display->draw(s);
         }
         void GraphicsHandler::drawBackground()
@@ -62,25 +63,33 @@ namespace chesspp
                 for (auto &i: pSelect->getTrajectory())
                 {
                     if(i.isValid())
+                    {
                         drawValidMove(i.getX(), i.getY());
+                    }
                 }
             else if (pCurrent)
                 for (auto &i: pCurrent->getTrajectory())
                 {
                     if(i.isValid())
+                    {
                         drawValidMove(i.getX(), i.getY());
+                    }
                 }
 
             // Draw the non-selected pieces
             for(auto &i: b->pieces)
             {
                 if(i &&i != b->getSelected())
+                {
                     drawPiece(i);
+                }
             }
 
             // Draw the selected piece
-            if (b->getSelected())
+            if(b->getSelected())
+            {
                 drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));
+            }
         }
     }
 }

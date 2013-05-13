@@ -17,7 +17,7 @@ namespace chesspp
             sf::RenderWindow *display;
 
         public:
-            GraphicsHandler(sf::RenderWindow *_display);
+            GraphicsHandler(sf::RenderWindow *display);
 
             //Draws any sprite in the center of cell at (x, y). Assumes sprite is 80x80 as well.
             void drawSpriteAtCell(sf::Sprite &s, const int x, const int y);

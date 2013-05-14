@@ -6,24 +6,24 @@ namespace chesspp
 {
     namespace board
     {
-        King::King(const Position&bPos, Color c)
-            :Piece(bPos, Position(80 *5,0), c, Type::KING)
+        King::King(Position const &bPos, Color c)
+        : Piece(bPos, Position(80*5, 0), c, Type::KING)
         {
         }
 
-        void King::addPosition(const Board*board, int x, int y)
+        void King::addPosition(Board const *board, int x, int y)
         {
             Position pos(this->boardPos.getX() + x, this->boardPos.getY() + y);
 
             if (!pos.inBounds())
                 return;
-            if (board->hasPosition(pos) &&board->at(pos)->getColor() == this->getColor())
+            if (board->hasPosition(pos) && board->at(pos)->getColor() == this->getColor())
                 pos.setValid(false);
             this->trajectory.push_back(pos);
 
         }
 
-        void King::makeTrajectory(const Board*board)
+        void King::makeTrajectory(Board const *board)
         {
             std::clog << "KING: " << this->boardPos << " makeTrajectory" << std::endl;
 

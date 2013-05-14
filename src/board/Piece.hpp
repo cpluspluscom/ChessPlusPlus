@@ -40,8 +40,8 @@ namespace chesspp
         {
         private:
             Position texturePos;   // Where in the texture is this piece? (hardcoded)
-            const Color color;     // What color is this piece (WHITE, BLACK)
-            const Type type;       // What type this piece is.
+            Color const color;     // What color is this piece (WHITE, BLACK)
+            Type const type;       // What type this piece is.
 
         protected:
 
@@ -50,17 +50,15 @@ namespace chesspp
 
         public:
 
-            Piece(const Position&bPos, const Position&tPos, Color c, Type t);
-            virtual ~Piece()
-            {
-            }
+            Piece(Position const &bPos, Position const &tPos, Color c, Type t);
+            virtual ~Piece() = default; 
 
             // Standard Accesors
-            const Position&getBoardPos(void) const;
-            const Position&getTexturePos(void) const;
-            Color getColor(void) const;
-            Type getType(void) const;
-            const posList&getTrajectory(void) const;
+            const Position&getBoardPos() const;
+            const Position&getTexturePos() const;
+            Color getColor() const;
+            Type getType() const;
+            const posList&getTrajectory() const;
 
             // We need to know these things :)
             // If a piece moves, it's trajectory needs to be checked for a king
@@ -68,33 +66,32 @@ namespace chesspp
             // A pawn thinks the position ahead of it is valid
             // Kings don't like to move into an enemy's valid position
             // The converse for the pawn's diagonal
-            virtual bool isPawn(void);
-            virtual bool isKing(void);
+            virtual bool isPawn();
+            virtual bool isKing();
 
             // Make pure virtual when all pieces have the function
-            virtual void makeTrajectory(const Board*board)
+            virtual void makeTrajectory(Board const *board)
             {
             }
 
             // Used by Queen, Bishop, and Rook
             // This function moves in Direction d until the end of the board
             // These Positions are added to the piece's trajectory
-            void shootPath(const Board*board, const Direction d);
+            void shootPath(Board const *board, Direction const d);
 
             // This function is called for every piece after a piece moves
             // If the two Positions are in the piece's trajectory
             // Then makeTrajectory is called (makeTrajectory starts from scratch)
             // Maybe there is a better way to do it ?
             // Knights would be easy, would have to do virtual
-            void updateTrajectory(const Board*board, const Position&old, const Position&knew);
+            void updateTrajectory(Board const *board, Position const &old, Position const &knew);
 
             // Moves the piece.  Most pieces use this/
             // As of now, only Pawns do not because pawns have a "firstMove"
             // Kings would also need to override this
-            virtual bool move(const Position&moveTo);
+            virtual bool move(Position const &moveTo);
 
-            // Why not? :)
-            friend std::ostream&operator<<(std::ostream&out, const Piece&p);
+            friend std::ostream &operator<<(std::ostream &out, Piece const &p);
         };
     }
 }

@@ -14,11 +14,10 @@ namespace chesspp
     {
         class Queen : public Piece
         {
-        private:
         public:
-            Queen(const Position&bPos, Color c);
+            Queen(Position const &bPos, Color c);
 
-            virtual void makeTrajectory(const Board*board);
+            virtual void makeTrajectory(Board const *board);
 
         };
     }

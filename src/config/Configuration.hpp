@@ -72,7 +72,7 @@ namespace chesspp
             : reader(std::ifstream(getResourcePath() + configFile))
             {
             }
-            virtual ~Configuration() noexcept = default;
+            virtual ~Configuration() = default;
         };
     }
 }

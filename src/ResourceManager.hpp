@@ -24,7 +24,7 @@ namespace chesspp
         ResourceManager() noexcept = default;
         ResourceManager(ResourceManager &&) noexcept = default;
         ResourceManager &operator=(ResourceManager &&) noexcept = default;
-        ~ResourceManager() noexcept = default;
+        ~ResourceManager() = default;
 
         //pure virtual, defined depending on what is being loaded.
         virtual T *onLoadResource(key_type const &key) noexcept = 0;

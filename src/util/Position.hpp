@@ -41,7 +41,7 @@ namespace chesspp
             Position(Position &&) noexcept = default;
             Position &operator=(Position const &) noexcept = default;
             Position &operator=(Position &&) noexcept = default;
-            ~Position() noexcept = default;
+            ~Position() = default;
 
             //Checks if this position is within a boundry of top-left and bottom-right positions, including edges
             bool isWithin(Position const &topleft, Position const &bottomright) const noexcept

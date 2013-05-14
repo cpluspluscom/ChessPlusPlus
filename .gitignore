@@ -11,6 +11,7 @@
 *.ilk
 *.DS_Store
 *.dll
+*.log
 
 /chesspp
 debug.txt

@@ -23,7 +23,7 @@ public:
     {
         static LogUtil lu;
     }
-    ~LogUtil() noexcept
+    ~LogUtil()
     {
         std::clog.rdbuf(clogbuf), clogbuf = nullptr;
         std::cerr.rdbuf(cerrbuf), cerrbuf = nullptr;

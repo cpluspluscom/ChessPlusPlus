@@ -22,7 +22,7 @@ namespace chesspp
         {
             display.setVerticalSyncEnabled(true);
         }
-        ~Application() noexcept = default;
+        ~Application() = default;
 
         template<class NewState, typename... ArgsT>
         void changeState(ArgsT... args)

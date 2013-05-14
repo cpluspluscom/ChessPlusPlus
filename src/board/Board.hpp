@@ -28,7 +28,7 @@ namespace chesspp
 
         public:
             Board(config::BoardConfig &conf);
-            ~Board() noexcept = default;
+            ~Board() = default;
 
             //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
             Piece *at(Position_t const &pos) const;

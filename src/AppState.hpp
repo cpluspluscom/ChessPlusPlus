@@ -14,7 +14,7 @@ namespace chesspp
         : display(display)
         {
         }
-        virtual ~AppState() noexcept = default;
+        virtual ~AppState() = default;
 
         virtual int id() = 0;
         virtual void OnRender() = 0;

@@ -22,7 +22,7 @@ namespace chesspp
 
     public:
         AppStateGame(Application *app, sf::RenderWindow *display);
-        virtual ~AppStateGame() noexcept = default;
+        virtual ~AppStateGame() = default;
 
         virtual int id();
         virtual void OnRender();

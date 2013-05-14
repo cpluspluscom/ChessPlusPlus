@@ -5,3 +5,5 @@ Check out the information on [[Building]] and on the [[Design]] of the project.
 Devolper IRC Channel:<br/>
 irc.freenode.net #ChessPlusPlus
 <br/>(You can join via [http://webchat.freenode.net/ webchat] if you don't have a client)
+
+There is also the [http://cpluspluscom.GitHub.IO/ChessPlusPlus/ website] hosted by GitHub Pages, which is focused on maintaining game content. This wiki is focused on maintaining information on coding for the project.

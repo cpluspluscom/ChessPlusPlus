@@ -24,7 +24,7 @@ namespace chesspp
         ResourceManager() noexcept
         {
         }
-        ~ResourceManager() noexcept
+        ~ResourceManager()
         {
         }
 

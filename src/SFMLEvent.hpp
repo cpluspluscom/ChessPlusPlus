@@ -34,7 +34,7 @@ namespace chesspp
         virtual void OnJoystickConnected     (uint joystickID)                                                        noexcept {}
         virtual void OnJoystickDisconnected  (uint joystickID)                                                        noexcept {}
 
-        virtual ~SFMLEvent() noexcept
+        virtual ~SFMLEvent()
         {
         }
     };

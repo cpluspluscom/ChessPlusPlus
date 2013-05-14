@@ -51,7 +51,7 @@ namespace chesspp
             Piece *selectedPiece = nullptr;
 
             Board();
-            ~Board() noexcept;
+            ~Board();
 
             // Loads the game from new_game.txt
             bool newGame(std::string const &fileName);

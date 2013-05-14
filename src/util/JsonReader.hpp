@@ -32,7 +32,7 @@ namespace chesspp
             JsonReader(std::istream &&s) noexcept(false) : JsonReader(s)
             {
             }
-            ~JsonReader() noexcept
+            ~JsonReader()
             {
                 json_value_free(json), json = nullptr;
             }
@@ -49,7 +49,7 @@ namespace chesspp
                 NestedValue(NestedValue const &) noexcept = default;
                 NestedValue(NestedValue &&) noexcept = default;
                 NestedValue &operator=(NestedValue &&) noexcept = default;
-                ~NestedValue() noexcept = default;
+                ~NestedValue() = default;
                 
                 json_type type() const noexcept //may wish to add an abstraction layer between json-parser
                 {

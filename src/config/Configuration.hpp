@@ -70,7 +70,7 @@ namespace chesspp
             Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
             {
             }
-            virtual ~Configuration() noexcept
+            virtual ~Configuration()
             {
             }
 

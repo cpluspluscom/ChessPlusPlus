@@ -13,7 +13,7 @@ namespace chesspp
         {
         }
 
-        Board::~Board() noexcept
+        Board::~Board()
         {
             resetBoard();  // This deletes the pointers
         }

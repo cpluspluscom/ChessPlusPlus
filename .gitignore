@@ -12,6 +12,7 @@
 *.DS_Store
 *.dll
 *.log
+*.bin
 
 /chesspp
 debug.txt

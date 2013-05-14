@@ -14,7 +14,7 @@ namespace chesspp
         : display(_display)
         {
         }
-        virtual ~AppState() noexcept
+        virtual ~AppState()
         {
         }
 

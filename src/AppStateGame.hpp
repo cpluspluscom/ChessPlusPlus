@@ -20,7 +20,7 @@ namespace chesspp
 
     public:
         AppStateGame(Application *_app, sf::RenderWindow *_display);
-        virtual ~AppStateGame() noexcept
+        virtual ~AppStateGame()
         {
         }
 

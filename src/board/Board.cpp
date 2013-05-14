@@ -1,14 +1,12 @@
 #include "Board.hpp"
 
-#include "Piece.hpp"
-
 #include <iostream>
 
 namespace chesspp
 {
     namespace board
     {
-        Board::Board(config::BoardConfig &conf)
+        Board::Board(config::BoardConfig const &conf)
         : xsize(conf.getBoardWidth())
         , ysize(conf.getBoardHeight())
         {
@@ -68,15 +66,6 @@ namespace chesspp
                 it->second->makeTrajectory();
             }
             return true;
-        }
-
-        Piece *Board::at(Position_t const &pos) const
-        {
-            if(pieces.find(pos) == pieces.end())
-            {
-                return nullptr;
-            }
-            return pieces[pos];
         }
 
         bool Board::move(Position_t const &source, Position_t const &target)

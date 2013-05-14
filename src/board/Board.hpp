@@ -13,7 +13,7 @@ namespace chesspp
 {
     namespace board
     {
-        class Piece;
+        class Piece; //Board needs a cpp file to resolve cyclic dependency
         class Board
         {
         public:

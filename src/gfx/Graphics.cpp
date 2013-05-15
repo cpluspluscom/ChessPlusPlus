@@ -29,7 +29,7 @@ namespace chesspp
             }
         }
 
-        void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, const int x, const int y)
+        void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, int x, int y)
         {
             s.setPosition(x*cell_size, y*cell_size);
             display.draw(s);
@@ -43,7 +43,7 @@ namespace chesspp
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
             drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
         }
-        void GraphicsHandler::drawPieceAt(board::Piece *p, const sf::Vector2i &pos)
+        void GraphicsHandler::drawPieceAt(board::Piece &p, const sf::Vector2i &pos)
         {
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
             pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));

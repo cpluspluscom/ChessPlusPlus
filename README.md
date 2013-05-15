@@ -4,7 +4,7 @@ irc.freenode.net#ChessPlusPlus
 
 ## Description
 Cplusplus.com community project. 
-Project repository - https://github.com/naraku9333/ChessPlusPlus
+Project repository - https://github.com/cpluspluscom/ChessPlusPlus
 
 ## Resources
 chess piece images by AtskaHeart http://atskaheart.deviantart.com/

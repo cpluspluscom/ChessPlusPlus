@@ -18,4 +18,4 @@ Send an email to svogel76 (at) comcast.net with ChessPlusPlus in the subject. In
 To contribute to this project, fork this repository, commit your changes, and submit a pull request. You can open issues to start discussions if you like.
 
 ## Documentation
-See the [wiki](./ChessPlusPlus/wiki/) for more information.
+See the [wiki](./../../wiki/) for more information.

@@ -8,6 +8,7 @@
 #include <map>
 #include <memory>
 #include <cstdint>
+#include <functional>
 
 namespace chesspp
 {
@@ -17,26 +18,10 @@ namespace chesspp
         {
         public:
             using BoardSize_t = config::BoardConfig::BoardSize_t;
-            using Position_t = Position<BoardSize_t>; //Position type is based on Board Size type
+            using Position_t = config::BoardConfig::Position_t;
 
-            enum class Suit //needs to be abstracted
-            {
-                WHITE,
-                BLACK,
-            };
-            std::ostream &operator<<(std::ostream &os, Suit c)
-            {
-                switch(c)
-                {
-                case Suit::WHITE:
-                    os << "White";
-                    break;
-                case Suit::BLACK:
-                    os << "Black";
-                    break;
-                }
-                os << " suit";
-            };
+            //Current most-practical solution - will abstract more later
+            using Suit = config::BoardCondig::SuitClass_t;
 
             class Piece
             {
@@ -55,7 +40,7 @@ namespace chesspp
 
                 Board &b; //The board this piece belongs to
 
-                Piece(Board &b, Position_t const &pos, Suit s)
+                Piece(Board &b, Position_t const &pos, Suit const &s)
                 : b(b)
                 , p(pos)
                 , s(s)
@@ -77,7 +62,7 @@ namespace chesspp
                 //should call addTrajectory() for each calculated trajectory
                 virtual void calcTrajectory() = 0;
                 //deriving classes should call this from makeTrajectory to add a calculated trajectory tile
-                void addTrajectory(Position_t tile)
+                void addTrajectory(Position_t const &tile)
                 {
                     if(b.valid(tile))
                     {
@@ -89,7 +74,7 @@ namespace chesspp
                     }
                 }
                 //further deriving classes can call this to remove a trajectory calculated by their parent class
-                void removeTrajectory(Position_t tile)
+                void removeTrajectory(Position_t const &tile)
                 {
                     traj.erase(tile);
                 }
@@ -115,13 +100,33 @@ namespace chesspp
             };
 
             using Pieces_t = std::map<Position_t, std::unique_ptr<Piece>>; //Pieces are mapped to their positions
+            using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<std::unique_ptr<Piece> (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
 
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
+            Factory_t factory;
 
         public:
-            Board(config::BoardConfig const &conf);
+            Board(config::BoardConfig const &conf, Factory_t const &fact)
+            : xsize(conf.getBoardWidth())
+            , ysize(conf.getBoardHeight())
+            , factory(fact)
+            {
+                for(auto const &slot : conf.initialLayout())
+                {
+                    pieces[slot.first] = fact[slot.second.first](*this, slot.first, slot.second.second);
+                }
+
+                //This can only be done when all of the pieces are on the board
+                //In a real game, it should be for the suit that has just moved first
+                //So the other suit can respond to things that may have cuased check
+                //It should be its own function, as it is needed in move() also.
+                for(auto it = pieces.begin(); it != pieces.end(); ++it)
+                {
+                    it->second->makeTrajectory();
+                }
+            }
             ~Board() = default;
 
             //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
@@ -135,7 +140,36 @@ namespace chesspp
             }
 
             //Move a piece from one place to another
-            bool move(Position_t const &source, Position_t const &target);
+            bool move(Position_t const &source, Position_t const &target)
+            {
+                if(pieces.find(source) == pieces.end())
+                {
+                    std::cerr << "source position of piece to move does not contain a piece: " << source << std::endl;
+                    return false;
+                }
+                if(!valid(target))
+                {
+                    std::cerr << "target position of piece to move is out of bounds: " << target << std::endl;
+                    return false;
+                }
+
+                Piece *tomove = pieces[source];
+                pieces[target].swap(pieces[source]); //swap positions
+                pieces.erase(source); //remove the one that used to be at target
+                tomove.move(target);
+
+                //Update the trajectories of pieces whose trajectories contain the the old oer new position
+                for(auto it = pieces.begin(); it != pieces.end(); ++it)
+                {
+                    Piece::PosList_t const &t = it->second->trajectory;
+                    if(t.find(source) != t.end() || t.find(target) != t.end()) //source or target found
+                    {
+                        it->second->makeTrajectory(); //update
+                    }
+                }
+
+                return true;
+            }
 
             //Check if a position is a valid position that exists on the board
             bool valid(Position_t const &pos) const noexcept

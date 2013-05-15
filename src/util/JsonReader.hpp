@@ -98,6 +98,11 @@ namespace chesspp
                 {
                     return value;
                 }
+
+                json_value *&implementation() noexcept //only for extreme-use cases
+                {
+                    return value;
+                }
             };
             
             NestedValue access() const noexcept
@@ -107,11 +112,6 @@ namespace chesspp
             NestedValue operator()() const noexcept
             {
                 return access();
-            }
-
-            json_value *&implementation() noexcept //only for extreme-use cases
-            {
-                return json;
             }
         };
     }

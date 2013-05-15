@@ -1,5 +1,8 @@
 #include "Graphics.hpp"
 
+#include "TextureManager.hpp"
+#include "config/Configuration.hpp"
+
 #include <iostream>
 
 namespace chesspp
@@ -35,7 +38,7 @@ namespace chesspp
         {
             display.draw(board);
         }
-        void GraphicsHandler::drawPiece(board::Piece *p)
+        void GraphicsHandler::drawPiece(board::Piece &p)
         {
             pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
             drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
@@ -47,11 +50,11 @@ namespace chesspp
 
             display.draw(pieces);
         }
-        void GraphicsHandler::drawValidMove(const int x, const int y)
+        void GraphicsHandler::drawValidMove(int x, int y)
         {
             drawSpriteAtCell(validMove, x, y);
         }
-        void GraphicsHandler::drawBoard(const board::Board *b)
+        void GraphicsHandler::drawBoard(board::Board const &b)
         {
             drawBackground();
 

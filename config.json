@@ -3,17 +3,62 @@
     {
         "board":
         {
-            "initial_layout": "res/games/new_game.txt",
             "width": 8,
             "height": 8,
-            "cell_width": 80,
-            "cell_height": 80,
+            "pieces":
+            [
+                ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"],
+                ["Pawn", "Pawn"  , "Pawn"  , "Pawn" , "Pawn", "Pawn"  , "Pawn"  , "Pawn"],
+                [null  , null    , null    , null   , null  , null    , null    , null  ],
+                [null  , null    , null    , null   , null  , null    , null    , null  ],
+                [null  , null    , null    , null   , null  , null    , null    , null  ],
+                [null  , null    , null    , null   , null  , null    , null    , null  ],
+                ["Pawn", "Pawn"  , "Pawn"  , "Pawn" , "Pawn", "Pawn"  , "Pawn"  , "Pawn"],
+                ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"]
+            ],
+            "suits":
+            [
+                ["Black", "Black", "Black", "Black", "Black", "Black", "Black", "Black"],
+                ["Black", "Black", "Black", "Black", "Black", "Black", "Black", "Black"],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                ["White", "White", "White", "White", "White", "White", "White", "White"],
+                ["White", "White", "White", "White", "White", "White", "White", "White"]
+            ],
+            "cell width": 80,
+            "cell height": 80,
 
             "images":
             {
-                "board": "res/img/chessboard_640x640.png",
-                "pieces": "res/img/chess_pieces_80x80_each.png",
-                "validMove": "res/img/valid_move.png"
+                "board":      "res/img/chessboard_640x640.png",
+                "valid move": "res/img/valid_move.png",
+                "enemy move": "res/img/enemy_move.png",
+                "pieces":
+                {
+                    "Black":
+                    {
+                        "Pawn":   "res/img/pieces/black/pawn.png",
+                        "Rook":   "res/img/pieces/black/rook.png",
+                        "knight": "res/img/pieces/black/knight.png",
+                        "Bishop": "res/img/pieces/black/bishop.png",
+                        "Queen":  "res/img/pieces/black/queen.png",
+                        "King":   "res/img/pieces/black/king.png",
+                        "":       "res/img/missing.png"
+                    },
+                    "White":
+                    {
+                        "Pawn":   "res/img/pieces/white/pawn.png",
+                        "Rook":   "res/img/pieces/white/rook.png",
+                        "knight": "res/img/pieces/white/knight.png",
+                        "Bishop": "res/img/pieces/white/bishop.png",
+                        "Queen":  "res/img/pieces/white/queen.png",
+                        "King":   "res/img/pieces/white/king.png",
+                        "":       "res/img/missing.png"
+                    },
+                    "": "res/img/missing.png"
+                }
             }
         }
     }

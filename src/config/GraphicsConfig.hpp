@@ -14,6 +14,7 @@ namespace chesspp
             : Configuration("config.json")
             {
             }
+            virtual ~GraphicsConfig() = default;
 
             std::string getSpritePath(std::string const &name)
             {

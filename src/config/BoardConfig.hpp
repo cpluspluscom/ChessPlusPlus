@@ -2,6 +2,7 @@
 #define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
+#include "GraphicsConfig.hpp"
 
 #include <string>
 #include <cstdint>
@@ -29,8 +30,8 @@ namespace chesspp
             Textures_t textures;
 
         public:
-            BoardConfig()
-            : Configuration("config.json")
+            BoardConfig(GraphicsConfig const &gfx)
+            : Configuration("config/board.json")
             , board_width  (reader()["chesspp"]["board"]["width"]      )
             , board_height (reader()["chesspp"]["board"]["height"]     )
             , cell_width   (reader()["chesspp"]["board"]["cell width"] )
@@ -51,16 +52,12 @@ namespace chesspp
                     }
                 }
 
-                //Need to abstract this code that uses JsonReader's implementation
-                //(will need to make changes to JsonReader)
-                auto &tex = reader()["chesspp"]["board"]["images"]["pieces"].implementation();
-                for(std::size_t i = 0; i < tex.u.object.length; ++i)
+                auto const &tex = gfx.spritePaths("board", "pieces");
+                for(auto const &suit : tex)
                 {
-                    auto &suit = tex.u.object.values[i];
-                    for(std::size_t j = 0; j < suit.value.u.object.length; ++j)
+                    for(auto const &piece : suit.second)
                     {
-                        auto &piece = suit.value.u.object.values[j];
-                        textures[suit.name][piece.name] = piece.value;
+                        textures[suit.first][piece.first] = piece.second;
                     }
                 }
             }

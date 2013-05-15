@@ -9,6 +9,7 @@
 #include <istream>
 #include <streambuf>
 #include <cstdint>
+#include <map>
 
 namespace chesspp
 {
@@ -73,9 +74,29 @@ namespace chesspp
                 {
                     return value[name];
                 }
+                std::size_t length() const noexcept
+                {
+                    if(value.type == json_array)
+                    {
+                        return value.u.array.length;
+                    }
+                    return 0;
+                }
                 NestedValue operator[](std::size_t index) const noexcept
                 {
                     return value[static_cast<int>(index)];
+                }
+                std::map<std::string, NestedValue const &> object() const
+                {
+                    std::map<std::string, NestedValue> obj;
+                    if(value.type == json_object)
+                    {
+                        for(std::size_t i = 0; i < value.u.object.length; ++i)
+                        {
+                            obj.emplace<std::string const, NestedValue const &>(value.u.object.values[i].name, value.u.object.values[i].value);
+                        }
+                    }
+                    return obj;
                 }
                 operator std::string() const noexcept(noexcept(std::string("")))
                 {

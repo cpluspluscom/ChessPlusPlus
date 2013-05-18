@@ -12,15 +12,28 @@ namespace chesspp
     {
         enum class Direction
         {
-            NORTH,
-            NORTH_EAST,
-            EAST,
-            SOUTH_EAST,
-            SOUTH,
-            SOUTH_WEST,
-            WEST,
-            NORTH_WEST
+            North,
+            NorthEast,
+            East,
+            SouthEast,
+            South,
+            SouthWest,
+            West,
+            NorthWest
         };
+        Direction Rotate(Direction const &d, signed r)
+        { //Hacky solution, should replace with better solution later
+            Direction t {d};
+            for(signed i = 0; i < r; ++i)
+            {
+                t = static_cast<Direction>((static_cast<int>(t)+1)%8);
+            }
+            for(signed i = 0; i > r; --i)
+            {
+                int n = static_cast<int>(t)-1;
+                t = static_cast<Direction>(n < 0 ? n + 8 : n);
+            }
+        }
 
         template<typename T>
         class Position
@@ -58,20 +71,31 @@ namespace chesspp
                 x += xoff;
                 y += yoff;
             }
-            //Move position relative it itself in the direction
-            void move(Direction /*const &*/d) noexcept
+            //Move position relative to itself in the direction the given number of times
+            Position &move(Direction const &d, signed times = 1) noexcept
             {
-                switch(d)
+                for(signed i = 0; i < times; ++i)
                 {
-                case Direction::NORTH:              y -= 1; break;
-                case Direction::NORTH_EAST: x += 1; y -= 1; break;
-                case Direction::EAST:       x += 1;         break;
-                case Direction::SOUTH_EAST: x += 1; y += 1; break;
-                case Direction::SOUTH:              y += 1; break;
-                case Direction::SOUTH_WEST: x -= 1; y += 1; break;
-                case Direction::WEST:       x -= 1;         break;
-                case Direction::NORTH_WEST: x -= 1; y -= 1; break;
+                    //move forward
+                    switch(d)
+                    {
+                    case Direction::North:          --y; break;
+                    case Direction::NorthEast: ++x; --y; break;
+                    case Direction::East:      ++x;      break;
+                    case Direction::SouthEast: ++x; --y; break;
+                    case Direction::South:          ++y; break;
+                    case Direction::SouthWest: --x; ++y; break;
+                    case Direction::West:      --x;      break;
+                    case Direction::NorthWest: --x; --y; break;
+                    }
                 }
+                if(times < 0)
+                {
+                    //move backward
+                    Psotion t = Position(0, 0).move(d, -times);
+                    move(-t.x, -t.y);
+                }
+                return *this;
             }
 
             std::enable_if<std::is_integral<T>, bool>::type operator==(Position const &other) const noexcept

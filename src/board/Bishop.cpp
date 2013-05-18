@@ -1,27 +1,40 @@
 #include "Bishop.hpp"
 
 #include <iostream>
+#include <initializer_list>
 
 namespace chesspp
 {
     namespace board
     {
-        Bishop::Bishop(Position const &bPos, Suit c)
-        : Piece(bPos, Position(80*3, 0), c, Type::BISHOP)
+        Bishop::Bishop(Board &b, Position_t const &pos, Suit const &s)
+        : Piece(b, pos, s)
         {
         }
 
-        void Bishop::makeTrajectory(Board const *board)
+        void Bishop::calcTrajectory()
         {
-            std::clog << "BISHOP: " << this->boardPos << " makeTrajectory" << std::endl;
+            std::clog << "Bishop@" << pos << "->calcTrajectory()" << std::endl;
 
-            this->trajectory.clear();
+            //Bishops can move infinitely in the four diagonal directions
 
-            //Do the diagonals
-            shootPath(board, NORTH_EAST);
-            shootPath(board, SOUTH_EAST);
-            shootPath(board, SOUTH_WEST);
-            shootPath(board, NORTH_WEST);
+            for(Direction d : {Direction::NorthEast
+                              ,Direction::SouthEast
+                              ,Direction::SouthWest
+                              ,Direction::NorthWest})
+            {
+                Position_t t;
+                for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)
+                {
+                    addTrajectory(t);
+                    addCapturing(t);
+                }
+            }
+        }
+
+        Bishop::moveAnimation(Position_t const &from, Position_t const &to)
+        {
+            //
         }
     }
 }

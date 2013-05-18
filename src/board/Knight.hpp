@@ -1,12 +1,7 @@
-#ifndef LOWKNIGHT_H
-#define LOWKNIGHT_H
+#ifndef KnightChessPiece_HeaderPlusPlus
+#define KnightChessPiece_HeaderPlusPlus
 
-//Warning:
-//Texture positions are hard coded into constructor
-//I think they should at least be brought to the Board
-//So they can be changed at once
-
-#include "Piece.hpp"
+#include "Board.hpp"
 
 namespace chesspp
 {
@@ -14,20 +9,15 @@ namespace chesspp
     {
         class Knight : public Piece
         {
-        private:
-            //The King also has this function.  I didn't add it to Piece
-            //Because other pieces should use other methods
-            //Maybe named a little poorly
-            //x and y are offsets from the piece
-            //if this position is ou-of-bounds, then nothing is added
-            void addPosition(Board const *board, int x, int y);
-
         public:
-            Knight(Position const &bPos, Suit c);
+            Knight(Board &b, Position_t const &pos, Suit const &s);
+            virtual ~Knight() = default;
 
-            //Make the trajectory, see OnValidity.txt for a some info
-            virtual void makeTrajectory(Board const *board);
-        };
+        protected:
+            virtual void calcTrajectory() override;
+
+        private:
+            virtual void moveAnimation(Position_t const &from, Position_t const &to) override;
     }
 }
 

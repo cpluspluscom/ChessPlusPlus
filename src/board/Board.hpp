@@ -30,22 +30,26 @@ namespace chesspp
 
             private:
                 Suit s;
-                PosList_t traj;
+                PosList_t traj, capt;
                 Position_t p;
+                std::size_t movenum = 0;
             public:
                 //const aliases for deriving classes
                 Suit const &suit;            //Which suit the chess piece is
-                PosList_t const &trajectory; //The list of possible Positions
+                PosList_t const &trajectory; //The list of possible Positions (non-capture only)
+                PosList_t const &captures;   //The list of possible Positions (captures only)
                 Position_t const &pos;       //The position on the baord this piece is
+                std::size_t const &moves;    //Current move number/number of moves made
 
-                Board &b; //The board this piece belongs to
+                Board &board; //The board this piece belongs to
 
                 Piece(Board &b, Position_t const &pos, Suit const &s)
-                : b(b)
+                : board(b)
                 , p(pos)
                 , s(s)
                 , suit(s)
                 , trajectory(traj)
+                , captures(capt)
                 , pos(p)
                 {
                     std::clog << "Creation of " << *this << std::endl;
@@ -56,27 +60,53 @@ namespace chesspp
                 void makeTrajectory()
                 {
                     traj.clear();
+                    addCapture(pos);
                     calcTrajectory();
                 }
             protected:
                 //should call addTrajectory() for each calculated trajectory
+                //and addCapture() for each possible capture
                 virtual void calcTrajectory() = 0;
                 //deriving classes should call this from makeTrajectory to add a calculated trajectory tile
                 void addTrajectory(Position_t const &tile)
                 {
-                    if(b.valid(tile))
+                    if(board.valid(tile))
                     {
                         traj.insert(tile);
-                    }
-                    else
-                    {
-                        std::clog << "Invalid tile " << tile << " calculated for trajectory by " << *this << std::endl;
                     }
                 }
                 //further deriving classes can call this to remove a trajectory calculated by their parent class
                 void removeTrajectory(Position_t const &tile)
                 {
                     traj.erase(tile);
+                }
+
+                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
+                void addCapturing(Position_t const &tile)
+                {
+                    if(board.valid(tile))
+                    {
+                        capt.insert(tile);
+                    }
+                }
+                //further deriving classes can call this to remove a capturable tile calculated by their parent class
+                void removeCapturing(Position_t const &tile)
+                {
+                    capt.erase(tile);
+                }
+
+                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
+                void addCapturable(Position_t const &tile)
+                {
+                    if(board.valid(tile))
+                    {
+                        board.captures.insert(Board::Captures_t::value_type(board.pieces.find(pos), tile));
+                    }
+                }
+                //further deriving classes can call this to remove a capturable tile calculated by their parent class
+                void removeCapturable(Position_t const &tile)
+                {
+                    board.captures.erase(Board::Captures_t::value_type(board.pieces.find(pos), tile));
                 }
 
             public:
@@ -86,25 +116,29 @@ namespace chesspp
                     Position_t from = std::move(pos);
                     pos = to;
                     moveAnimation(from, to);
+                    ++movenum;
                     makeTrajectory();
                 }
             private: //intentionally private, not protected
                 //Called by move(), plays the animation for moving
                 virtual void moveAnimation(Position_t const &from, Position_t const &to) = 0;
+
             public:
 
                 friend std::ostream &operator<<(std::ostream &os, Piece const &p)            
                 {
-                    return os << "Piece (" << typeid(p).name() << ") " << p.suit << " at " << p.pos;
+                    return os << "Piece (" << typeid(p).name() << ") " << p.suit << " at " << p.pos << " having made " << p.moves << " moves";
                 }
             };
 
             using Pieces_t = std::map<Position_t, std::unique_ptr<Piece>>; //Pieces are mapped to their positions
+            using Captures_t = std::multimap<Pieces_t::iterator, Position_t>; //Some pieces can be captured from different positions (e.g. en passant)
             using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<std::unique_ptr<Piece> (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
 
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
+            Captures_t captures;
             Factory_t factory;
 
         public:
@@ -130,7 +164,7 @@ namespace chesspp
             ~Board() = default;
 
             //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
-            Piece &at(Position_t const &pos) const
+            Piece *at(Position_t const &pos) const
             {
                 if(pieces.find(pos) == pieces.end())
                 {
@@ -155,10 +189,11 @@ namespace chesspp
 
                 Piece *tomove = pieces[source];
                 pieces[target].swap(pieces[source]); //swap positions
+                captures.erase(pieces.find(source)); //reset captures for the piece
                 pieces.erase(source); //remove the one that used to be at target
                 tomove.move(target);
 
-                //Update the trajectories of pieces whose trajectories contain the the old oer new position
+                //Update the trajectories of pieces whose trajectories contain the the old or new position
                 for(auto it = pieces.begin(); it != pieces.end(); ++it)
                 {
                     Piece::PosList_t const &t = it->second->trajectory;

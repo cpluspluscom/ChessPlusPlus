@@ -1,31 +1,44 @@
 #include "Queen.hpp"
 
 #include <iostream>
+#include <initializer_list>
 
 namespace chesspp
 {
     namespace board
     {
-        Queen::Queen(Position const &bPos, Suit c)
-            :Piece(bPos, Position(80*4,0), c, Type::QUEEN)
+        Queen::Queen(Board &b, Position_t const &pos, Suit const &s)
+        : Piece(b, pos, s)
         {
-
         }
 
-        void Queen::makeTrajectory(const Board *board)
+        void Queen::calcTrajectory()
         {
-            std::clog << "QUEEN: " << this->boardPos << " makeTrajectory" << std::endl;
+            std::clog << "Queen@" << pos << "->calcTrajectory()" << std::endl;
 
-            this->trajectory.clear();
+            //Queens can move infinitely in all eight directions
 
-            shootPath(board, NORTH);
-            shootPath(board, NORTH_EAST);
-            shootPath(board, EAST);
-            shootPath(board, SOUTH_EAST);
-            shootPath(board, SOUTH);
-            shootPath(board, SOUTH_WEST);
-            shootPath(board, WEST);
-            shootPath(board, NORTH_WEST);
+            for(Direction d : {Direction::North
+                              ,Direction::NorthEast
+                              ,Direction::East
+                              ,Direction::SouthEast
+                              ,Direction::South
+                              ,Direction::SouthWest
+                              ,Direction::West
+                              ,Direction::NorthWest})
+            {
+                Position_t t;
+                for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)
+                {
+                    addTrajectory(t);
+                    addCapturing(t);
+                }
+            }
+        }
+
+        Queen::moveAnimation(Position_t const &from, Position_t const &to)
+        {
+            //
         }
     }
 }

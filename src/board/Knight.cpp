@@ -1,43 +1,42 @@
 #include "Knight.hpp"
 
 #include <iostream>
+#include <initializer_list>
 
 namespace chesspp
 {
     namespace board
     {
-        Knight::Knight(Position const &bPos, Suit c)
-        : Piece(bPos, Position(80*2, 0), c, Type::KNIGHT)
+        Knight::Knight(Board &b, Position_t const &pos, Suit const &s)
+        : Piece(b, pos, s)
         {
 
         }
 
-        void Knight::makeTrajectory(Board const *board)
+        void Knight::calcTrajectory()
         {
-            std::clog << "KNIGHT: " << this->boardPos << " makeTrajectory" << std::endl;
+            std::clog << "Knight@" << pos << "->calcTrajectory()" << std::endl;
 
-            this->trajectory.clear();
+            //Knights can only move in 3-long 2-short L shapes
 
-            addPosition(board,  1, -2);
-            addPosition(board,  2, -1);
-            addPosition(board,  2,  1);
-            addPosition(board,  1,  2);
-            addPosition(board, -1,  2);
-            addPosition(board, -2,  1);
-            addPosition(board, -2, -1);
-            addPosition(board, -1, -2);
+            for(Position_t p : {Position_t( 1, -2)
+                               ,Position_t( 2, -1)
+                               ,Position_t( 2,  1)
+                               ,Position_t( 1,  2)
+                               ,Position_t(-1,  2)
+                               ,Position_t(-2,  1)
+                               ,Position_t(-2, -1)
+                               ,Position_t(-1, -2)})
+            {
+                Position_t t = Position_t(pos).move(p.x, p.y);
+                addTrajectory(t);
+                addCapturing(t);
+            }
         }
 
-        void Knight::addPosition(Board const *board, int x, int y)
+        King::moveAnimation(Position_t const &from, Position_t const &to)
         {
-            Position pos(this->boardPos.getX() + x, this->boardPos.getY() + y);
-
-            if (!pos.inBounds())
-                return;
-            if (board->hasPosition(pos) &&board->at(pos)->suit == this->suit)
-                pos.setValid(false);
-            this->trajectory.push_back(pos);
-
+            //
         }
     }
 }

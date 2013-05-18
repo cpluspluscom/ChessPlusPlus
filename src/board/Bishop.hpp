@@ -1,12 +1,7 @@
-#ifndef LOWBISHOP_H
-#define LOWBISHOP_H
+#ifndef BishopChessPiece_HeaderPlusPlus
+#define BishopChessPiece_HeaderPlusPlus
 
-//Warning:
-//Texture positions are hard coded into constructor
-//I think they should at least be brought to the Board
-//So they can be changed at once
-
-#include "Piece.hpp"
+#include "Board.hpp"
 
 namespace chesspp
 {
@@ -15,9 +10,14 @@ namespace chesspp
         class Bishop : public Piece
         {
         public:
-            Bishop(Position const &bPos, Suit c);
+            Bishop(Board &b, Position_t const &pos, Suit const &s);
+            virtual ~Bishop() = default;
 
-            virtual void makeTrajectory(Board const *board);
+        protected:
+            virtual void calcTrajectory() override;
+
+        private:
+            virtual void moveAnimation(Position_t const &from, Position_t const &to) override;
         };
     }
 }

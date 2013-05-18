@@ -1,26 +1,40 @@
 #include "Rook.hpp"
 
 #include <iostream>
+#include <initializer_list>
 
 namespace chesspp
 {
     namespace board
     {
-        Rook::Rook(Position const &bPos, Suit c)
-        : Piece(bPos, Position(80*1, 0), c, Type::ROOK)
+        Rook::Rook(Board &b, Position_t const &pos, Suit const &s)
+        : Piece(b, pos, s)
         {
 
         }
-        void Rook::makeTrajectory(Board const *board)
+        void Rook::calcTrajectory()
         {
-            std::clog << "ROOK: " << this->boardPos << " makeTrajectory" << std::endl;
+            std::clog << "Rook@" << pos << "->calcTrajectory()" << std::endl;
 
-            this->trajectory.clear();
+            //Rooks can move infinitely in the four straight directions
 
-            shootPath(board, NORTH);
-            shootPath(board, EAST);
-            shootPath(board, SOUTH);
-            shootPath(board, WEST);
+            for(Direction d : {Direction::North
+                              ,Direction::East
+                              ,Direction::South
+                              ,Direction::West})
+            {
+                Position_t t;
+                for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)
+                {
+                    addTrajectory(t);
+                    addCapturing(t);
+                }
+            }
+        }
+
+        Rook::moveAnimation(Position_t const &from, Position_t const &to)
+        {
+            //
         }
     }
 }

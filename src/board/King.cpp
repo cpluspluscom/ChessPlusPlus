@@ -1,45 +1,41 @@
 #include "King.hpp"
 
 #include <iostream>
+#include <initializer_list>
 
 namespace chesspp
 {
     namespace board
     {
-        King::King(Position const &bPos, Suit c)
-        : Piece(bPos, Position(80*5, 0), c, Type::KING)
+        King::King(Board &b, Position_t const &pos, Suit const &s)
+        : Piece(b, pos, s)
         {
         }
 
-        void King::addPosition(Board const *board, int x, int y)
+        void King::calcTrajectory()
         {
-            Position pos(this->boardPos.getX() + x, this->boardPos.getY() + y);
+            std::clog << "King@" << pos << "->calcTrajectory()" << std::endl;
 
-            if (!pos.inBounds())
-                return;
-            if (board->hasPosition(pos) && board->at(pos)->suit == this->suit)
-                pos.setValid(false);
-            this->trajectory.push_back(pos);
+            //Kings can move one space in all eight directions
 
+            for(Direction d : {Direction::North
+                              ,Direction::NorthEast
+                              ,Direction::East
+                              ,Direction::SouthEast
+                              ,Direction::South
+                              ,Direction::SouthWest
+                              ,Direction::West
+                              ,Direction::NorthWest})
+            {
+                Position_t t = Position_t(pos).move(d);
+                addTrajectory(t);
+                addCapturing(t);
+            }
         }
 
-        void King::makeTrajectory(Board const *board)
+        King::moveAnimation(Position_t const &from, Position_t const &to)
         {
-            std::clog << "KING: " << this->boardPos << " makeTrajectory" << std::endl;
-
-            this->trajectory.clear();
-
-            this->addPosition(board,  0, -1);
-            this->addPosition(board,  1, -1);
-            this->addPosition(board,  1,  0);
-            this->addPosition(board,  1,  1);
-            this->addPosition(board,  0,  1);
-            this->addPosition(board, -1,  1);
-            this->addPosition(board, -1,  0);
-            this->addPosition(board, -1,  -1);
-
-            //At this point, Positions that are on the board and not of the same suit
-            //are in the trajectory.  This needs to be refined to remove check
+            //
         }
     }
 }

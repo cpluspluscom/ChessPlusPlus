@@ -33,10 +33,5 @@ namespace chesspp
                 addCapturing(t);
             }
         }
-
-        King::moveAnimation(Position_t const &from, Position_t const &to)
-        {
-            //
-        }
     }
 }

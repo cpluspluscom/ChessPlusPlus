@@ -16,11 +16,10 @@ namespace chesspp
             Pawn(Board &b, Position_t const &pos, Suit const &s, Direction const &face);
             virtual ~Pawn() = default;
 
+            virtual void tick(Position_t const &p) override;
+
         protected:
             virtual void calcTrajectory() override;
-
-        private:
-            virtual void moveAnimation(Position_t const &from, Position_t const &to) override;
         };
     }
 }

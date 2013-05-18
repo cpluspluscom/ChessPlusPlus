@@ -31,10 +31,5 @@ namespace chesspp
                 }
             }
         }
-
-        Rook::moveAnimation(Position_t const &from, Position_t const &to)
-        {
-            //
-        }
     }
 }

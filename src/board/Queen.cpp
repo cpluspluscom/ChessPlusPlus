@@ -35,10 +35,5 @@ namespace chesspp
                 }
             }
         }
-
-        Queen::moveAnimation(Position_t const &from, Position_t const &to)
-        {
-            //
-        }
     }
 }

@@ -12,6 +12,14 @@ namespace chesspp
         {
         }
 
+        void Pawn::tick(Position_t const &p)
+        {
+            if(p != pos)
+            { //moved just happened, en passant no longer allowed
+                en_passant = false;
+            }
+        }
+
         void Pawn::calcTrajectory()
         {
             std::clog << "Pawn@" << pos << "->calcTrajectory()" << std::endl;
@@ -30,7 +38,7 @@ namespace chesspp
             }
             else if(moves == 1 && en_passant) //just moved 2 spaces forward
             {
-                addCapturable(Position_t(pos).move(facing, -1)); //enable en_passant
+                addCapturable(Position_t(pos).move(facing, -1)); //enable en passant
             }
 
             Position_t diagr = Position_t(pos).move(Rotate(facing, +1));
@@ -43,11 +51,6 @@ namespace chesspp
             {
                 addCapturing(diagl);
             }
-        }
-
-        void Pawn::moveAnimation(Position_t const &from, Position_t const &to)
-        {
-            //
         }
     }
 }

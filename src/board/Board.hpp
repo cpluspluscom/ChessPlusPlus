@@ -110,6 +110,11 @@ namespace chesspp
                 }
 
             public:
+                //Called with the position of the piece that just moved
+                virtual void tick(Position_t const &p)
+                {
+                }
+
                 //Sets the piece position as instructed by the board and recalculates the trajectory
                 void move(Position_t const &to)
                 {
@@ -121,11 +126,13 @@ namespace chesspp
                 }
             private: //intentionally private, not protected
                 //Called by move(), plays the animation for moving
-                virtual void moveAnimation(Position_t const &from, Position_t const &to) = 0;
+                virtual void moveAnimation(Position_t const &from, Position_t const &to)
+                {
+                }
 
             public:
 
-                friend std::ostream &operator<<(std::ostream &os, Piece const &p)            
+                friend std::ostream &operator<<(std::ostream &os, Piece const &p)
                 {
                     return os << "Piece (" << typeid(p).name() << ") " << p.suit << " at " << p.pos << " having made " << p.moves << " moves";
                 }

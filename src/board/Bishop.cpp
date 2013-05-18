@@ -31,10 +31,5 @@ namespace chesspp
                 }
             }
         }
-
-        Bishop::moveAnimation(Position_t const &from, Position_t const &to)
-        {
-            //
-        }
     }
 }

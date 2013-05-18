@@ -86,14 +86,14 @@ namespace chesspp
                 {
                     return value[static_cast<int>(index)];
                 }
-                std::map<std::string, NestedValue const &> object() const
+                std::map<std::string, NestedValue> object() const
                 {
                     std::map<std::string, NestedValue> obj;
                     if(value.type == json_object)
                     {
                         for(std::size_t i = 0; i < value.u.object.length; ++i)
                         {
-                            obj.emplace<std::string const, NestedValue const &>(value.u.object.values[i].name, value.u.object.values[i].value);
+                            obj.emplace<std::string const, NestedValue>(value.u.object.values[i].name, value.u.object.values[i].value);
                         }
                     }
                     return obj;
@@ -133,6 +133,22 @@ namespace chesspp
             NestedValue operator()() const noexcept
             {
                 return access();
+            }
+            template<typename... Args>
+            NestedValue navigate(Args... path)
+            {
+                return navigate(access(), path...);
+            }
+        private:
+            template<typename First, typename... Rest>
+            NestedValue navigate(NestedValue v, First const &first, Rest... const &rest)
+            {
+                return navigate(v[first], rest...);
+            }
+            template<typename Last>
+            NestedValue navigate(NestedValue v, Last const &last)
+            {
+                return v[last];
             }
         };
     }

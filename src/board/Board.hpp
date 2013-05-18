@@ -60,7 +60,7 @@ namespace chesspp
                 void makeTrajectory()
                 {
                     traj.clear();
-                    addCapture(pos);
+                    addCapturable(pos);
                     calcTrajectory();
                 }
             protected:

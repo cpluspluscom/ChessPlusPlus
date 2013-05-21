@@ -10,6 +10,7 @@
 #include <streambuf>
 #include <cstdint>
 #include <map>
+#include <utility>
 
 namespace chesspp
 {
@@ -33,6 +34,19 @@ namespace chesspp
             }
             JsonReader(std::istream &&s) noexcept(false) : JsonReader(s)
             {
+            }
+            JsonReader(JsonReader &&from)
+            : json(from.json)
+            {
+                from.json = nullptr;
+            }
+            JsonReader &operator=(std::istream &&s)
+            {
+                *this = JsonReader(s); //move assign
+            }
+            JsonReader &operator=(JsonReader &&from)
+            {
+                std::swap(json, from.json);
             }
             ~JsonReader()
             {

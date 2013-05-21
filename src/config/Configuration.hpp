@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdint>
 #include <boost/algorithm/string/replace.hpp>
+#include <boost/filesystem.hpp>
 #include <fstream>
 
 #if defined(__linux__)
@@ -24,13 +25,13 @@ namespace chesspp
         class Configuration
         {
         protected:
-            std::string res_path;
+            std::string exe_path;
 
             //Linux and Windows, resource path is defined as the absolute path the folder where the application executable is stored.
             //    <exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
             //    <.app>/Contents/Resources/res/img... should be where resources are stored.
-            static std::string getResourcePath()
+            static std::string getExecutablePath()
             {
                 
                 char buf[1024];
@@ -67,11 +68,27 @@ namespace chesspp
 
             util::JsonReader reader;
         public:
-            Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
+            Configuration(const std::string &configFile) noexcept(false) : reader(std::ifstream(validateConfigFile(configFile)))
             {
             }
             virtual ~Configuration()
             {
+            }
+
+            std::string validateConfigFile(const std::string &configFile)
+            {
+                std::string extension = boost::filesystem::extension(configFile);
+                if(extension != ".json")
+                    throw Exception("Configuration cannot read non-json config files.");
+
+                if(boost::filesystem::exists(configFile))
+                {
+                    std::clog << configFile << " found in working directory. No need to use absolute exe path." << std::endl;
+                    exe_path = "";
+                }
+                else
+                    exe_path = getExecutablePath();
+                return exe_path + configFile;
             }
 
         };
@@ -85,7 +102,7 @@ namespace chesspp
         public:
             BoardConfig()
             : Configuration("config.json")
-            , initial_layout (res_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
+            , initial_layout (exe_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
             , board_width                           (reader()["chesspp"]["board"]["width"]          )
             , board_height                          (reader()["chesspp"]["board"]["height"]         )
             , cell_width                            (reader()["chesspp"]["board"]["cell_width"]     )
@@ -107,9 +124,9 @@ namespace chesspp
         public:
             GraphicsConfig()
             : Configuration("config.json")
-            , path_board    (res_path + std::string(reader()["chesspp"]["board"]["images"]["board"])    )
-            , path_pieces   (res_path + std::string(reader()["chesspp"]["board"]["images"]["pieces"])   )
-            , path_validMove(res_path + std::string(reader()["chesspp"]["board"]["images"]["validMove"]))
+            , path_board    (exe_path + std::string(reader()["chesspp"]["board"]["images"]["board"])    )
+            , path_pieces   (exe_path + std::string(reader()["chesspp"]["board"]["images"]["pieces"])   )
+            , path_validMove(exe_path + std::string(reader()["chesspp"]["board"]["images"]["validMove"]))
             {
             }
 

@@ -4,6 +4,7 @@
 #include <cstring>
 #include <cstdint>
 #include <boost/algorithm/string/replace.hpp>
+#include <boost/filesystem.hpp>
 #include <fstream>
 
 #if defined(__linux__)
@@ -24,13 +25,11 @@ namespace chesspp
         class Configuration
         {
         protected:
-            std::string res_path;
-
             //Linux and Windows, resource path is defined as the absolute path the folder where the application executable is stored.
             //    <exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
             //    <.app>/Contents/Resources/res/img... should be where resources are stored.
-            static std::string getResourcePath()
+            static std::string getExecutablePath()
             {
                 
                 char buf[1024];
@@ -65,13 +64,34 @@ namespace chesspp
                 return ret;
             }
 
+            std::string res_path;
             util::JsonReader reader;
+
         public:
-            Configuration(const std::string &configFile) noexcept(false) : res_path(getResourcePath()), reader(std::ifstream(getResourcePath() + configFile))
+            Configuration(const std::string &configFile) noexcept(false) 
+            : reader(std::ifstream(validateConfigFile(configFile)))
             {
             }
             virtual ~Configuration()
             {
+            }
+
+            std::string validateConfigFile(const std::string &configFile)
+            {
+                static std::string exe_path = getExecutablePath();
+
+                std::string extension = boost::filesystem::extension(configFile);
+                if(extension != ".json")
+                    throw Exception("Configuration cannot read non-json config files.");
+
+                if(boost::filesystem::exists(configFile))
+                {
+                    std::clog << configFile << " found in working directory. No need to use absolute exe path." << std::endl;
+                    res_path = "";
+                }
+                else
+                    res_path = exe_path;
+                return res_path + configFile;
             }
 
         };

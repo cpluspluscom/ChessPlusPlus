@@ -6,7 +6,7 @@ CC = gcc
 CPPFLAGS += -std=c++11 -Wall -Wextra -pedantic-errors
 INCLUDE = -isystem lib/json-parser/ -Isrc
 
-LIB = `pkg-config --libs sfml-all` lib/json-parser/json.c
+LIB = `pkg-config --libs sfml-all` lib/json-parser/json.c -lboost_system -lboost_filesystem
 
 ifeq ($(CFG),)
 CFG=debug

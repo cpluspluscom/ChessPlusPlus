@@ -20,6 +20,7 @@ namespace chesspp
         {
             json_value *json {nullptr};
         public:
+            JsonReader() = delete;
             JsonReader(std::istream &s) noexcept(false)
             {
                 std::string str ((std::istreambuf_iterator<char>(s)), std::istreambuf_iterator<char>());

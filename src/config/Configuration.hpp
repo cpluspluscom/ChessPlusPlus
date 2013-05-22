@@ -68,7 +68,7 @@ namespace chesspp
             util::JsonReader reader;
 
         public:
-            Configuration(const std::string &configFile) noexcept(false) 
+            Configuration(std::string const &configFile) noexcept(false) 
             : reader(std::ifstream(validateConfigFile(configFile)))
             {
             }
@@ -76,7 +76,8 @@ namespace chesspp
             {
             }
 
-            std::string validateConfigFile(const std::string &configFile)
+        private:
+            std::string validateConfigFile(std::string const &configFile)
             {
                 static std::string exe_path = getExecutablePath();
 

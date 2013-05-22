@@ -81,8 +81,7 @@ namespace chesspp
             {
                 static std::string exe_path = getExecutablePath();
 
-                std::string extension = boost::filesystem::extension(configFile);
-                if(extension != ".json")
+                if(boost::filesystem::extension(configFile) != ".json")
                     throw Exception("Configuration cannot read non-json config files.");
 
                 if(boost::filesystem::exists(configFile))

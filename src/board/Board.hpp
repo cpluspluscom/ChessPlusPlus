@@ -9,6 +9,8 @@
 #include <memory>
 #include <cstdint>
 #include <functional>
+#include <typeindex>
+#include <typeinfo>
 
 namespace chesspp
 {
@@ -125,8 +127,8 @@ namespace chesspp
                     makeTrajectory();
                 }
             private: //intentionally private, not protected
-                //Called by move(), plays the animation for moving
-                virtual void moveAnimation(Position_t const &from, Position_t const &to)
+                //Called by move(), reacts to being moved
+                virtual void moveUpdate(Position_t const &from, Position_t const &to)
                 {
                 }
 
@@ -140,13 +142,30 @@ namespace chesspp
 
             using Pieces_t = std::map<Position_t, std::unique_ptr<Piece>>; //Pieces are mapped to their positions
             using Captures_t = std::multimap<Pieces_t::iterator, Position_t>; //Some pieces can be captured from different positions (e.g. en passant)
-            using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<std::unique_ptr<Piece> (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
+            using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<Pieces_t::mapped_type (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
+
+			//represents an interaction between pieces that allows for complex moves, e.g. castling
+            class Interaction
+            {
+            public:
+                Board &b;
+
+                Interaction(Board const &b)
+                : b(b)
+                {
+                }
+                virtual ~Interaction() = 0;
+
+				//
+            };
+			using Interactions_t = std::map<std::type_index, std::unique_ptr<Interaction>>;
 
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
             Captures_t captures;
             Factory_t factory;
+			Interactions_t interactions;
 
         public:
             Board(config::BoardConfig const &conf, Factory_t const &fact)
@@ -169,6 +188,18 @@ namespace chesspp
                 }
             }
             ~Board() = default;
+
+			template<typename InteractionT>
+			InteractionT &getInteraction(Suit const &s)
+			{
+				static_assert(std::is_base_of<Interaction, InteractionT>::value, "InteractionT must derive from Board::Interaction");
+				auto &t = typeid(InteractionT);
+				if(interactions.find(t) == interactions.end())
+				{
+					interactions[t] = std::unique_ptr<Interaction>(new InteractionT(*this));
+				}
+				return *interactions[t];
+			}
 
             //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
             Piece *at(Position_t const &pos) const
@@ -222,6 +253,8 @@ namespace chesspp
 
         using Suit = Board::Suit;
         using Piece = Board::Piece;
+
+        inline Board::Interaction::~Interaction() = default;
     }
 }
 

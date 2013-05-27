@@ -41,6 +41,8 @@ namespace chesspp
         public:
             static_assert(std::is_scalar<T>::value, "Template parameter must be a scalar type");
 
+			using value_type = T;
+
             T x, y; //intentionally public
 
             static Position const ORIGIN {};

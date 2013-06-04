@@ -41,10 +41,12 @@ namespace chesspp
             JsonReader &operator=(std::istream &&s)
             {
                 *this = JsonReader(s); //move assign
+                return *this;
             }
             JsonReader &operator=(JsonReader &&from)
             {
                 std::swap(json, from.json);
+                return *this;
             }
             ~JsonReader()
             {

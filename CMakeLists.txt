@@ -3,7 +3,6 @@
 #
 # Configuration options:
 # -DCMAKE_BUILD_TYPE=Release|Debug
-# -DSFMLROOT=S:/F/M/L/path/only/if/not/lib/SFML
 # -DSTATIC_BUILD=1|0
 
 cmake_minimum_required (VERSION 2.8)
@@ -16,8 +15,8 @@ option(STATIC_BUILD "Link statically")
 endif()
 
 include_directories (${CHESSPP_SOURCE_DIR}/lib/json-parser ) 
-include_directories (${CHESSPP_SOURCE_DIR}/lib/boost)
-include_directories (${SFMLROOT}/include)
+include_directories (${CHESSPP_SOURCE_DIR}/lib/boost/boost)
+include_directories (${CHESSPP_SOURCE_DIR}/lib/SFML/include)
 
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")

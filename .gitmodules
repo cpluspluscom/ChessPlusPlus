@@ -1,9 +1,9 @@
 [submodule "lib/SFML"]
 	path = lib/SFML
-	url = git://github.com/LaurentGomila/SFML.git
+	url = https://github.com/LaurentGomila/SFML.git
 [submodule "lib/boost"]
 	path = lib/boost
-	url = git://github.com/ryppl/boost-svn.git
+	url = https://github.com/ryppl/boost-svn.git
 [submodule "lib/json-parser"]
 	path = lib/json-parser
-	url = git://github.com/udp/json-parser.git
+	url = https://github.com/udp/json-parser.git

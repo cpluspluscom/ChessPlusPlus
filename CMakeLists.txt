@@ -1,3 +1,4 @@
+
 # ChessPlusPlus
 #
 # Configuration options:
@@ -24,7 +25,7 @@ if(NOT SFMLLIB)
 endif()
 
 include_directories (${JSONLIB}) 
-include_directories (${BOOSTLIB}/boost)
+include_directories (${BOOSTLIB})
 include_directories (${SFMLLIB}/include)
 
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")

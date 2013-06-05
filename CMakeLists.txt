@@ -1,4 +1,3 @@
-
 # ChessPlusPlus
 #
 # Configuration options:
@@ -14,9 +13,19 @@ set(SFMLROOT "" CACHE STRING "Path to SFML root directory")
 option(STATIC_BUILD "Link statically")
 endif()
 
-include_directories (${CHESSPP_SOURCE_DIR}/lib/json-parser ) 
-include_directories (${CHESSPP_SOURCE_DIR}/lib/boost/boost)
-include_directories (${CHESSPP_SOURCE_DIR}/lib/SFML/include)
+if(NOT JSONLIB)
+    set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
+endif()
+if(NOT BOOSTLIB)
+    set(BOOSTLIB ${CHESSPP_SOURCE_DIR}/lib/boost)
+endif()
+if(NOT SFMLLIB)
+    set(SFMLLIB ${CHESSPP_SOURCE_DIR}/lib/SFML)
+endif()
+
+include_directories (${JSONLIB}) 
+include_directories (${BOOSTLIB}/boost)
+include_directories (${SFMLLIB}/include)
 
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")

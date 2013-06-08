@@ -57,7 +57,7 @@ Constructor initializer lists should have each element on their own line and hav
     }
 ```
 
-The `const` keyword is to appear on the right side of types, to be consisten with other uses of the `const` keyword:
+The `const` keyword is to appear on the right side of types, to be consistent with other uses of the `const` keyword:
 ```cpp
 char const *identifier;
 ```

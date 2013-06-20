@@ -5,7 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <streambuf>
-#include <ctime>
+#include <chrono>
 #include <vector>
 #include <cassert>
 
@@ -78,9 +78,7 @@ LogUtil_buffer::int_type LogUtil_buffer::overflow(int_type ch)
 
 std::string LogUtil_buffer::timestamp()
 {
-    std::time_t curr_time_raw;
-    std::time(&curr_time_raw);
-
+    std::time_t curr_time_raw = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     std::tm *local_time = std::localtime(&curr_time_raw);
 
     std::stringstream time;

@@ -28,7 +28,7 @@ namespace chesspp
             void drawPiece(board::Piece &p);
 
             //Separate version of drawPiece to draw a piece at any location on the screen.
-            void drawPieceAt(board::Piece &p, const sf::Vector2i &pos);
+            void drawPieceAt(board::Piece &p, sf::Vector2i const &pos);
 
             //Draws a valid move block at cell (x,y)
             void drawValidMove(int x, int y);

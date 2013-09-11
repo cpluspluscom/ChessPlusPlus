@@ -89,7 +89,7 @@ namespace chesspp
             }
 
         public:
-            Configuration(const std::string &configFile) noexcept(false)
+            Configuration(std::string const &configFile) noexcept(false)
             : reader(std::ifstream(getExecutablePath() + configFile))
             {
             }

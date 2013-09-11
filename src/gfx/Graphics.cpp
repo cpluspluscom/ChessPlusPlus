@@ -33,7 +33,7 @@ namespace chesspp
             //pieces.setTexture
             drawSpriteAtCell(pieces, p.pos.x, p.pos.y);
         }
-        void GraphicsHandler::drawPieceAt(board::Piece &p, const sf::Vector2i &pos)
+        void GraphicsHandler::drawPieceAt(board::Piece &p, sf::Vector2i const &pos)
         {
             //pieces.setTexture
             pieces.setPosition(pos.x - (board_config.cellWidth() / 2), pos.y - (board_config.cellHeight() / 2));

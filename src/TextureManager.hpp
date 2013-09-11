@@ -28,8 +28,8 @@ namespace chesspp
         }
 
         //no copying
-        TextureManager(const TextureManager &) = delete;
-        TextureManager &operator=(const TextureManager &) = delete;
+        TextureManager(TextureManager const &) = delete;
+        TextureManager &operator=(TextureManager const &) = delete;
 
     public:
         static TextureManager &getInstance() noexcept //singleton class
@@ -40,7 +40,7 @@ namespace chesspp
 
     protected:
         //Method that loads an sf::Texture from file name 'location'.
-        virtual sf::Texture *onLoadResource(const std::string &location) noexcept
+        virtual sf::Texture *onLoadResource(std::string const &location) noexcept
         {
             sf::Texture *ret = new sf::Texture();
             if(!ret->loadFromFile(location))

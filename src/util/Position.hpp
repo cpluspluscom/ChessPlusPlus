@@ -21,7 +21,7 @@ namespace chesspp
             West,
             NorthWest
         };
-        Direction Rotate(Direction const &d, signed r)
+        inline Direction Rotate(Direction const &d, signed r)
         { //Hacky solution, should replace with better solution later
             Direction t {d};
             for(signed i = 0; i < r; ++i)

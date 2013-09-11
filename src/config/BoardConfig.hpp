@@ -70,6 +70,12 @@ namespace chesspp
             CellSize_t        cellWidth    () const noexcept { return cell_width;   }
             CellSize_t        cellHeight   () const noexcept { return cell_height;  }
             Textures_t const &texturePaths () const noexcept { return textures;     }
+
+            template<typename... Args>
+            util::JsonReader::NestedValue metadata(Args const &... path) const
+            {
+                return reader.navigate("chesspp", "board", "metadata", path...);
+            }
         };
     }
 }

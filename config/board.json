@@ -28,7 +28,21 @@
                 ["White", "White", "White", "White", "White", "White", "White", "White"]
             ],
             "cell width":  80,
-            "cell height": 80
+            "cell height": 80,
+            "metadata":
+            {
+                "pawn facing":
+                [
+                    [null   , null   , null   , null   , null   , null   , null   , null   ],
+                    ["South", "South", "South", "South", "South", "South", "South", "South"],
+                    [null   , null   , null   , null   , null   , null   , null   , null   ],
+                    [null   , null   , null   , null   , null   , null   , null   , null   ],
+                    [null   , null   , null   , null   , null   , null   , null   , null   ],
+                    [null   , null   , null   , null   , null   , null   , null   , null   ],
+                    ["North", "North", "North", "North", "North", "North", "North", "North"],
+                    [null   , null   , null   , null   , null   , null   , null   , null   ]
+                ]
+            }
         }
     }
 }

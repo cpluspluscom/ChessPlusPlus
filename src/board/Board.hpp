@@ -185,7 +185,7 @@ namespace chesspp
         private:
             Pieces_t pieces;
             Captures_t captures;
-            Factory_t factory;
+            Factory_t const &factory;
             Interactions_t interactions;
 
         public:
@@ -195,7 +195,7 @@ namespace chesspp
             {
                 for(auto const &slot : conf.initialLayout())
                 {
-                    pieces[slot.first] = factory[slot.second.first](*this, slot.first, slot.second.second);
+                    pieces[slot.first] = factory.at(slot.second.first)(*this, slot.first, slot.second.second);
                 }
 
                 //This can only be done when all of the pieces are on the board

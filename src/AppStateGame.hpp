@@ -5,6 +5,7 @@
 #include "TextureManager.hpp"
 #include "gfx/Graphics.hpp"
 #include "config/Configuration.hpp"
+#include "config/GraphicsConfig.hpp"
 #include "board/Board.hpp"
 
 #include "AppState.hpp"
@@ -14,14 +15,14 @@ namespace chesspp
     class Application;
     class AppStateGame : public AppState
     {
+		config::GraphicsConfig gfx_config;
+		gfx::GraphicsHandler graphics;
+        config::BoardConfig board_config;
         Application *app;
         board::Board board;
 
-        graphics::GraphicsHandler graphics;
-        config::BoardConfig boardConfig;
-
     public:
-        AppStateGame(Application *app, sf::RenderWindow *display);
+        AppStateGame(Application *app, sf::RenderWindow &display);
         virtual ~AppStateGame() = default;
 
         virtual int id();

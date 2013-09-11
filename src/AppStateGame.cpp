@@ -1,14 +1,14 @@
-#include "AppState.hpp"
+#include "AppStateGame.hpp"
 
 namespace chesspp
 {
-    AppStateGame::AppStateGame(Application *_app, sf::RenderWindow *_display)
+    AppStateGame::AppStateGame(Application *_app, sf::RenderWindow &_display)
     : AppState(_display)
     , app(_app)
-    , graphics(display)
+	, board_config(gfx_config)
+    , graphics(display, gfx_config, board_config)
+	, board(board_config, {})
     {
-        board = new board::Board();
-        board->newGame(boardConfig.getInitialLayout());
     }
 
     int AppStateGame::id()
@@ -23,16 +23,15 @@ namespace chesspp
 
     void AppStateGame::OnLButtonPressed(int x, int y) noexcept
     {
-        board->setSelected(board->getCurrent()); //No matter if nullptr
+        //board->setSelected(board->getCurrent());
     }
     void AppStateGame::OnMouseMoved(int x, int y) noexcept
     {
-        board->setCurrent(x, y);
+        //board->setCurrent(x, y);
     }
     void AppStateGame::OnLButtonReleased(int x, int y) noexcept
     {
-        //board knows what is selected, but I think this looks more clear
-        board->move(board->getSelected(), x, y);
-        board->setSelected(nullptr);
+        //board->move(board->getSelected(), x, y);
+        //board->setSelected(nullptr);
     }
 }

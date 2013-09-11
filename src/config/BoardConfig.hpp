@@ -3,6 +3,7 @@
 
 #include "Configuration.hpp"
 #include "GraphicsConfig.hpp"
+#include "util/Position.hpp"
 
 #include <string>
 #include <cstdint>
@@ -18,7 +19,7 @@ namespace chesspp
         public:
             using BoardSize_t = std::uint8_t;
             using CellSize_t = std::uint16_t;
-            using Position_t = Position<BoardSize_t>; //Position type is based on Board Size type
+            using Position_t = board::Position<BoardSize_t>; //Position type is based on Board Size type
             using PieceClass_t = std::string;
             using SuitClass_t = std::string;
             using Layout_t = std::map<Position_t, std::pair<PieceClass_t, SuitClass_t>>;
@@ -37,14 +38,14 @@ namespace chesspp
             , cell_width   (reader()["chesspp"]["board"]["cell width"] )
             , cell_height  (reader()["chesspp"]["board"]["cell height"])
             {
-                auto &pieces = reader()["chesspp"]["board"]["pieces"];
-                auto &suits  = reader()["chesspp"]["board"]["suits"];
+                auto pieces = reader()["chesspp"]["board"]["pieces"];
+                auto suits  = reader()["chesspp"]["board"]["suits"];
                 for(BoardSize_t r = 0; r < board_height; ++r)
                 {
                     for(BoardSize_t c = 0; c < board_width; ++c)
                     {
-                        auto &piece = pieces[r][c];
-                        auto &suit  = suits [r][c];
+                        auto piece = pieces[r][c];
+                        auto suit  = suits [r][c];
                         if(piece.type() != json_null) //it is OK if suit is null
                         {
                             layout[Position_t(c, r)] = std::make_pair<PieceClass_t, SuitClass_t>(piece, suit);
@@ -55,9 +56,9 @@ namespace chesspp
                 auto const &tex = gfx.spritePaths("board", "pieces");
                 for(auto const &suit : tex)
                 {
-                    for(auto const &piece : suit.second)
+                    for(auto const &piece : suit.second.object())
                     {
-                        textures[suit.first][piece.first] = piece.second;
+                        textures[suit.first][piece.first] = Textures_t::mapped_type::mapped_type(piece.second);
                     }
                 }
             }

@@ -9,7 +9,7 @@ namespace chesspp
         {
             while(display.pollEvent(event))
             {
-                OnEvent(event);
+                onEvent(event);
             }
 
             state->OnRender();
@@ -158,6 +158,7 @@ namespace chesspp
                 state->OnJoystickDisconnected(e.joystickConnect.joystickId);
                 break;
             }
+		default: break;
         }
     }
 

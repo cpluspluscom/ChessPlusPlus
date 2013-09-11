@@ -21,9 +21,9 @@ namespace chesspp
         map_t m_map; //resource map
 
     protected:
-        ResourceManager() noexcept = default;
-        ResourceManager(ResourceManager &&) noexcept = default;
-        ResourceManager &operator=(ResourceManager &&) noexcept = default;
+        ResourceManager() = default;
+        ResourceManager(ResourceManager &&) = default;
+        ResourceManager &operator=(ResourceManager &&) = default;
         ~ResourceManager() = default;
 
         //pure virtual, defined depending on what is being loaded.

@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlusGraphicsConfigurationManagerClass_HeaderPlusPlus
+#define ChessPlusPlusGraphicsConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
 
@@ -17,9 +17,9 @@ namespace chesspp
             virtual ~GraphicsConfig() = default;
 
             template<typename... Args>
-            std::string const &spritePath(Args... const &path) const
+            std::string spritePath(Args const &... path) const
             {
-                auto &val = reader.navigate("chesspp", path...);
+                auto val = reader.navigate("chesspp", path...);
                 if(val.type() != json_string)
                 {
                     return reader()["chesspp"]["missing"];
@@ -27,7 +27,7 @@ namespace chesspp
                 return val;
             }
             template<typename... Args>
-            std::map<std::string, JsonReader::NestedValue> spritePaths(Args... const &path) const
+            std::map<std::string, util::JsonReader::NestedValue> spritePaths(Args const &... path) const
             {
                 return reader.navigate("chesspp", path...).object();
             }

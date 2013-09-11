@@ -79,7 +79,6 @@ namespace chesspp
 
                 if(boost::filesystem::exists(configFile))
                 {
-                    std::clog << configFile << " found in working directory. No need to use absolute exe path." << std::endl;
                     res_path = "";
                 }
                 else
@@ -91,7 +90,7 @@ namespace chesspp
 
         public:
             Configuration(const std::string &configFile) noexcept(false)
-            : reader(std::ifstream(getResourcePath() + configFile))
+            : reader(std::ifstream(getExecutablePath() + configFile))
             {
             }
             virtual ~Configuration() = default;

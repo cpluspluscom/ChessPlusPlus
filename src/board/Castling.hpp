@@ -13,8 +13,8 @@ namespace chesspp
         {
 			std::set<Piece *> slow, fast;
 		public:
-			Castling(Board const &b)
-			: b(b)
+			Castling(Board &b)
+			: Interaction(b)
 			{
 			}
             virtual ~Castling() = default;

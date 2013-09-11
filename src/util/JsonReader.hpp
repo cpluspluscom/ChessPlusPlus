@@ -110,7 +110,7 @@ namespace chesspp
                     {
                         for(std::size_t i = 0; i < value.u.object.length; ++i)
                         {
-                            obj.emplace<std::string const, NestedValue>(value.u.object.values[i].name, value.u.object.values[i].value);
+                            obj.insert(std::make_pair<std::string const, NestedValue>(value.u.object.values[i].name, *value.u.object.values[i].value));
                         }
                     }
                     return obj;
@@ -137,7 +137,7 @@ namespace chesspp
                     return value;
                 }
 
-                json_value *&implementation() noexcept //only for extreme-use cases
+                json_value const &implementation() noexcept //only for extreme-use cases
                 {
                     return value;
                 }
@@ -152,18 +152,18 @@ namespace chesspp
                 return access();
             }
             template<typename... Args>
-            NestedValue navigate(Args... path)
+            NestedValue navigate(Args... path) const
             {
                 return navigate(access(), path...);
             }
         private:
             template<typename First, typename... Rest>
-            NestedValue navigate(NestedValue v, First const &first, Rest... const &rest)
+            NestedValue navigate(NestedValue v, First const &first, Rest const &... rest) const
             {
                 return navigate(v[first], rest...);
             }
             template<typename Last>
-            NestedValue navigate(NestedValue v, Last const &last)
+            NestedValue navigate(NestedValue v, Last const &last) const
             {
                 return v[last];
             }

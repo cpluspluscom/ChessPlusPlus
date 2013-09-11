@@ -15,6 +15,10 @@ namespace chesspp
 
         protected:
             virtual void calcTrajectory() override;
+
+		private:
+			virtual void moveUpdate(Position_t const &from, Position_t const &to);
+        };
     }
 }
 

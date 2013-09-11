@@ -11,19 +11,20 @@ namespace chesspp
         class GraphicsHandler
         {
             sf::Sprite board, pieces, validMove;
-            uint16_t cell_size;
             sf::RenderWindow &display;
+			config::GraphicsConfig &gfx_config;
+			config::BoardConfig &board_config;
 
         public:
-            GraphicsHandler(sf::RenderWindow &display);
+            GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc);
 
-            //Draws any sprite in the center of cell at (x, y). Assumes sprite is 80x80 as well.
+            //Draws any sprite in the center of cell at (x, y).
             void drawSpriteAtCell(sf::Sprite &s, int x, int y);
 
             //Draws the board background.
             void drawBackground();
 
-            //Draws a piece of p.Type and p.Suit to p.getBoardPos
+            //Draws a piece
             void drawPiece(board::Piece &p);
 
             //Separate version of drawPiece to draw a piece at any location on the screen.

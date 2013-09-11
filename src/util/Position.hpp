@@ -33,6 +33,7 @@ namespace chesspp
                 int n = static_cast<int>(t)-1;
                 t = static_cast<Direction>(n < 0 ? n + 8 : n);
             }
+			return t;
         }
 
         template<typename T>
@@ -45,7 +46,11 @@ namespace chesspp
 
             T x, y; //intentionally public
 
-            static Position const ORIGIN {};
+			static Position const &Origin() noexcept
+			{
+				static Position origin;
+				return origin;
+			}
 
             Position(T x = T(), T y = T()) noexcept
             : x(x)
@@ -63,15 +68,16 @@ namespace chesspp
             {
                 return topleft.x <= x
                     && topleft.y <= y
-                    && x => bottomright.x
-                    && y => bottomright.y;
+                    && x >= bottomright.x
+                    && y >= bottomright.y;
             }
 
             //Moves position relative to itself
-            void move(MakeSigned<T>::type xoff, MakeSigned<T>::type yoff) noexcept
+            Position move(typename MakeSigned<T>::type xoff, typename MakeSigned<T>::type yoff) noexcept
             {
                 x += xoff;
                 y += yoff;
+				return *this;
             }
             //Move position relative to itself in the direction the given number of times
             Position &move(Direction const &d, signed times = 1) noexcept
@@ -94,13 +100,13 @@ namespace chesspp
                 if(times < 0)
                 {
                     //move backward
-                    Psotion t = Position(0, 0).move(d, -times);
+                    Position t = Position(0, 0).move(d, -times);
                     move(-t.x, -t.y);
                 }
                 return *this;
             }
 
-            std::enable_if<std::is_integral<T>, bool>::type operator==(Position const &other) const noexcept
+            typename std::enable_if<std::is_integral<T>::value, bool>::type operator==(Position const &other) const noexcept
             {
                 return x == other.x && y == other.y;
             }

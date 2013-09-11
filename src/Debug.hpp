@@ -13,13 +13,13 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
     std::streambuf *clogbuf {log ? std::clog.rdbuf(log.rdbuf()) : std::clog.rdbuf()}
                  , *cerrbuf {err ? std::cerr.rdbuf(err.rdbuf()) : std::cerr.rdbuf()}
                  , *coutbuf {out ? std::cout.rdbuf(out.rdbuf()) : std::cout.rdbuf()};
-    LogUtil() noexcept = default;
+    LogUtil() = default;
     LogUtil(LogUtil const &) = delete;
     LogUtil(LogUtil &&) = delete;
     LogUtil &operator=(LogUtil const &) = delete;
     LogUtil &operator=(LogUtil &&) = delete;
 public:
-    static void EnableRedirection() noexcept
+    static void EnableRedirection()
     {
         static LogUtil lu;
     }

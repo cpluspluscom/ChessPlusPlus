@@ -13,7 +13,7 @@ int main()
 
     try
     {
-        return chesspp::Application().Exec();
+        return chesspp::Application().exec();
     }
     catch(std::exception &e)
     {

@@ -9,29 +9,19 @@ namespace chesspp
 {
     namespace gfx
     {
-        GraphicsHandler::GraphicsHandler(sf::RenderWindow &display)
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
         : display(display)
+		, gfx_config(gfxc)
+		, board_config(bc)
         {
-            try 
-            {
-                config::BoardConfig boardConfig;
-                config::GraphicsConfig graphicsConfig;
-
-                board = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_board()));
-                pieces = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_pieces()));
-                validMove = sf::Sprite(TextureManager::getInstance().Load(graphicsConfig.getSpritePath_validMove()));
-
-                cell_size = boardConfig.getCellWidth();
-            }
-            catch(Exception &e) 
-            {
-                std::cerr << "Error: " << e.what() << std::endl;
-            }
+			board = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "board")));
+			/**/pieces = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "pieces")));
+			validMove = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "valid move")));
         }
 
         void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, int x, int y)
         {
-            s.setPosition(x*cell_size, y*cell_size);
+            s.setPosition(x*board_config.cellWidth(), y*board_config.cellHeight());
             display.draw(s);
         }
         void GraphicsHandler::drawBackground()
@@ -40,13 +30,13 @@ namespace chesspp
         }
         void GraphicsHandler::drawPiece(board::Piece &p)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
-            drawSpriteAtCell(pieces, p->getBoardPos().getX(), p->getBoardPos().getY());
+            //pieces.setTexture
+            drawSpriteAtCell(pieces, p.pos.x, p.pos.y);
         }
         void GraphicsHandler::drawPieceAt(board::Piece &p, const sf::Vector2i &pos)
         {
-            pieces.setTextureRect(sf::IntRect(p->getType()*cell_size, p->suit*cell_size, cell_size, cell_size));
-            pieces.setPosition(pos.x - (cell_size / 2), pos.y - (cell_size / 2));
+            //pieces.setTexture
+            pieces.setPosition(pos.x - (board_config.cellWidth() / 2), pos.y - (board_config.cellHeight() / 2));
 
             display.draw(pieces);
         }
@@ -60,38 +50,36 @@ namespace chesspp
 
             //Valid moves are drawn for the piece being hovered over
             //Or the piece that is currently selected
-            board::Piece*pCurrent = b->getCurrent();
-            board::Piece*pSelect  = b->getSelected();
-            if (pSelect)
-                for (auto &i: pSelect->getTrajectory())
+            board::Piece *pCurrent = /*b.getCurrent()*/nullptr;
+            board::Piece *pSelect  = /*b.getSelected()*/nullptr;
+            if(pSelect)
+			{
+                for(auto &i: pSelect->trajectory)
                 {
-                    if(i.isValid())
-                    {
-                        drawValidMove(i.getX(), i.getY());
-                    }
+                    drawValidMove(i.x, i.y);
                 }
-            else if (pCurrent)
-                for (auto &i: pCurrent->getTrajectory())
+			}
+            else if(pCurrent)
+			{
+                for(auto &i: pCurrent->trajectory)
                 {
-                    if(i.isValid())
-                    {
-                        drawValidMove(i.getX(), i.getY());
-                    }
+                    drawValidMove(i.x, i.y);
                 }
+			}
 
             //Draw the non-selected pieces
-            for(auto &i: b->pieces)
+            //for(auto &i: b.pieces)
             {
-                if(i &&i != b->getSelected())
+                //if(i /*&& i != b.getSelected()*/)
                 {
-                    drawPiece(i);
+                    //drawPiece(i);
                 }
             }
 
             //Draw the selected piece
-            if(b->getSelected())
+            //if(b.getSelected())
             {
-                drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));
+                //drawPieceAt(b->getSelected(), sf::Mouse::getPosition(*display));
             }
         }
     }

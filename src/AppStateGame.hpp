@@ -30,11 +30,11 @@ namespace chesspp
         AppStateGame(Application *app, sf::RenderWindow &display);
         virtual ~AppStateGame() = default;
 
-        virtual void OnRender();
+        virtual void OnRender() override;
 
-        virtual void OnMouseMoved(int x, int y) noexcept;
-        virtual void OnLButtonPressed(int x, int y) noexcept;
-        virtual void OnLButtonReleased(int x, int y) noexcept;
+        virtual void OnMouseMoved(int x, int y) noexcept override;
+        virtual void OnLButtonPressed(int x, int y) noexcept override;
+        virtual void OnLButtonReleased(int x, int y) noexcept override;
     };
 }
 

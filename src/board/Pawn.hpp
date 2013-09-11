@@ -16,7 +16,7 @@ namespace chesspp
             Pawn(Board &b, Position_t const &pos, Suit const &s, Direction const &face);
             virtual ~Pawn() = default;
 
-            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const;
+            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;
 
             virtual void tick(Position_t const &p) override;
 

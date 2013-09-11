@@ -40,7 +40,7 @@ namespace chesspp
 
     protected:
         //Method that loads an sf::Texture from file name 'location'.
-        virtual sf::Texture *onLoadResource(std::string const &location) noexcept
+        virtual sf::Texture *onLoadResource(std::string const &location) noexcept override
         {
             sf::Texture *ret = new sf::Texture(); //should change to std::shared_ptr eventually
             if(!ret->loadFromFile(location))

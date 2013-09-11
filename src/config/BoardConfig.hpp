@@ -48,7 +48,7 @@ namespace chesspp
                         auto suit  = suits [r][c];
                         if(piece.type() != json_null) //it is OK if suit is null
                         {
-                            layout[Position_t(c, r)] = std::make_pair<PieceClass_t, SuitClass_t>(piece, suit);
+                            layout[{c, r}] = std::make_pair<PieceClass_t, SuitClass_t>(piece, suit);
                         }
                     }
                 }

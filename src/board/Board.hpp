@@ -284,7 +284,7 @@ namespace chesspp
             //Check if a position is a valid position that exists on the board
             bool valid(Position_t const &pos) const noexcept
             {
-                return pos.isWithin(Position_t::Origin(), Position_t(config.boardWidth(), config.boardHeight()));
+                return pos.isWithin(Position_t::Origin(), {config.boardWidth(), config.boardHeight()});
             }
         };
 

@@ -9,10 +9,10 @@ namespace chesspp
     {
         King::King(Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
-		, castling(b.getInteraction<Castling>())
+        , castling(b.getInteraction<Castling>())
         {
-			//not yet moved, can castle
-			castling.addSlow(this);
+            //not yet moved, can castle
+            castling.addSlow(this);
         }
 
         void King::calcTrajectory()
@@ -36,10 +36,10 @@ namespace chesspp
             }
         }
 
-		void King::moveUpdate(Position_t const &from, Position_t const &to)
-		{
-			//moved, can no longer castle
-			castling.removeSlow(this);
-		}
+        void King::moveUpdate(Position_t const &from, Position_t const &to)
+        {
+            //moved, can no longer castle
+            castling.removeSlow(this);
+        }
     }
 }

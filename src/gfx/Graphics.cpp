@@ -11,12 +11,12 @@ namespace chesspp
     {
         GraphicsHandler::GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
         : display(display)
-		, gfx_config(gfxc)
-		, board_config(bc)
+        , gfx_config(gfxc)
+        , board_config(bc)
         {
-			board = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "board")));
-			/**/pieces = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "pieces")));
-			validMove = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "valid move")));
+            board = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "board")));
+            /**/pieces = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "pieces")));
+            validMove = sf::Sprite(TextureManager::getInstance().Load(gfx_config.spritePath("board", "valid move")));
         }
 
         void GraphicsHandler::drawSpriteAtCell(sf::Sprite &s, int x, int y)
@@ -53,19 +53,19 @@ namespace chesspp
             board::Piece *pCurrent = /*b.getCurrent()*/nullptr;
             board::Piece *pSelect  = /*b.getSelected()*/nullptr;
             if(pSelect)
-			{
+            {
                 for(auto &i: pSelect->trajectory)
                 {
                     drawValidMove(i.x, i.y);
                 }
-			}
+            }
             else if(pCurrent)
-			{
+            {
                 for(auto &i: pCurrent->trajectory)
                 {
                     drawValidMove(i.x, i.y);
                 }
-			}
+            }
 
             //Draw the non-selected pieces
             //for(auto &i: b.pieces)

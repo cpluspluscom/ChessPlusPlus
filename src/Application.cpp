@@ -158,7 +158,7 @@ namespace chesspp
                 state->OnJoystickDisconnected(e.joystickConnect.joystickId);
                 break;
             }
-		default: break;
+        default: break;
         }
     }
 

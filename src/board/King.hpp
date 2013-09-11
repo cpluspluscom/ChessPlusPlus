@@ -10,7 +10,7 @@ namespace chesspp
     {
         class King : public Piece
         {
-			Castling &castling;
+            Castling &castling;
 
         public:
             King(Board &b, Position_t const &pos, Suit const &s);
@@ -19,8 +19,8 @@ namespace chesspp
         protected:
             virtual void calcTrajectory() override;
 
-		private:
-			virtual void moveUpdate(Position_t const &from, Position_t const &to);
+        private:
+            virtual void moveUpdate(Position_t const &from, Position_t const &to);
         };
     }
 }

@@ -15,8 +15,8 @@ namespace chesspp
     class Application;
     class AppStateGame : public AppState
     {
-		config::GraphicsConfig gfx_config;
-		gfx::GraphicsHandler graphics;
+        config::GraphicsConfig gfx_config;
+        gfx::GraphicsHandler graphics;
         config::BoardConfig board_config;
         Application *app;
         board::Board board;

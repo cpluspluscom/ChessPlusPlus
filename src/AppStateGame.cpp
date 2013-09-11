@@ -5,9 +5,9 @@ namespace chesspp
     AppStateGame::AppStateGame(Application *_app, sf::RenderWindow &_display)
     : AppState(_display)
     , app(_app)
-	, board_config(gfx_config)
+    , board_config(gfx_config)
     , graphics(display, gfx_config, board_config)
-	, board(board_config, {})
+    , board(board_config, {})
     {
     }
 

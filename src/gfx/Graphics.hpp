@@ -12,8 +12,8 @@ namespace chesspp
         {
             sf::Sprite board, pieces, validMove;
             sf::RenderWindow &display;
-			config::GraphicsConfig &gfx_config;
-			config::BoardConfig &board_config;
+            config::GraphicsConfig &gfx_config;
+            config::BoardConfig &board_config;
 
         public:
             GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc);

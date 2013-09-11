@@ -31,7 +31,7 @@ namespace chesspp
             {
             public:
                 using PosList_t = std::set<Position_t>;
-				using Position_t = Board::Position_t;
+                using Position_t = Board::Position_t;
 
             private:
                 Suit s;
@@ -56,7 +56,7 @@ namespace chesspp
                 , trajectory(traj)
                 , captures(capt)
                 , pos(p)
-				, moves(movenum)
+                , moves(movenum)
                 {
                     std::clog << "Creation of " << *this << std::endl;
                 }
@@ -112,15 +112,15 @@ namespace chesspp
                 //further deriving classes can call this to remove a capturable tile calculated by their parent class
                 void removeCapturable(Position_t const &tile)
                 {
-					auto range = board.captures.equal_range(board.pieces.find(pos));
-					for(auto it = range.first; it != range.second; ++it)
-					{
-						if(it->second == tile)
-						{
-							board.captures.erase(it);
-							break;
-						}
-					}
+                    auto range = board.captures.equal_range(board.pieces.find(pos));
+                    for(auto it = range.first; it != range.second; ++it)
+                    {
+                        if(it->second == tile)
+                        {
+                            board.captures.erase(it);
+                            break;
+                        }
+                    }
                 }
 
             public:
@@ -153,17 +153,17 @@ namespace chesspp
             };
 
             using Pieces_t = std::map<Position_t, std::unique_ptr<Piece>>; //Pieces are mapped to their positions
-			struct Pieces_t_iterator_compare
-			{
-				bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b)
-				{
-					return a->first < b->first;
-				}
-			};
+            struct Pieces_t_iterator_compare
+            {
+                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b)
+                {
+                    return a->first < b->first;
+                }
+            };
             using Captures_t = std::multimap<Pieces_t::iterator, Position_t, Pieces_t_iterator_compare>; //Some pieces can be captured from different positions (e.g. en passant)
             using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<Pieces_t::mapped_type (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
 
-			//represents an interaction between pieces that allows for complex moves, e.g. castling
+            //represents an interaction between pieces that allows for complex moves, e.g. castling
             class Interaction
             {
             public:
@@ -175,16 +175,16 @@ namespace chesspp
                 }
                 virtual ~Interaction() = 0;
 
-				//
+                //
             };
-			using Interactions_t = std::map<std::type_index, std::unique_ptr<Interaction>>;
+            using Interactions_t = std::map<std::type_index, std::unique_ptr<Interaction>>;
 
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
             Captures_t captures;
             Factory_t factory;
-			Interactions_t interactions;
+            Interactions_t interactions;
 
         public:
             Board(config::BoardConfig const &conf, Factory_t const &fact)
@@ -208,17 +208,17 @@ namespace chesspp
             }
             ~Board() = default;
 
-			template<typename InteractionT>
-			InteractionT &getInteraction()
-			{
-				static_assert(std::is_base_of<Interaction, InteractionT>::value, "InteractionT must derive from Board::Interaction");
-				auto &t = typeid(InteractionT);
-				if(interactions.find(t) == interactions.end())
-				{
-					interactions[t] = std::unique_ptr<Interaction>(new InteractionT(*this));
-				}
-				return dynamic_cast<InteractionT &>(*interactions[t]);
-			}
+            template<typename InteractionT>
+            InteractionT &getInteraction()
+            {
+                static_assert(std::is_base_of<Interaction, InteractionT>::value, "InteractionT must derive from Board::Interaction");
+                auto &t = typeid(InteractionT);
+                if(interactions.find(t) == interactions.end())
+                {
+                    interactions[t] = std::unique_ptr<Interaction>(new InteractionT(*this));
+                }
+                return dynamic_cast<InteractionT &>(*interactions[t]);
+            }
 
             //Returns a pointer to the Piece at pos, or nullptr if pos is not occupied or out of bounds
             Piece *at(Position_t const &pos)
@@ -229,7 +229,7 @@ namespace chesspp
                 }
                 return pieces[pos].get();
             }
-			Piece const *at(Position_t const &pos) const
+            Piece const *at(Position_t const &pos) const
             {
                 if(pieces.find(pos) == pieces.end())
                 {

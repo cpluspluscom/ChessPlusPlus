@@ -9,10 +9,10 @@ namespace chesspp
     {
         Rook::Rook(Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
-		, castling(b.getInteraction<Castling>())
+        , castling(b.getInteraction<Castling>())
         {
-			//not yet moved, can castle
-			castling.addFast(this);
+            //not yet moved, can castle
+            castling.addFast(this);
         }
 
         void Rook::calcTrajectory()
@@ -35,10 +35,10 @@ namespace chesspp
             }
         }
 
-		void Rook::moveUpdate(Position_t const &from, Position_t const &to)
-		{
-			//moved, can no longer castle
-			castling.removeFast(this);
-		}
+        void Rook::moveUpdate(Position_t const &from, Position_t const &to)
+        {
+            //moved, can no longer castle
+            castling.removeFast(this);
+        }
     }
 }

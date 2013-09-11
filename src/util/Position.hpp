@@ -33,7 +33,7 @@ namespace chesspp
                 int n = static_cast<int>(t)-1;
                 t = static_cast<Direction>(n < 0 ? n + 8 : n);
             }
-			return t;
+            return t;
         }
 
         template<typename T>
@@ -42,15 +42,15 @@ namespace chesspp
         public:
             static_assert(std::is_scalar<T>::value, "Template parameter must be a scalar type");
 
-			using value_type = T;
+            using value_type = T;
 
             T x, y; //intentionally public
 
-			static Position const &Origin() noexcept
-			{
-				static Position origin;
-				return origin;
-			}
+            static Position const &Origin() noexcept
+            {
+                static Position origin;
+                return origin;
+            }
 
             Position(T x = T(), T y = T()) noexcept
             : x(x)
@@ -77,7 +77,7 @@ namespace chesspp
             {
                 x += xoff;
                 y += yoff;
-				return *this;
+                return *this;
             }
             //Move position relative to itself in the direction the given number of times
             Position &move(Direction const &d, signed times = 1) noexcept

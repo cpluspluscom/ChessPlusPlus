@@ -6,8 +6,9 @@ namespace chesspp
     : AppState(_display)
     , app(_app)
     , board_config(gfx_config)
+    , classic_factory(board_config)
     , graphics(display, gfx_config, board_config)
-    , board(board_config, {/**/})
+    , board(board_config, classic_factory.factory())
     {
     }
 

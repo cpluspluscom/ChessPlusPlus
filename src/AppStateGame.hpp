@@ -7,6 +7,7 @@
 #include "config/Configuration.hpp"
 #include "config/GraphicsConfig.hpp"
 #include "board/Board.hpp"
+#include "factory/ClassicFactory.hpp"
 
 #include "AppState.hpp"
 
@@ -20,6 +21,7 @@ namespace chesspp
         config::BoardConfig board_config;
         Application *app;
         board::Board board;
+        factory::ClassicFactory classic_factory;
 
         board::Piece *selected = nullptr;
         board::Board::Position_t p;

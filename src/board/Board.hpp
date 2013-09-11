@@ -183,7 +183,6 @@ namespace chesspp
 
             config::BoardConfig const &config;
         private:
-            BoardSize_t xsize, ysize;
             Pieces_t pieces;
             Captures_t captures;
             Factory_t factory;
@@ -192,8 +191,6 @@ namespace chesspp
         public:
             Board(config::BoardConfig const &conf, Factory_t const &fact)
             : config(conf)
-            , xsize(conf.boardWidth())
-            , ysize(conf.boardHeight())
             , factory(fact)
             {
                 for(auto const &slot : conf.initialLayout())
@@ -287,7 +284,7 @@ namespace chesspp
             //Check if a position is a valid position that exists on the board
             bool valid(Position_t const &pos) const noexcept
             {
-                return pos.isWithin(Position_t::Origin(), Position_t(xsize, ysize));
+                return pos.isWithin(Position_t::Origin(), Position_t(config.boardWidth(), config.boardHeight()));
             }
         };
 

@@ -16,7 +16,7 @@
 
 /chesspp
 debug.txt
-
+build/
 ChessPlusPlus/
 Debug/
 Release/

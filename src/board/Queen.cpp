@@ -12,6 +12,11 @@ namespace chesspp
         {
         }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Queen::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("Queen");
+        }
+
         void Queen::calcTrajectory()
         {
             std::clog << "Queen@" << pos << "->calcTrajectory()" << std::endl;

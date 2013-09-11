@@ -12,6 +12,11 @@ namespace chesspp
         {
         }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Bishop::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("Bishop");
+        }
+
         void Bishop::calcTrajectory()
         {
             std::clog << "Bishop@" << pos << "->calcTrajectory()" << std::endl;

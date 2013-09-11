@@ -10,7 +10,11 @@ namespace chesspp
         Knight::Knight(Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
         {
+        }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Knight::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("Knight");
         }
 
         void Knight::calcTrajectory()

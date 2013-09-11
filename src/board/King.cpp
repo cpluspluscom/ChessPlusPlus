@@ -15,6 +15,11 @@ namespace chesspp
             castling.addSlow(this);
         }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &King::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("King");
+        }
+
         void King::calcTrajectory()
         {
             std::clog << "King@" << pos << "->calcTrajectory()" << std::endl;

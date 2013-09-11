@@ -3,7 +3,7 @@
     {
         "board":
         {
-            "width": 8,
+            "width":  8,
             "height": 8,
             "pieces":
             [
@@ -27,7 +27,7 @@
                 ["White", "White", "White", "White", "White", "White", "White", "White"],
                 ["White", "White", "White", "White", "White", "White", "White", "White"]
             ],
-            "cell width": 80,
+            "cell width":  80,
             "cell height": 80
         }
     }

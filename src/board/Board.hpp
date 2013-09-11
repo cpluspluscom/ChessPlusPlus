@@ -62,6 +62,8 @@ namespace chesspp
                 }
                 virtual ~Piece() = default;
 
+                virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const = 0;
+
                 //non-virtual, calls calcTrajectory(), which should call addTrajectory() for each possible tile
                 void makeTrajectory()
                 {
@@ -179,6 +181,7 @@ namespace chesspp
             };
             using Interactions_t = std::map<std::type_index, std::unique_ptr<Interaction>>;
 
+            config::BoardConfig const &config;
         private:
             BoardSize_t xsize, ysize;
             Pieces_t pieces;
@@ -188,7 +191,8 @@ namespace chesspp
 
         public:
             Board(config::BoardConfig const &conf, Factory_t const &fact)
-            : xsize(conf.boardWidth())
+            : config(conf)
+            , xsize(conf.boardWidth())
             , ysize(conf.boardHeight())
             , factory(fact)
             {
@@ -236,6 +240,15 @@ namespace chesspp
                     return nullptr;
                 }
                 return pieces.at(pos).get();
+            }
+
+            Pieces_t::const_iterator begin() const
+            {
+                return pieces.begin();
+            }
+            Pieces_t::const_iterator end() const
+            {
+                return pieces.end();
             }
 
             //Move a piece from one place to another

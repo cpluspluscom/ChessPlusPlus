@@ -15,6 +15,11 @@ namespace chesspp
             castling.addFast(this);
         }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Rook::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("Rook");
+        }
+
         void Rook::calcTrajectory()
         {
             std::clog << "Rook@" << pos << "->calcTrajectory()" << std::endl;

@@ -16,7 +16,6 @@ namespace chesspp
         }
         virtual ~AppState() = default;
 
-        virtual int id() = 0;
         virtual void OnRender() = 0;
 
     protected:

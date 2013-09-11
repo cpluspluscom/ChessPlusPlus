@@ -32,7 +32,7 @@ namespace chesspp
     public:
         //Deletes the entry of a key in the resource map.
         //This will call deleter_type to deallocate the resource from memory as well.
-        void Free(key_type const &key) noexcept
+        void free(key_type const &key) noexcept
         {
             map_i i = m_map.find(key);
             m_map.erase(i);
@@ -40,7 +40,7 @@ namespace chesspp
 
         //Returns a reference to the resource associated with the file name 'key' if it exists in memory.
         //Otherwise it loads the texture into memory, and returns a reference to the the resource.
-        T &Load(key_type const &key) noexcept(false)
+        T &load(key_type const &key) noexcept(false)
         {
             map_i i = m_map.find(key);
             if(i != m_map.end())

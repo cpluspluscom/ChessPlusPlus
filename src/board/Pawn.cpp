@@ -12,6 +12,11 @@ namespace chesspp
         {
         }
 
+        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Pawn::texture() const
+        {
+            return board.config.texturePaths().at(suit).at("Pawn");
+        }
+
         void Pawn::tick(Position_t const &p)
         {
             if(p != pos)

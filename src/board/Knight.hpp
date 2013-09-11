@@ -13,6 +13,8 @@ namespace chesspp
             Knight(Board &b, Position_t const &pos, Suit const &s);
             virtual ~Knight() = default;
 
+            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const;
+
         protected:
             virtual void calcTrajectory() override;
 

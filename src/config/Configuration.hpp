@@ -29,7 +29,7 @@ namespace chesspp
             //<exe_location>/res/img/... should be where resources are stored.
             //OS x, resource path is defined as the absolute path to the Resources folder of the .app structure.
             //<.app>/Contents/Resources/res/img... should be where resources are stored.
-            static std::string getExecutablePath()
+            static std::string executablePath()
             {
                 
                 char buf[1024];
@@ -70,7 +70,7 @@ namespace chesspp
         private:
             std::string validateConfigFile(std::string const &configFile)
             {
-                static std::string exe_path = getExecutablePath();
+                static std::string exe_path = executablePath();
 
                 if(boost::filesystem::extension(configFile) != ".json")
                 {
@@ -90,7 +90,7 @@ namespace chesspp
 
         public:
             Configuration(std::string const &configFile) noexcept(false)
-            : reader(std::ifstream(getExecutablePath() + configFile))
+            : reader(std::ifstream(executablePath() + configFile))
             {
             }
             virtual ~Configuration() = default;

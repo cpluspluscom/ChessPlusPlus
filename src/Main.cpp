@@ -9,7 +9,7 @@
 
 int main()
 {
-    LogUtil::EnableRedirection();
+    LogUtil::enableRedirection();
 
     try
     {

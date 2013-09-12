@@ -8,9 +8,6 @@ install:
     - sudo apt-get install libboost-dev
 
 before_script:
-    - test -d lib
-    - test -d lib/json-parser
-    - test -e lib/json-parser/json.c
     - mkdir build
     - cd build
     - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../

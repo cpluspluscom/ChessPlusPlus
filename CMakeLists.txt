@@ -30,7 +30,7 @@ include_directories (${SFMLLIB}/include)
 
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")
-list(APPEND CHESSPP_SOURCES "lib/json-parser/*.c")
+list(APPEND CHESSPP_SOURCES "lib/json-parser/json.c")
 
 set (CHESSPP_INCLUDE_DIRS "")
 foreach (_headerFile ${CHESSPP_HEADERS})

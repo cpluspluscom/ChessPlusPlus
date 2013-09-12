@@ -2,15 +2,21 @@ language: c++
 compiler:
     - gcc
     - clang
-before_script:
-    - git submodule update --init --recursive
+
+before_install:
+    - ls lib
+    - ls lib/json-parser
+
+install:
     - sudo apt-get install libsfml-dev
     - sudo apt-get install libboost-dev
+
+before_script:
     - mkdir build
     - cd build
     - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
 script: make
-install: true
+
 branches:
   only:
     - master

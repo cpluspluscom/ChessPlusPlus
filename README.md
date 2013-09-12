@@ -1,5 +1,5 @@
-ChessPlusPlus
-=============
+# ChessPlusPlus [![Build Status](https://travis-ci.org/LB--/ChessPlusPlus.png?branch=lb-refactor)](https://travis-ci.org/LB--/ChessPlusPlus)
+
 irc.freenode.net#ChessPlusPlus
 
 ## Description

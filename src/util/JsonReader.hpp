@@ -65,9 +65,9 @@ namespace chesspp
                 }
                 NestedValue &operator=(NestedValue const &) noexcept = delete;
             public:
-                NestedValue(NestedValue const &) noexcept = default;
-                NestedValue(NestedValue &&) noexcept = default;
-                NestedValue &operator=(NestedValue &&) noexcept = default;
+                NestedValue(NestedValue const &) = default;
+                NestedValue(NestedValue &&) = default;
+                NestedValue &operator=(NestedValue &&) = default;
                 ~NestedValue() = default;
                 
                 json_type type() const noexcept //may wish to add an abstraction layer between json-parser

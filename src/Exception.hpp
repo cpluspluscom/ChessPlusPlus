@@ -18,10 +18,10 @@ namespace chesspp
         {
         }
         Exception(Exception const &) = default;
-        Exception(Exception &&) noexcept = default;
+        Exception(Exception &&) = default;
         Exception &operator=(Exception const &) = default;
         Exception &operator=(Exception &&) = default;
-        virtual ~Exception() noexcept = default;
+        virtual ~Exception() = default;
 
         virtual bool operator==(std::exception const &other) const noexcept
         {

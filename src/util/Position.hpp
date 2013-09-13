@@ -57,10 +57,10 @@ namespace chesspp
             , y(y)
             {
             }
-            Position(Position const &) noexcept = default;
-            Position(Position &&) noexcept = default;
-            Position &operator=(Position const &) noexcept = default;
-            Position &operator=(Position &&) noexcept = default;
+            Position(Position const &) = default;
+            Position(Position &&) = default;
+            Position &operator=(Position const &) = default;
+            Position &operator=(Position &&) = default;
             ~Position() = default;
 
             //Checks if this position is within a boundry of top-left and bottom-right positions, including edges

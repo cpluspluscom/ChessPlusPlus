@@ -17,15 +17,15 @@ namespace chesspp
         {
             {"Pawn", [&](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                board::Direction d = board::Direction::East; //should not happen
+                auto d = util::Direction::East; //should not happen
                 auto val = bc.metadata("pawn facing", p.y, p.x);
                 if(std::string(val) == "North")
                 {
-                    d = board::Direction::North;
+                    d = util::Direction::North;
                 }
                 else if(std::string(val) == "South")
                 {
-                    d = board::Direction::South;
+                    d = util::Direction::South;
                 }
                 return board::Board::Pieces_t::mapped_type(new board::Pawn(b, p, s, d));
             }},

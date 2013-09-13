@@ -25,11 +25,11 @@ namespace chesspp
             std::clog << "Rook@" << pos << "->calcTrajectory()" << std::endl;
 
             //Rooks can move infinitely in the four straight directions
-
-            for(Direction d : {Direction::North
-                              ,Direction::East
-                              ,Direction::South
-                              ,Direction::West})
+            using Dir = util::Direction;
+            for(Dir d : {Dir::North
+                        ,Dir::East
+                        ,Dir::South
+                        ,Dir::West})
             {
                 Position_t t;
                 for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)

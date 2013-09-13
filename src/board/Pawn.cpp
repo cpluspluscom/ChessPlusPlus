@@ -6,7 +6,7 @@ namespace chesspp
 {
     namespace board
     {
-        Pawn::Pawn(Board &b, Position_t const &pos, Suit const &s, Direction const &face)
+        Pawn::Pawn(Board &b, Position_t const &pos, Suit const &s, util::Direction const &face)
         : Piece(b, pos, s)
         , facing(face)
         {

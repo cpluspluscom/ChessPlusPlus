@@ -19,7 +19,7 @@ namespace chesspp
         public:
             using BoardSize_t = std::uint8_t;
             using CellSize_t = std::uint16_t;
-            using Position_t = board::Position<BoardSize_t>; //Position type is based on Board Size type
+            using Position_t = util::Position<BoardSize_t>; //Position type is based on Board Size type
             using PieceClass_t = std::string;
             using SuitClass_t = std::string;
             using Layout_t = std::map<Position_t, std::pair<PieceClass_t, SuitClass_t>>;

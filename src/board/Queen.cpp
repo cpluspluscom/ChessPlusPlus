@@ -22,15 +22,15 @@ namespace chesspp
             std::clog << "Queen@" << pos << "->calcTrajectory()" << std::endl;
 
             //Queens can move infinitely in all eight directions
-
-            for(Direction d : {Direction::North
-                              ,Direction::NorthEast
-                              ,Direction::East
-                              ,Direction::SouthEast
-                              ,Direction::South
-                              ,Direction::SouthWest
-                              ,Direction::West
-                              ,Direction::NorthWest})
+            using Dir = util::Direction;
+            for(Dir d : {Dir::North
+                        ,Dir::NorthEast
+                        ,Dir::East
+                        ,Dir::SouthEast
+                        ,Dir::South
+                        ,Dir::SouthWest
+                        ,Dir::West
+                        ,Dir::NorthWest})
             {
                 Position_t t;
                 for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)

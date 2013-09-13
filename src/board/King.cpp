@@ -25,15 +25,15 @@ namespace chesspp
             std::clog << "King@" << pos << "->calcTrajectory()" << std::endl;
 
             //Kings can move one space in all eight directions
-
-            for(Direction d : {Direction::North
-                              ,Direction::NorthEast
-                              ,Direction::East
-                              ,Direction::SouthEast
-                              ,Direction::South
-                              ,Direction::SouthWest
-                              ,Direction::West
-                              ,Direction::NorthWest})
+            using Dir = util::Direction;
+            for(Dir d : {Dir::North
+                        ,Dir::NorthEast
+                        ,Dir::East
+                        ,Dir::SouthEast
+                        ,Dir::South
+                        ,Dir::SouthWest
+                        ,Dir::West
+                        ,Dir::NorthWest})
             {
                 Position_t t = Position_t(pos).move(d);
                 addTrajectory(t);

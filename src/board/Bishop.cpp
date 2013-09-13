@@ -22,11 +22,11 @@ namespace chesspp
             std::clog << "Bishop@" << pos << "->calcTrajectory()" << std::endl;
 
             //Bishops can move infinitely in the four diagonal directions
-
-            for(Direction d : {Direction::NorthEast
-                              ,Direction::SouthEast
-                              ,Direction::SouthWest
-                              ,Direction::NorthWest})
+            using Dir = util::Direction;
+            for(Dir d : {Dir::NorthEast
+                        ,Dir::SouthEast
+                        ,Dir::SouthWest
+                        ,Dir::NorthWest})
             {
                 Position_t t;
                 for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)

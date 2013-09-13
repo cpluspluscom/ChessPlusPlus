@@ -7,7 +7,7 @@
 namespace chesspp
 {
     //Pure virtual abstract base class for game state management
-    class AppState : public SFMLEventHandler
+    class AppState : public virtual SFMLEventHandler
     {
     public:
         AppState(sf::RenderWindow &display)

@@ -16,12 +16,12 @@ namespace chesspp
     class Application;
     class AppStateGame : public AppState
     {
-        config::GraphicsConfig gfx_config;
-        gfx::GraphicsHandler graphics;
-        config::BoardConfig board_config;
         Application *app;
-        board::Board board;
+        config::GraphicsConfig gfx_config;
+        config::BoardConfig board_config;
         factory::ClassicFactory classic_factory;
+        gfx::GraphicsHandler graphics;
+        board::Board board;
 
         board::Piece *selected = nullptr;
         board::Board::Position_t p;

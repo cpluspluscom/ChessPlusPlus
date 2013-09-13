@@ -8,7 +8,7 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace util
     {
         enum class Direction
         {

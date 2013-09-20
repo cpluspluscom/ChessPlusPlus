@@ -16,3 +16,6 @@ branches:
   only:
     - master
     - lb-refactor
+
+notifications:
+    email: false

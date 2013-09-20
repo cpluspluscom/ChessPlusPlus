@@ -31,8 +31,8 @@ namespace chesspp
                 Position_t t = Position_t(pos).move(d);
                 addTrajectory(t);
             }
-			//Archers can only capture at a circle around them
-			for(Position_t p : {Position_t( 1, -2)
+            //Archers can only capture at a circle around them
+            for(Position_t p : {Position_t( 1, -2)
                                ,Position_t( 2, -1)
                                ,Position_t( 2,  1)
                                ,Position_t( 1,  2)

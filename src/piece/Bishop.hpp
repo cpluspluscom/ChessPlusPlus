@@ -1,11 +1,11 @@
 #ifndef BishopChessPiece_HeaderPlusPlus
 #define BishopChessPiece_HeaderPlusPlus
 
-#include "Board.hpp"
+#include "board/Board.hpp"
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
         class Bishop : public Piece
         {

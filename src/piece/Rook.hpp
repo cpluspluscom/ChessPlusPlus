@@ -1,12 +1,12 @@
 #ifndef RookChessPiece_HeaderPlusPlus
 #define RookChessPiece_HeaderPlusPlus
 
-#include "Board.hpp"
-#include "Castling.hpp"
+#include "board/Board.hpp"
+#include "board/Castling.hpp"
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
         class Rook : public Piece
         {

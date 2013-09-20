@@ -1,11 +1,11 @@
 #ifndef QueenChessPiece_HeaderPlusPlus
 #define QueenChessPiece_HeaderPlusPlus
 
-#include "Board.hpp"
+#include "board/Board.hpp"
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
         class Queen : public Piece
         {

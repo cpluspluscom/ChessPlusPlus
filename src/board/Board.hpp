@@ -293,6 +293,11 @@ namespace chesspp
 
         inline Board::Interaction::~Interaction() = default;
     }
+	namespace piece
+	{
+		using Suit = board::Suit;
+		using Piece = board::Piece;
+	}
 }
 
 #endif

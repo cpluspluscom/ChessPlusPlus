@@ -1,11 +1,11 @@
 #ifndef PawnChessPiece_HeaderPlusPlus
 #define PawnChessPiece_HeaderPlusPlus
 
-#include "Board.hpp"
+#include "board/Board.hpp"
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
         class Pawn : public Piece
         {

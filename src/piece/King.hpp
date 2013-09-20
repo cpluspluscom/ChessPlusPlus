@@ -1,17 +1,20 @@
-#ifndef KnightChessPiece_HeaderPlusPlus
-#define KnightChessPiece_HeaderPlusPlus
+#ifndef KingChessPiece_HeaderPlusPlus
+#define KingChessPiece_HeaderPlusPlus
 
-#include "Board.hpp"
+#include "board/Board.hpp"
+#include "board/Castling.hpp"
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        class Knight : public Piece
+        class King : public Piece
         {
+            Castling &castling;
+
         public:
-            Knight(Board &b, Position_t const &pos, Suit const &s);
-            virtual ~Knight() = default;
+            King(Board &b, Position_t const &pos, Suit const &s);
+            virtual ~King() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;
 

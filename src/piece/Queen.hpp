@@ -10,7 +10,7 @@ namespace chesspp
         class Queen : public Piece
         {
         public:
-            Queen(Board &b, Position_t const &pos, Suit const &s);
+            Queen(board::Board &b, Position_t const &pos, Suit const &s);
             virtual ~Queen() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;

@@ -10,7 +10,7 @@ namespace chesspp
         class Knight : public Piece
         {
         public:
-            Knight(Board &b, Position_t const &pos, Suit const &s);
+            Knight(board::Board &b, Position_t const &pos, Suit const &s);
             virtual ~Knight() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;

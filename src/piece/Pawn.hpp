@@ -13,7 +13,7 @@ namespace chesspp
             util::Direction facing;
 
         public:
-            Pawn(Board &b, Position_t const &pos, Suit const &s, util::Direction const &face);
+            Pawn(board::Board &b, Position_t const &pos, Suit const &s, util::Direction const &face);
             virtual ~Pawn() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;

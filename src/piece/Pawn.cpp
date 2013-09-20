@@ -4,9 +4,9 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        Pawn::Pawn(Board &b, Position_t const &pos, Suit const &s, util::Direction const &face)
+        Pawn::Pawn(board::Board &b, Position_t const &pos, Suit const &s, util::Direction const &face)
         : Piece(b, pos, s)
         , facing(face)
         {

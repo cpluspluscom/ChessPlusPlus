@@ -5,9 +5,9 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        Queen::Queen(Board &b, Position_t const &pos, Suit const &s)
+        Queen::Queen(board::Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
         {
         }

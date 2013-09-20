@@ -1,11 +1,11 @@
 #include "ClassicFactory.hpp"
 
-#include "board/Pawn.hpp"
-#include "board/Rook.hpp"
-#include "board/Knight.hpp"
-#include "board/Bishop.hpp"
-#include "board/King.hpp"
-#include "board/Queen.hpp"
+#include "piece/Pawn.hpp"
+#include "piece/Rook.hpp"
+#include "piece/Knight.hpp"
+#include "piece/Bishop.hpp"
+#include "piece/King.hpp"
+#include "piece/Queen.hpp"
 
 namespace chesspp
 {
@@ -27,27 +27,27 @@ namespace chesspp
                 {
                     d = util::Direction::South;
                 }
-                return board::Board::Pieces_t::mapped_type(new board::Pawn(b, p, s, d));
+                return board::Board::Pieces_t::mapped_type(new piece::Pawn(b, p, s, d));
             }},
             {"Rook", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                return board::Board::Pieces_t::mapped_type(new board::Rook(b, p, s));
+                return board::Board::Pieces_t::mapped_type(new piece::Rook(b, p, s));
             }},
             {"Knight", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                return board::Board::Pieces_t::mapped_type(new board::Knight(b, p, s));
+                return board::Board::Pieces_t::mapped_type(new piece::Knight(b, p, s));
             }},
             {"Bishop", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                return board::Board::Pieces_t::mapped_type(new board::Bishop(b, p, s));
+                return board::Board::Pieces_t::mapped_type(new piece::Bishop(b, p, s));
             }},
             {"King", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                return board::Board::Pieces_t::mapped_type(new board::King(b, p, s));
+                return board::Board::Pieces_t::mapped_type(new piece::King(b, p, s));
             }},
             {"Queen", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
             {
-                return board::Board::Pieces_t::mapped_type(new board::Queen(b, p, s));
+                return board::Board::Pieces_t::mapped_type(new piece::Queen(b, p, s));
             }}
         })
         {

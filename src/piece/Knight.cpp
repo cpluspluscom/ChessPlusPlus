@@ -5,9 +5,9 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        Knight::Knight(Board &b, Position_t const &pos, Suit const &s)
+        Knight::Knight(board::Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
         {
         }

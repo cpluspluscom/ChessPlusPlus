@@ -10,10 +10,10 @@ namespace chesspp
     {
         class Rook : public Piece
         {
-            Castling &castling;
+            board::Castling &castling;
 
         public:
-            Rook(Board &b, Position_t const &pos, Suit const &s);
+            Rook(board::Board &b, Position_t const &pos, Suit const &s);
             virtual ~Rook() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;

@@ -5,9 +5,9 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        Bishop::Bishop(Board &b, Position_t const &pos, Suit const &s)
+        Bishop::Bishop(board::Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
         {
         }

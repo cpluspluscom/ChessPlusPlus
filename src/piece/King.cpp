@@ -5,11 +5,11 @@
 
 namespace chesspp
 {
-    namespace board
+    namespace piece
     {
-        King::King(Board &b, Position_t const &pos, Suit const &s)
+        King::King(board::Board &b, Position_t const &pos, Suit const &s)
         : Piece(b, pos, s)
-        , castling(b.getInteraction<Castling>())
+        , castling(b.getInteraction<board::Castling>())
         {
             //not yet moved, can castle
             castling.addSlow(this);

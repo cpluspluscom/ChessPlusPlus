@@ -10,10 +10,10 @@ namespace chesspp
     {
         class King : public Piece
         {
-            Castling &castling;
+            board::Castling &castling;
 
         public:
-            King(Board &b, Position_t const &pos, Suit const &s);
+            King(board::Board &b, Position_t const &pos, Suit const &s);
             virtual ~King() = default;
 
             virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;

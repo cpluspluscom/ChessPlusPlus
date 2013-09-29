@@ -9,22 +9,20 @@ cmake_minimum_required (VERSION 2.8)
 
 project (CHESSPP)
 
+#Set options
 if(WIN32)
-set(SFMLROOT "" CACHE STRING "Path to SFML root directory")
-option(STATIC_BUILD "Link statically")
+    set(SFML_ROOT "" CACHE PATH "Path to SFML root directory")
+    set(BOOST_ROOT "" CACHE PATH "Path to Boost root directory")
+    set(STATIC_BUILD TRUE CACHE BOOL "Link SFML statically") #option(STATIC_BUILD "Link statically" FALSE)    
 endif()
 
+#Add json-parser
 if(NOT JSONLIB)
     set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
 endif()
-if(NOT SFMLLIB)
-    set(SFMLLIB ${CHESSPP_SOURCE_DIR}/lib/SFML)
-endif()
-
 include_directories (${JSONLIB}) 
-include_directories (${BOOSTLIB})
-include_directories (${SFMLLIB}/include)
 
+#Get all source files
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")
 list(APPEND CHESSPP_SOURCES "lib/json-parser/json.c")
@@ -35,29 +33,39 @@ foreach (_headerFile ${CHESSPP_HEADERS})
     list (APPEND CHESSPP_INCLUDE_DIRS ${_dir})
 endforeach()
 list(REMOVE_DUPLICATES CHESSPP_INCLUDE_DIRS)
-
 include_directories(${CHESSPP_INCLUDE_DIRS})
-link_directories(${SFMLROOT}/lib)
-add_executable (chessplusplus ${CHESSPP_SOURCES})
 
-set(SFMLLIBS sfml-graphics sfml-window sfml-audio sfml-network sfml-system)
-
+list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
+ 
+# Detect and add SFML
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 if(STATIC_BUILD)
-    add_definitions(-DSFML_STATIC)
-    foreach(_lib ${SFMLLIBS})
-        set(_lib "${_lib}-s")
-        list(APPEND TEMPLIBS ${_lib})
-    endforeach()
-    set(SFMLLIBS ${TEMPLIBS})
+	set(SFML_STATIC_LIBRARIES TRUE)
+else()
+	set(SFML_STATIC_LIBRARIES FALSE)
+endif()
+find_package(SFML 2 REQUIRED graphics window network system audio)
+include_directories (${SFML_INCLUDE_DIR})
+link_directories(${SFML_ROOT}/lib)
+
+#Detect Boost
+find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
+include_directories(${BOOST_ROOT})
+set(Boost_LIBRARYDIR ${BOOST_ROOT}/lib)
+link_directories(${Boost_LIBRARY_DIR})
+
+#Set static runtime for msvc
+if(WIN32)
+	if(MSVC AND STATIC_BUILD)
+        foreach(flag
+                CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+                CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
+            if(${flag} MATCHES "/MD")
+                string(REGEX REPLACE "/MD" "/MT" ${flag} "${${flag}}")
+            endif()
+        endforeach()
+    endif()
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_definitions(-DDEBUG)
-    foreach(_lib ${SFMLLIBS})
-        set(_lib "${_lib}-d")
-        list(APPEND TEMPLIBS2 ${_lib})
-    endforeach()
-    set(SFMLLIBS ${TEMPLIBS2})
-endif()
-
-target_link_libraries(chessplusplus ${SFMLLIBS} boost_system boost_filesystem)
+add_executable (chesspp ${CHESSPP_SOURCES})
+target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})

@@ -10,6 +10,9 @@ namespace chesspp
 {
     namespace util
     {
+        /**
+         * Represents a direction.
+         */
         enum class Direction
         {
             North,
@@ -21,6 +24,13 @@ namespace chesspp
             West,
             NorthWest
         };
+        /**
+         * Returns a new direction which is a rotation of the
+         * provided direction.
+         * \param d the direction to rotate.
+         * \param r the number of times to rotate, may be negative.
+         * \return the rotated direction.
+         */
         inline Direction Rotate(Direction const &d, signed r)
         { //Hacky solution, should replace with better solution later
             Direction t {d};
@@ -36,6 +46,10 @@ namespace chesspp
             return t;
         }
 
+        /**
+         * Represents a two-dimensional point or position.
+         * \tparam T coordinate type, must be a scalar type.
+         */
         template<typename T>
         class Position
         {
@@ -46,12 +60,24 @@ namespace chesspp
 
             T x, y; //intentionally public
 
+            /**
+             * Returns the position at the origin.
+             * This position is the result of x and y
+             * being initialized by T's default constructor.
+             * \return the position at the origin.
+             */
             static Position const &Origin() noexcept
             {
                 static Position origin;
                 return origin;
             }
 
+            /**
+             * Initializes x and y to the provided values,
+             * or from T's default constructor otherwise.
+             * \param x the x coordinate of this position, or T()
+             * \param y the y coordinate of this position, or T()
+             */
             Position(T x = T(), T y = T()) noexcept
             : x(x)
             , y(y)
@@ -63,7 +89,13 @@ namespace chesspp
             Position &operator=(Position &&) = default;
             ~Position() = default;
 
-            //Checks if this position is within a boundry of top-left and bottom-right positions, including edges
+            /**
+             * Checks if this position is within a boundry of
+             * top-left and bottom-right positions, including edges.
+             * \param topleft the lowest coordinate corner
+             * \param bottomright the highest coordinate corner
+             * \return whether this position is inclusively within the given boundaries.
+             */
             bool isWithin(Position const &topleft, Position const &bottomright) const noexcept
             {
                 return topleft.x <= x
@@ -72,14 +104,25 @@ namespace chesspp
                     && y >= bottomright.y;
             }
 
-            //Moves position relative to itself
-            Position move(typename MakeSigned<T>::type xoff, typename MakeSigned<T>::type yoff) noexcept
+            /**
+             * Moves this position relative to itself.
+             * \param xoff the value to add to x, of type signed T
+             * \param yoff the value to add to y, of type signed T
+             * \return *this
+             */
+            Position &move(typename MakeSigned<T>::type xoff, typename MakeSigned<T>::type yoff) noexcept
             {
                 x += xoff;
                 y += yoff;
                 return *this;
             }
-            //Move position relative to itself in the direction the given number of times
+            /**
+             * Move position relative to itself in a direction
+             * a given number of times.
+             * \param d the dirction in which to move.
+             * \param times the number of times to move in direction d.
+             * \return *this
+             */
             Position &move(Direction const &d, signed times = 1) noexcept
             {
                 for(signed i = 0; i < times; ++i)
@@ -106,17 +149,33 @@ namespace chesspp
                 return *this;
             }
 
+            /**
+             * Equality comparison operator.
+             * \param other the position to compare to.
+             * \return whether this position equals the other.
+             */
             typename std::enable_if<std::is_integral<T>::value, bool>::type operator==(Position const &other) const noexcept
             {
                 return x == other.x && y == other.y;
             }
 
-            //for sorting purposes only
+            /**
+             * Less-than comparison operator, to be used for
+             * sorting purposes only.
+             * \param other the position to compare to.
+             * \return true if this position comes before the other.
+             */
             bool operator<(Position const &other) const noexcept
             {
                 return std::tie(x, y) < std::tie(other.x, other.y);
             }
 
+            /**
+             * Serializes a position to a stream in the format "(x, y)".
+             * \param os the stream to write to.
+             * \param p the position to serialize into the stream.
+             * \return os
+             */
             friend std::ostream &operator<<(std::ostream &os, Position const &p) noexcept
             {
                 return os << '(' << p.x << ", " << p.y << ')';

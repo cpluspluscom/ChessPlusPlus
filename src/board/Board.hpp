@@ -30,8 +30,8 @@ namespace chesspp
             class Piece
             {
             public:
-                using PosList_t = std::set<Position_t>;
                 using Position_t = Board::Position_t;
+                using PosList_t = std::set<Position_t>;
 
             private:
                 Suit s;

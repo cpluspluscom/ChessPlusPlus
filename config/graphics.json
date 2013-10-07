@@ -15,7 +15,7 @@
                 {
                     "Pawn":   "res/img/pieces/black/pawn.png",
                     "Rook":   "res/img/pieces/black/rook.png",
-                    "knight": "res/img/pieces/black/knight.png",
+                    "Knight": "res/img/pieces/black/knight.png",
                     "Bishop": "res/img/pieces/black/bishop.png",
                     "Queen":  "res/img/pieces/black/queen.png",
                     "King":   "res/img/pieces/black/king.png",
@@ -25,7 +25,7 @@
                 {
                     "Pawn":   "res/img/pieces/white/pawn.png",
                     "Rook":   "res/img/pieces/white/rook.png",
-                    "knight": "res/img/pieces/white/knight.png",
+                    "Knight": "res/img/pieces/white/knight.png",
                     "Bishop": "res/img/pieces/white/bishop.png",
                     "Queen":  "res/img/pieces/white/queen.png",
                     "King":   "res/img/pieces/white/king.png",

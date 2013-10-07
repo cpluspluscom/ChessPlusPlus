@@ -38,6 +38,10 @@ namespace chesspp
              */
             JsonReader(std::istream &s)
             {
+                if(!s)
+                {
+                    throw Exception("stream given to JsonReader in bad state");
+                }
                 std::string str ((std::istreambuf_iterator<char>(s)), std::istreambuf_iterator<char>());
                 json_settings options {};
                 char error[128]; //128 from json.c implementation, subject to change

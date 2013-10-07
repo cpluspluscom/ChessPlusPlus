@@ -5,6 +5,7 @@
 
 #include <tuple>
 #include <ostream>
+#include <cstdint>
 
 namespace chesspp
 {
@@ -169,18 +170,48 @@ namespace chesspp
             {
                 return std::tie(x, y) < std::tie(other.x, other.y);
             }
-
-            /**
-             * Serializes a position to a stream in the format "(x, y)".
-             * \param os the stream to write to.
-             * \param p the position to serialize into the stream.
-             * \return os
-             */
-            friend std::ostream &operator<<(std::ostream &os, Position const &p) noexcept
-            {
-                return os << '(' << p.x << ", " << p.y << ')';
-            }
         };
+
+        /**
+         * Serializes a position to a stream in the format "(x, y)".
+         * This is the signed version.
+         * \param os the stream to write to.
+         * \param p the position to serialize into the stream.
+         * \return os
+         */
+        template<typename T>
+        typename std::enable_if<std::is_integral<T>::value && std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        {
+            //cast in case of char
+            return os << '('  << static_cast<std::intmax_t>(p.x)
+                      << ", " << static_cast<std::intmax_t>(p.y) << ')';
+        }
+        /**
+         * Serializes a position to a stream in the format "(x, y)".
+         * This is the unsigned version.
+         * \param os the stream to write to.
+         * \param p the position to serialize into the stream.
+         * \return os
+         */
+        template<typename T>
+        typename std::enable_if<std::is_integral<T>::value && !std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        {
+            //cast in case of char
+            return os << '('  << static_cast<std::uintmax_t>(p.x)
+                      << ", " << static_cast<std::uintmax_t>(p.y) << ')';
+        }
+        /**
+         * Serializes a position to a stream in the format "(x, y)".
+         * This is the float version.
+         * \param os the stream to write to.
+         * \param p the position to serialize into the stream.
+         * \return os
+         */
+        template<typename T>
+        typename std::enable_if<!std::is_integral<T>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        {
+            return os << '('  << p.x  << ", " << p.y << ')';
+        }
     }
 }
 

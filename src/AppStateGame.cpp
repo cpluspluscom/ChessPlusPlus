@@ -24,7 +24,7 @@ namespace chesspp
             auto piece = board.at(p);
             if(piece != nullptr)
             {
-                graphics.drawTrajectory(*piece, piece->suit == /**/"White");
+                graphics.drawTrajectory(*piece, piece->suit != /**/"White");
             }
         }
     }
@@ -43,6 +43,10 @@ namespace chesspp
         if(selected == nullptr)
         {
             selected = board.at(p); //doesn't matter if nullptr, selected won't change then
+            if(selected != nullptr && selected->suit != /**/"White")
+            {
+                selected = nullptr; //can't select enemy pieces
+            }
         }
         else
         {
@@ -54,6 +58,7 @@ namespace chesspp
             {
                 //
             }
+            else selected = nullptr; //deselect
         }
     }
 }

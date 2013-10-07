@@ -43,22 +43,26 @@ namespace chesspp
         }
         void GraphicsHandler::drawTrajectory(board::Piece const &p, bool enemy)
         {
-            auto &sprite = (enemy? enemy_move : valid_move);
-            for(auto const &pos : p.trajectory)
             {
-                if(p.board.at(pos) == nullptr)
+                auto &sprite = (enemy? enemy_move : valid_move);
+                for(auto const &pos : p.trajectory)
                 {
-                    drawSpriteAtCell(sprite, pos.x, pos.y);
+                    if(p.board.at(pos) == nullptr)
+                    {
+                        drawSpriteAtCell(sprite, pos.x, pos.y);
+                    }
                 }
             }
-            sprite = (enemy? enemy_capture : valid_capture);
-            for(auto const &pos : p.captures)
             {
-                auto piece = p.board.at(pos);
-                if(piece != nullptr)
+                auto &sprite = (enemy? enemy_capture : valid_capture);
+                for(auto const &pos : p.captures)
                 {
-                    drawSpriteAtCell(sprite, pos.x, pos.y);
-                    drawPiece(*piece); //redraw
+                    auto piece = p.board.at(pos);
+                    if(piece != nullptr && piece->suit != p.suit)
+                    {
+                        drawSpriteAtCell(sprite, pos.x, pos.y);
+                        drawPiece(*piece); //redraw
+                    }
                 }
             }
         }

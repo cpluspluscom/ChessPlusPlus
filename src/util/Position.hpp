@@ -101,8 +101,8 @@ namespace chesspp
             {
                 return topleft.x <= x
                     && topleft.y <= y
-                    && x >= bottomright.x
-                    && y >= bottomright.y;
+                    && x <= bottomright.x
+                    && y <= bottomright.y;
             }
 
             /**

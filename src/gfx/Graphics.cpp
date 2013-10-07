@@ -13,9 +13,11 @@ namespace chesspp
         : display(display)
         , gfx_config(gfxc)
         , board_config(bc)
-        , board     (TextureManager::instance().load(gfx_config.spritePath("board", "board"     )))
-        , valid_move(TextureManager::instance().load(gfx_config.spritePath("board", "valid move")))
-        , enemy_move(TextureManager::instance().load(gfx_config.spritePath("board", "enemy move")))
+        , board        (TextureManager::instance().load(gfx_config.spritePath("board", "board"        )))
+        , valid_move   (TextureManager::instance().load(gfx_config.spritePath("board", "valid move"   )))
+        , enemy_move   (TextureManager::instance().load(gfx_config.spritePath("board", "enemy move"   )))
+        , valid_capture(TextureManager::instance().load(gfx_config.spritePath("board", "valid capture")))
+        , enemy_capture(TextureManager::instance().load(gfx_config.spritePath("board", "enemy capture")))
         {
         }
 
@@ -49,6 +51,7 @@ namespace chesspp
                     drawSpriteAtCell(sprite, pos.x, pos.y);
                 }
             }
+            sprite = (enemy? enemy_capture : valid_capture);
             for(auto const &pos : p.captures)
             {
                 auto piece = p.board.at(pos);

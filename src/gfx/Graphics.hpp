@@ -20,7 +20,9 @@ namespace chesspp
 
             sf::Sprite board
             ,          valid_move
-            ,          enemy_move;
+            ,          enemy_move
+            ,          valid_capture
+            ,          enemy_capture;
 
         public:
             GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc);

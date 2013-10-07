@@ -4,9 +4,11 @@
         "missing": "res/img/missing.png",
         "board":
         {
-            "board":      "res/img/chessboard_640x640.png",
-            "valid move": "res/img/valid_move.png",
-            "enemy move": "res/img/enemy_move.png",
+            "board":         "res/img/chessboard_640x640.png",
+            "valid move":    "res/img/valid_move.png",
+            "enemy move":    "res/img/enemy_move.png",
+            "valid capture": "res/img/valid_capture.png",
+            "enemy capture": "res/img/enemy_capture.png",
             "pieces":
             {
                 "Black":

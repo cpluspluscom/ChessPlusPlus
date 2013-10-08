@@ -54,6 +54,7 @@ namespace chesspp
             tomove.move(target); //update position
 
             update(tomove.pos);
+            return true;
         }
     }
 }

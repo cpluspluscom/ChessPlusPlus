@@ -49,7 +49,19 @@ namespace chesspp
                 {
                     if(p.board.at(pos) == nullptr)
                     {
-                        drawSpriteAtCell(sprite, pos.x, pos.y);
+                        bool capturable = false;
+                        for(auto const &c : p.board.Captures())
+                        {
+                            if(c.second == pos && c.first->second->suit != p.suit)
+                            {
+                                capturable = true;
+                                break;
+                            }
+                        }
+                        if(!capturable)
+                        {
+                            drawSpriteAtCell(sprite, pos.x, pos.y);
+                        }
                     }
                 }
             }
@@ -58,10 +70,17 @@ namespace chesspp
                 for(auto const &pos : p.captures)
                 {
                     auto piece = p.board.at(pos);
-                    if(piece != nullptr && piece->suit != p.suit)
+                    for(auto const &c : p.board.Captures())
                     {
-                        drawSpriteAtCell(sprite, pos.x, pos.y);
-                        drawPiece(*piece); //redraw
+                        if(c.second == pos && c.first->second->suit != p.suit)
+                        {
+                            drawSpriteAtCell(sprite, pos.x, pos.y);
+                            if(piece != nullptr)
+                            {
+                                drawPiece(*piece); //redraw
+                            }
+                            break;
+                        }
                     }
                 }
             }

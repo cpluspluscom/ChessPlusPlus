@@ -9,7 +9,7 @@ namespace chesspp
     {
         class Pawn : public Piece
         {
-            bool en_passant = false;
+            bool en_passant = true;
             util::Direction facing;
 
         public:

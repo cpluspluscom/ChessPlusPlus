@@ -22,8 +22,6 @@ namespace chesspp
 
         void King::calcTrajectory()
         {
-            std::clog << "King@" << pos << "->calcTrajectory()" << std::endl;
-
             //Kings can move one space in all eight directions
             using Dir = util::Direction;
             for(Dir d : {Dir::North

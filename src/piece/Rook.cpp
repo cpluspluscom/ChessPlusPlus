@@ -22,8 +22,6 @@ namespace chesspp
 
         void Rook::calcTrajectory()
         {
-            std::clog << "Rook@" << pos << "->calcTrajectory()" << std::endl;
-
             //Rooks can move infinitely in the four straight directions
             using Dir = util::Direction;
             for(Dir d : {Dir::North

@@ -19,8 +19,6 @@ namespace chesspp
 
         void Bishop::calcTrajectory()
         {
-            std::clog << "Bishop@" << pos << "->calcTrajectory()" << std::endl;
-
             //Bishops can move infinitely in the four diagonal directions
             using Dir = util::Direction;
             for(Dir d : {Dir::NorthEast

@@ -19,8 +19,6 @@ namespace chesspp
 
         void Archer::calcTrajectory()
         {
-            std::clog << "Archer@" << pos << "->calcTrajectory()" << std::endl;
-
             //Archers can move one space in four directions
             using Dir = util::Direction;
             for(Dir d : {Dir::NorthEast

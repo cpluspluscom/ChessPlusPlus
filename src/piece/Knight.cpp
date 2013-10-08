@@ -19,8 +19,6 @@ namespace chesspp
 
         void Knight::calcTrajectory()
         {
-            std::clog << "Knight@" << pos << "->calcTrajectory()" << std::endl;
-
             //Knights can only move in 3-long 2-short L shapes
 
             for(Position_t p : {Position_t( 1, -2)

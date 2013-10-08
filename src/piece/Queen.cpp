@@ -19,8 +19,6 @@ namespace chesspp
 
         void Queen::calcTrajectory()
         {
-            std::clog << "Queen@" << pos << "->calcTrajectory()" << std::endl;
-
             //Queens can move infinitely in all eight directions
             using Dir = util::Direction;
             for(Dir d : {Dir::North

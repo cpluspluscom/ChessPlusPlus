@@ -180,7 +180,7 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<std::is_integral<T>::value && std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        typename std::enable_if<std::is_integral<T>::value && std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
         {
             //cast in case of char
             return os << '('  << static_cast<std::intmax_t>(p.x)
@@ -194,7 +194,7 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<std::is_integral<T>::value && !std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        typename std::enable_if<std::is_integral<T>::value && !std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
         {
             //cast in case of char
             return os << '('  << static_cast<std::uintmax_t>(p.x)
@@ -208,7 +208,7 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<!std::is_integral<T>::value, std::ostream>::type &operator<<(std::ostream &os, Position<T> const &p) noexcept
+        typename std::enable_if<!std::is_integral<T>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
         {
             return os << '('  << p.x  << ", " << p.y << ')';
         }

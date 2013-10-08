@@ -12,7 +12,6 @@
 #include <functional>
 #include <typeindex>
 #include <typeinfo>
-#include <iostream>
 
 namespace chesspp
 {
@@ -40,26 +39,15 @@ namespace chesspp
                 std::size_t movenum = 0;
             public:
                 //const aliases for deriving classes
-                Suit const &suit;            //Which suit the chess piece is
-                PosList_t const &trajectory; //The list of possible Positions (non-capture only)
-                PosList_t const &captures;   //The list of possible Positions (captures only)
-                Position_t const &pos;       //The position on the baord this piece is
-                std::size_t const &moves;    //Current move number/number of moves made
+                Suit const &suit = s;               //Which suit the chess piece is
+                PosList_t const &trajectory = traj; //The list of possible Positions (non-capture only)
+                PosList_t const &captures = capt;   //The list of possible Positions (captures only)
+                Position_t const &pos = p;          //The position on the baord this piece is
+                std::size_t const &moves = movenum; //Current move number/number of moves made
 
                 Board &board; //The board this piece belongs to
 
-                Piece(Board &b, Position_t const &pos, Suit const &s)
-                : board(b)
-                , p(pos)
-                , s(s)
-                , suit(s)
-                , trajectory(traj)
-                , captures(capt)
-                , pos(p)
-                , moves(movenum)
-                {
-                    std::clog << "Creation of " << *this << std::endl;
-                }
+                Piece(Board &b, Position_t const &pos, Suit const &s);
                 virtual ~Piece() = default;
 
                 virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const = 0;
@@ -125,7 +113,7 @@ namespace chesspp
                     }
                 }
 
-            public:
+            private:
                 //Called with the position of the piece that just moved
                 virtual void tick(Position_t const &p)
                 {
@@ -140,14 +128,14 @@ namespace chesspp
                     ++movenum;
                     makeTrajectory();
                 }
-            private: //intentionally private, not protected
+
                 //Called by move(), reacts to being moved
                 virtual void moveUpdate(Position_t const &from, Position_t const &to)
                 {
                 }
 
             public:
-
+                friend class ::chesspp::board::Board;
                 friend std::ostream &operator<<(std::ostream &os, Piece const &p)
                 {
                     return os << "Piece (" << typeid(p).name() << ") " << p.suit << " at " << p.pos << " having made " << p.moves << " moves";
@@ -248,35 +236,17 @@ namespace chesspp
                 return pieces.end();
             }
 
-            //Move a piece from one place to another
-            //Needs refactoring (can make illegal moves)
-            bool move(Position_t const &source, Position_t const &target)
+            Captures_t const &Captures() const
             {
-                if(pieces.find(source) == pieces.end())
-                {
-                    std::cerr << "source position of piece to move does not contain a piece: " << source << std::endl;
-                    return false;
-                }
-                if(!valid(target))
-                {
-                    std::cerr << "target position of piece to move is out of bounds: " << target << std::endl;
-                    return false;
-                }
-
-                auto &tomove = *pieces[source];
-                pieces[target].swap(pieces[source]); //swap positions
-                captures.erase(pieces.find(source)); //reset captures for the piece
-                pieces.erase(source); //remove the one that used to be at target
-                tomove.move(target);
-
-                //Update trajectories for all pieces
-                for(auto it = pieces.begin(); it != pieces.end(); ++it)
-                {
-                    it->second->makeTrajectory();
-                }
-
-                return true;
+                return captures;
             }
+
+            void update(Position_t const &pos);
+
+            //Capture a capturable piece
+            bool capture(Position_t source, Captures_t::const_iterator target);
+            //Move a piece without capturing
+            bool move(Position_t source, Position_t target);
 
             //Check if a position is a valid position that exists on the board
             bool valid(Position_t const &pos) const noexcept

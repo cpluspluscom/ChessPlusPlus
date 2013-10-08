@@ -19,7 +19,7 @@ namespace chesspp
 
         void Pawn::tick(Position_t const &p)
         {
-            if(p != pos)
+            if(moves == 1 && p != pos)
             { //moved just happened, en passant no longer allowed
                 en_passant = false;
             }
@@ -27,8 +27,6 @@ namespace chesspp
 
         void Pawn::calcTrajectory()
         {
-            std::clog << "Pawn@" << pos << "->calcTrajectory()" << std::endl;
-
             //Pawns can move 1 or 2 spaces forward on their first turn,
             //or only 1 space forward on any other turn.
             //On any turn they can move diagonally forward to capture,

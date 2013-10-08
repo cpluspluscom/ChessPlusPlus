@@ -72,16 +72,26 @@ namespace chesspp
         }
         else
         {
-            if(selected->trajectory.find(p) != selected->trajectory.end())
+            [&]
             {
-                board.move(selected->pos, p);
-                nextTurn();
-            }
-            else if(selected->captures.find(p) != selected->captures.end())
-            {
-                board.move(selected->pos, p);
-                nextTurn();
-            }
+                if(selected->captures.find(p) != selected->captures.end())
+                {
+                    for(auto it = board.Captures().cbegin(); it != board.Captures().cend(); ++it)
+                    {
+                        if(it->second == p)
+                        {
+                            board.capture(selected->pos, it);
+                            nextTurn();
+                            return;
+                        }
+                    }
+                }
+                if(selected->trajectory.find(p) != selected->trajectory.end())
+                {
+                    board.move(selected->pos, p);
+                    nextTurn();
+                }
+            }();
             selected = nullptr; //deselect
         }
     }

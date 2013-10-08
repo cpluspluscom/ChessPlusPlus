@@ -10,6 +10,16 @@
 #include <vector>
 #include <cassert>
 
+#if !defined(USE_STD_PUT_TIME)
+    //GCC 4.8.1 doesn't support std::put_time yet
+    #if !defined(__GNUC__) || (__GNUC__ > 4 || ((__GNUC__ == 4) && __GNUC_MINOR__ > 8))
+        #define USE_STD_PUT_TIME 1 //next version of GCC probably does
+    #else
+        #define USE_STD_PUT_TIME 0 //use boost alternative
+        #include <boost/date_time/posix_time/posix_time.hpp>
+    #endif
+#endif
+
 class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
 {
     class LogUtil_buffer : public std::streambuf
@@ -77,16 +87,13 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
         static std::string timestamp()
         {
             std::time_t curr_time_raw = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-            std::tm *local_time = std::localtime(&curr_time_raw);
+            std::tm *lt = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-#if !defined(__GNUC__) || (__GNUC__ > 4 || ((__GNUC__ == 4) && __GNUC_MINOR__ > 8)) //GCC 4.8.1 does not support std::put_time
-            time << "[" << std::put_time(local_time, "%T") << "] ";
+#ifdef USE_STD_PUT_TIME
+            time << "[" << std::put_time(lt, "%T") << "] ";
 #else
-            time << std::setfill('0')   <<
-                    "[" << std::setw(2) << local_time->tm_hour <<
-                    ":" << std::setw(2) << local_time->tm_min  <<
-                    ":" << std::setw(2) << local_time->tm_sec  << "] ";
+            time << "[" << boost::posix_timeto_simple_string(time_duration(lt->tm_hour, lt->tm_min, lt->tm_sec)) << "] ";
 #endif
             return time.str();
         }

@@ -80,7 +80,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::tm *local_time = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-#if (__GNUC__ > 4 || ((__GNUC__ == 4) && __GNUC_MINOR__ > 8)) //GCC 4.8.1 does not support std::put_time
+#if !defined(__GNUC__) || (__GNUC__ > 4 || ((__GNUC__ == 4) && __GNUC_MINOR__ > 8)) //GCC 4.8.1 does not support std::put_time
             time << "[" << std::put_time(local_time, "%T") << "] ";
 #else
             time << std::setfill('0')   <<

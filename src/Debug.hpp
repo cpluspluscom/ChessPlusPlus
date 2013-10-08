@@ -79,7 +79,12 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::tm *local_time = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-            time << "[" << local_time->tm_hour << ":" << local_time->tm_min << ":" << local_time->tm_sec << "] ";
+            time << "[" << (local_time->tm_hour < 10 ? "0" : "")                
+                        << local_time->tm_hour << ":" 
+                        << (local_time->tm_min < 10 ? "0" : "")
+                        << local_time->tm_min << ":" 
+                        << (local_time->tm_sec < 10 ? "0" : "")
+                        << local_time->tm_sec << "] ";
 
             return time.str();    
         }

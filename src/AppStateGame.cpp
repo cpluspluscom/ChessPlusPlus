@@ -13,6 +13,7 @@ namespace chesspp
     , classic_factory(board_config)
     , graphics(display, gfx_config, board_config)
     , board(board_config, classic_factory.factory())
+    , p(-1, -1)
     , players(util::KeyIter<config::BoardConfig::Textures_t>
                            (board_config.texturePaths().cbegin()),
               util::KeyIter<config::BoardConfig::Textures_t>

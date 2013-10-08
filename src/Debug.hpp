@@ -2,6 +2,7 @@
 #define __DebuggingLoggerUtility_HeaderPlusPlus__
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <streambuf>
@@ -18,8 +19,8 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
         std::vector<char> buffer;
 
     public:
-        explicit LogUtil_buffer(std::ostream &sink, std::size_t buff_sz = 256)
-        : sink(sink)
+        explicit LogUtil_buffer(std::ostream &sink_, std::size_t buff_sz = 256)
+        : sink(sink_)
         , buffer(buff_sz + 1)
         {
             sink.clear();
@@ -79,9 +80,11 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::tm *local_time = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-            time << "[" << local_time->tm_hour << ":" << local_time->tm_min << ":" << local_time->tm_sec << "] ";
-
-            return time.str();    
+            time << std::setfill('0')   <<
+                    "[" << std::setw(2) << local_time->tm_hour <<
+                    ":" << std::setw(2) << local_time->tm_min  <<
+                    ":" << std::setw(2) << local_time->tm_sec  << "] ";
+            return time.str();
         }
     };
 

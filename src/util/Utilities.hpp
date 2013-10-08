@@ -2,6 +2,7 @@
 #define MiscellaneousUtilities_HeaderPlusPlus
 
 #include <type_traits>
+#include <iterator>
 
 namespace chesspp
 {
@@ -23,7 +24,9 @@ namespace chesspp
         {
             return !(t == u);
         }
-
+    }
+    namespace util
+    {
         /**
          * Better version of std::make_signed that supports
          * floating point types, usage is identical.
@@ -51,6 +54,53 @@ namespace chesspp
          */
         template<typename T>
         using IsSigned = typename std::is_same<T, typename MakeSigned<T>::type>/*::value*/;
+
+        /**
+         * Allows iterating over the keys of a map.
+         * There does not yet exist a version for iterating
+         * over the values of a map.
+         * \tparam Map must be std::map<Key, Value> or equivalent container
+         */
+        template<typename Map>
+        class KeyIter : public std::iterator<std::input_iterator_tag, typename Map::value_type>
+        {
+            typename Map::const_iterator it;
+        public:
+            KeyIter(typename Map::const_iterator mapit)
+            : it(mapit)
+            {
+            }
+            KeyIter(KeyIter const &) = default;
+            KeyIter(KeyIter &&) = default;
+            KeyIter &operator=(KeyIter const &) = default;
+            KeyIter &operator=(KeyIter &&) = default;
+
+            KeyIter &operator++()
+            {
+                ++it;
+                return *this;
+            }
+            KeyIter operator++(int)
+            {
+                KeyIter temp = *this;
+                ++*this;
+                return temp;
+            }
+
+            typename Map::key_type const &operator*() const
+            {
+                return it->first;
+            }
+            typename Map::key_type const *operator->() const
+            {
+                return &(it->first);
+            }
+
+            friend bool operator==(KeyIter const &a, KeyIter const &b)
+            {
+                return a.it == b.it;
+            }
+        };
     }
 }
 

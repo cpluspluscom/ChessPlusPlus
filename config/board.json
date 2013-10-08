@@ -41,7 +41,8 @@
                     [null   , null   , null   , null   , null   , null   , null   , null   ],
                     ["North", "North", "North", "North", "North", "North", "North", "North"],
                     [null   , null   , null   , null   , null   , null   , null   , null   ]
-                ]
+                ],
+                "first turn": "White"
             }
         }
     }

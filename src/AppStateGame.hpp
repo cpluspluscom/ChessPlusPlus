@@ -11,6 +11,8 @@
 
 #include "AppState.hpp"
 
+#include <set>
+
 namespace chesspp
 {
     class Application;
@@ -25,6 +27,9 @@ namespace chesspp
 
         board::Piece *selected = nullptr;
         board::Board::Position_t p;
+        using Players_t = std::set<board::Board::Suit>;
+        Players_t players;
+        Players_t::const_iterator turn;
 
     public:
         AppStateGame(Application *app, sf::RenderWindow &display);

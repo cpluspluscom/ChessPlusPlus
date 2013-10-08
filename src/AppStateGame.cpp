@@ -1,5 +1,7 @@
 #include "AppStateGame.hpp"
 
+#include "util/Utilities.hpp"
+
 namespace chesspp
 {
     AppStateGame::AppStateGame(Application *_app, sf::RenderWindow &_display)
@@ -9,7 +11,16 @@ namespace chesspp
     , classic_factory(board_config)
     , graphics(display, gfx_config, board_config)
     , board(board_config, classic_factory.factory())
+    , players(util::KeyIter<config::BoardConfig::Textures_t>
+                           (board_config.texturePaths().cbegin()),
+              util::KeyIter<config::BoardConfig::Textures_t>
+                           (board_config.texturePaths().cend()))
+    , turn(players.find(board_config.metadata("first turn")))
     {
+        if(turn == players.end())
+        {
+            turn = players.begin();
+        }
     }
 
     void AppStateGame::OnRender()
@@ -24,7 +35,7 @@ namespace chesspp
             auto piece = board.at(p);
             if(piece != nullptr)
             {
-                graphics.drawTrajectory(*piece, piece->suit != /**/"White");
+                graphics.drawTrajectory(*piece, piece->suit != *turn);
             }
         }
     }
@@ -43,7 +54,7 @@ namespace chesspp
         if(selected == nullptr)
         {
             selected = board.at(p); //doesn't matter if nullptr, selected won't change then
-            if(selected != nullptr && selected->suit != /**/"White")
+            if(selected != nullptr && selected->suit != *turn)
             {
                 selected = nullptr; //can't select enemy pieces
             }

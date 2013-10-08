@@ -90,7 +90,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::tm *lt = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-#ifdef USE_STD_PUT_TIME
+#if USE_STD_PUT_TIME
             time << "[" << std::put_time(lt, "%T") << "] ";
 #else
             time << "[" << boost::posix_timeto_simple_string(time_duration(lt->tm_hour, lt->tm_min, lt->tm_sec)) << "] ";

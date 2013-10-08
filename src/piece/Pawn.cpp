@@ -45,12 +45,12 @@ namespace chesspp
             }
 
             Position_t diagr = Position_t(pos).move(Rotate(facing, +1));
-            if(board.at(diagr) != nullptr) //can capture diagonally forward-right
+            if(board.valid(diagr)) //can capture diagonally forward-right
             {
                 addCapturing(diagr);
             }
             Position_t diagl = Position_t(pos).move(Rotate(facing, -1));
-            if(board.at(diagl) != nullptr) //can capture diagonally forward-left
+            if(board.valid(diagl)) //can capture diagonally forward-left
             {
                 addCapturing(diagl);
             }

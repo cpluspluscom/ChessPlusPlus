@@ -54,6 +54,7 @@ namespace chesspp
             tomove.move(target); //update position
 
             update(tomove.pos);
+            std::clog << "Moved piece at " << source << " to " << target << std::endl;
             return true;
         }
     }

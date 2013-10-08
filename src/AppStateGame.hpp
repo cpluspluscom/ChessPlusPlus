@@ -30,6 +30,7 @@ namespace chesspp
         using Players_t = std::set<board::Board::Suit>;
         Players_t players;
         Players_t::const_iterator turn;
+        void nextTurn();
 
     public:
         AppStateGame(Application *app, sf::RenderWindow &display);

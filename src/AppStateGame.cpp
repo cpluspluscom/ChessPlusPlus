@@ -2,6 +2,8 @@
 
 #include "util/Utilities.hpp"
 
+#include <iostream>
+
 namespace chesspp
 {
     AppStateGame::AppStateGame(Application *_app, sf::RenderWindow &_display)
@@ -17,7 +19,16 @@ namespace chesspp
                            (board_config.texturePaths().cend()))
     , turn(players.find(board_config.metadata("first turn")))
     {
+        std::clog << "Number of players: " << players.size() << std::endl;
         if(turn == players.end())
+        {
+            turn = players.begin();
+        }
+    }
+
+    void AppStateGame::nextTurn()
+    {
+        if(++turn == players.end())
         {
             turn = players.begin();
         }
@@ -63,13 +74,15 @@ namespace chesspp
         {
             if(selected->trajectory.find(p) != selected->trajectory.end())
             {
-                //
+                board.move(selected->pos, p);
+                nextTurn();
             }
             else if(selected->captures.find(p) != selected->captures.end())
             {
-                //
+                board.move(selected->pos, p);
+                nextTurn();
             }
-            else selected = nullptr; //deselect
+            selected = nullptr; //deselect
         }
     }
 }

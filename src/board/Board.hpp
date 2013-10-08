@@ -249,6 +249,7 @@ namespace chesspp
             }
 
             //Move a piece from one place to another
+            //Needs refactoring (can make illegal moves)
             bool move(Position_t const &source, Position_t const &target)
             {
                 if(pieces.find(source) == pieces.end())
@@ -262,20 +263,16 @@ namespace chesspp
                     return false;
                 }
 
-                auto &tomove = pieces[source];
+                auto &tomove = *pieces[source];
                 pieces[target].swap(pieces[source]); //swap positions
                 captures.erase(pieces.find(source)); //reset captures for the piece
                 pieces.erase(source); //remove the one that used to be at target
-                tomove->move(target);
+                tomove.move(target);
 
-                //Update the trajectories of pieces whose trajectories contain the the old or new position
+                //Update trajectories for all pieces
                 for(auto it = pieces.begin(); it != pieces.end(); ++it)
                 {
-                    Piece::PosList_t const &t = it->second->trajectory;
-                    if(t.find(source) != t.end() || t.find(target) != t.end()) //source or target found
-                    {
-                        it->second->makeTrajectory(); //update
-                    }
+                    it->second->makeTrajectory();
                 }
 
                 return true;

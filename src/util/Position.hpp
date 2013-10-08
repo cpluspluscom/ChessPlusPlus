@@ -32,19 +32,38 @@ namespace chesspp
          * \param r the number of times to rotate, may be negative.
          * \return the rotated direction.
          */
-        inline Direction Rotate(Direction const &d, signed r)
-        { //Hacky solution, should replace with better solution later
-            Direction t {d};
-            for(signed i = 0; i < r; ++i)
+        inline Direction Rotate(Direction d, signed r)
+        {
+            using D = Direction;
+            for(signed i = 0; i < r; ++i) //rotate positively
             {
-                t = static_cast<Direction>((static_cast<int>(t)+1)%8);
+                switch(d)
+                {
+                case D::North:     d = D::NorthEast; break;
+                case D::NorthEast: d = D::East;      break;
+                case D::East:      d = D::SouthEast; break;
+                case D::SouthEast: d = D::South;     break;
+                case D::South:     d = D::SouthWest; break;
+                case D::SouthWest: d = D::West;      break;
+                case D::West:      d = D::NorthWest; break;
+                case D::NorthWest: d = D::North;     break;
+                }
             }
-            for(signed i = 0; i > r; --i)
+            for(signed i = 0; i > r; --i) //rotate negatively
             {
-                int n = static_cast<int>(t)-1;
-                t = static_cast<Direction>(n < 0 ? n + 8 : n);
+                switch(d)
+                {
+                case D::North:     d = D::NorthWest; break;
+                case D::NorthEast: d = D::North;     break;
+                case D::East:      d = D::NorthEast; break;
+                case D::SouthEast: d = D::East;      break;
+                case D::South:     d = D::SouthEast; break;
+                case D::SouthWest: d = D::South;     break;
+                case D::West:      d = D::SouthWest; break;
+                case D::NorthWest: d = D::West;      break;
+                }
             }
-            return t;
+            return d;
         }
 
         /**

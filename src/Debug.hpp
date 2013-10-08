@@ -2,6 +2,7 @@
 #define DebuggingLoggerUtilityClass_HeaderPlusPlus
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <streambuf>
@@ -79,7 +80,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::tm *local_time = std::localtime(&curr_time_raw);
 
             std::stringstream time;
-            time << "[" << local_time->tm_hour << ":" << local_time->tm_min << ":" << local_time->tm_sec << "] ";
+            time << "[" << std::put_time(local_time, "%T") << "] ";
 
             return time.str();    
         }

@@ -171,23 +171,25 @@ namespace chesspp
 
             /**
              * Equality comparison operator.
-             * \param other the position to compare to.
-             * \return whether this position equals the other.
+             * \param a the left-hand position.
+             * \param b the right-hand position
+             * \return whether a equals b.
              */
-            typename std::enable_if<std::is_integral<T>::value, bool>::type operator==(Position const &other) const noexcept
+            friend auto operator==(Position const &a, Position const &b) noexcept -> typename std::enable_if<std::is_integral<T>::value, bool>::type
             {
-                return x == other.x && y == other.y;
+                return std::tie(a.x, a.y) == std::tie(b.x, b.y);
             }
 
             /**
              * Less-than comparison operator, to be used for
              * sorting purposes only.
-             * \param other the position to compare to.
-             * \return true if this position comes before the other.
+             * \param a the left-hand position.
+             * \param b the right-hand position.
+             * \return true if a comes before b.
              */
-            bool operator<(Position const &other) const noexcept
+            friend bool operator<(Position const &a, Position const &b) noexcept
             {
-                return std::tie(x, y) < std::tie(other.x, other.y);
+                return std::tie(a.x, a.y) < std::tie(b.x, b.y);
             }
         };
 

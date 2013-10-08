@@ -32,7 +32,7 @@ namespace chesspp
          * \param r the number of times to rotate, may be negative.
          * \return the rotated direction.
          */
-        inline Direction Rotate(Direction d, signed r)
+        inline Direction Rotate(Direction d, signed r) noexcept
         {
             using D = Direction;
             for(signed i = 0; i < r; ++i) //rotate positively
@@ -64,6 +64,27 @@ namespace chesspp
                 }
             }
             return d;
+        }
+        /**
+         * Serializes a direction to a stream in string format.
+         * \param os The stream to serialize to.
+         * \param d the Direction to serialize.
+         * \return os
+         */
+        inline std::ostream &operator<<(std::ostream &os, Direction const &d) noexcept
+        {
+            using D = Direction;
+            switch(d)
+            {
+            case D::North:     return os << "North";
+            case D::NorthEast: return os << "NorthEast";
+            case D::East:      return os << "East";
+            case D::SouthEast: return os << "SouthEast";
+            case D::South:     return os << "South";
+            case D::SouthWest: return os << "SouthWest";
+            case D::West:      return os << "West";
+            case D::NorthWest: return os << "NorthWest";
+            }
         }
 
         /**
@@ -145,19 +166,20 @@ namespace chesspp
              */
             Position &move(Direction const &d, signed times = 1) noexcept
             {
+                using D = Direction;
                 for(signed i = 0; i < times; ++i)
                 {
                     //move forward
                     switch(d)
                     {
-                    case Direction::North:          --y; break;
-                    case Direction::NorthEast: ++x; --y; break;
-                    case Direction::East:      ++x;      break;
-                    case Direction::SouthEast: ++x; --y; break;
-                    case Direction::South:          ++y; break;
-                    case Direction::SouthWest: --x; ++y; break;
-                    case Direction::West:      --x;      break;
-                    case Direction::NorthWest: --x; --y; break;
+                    case D::North:          --y; break;
+                    case D::NorthEast: ++x; --y; break;
+                    case D::East:      ++x;      break;
+                    case D::SouthEast: ++x; ++y; break;
+                    case D::South:          ++y; break;
+                    case D::SouthWest: --x; ++y; break;
+                    case D::West:      --x;      break;
+                    case D::NorthWest: --x; --y; break;
                     }
                 }
                 if(times < 0)

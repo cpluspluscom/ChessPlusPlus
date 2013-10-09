@@ -37,7 +37,10 @@ namespace chesspp
             addTrajectory(Position_t(pos).move(facing));
             if(moves == 0) //first move
             {
-                addTrajectory(Position_t(pos).move(facing, 2));
+                if(board.at(Position_t(pos).move(facing)) == nullptr) //can't jump over pieces
+                {
+                    addTrajectory(Position_t(pos).move(facing, 2));
+                }
             }
             else if(moves == 1 && en_passant) //just moved 2 spaces forward
             {

@@ -31,10 +31,14 @@ namespace chesspp
                         ,Dir::NorthWest})
             {
                 Position_t t;
-                for(signed i = 0; board.valid(t = Position_t(pos).move(d, i)); ++i)
+                for(signed i = 1; board.valid(t = Position_t(pos).move(d, i)); ++i)
                 {
-                    addTrajectory(t);
                     addCapturing(t);
+                    if(board.at(t) == nullptr)
+                    {
+                        addTrajectory(t);
+                    }
+                    else break; //can't jump over pieces
                 }
             }
         }

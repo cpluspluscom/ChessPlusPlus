@@ -38,8 +38,10 @@ include_directories(${CHESSPP_INCLUDE_DIRS})
 # Add C++11 definitions -- list(append...) will not always work.
 set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    # Building with Clang (on OS x at least) requires -stdlib=libc++ flag
-    set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
+    if(APPLE)
+        # Building with Clang (on OS x at least) requires -stdlib=libc++ flag
+        set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
+    endif()
 endif()
  
 # Detect and add SFML

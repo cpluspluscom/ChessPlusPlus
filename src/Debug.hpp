@@ -61,7 +61,8 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             std::ptrdiff_t n = pptr() - pbase();
             pbump(-n);
 
-            return (sink << out.str());
+            sink << out.str();
+            return (!sink.fail() && !sink.bad());
         }
 
         //Overridden streambuf functions

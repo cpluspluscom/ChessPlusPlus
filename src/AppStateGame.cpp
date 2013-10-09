@@ -73,7 +73,7 @@ namespace chesspp
         }
         else
         {
-            [&]
+            if(board.at(p) == nullptr || board.at(p)->suit != selected->suit)[&]
             {
                 if(selected->captures.find(p) != selected->captures.end())
                 {

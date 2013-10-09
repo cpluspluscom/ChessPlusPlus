@@ -32,20 +32,19 @@ namespace chesspp
                 using Position_t = Board::Position_t;
                 using PosList_t = std::set<Position_t>;
 
+                Board &board; //The board this piece belongs to
             private:
+                Position_t p;
                 Suit s;
                 PosList_t traj, capt;
-                Position_t p;
                 std::size_t movenum = 0;
             public:
                 //const aliases for deriving classes
+                Position_t const &pos = p;          //The position on the baord this piece is
                 Suit const &suit = s;               //Which suit the chess piece is
                 PosList_t const &trajectory = traj; //The list of possible Positions (non-capture only)
                 PosList_t const &captures = capt;   //The list of possible Positions (captures only)
-                Position_t const &pos = p;          //The position on the baord this piece is
                 std::size_t const &moves = movenum; //Current move number/number of moves made
-
-                Board &board; //The board this piece belongs to
 
                 Piece(Board &b, Position_t const &pos, Suit const &s);
                 virtual ~Piece() = default;

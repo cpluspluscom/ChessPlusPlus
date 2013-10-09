@@ -56,6 +56,7 @@ namespace chesspp
                 void makeTrajectory()
                 {
                     traj.clear();
+                    capt.clear();
                     addCapturable(pos);
                     calcTrajectory();
                 }

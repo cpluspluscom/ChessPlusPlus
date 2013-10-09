@@ -13,6 +13,7 @@ namespace chesspp
 
     int AppStateGame::id()
     {
+        //What is this for?
         return 1;
     }
 

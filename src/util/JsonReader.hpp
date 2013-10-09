@@ -44,7 +44,7 @@ namespace chesspp
                 }
                 std::string str ((std::istreambuf_iterator<char>(s)), std::istreambuf_iterator<char>());
                 json_settings options {0, 0, nullptr, nullptr, nullptr};
-                char error[128]; //128 from json.c implementation, subject to change
+                char error[json_error_max];
                 json = json_parse_ex(&options, str.c_str(), str.length(), error);
                 if(json == nullptr)
                 {

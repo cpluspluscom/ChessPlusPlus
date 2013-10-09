@@ -35,7 +35,13 @@ endforeach()
 list(REMOVE_DUPLICATES CHESSPP_INCLUDE_DIRS)
 include_directories(${CHESSPP_INCLUDE_DIRS})
 
-list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
+# Add C++11 definitions
+set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+    # Building with Clang (on OS x at least) requires -stdlib=libc++ flag
+    set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
+endif()
+#list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
  
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})

@@ -13,8 +13,8 @@ namespace chesspp
         std::string e; //message
 
     public:
-        Exception(std::string const &e = "") noexcept(noexcept(std::string(std::string(""))))
-        : e(e)
+        Exception(std::string const &e_ = "") noexcept(noexcept(std::string(std::string(""))))
+        : e(e_)
         {
         }
         Exception(Exception const &) = default;

@@ -118,9 +118,10 @@ namespace chesspp
                  * Constructs this NestedValue from a json_value.
                  * Note that this constructor is private and for
                  * implementation use only.
-                 * \param value The json_value this instance shall represent.
+                 * \param value_ The json_value this instance shall represent.
                  */
-                NestedValue(json_value const &value) noexcept : value(value)
+                NestedValue(json_value const &value_) noexcept
+                : value(value_)
                 {
                 }
                 NestedValue &operator=(NestedValue const &) noexcept = delete;

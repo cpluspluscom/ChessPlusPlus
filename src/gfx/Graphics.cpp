@@ -9,8 +9,8 @@ namespace chesspp
 {
     namespace gfx
     {
-        GraphicsHandler::GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
-        : display(display)
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow &disp, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
+        : display(disp)
         , gfx_config(gfxc)
         , board_config(bc)
         , board        (TextureManager::instance().load(gfx_config.spritePath("board", "board"        )))

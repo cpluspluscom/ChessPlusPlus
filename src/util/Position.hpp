@@ -116,12 +116,12 @@ namespace chesspp
             /**
              * Initializes x and y to the provided values,
              * or from T's default constructor otherwise.
-             * \param x the x coordinate of this position, or T()
-             * \param y the y coordinate of this position, or T()
+             * \param x_ the x coordinate of this position, or T()
+             * \param y_ the y coordinate of this position, or T()
              */
-            Position(T x = T(), T y = T()) noexcept
-            : x(x)
-            , y(y)
+            Position(T x_ = T(), T y_ = T()) noexcept
+            : x(x_)
+            , y(y_)
             {
             }
             Position(Position const &) = default;

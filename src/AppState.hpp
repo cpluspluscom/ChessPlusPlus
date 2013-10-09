@@ -10,8 +10,8 @@ namespace chesspp
     class AppState : public virtual SFMLEventHandler
     {
     public:
-        AppState(sf::RenderWindow &display)
-        : display(display)
+        AppState(sf::RenderWindow &display_)
+        : display(display_)
         {
         }
         virtual ~AppState() = default;

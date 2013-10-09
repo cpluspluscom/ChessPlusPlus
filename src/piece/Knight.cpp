@@ -7,8 +7,8 @@ namespace chesspp
 {
     namespace piece
     {
-        Knight::Knight(board::Board &b, Position_t const &pos, Suit const &s)
-        : Piece(b, pos, s)
+        Knight::Knight(board::Board &b, Position_t const &pos_, Suit const &s_)
+        : Piece(b, pos_, s_)
         {
         }
 
@@ -21,7 +21,7 @@ namespace chesspp
         {
             //Knights can only move in 3-long 2-short L shapes
 
-            for(Position_t p : {Position_t( 1, -2)
+            for(Position_t m : {Position_t( 1, -2)
                                ,Position_t( 2, -1)
                                ,Position_t( 2,  1)
                                ,Position_t( 1,  2)
@@ -30,7 +30,7 @@ namespace chesspp
                                ,Position_t(-2, -1)
                                ,Position_t(-1, -2)})
             {
-                Position_t t = Position_t(pos).move(p.x, p.y);
+                Position_t t = Position_t(pos).move(m.x, m.y);
                 addTrajectory(t);
                 addCapturing(t);
             }

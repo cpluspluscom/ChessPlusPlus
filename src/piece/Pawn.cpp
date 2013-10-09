@@ -6,8 +6,8 @@ namespace chesspp
 {
     namespace piece
     {
-        Pawn::Pawn(board::Board &b, Position_t const &pos, Suit const &s, util::Direction const &face)
-        : Piece(b, pos, s)
+        Pawn::Pawn(board::Board &b, Position_t const &pos_, Suit const &s_, util::Direction const &face)
+        : Piece(b, pos_, s_)
         , facing(face)
         {
         }
@@ -17,9 +17,9 @@ namespace chesspp
             return board.config.texturePaths().at(suit).at("Pawn");
         }
 
-        void Pawn::tick(Position_t const &p)
+        void Pawn::tick(Position_t const &m)
         {
-            if(moves == 1 && p != pos)
+            if(moves == 1 && m != pos)
             { //moved just happened, en passant no longer allowed
                 en_passant = false;
             }

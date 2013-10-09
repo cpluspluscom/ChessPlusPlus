@@ -7,8 +7,8 @@ namespace chesspp
 {
     namespace piece
     {
-        King::King(board::Board &b, Position_t const &pos, Suit const &s)
-        : Piece(b, pos, s)
+        King::King(board::Board &b, Position_t const &pos_, Suit const &s_)
+        : Piece(b, pos_, s_)
         , castling(b.getInteraction<board::Castling>())
         {
             //not yet moved, can castle

@@ -115,7 +115,7 @@ namespace chesspp
 
             private:
                 //Called with the position of the piece that just moved
-                virtual void tick(Position_t const &p)
+                virtual void tick(Position_t const &m)
                 {
                 }
 
@@ -157,10 +157,10 @@ namespace chesspp
             class Interaction
             {
             public:
-                Board &b;
+                Board &board;
 
                 Interaction(Board &b)
-                : b(b)
+                : board(b)
                 {
                 }
                 virtual ~Interaction() = 0;

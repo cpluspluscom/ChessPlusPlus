@@ -81,5 +81,50 @@ if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
     file(COPY res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
 endif()
 
-add_executable (chesspp ${CHESSPP_SOURCES})
+# Application bundle if on an apple machine
+if(APPLE)
+    # Set bundle properties
+    set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)
+    set(MACOSX_BUNDLE_INFO_STRING ChessPlusPlus)
+    set(MACOSX_BUNDLE_SHORT_VERSION_STRING 0.0.1)
+    set(MACOSX_BUNDLE_BUNDLE_VERSION 0.0.1)
+    set(MACOSX_BUNDLE_GUI_IDENTIFIER com.cplusplus.chesspp)
+
+    # Throw all the resource paths into a variable
+    file(GLOB_RECURSE CHESSPP_RESOURCES ${PROJECT_SOURCE_DIR}/res/*)
+    list(APPEND CHESSPP_RESOURCES ${PROJECT_SOURCE_DIR}/config.json)
+
+    # Make sure each resource file gets put in the right directory
+    # in the application bundle
+    FOREACH(file ${CHESSPP_RESOURCES})
+        file(RELATIVE_PATH relPath ${PROJECT_SOURCE_DIR} ${file})
+        string(FIND ${relPath} "/" inSubDirectory)
+        if(${inSubDirectory} GREATER 0)
+            set_source_files_properties(
+                ${file}
+                PROPERTIES
+                MACOSX_PACKAGE_LOCATION
+                Resources/${relPath}
+                )
+        else()
+            set_source_files_properties(
+                ${file}
+                PROPERTIES
+                MACOSX_PACKAGE_LOCATION
+                Resources
+                )
+        endif()
+    ENDFOREACH()
+
+    add_executable(
+        chesspp 
+        MACOSX_BUNDLE 
+        ${CHESSPP_SOURCES} 
+        ${CHESSPP_RESOURCES}
+        ${CHESSPP_CONFIG}
+        )    
+else()
+    add_executable (chesspp ${CHESSPP_SOURCES})
+endif()
+
 target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})

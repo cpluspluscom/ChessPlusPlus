@@ -74,5 +74,12 @@ if(WIN32)
     endif()
 endif()
 
+# Copy resources to build directory if build directory is 
+# different from source directory.
+if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+    configure_file(config.json ${CMAKE_CURRENT_BINARY_DIR}/config.json COPYONLY)
+    file(COPY res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+endif()
+
 add_executable (chesspp ${CHESSPP_SOURCES})
 target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})

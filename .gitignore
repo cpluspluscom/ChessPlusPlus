@@ -13,9 +13,12 @@
 *.dll
 *.log
 *.bin
+*.cmake
 
 /chesspp
 debug.txt
+Makefile
+CMakeCache.txt
 
 ChessPlusPlus/
 Debug/
@@ -25,3 +28,5 @@ bin/
 obj/
 deps.debug/
 objs.debug/
+CMakeFiles/
+

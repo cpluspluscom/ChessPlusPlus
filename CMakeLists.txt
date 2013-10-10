@@ -100,20 +100,16 @@ if(APPLE)
         file(RELATIVE_PATH relPath ${PROJECT_SOURCE_DIR} ${file})
         string(FIND ${relPath} "/" inSubDirectory)
         if(${inSubDirectory} GREATER 0)
-            set_source_files_properties(
-                ${file}
-                PROPERTIES
-                MACOSX_PACKAGE_LOCATION
-                Resources/${relPath}
-                )
+            set(PACKAGE_LOCATION Resources/${relPath})
         else()
-            set_source_files_properties(
-                ${file}
-                PROPERTIES
-                MACOSX_PACKAGE_LOCATION
-                Resources
-                )
+            set(PACKAGE_LOCATION Resources)
         endif()
+        set_source_files_properties(
+            ${file}
+            PROPERTIES
+            MACOSX_PACKAGE_LOCATION
+            ${PACKAGE_LOCATION}
+            )
     ENDFOREACH()
 
     add_executable(

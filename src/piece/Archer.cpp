@@ -29,6 +29,16 @@ namespace chesspp
                 Position_t t = Position_t(pos).move(d);
                 addTrajectory(t);
             }
+            //Archers can be captured at four spots around them
+            using Dir = util::Direction;
+            for(Dir d : {Dir::North
+                        ,Dir::East
+                        ,Dir::South
+                        ,Dir::West})
+            {
+                Position_t t = Position_t(pos).move(d);
+                addCapturable(t);
+            }
             //Archers can only capture at a circle around them
             for(Position_t m : {Position_t( 1, -2)
                                ,Position_t( 2, -1)

@@ -6,6 +6,9 @@
 #include "piece/Bishop.hpp"
 #include "piece/King.hpp"
 #include "piece/Queen.hpp"
+#ifdef CHESSPP_ENABLE_EXTRA_PIECES
+#include "piece/Archer.hpp"
+#endif
 
 namespace chesspp
 {
@@ -49,6 +52,13 @@ namespace chesspp
             {
                 return board::Board::Pieces_t::mapped_type(new piece::Queen(b, p, s));
             }}
+        #ifdef CHESSPP_ENABLE_EXTRA_PIECES
+            ,
+            {"Archer", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {
+                return board::Board::Pieces_t::mapped_type(new piece::Archer(b, p, s));
+            }}
+        #endif
         })
         {
         }

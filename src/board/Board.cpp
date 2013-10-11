@@ -68,13 +68,21 @@ namespace chesspp
             }
             if(occupied(target->second))
             {
-                std::cerr << "target iterator to move to contains a piece " << std::endl;
+                std::cerr << "target iterator to move to is occupied:" << std::endl;
+                for(auto &p : pieces)
+                {
+                    if(p->pos == target->second)
+                    {
+                        std::cerr << "\t" << *p << std::endl;
+                    }
+                }
                 return false;
             }
 
+            std::clog << "Moved piece at " << (*source)->pos << std::flush;
             (*source)->move(target->second);
             update(target->second);
-            std::clog << "Moved piece at " << (*source)->pos << " to " << target->second << std::endl;
+            std::clog << " to " << target->second << std::endl;
             return true;
         }
     }

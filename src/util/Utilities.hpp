@@ -4,6 +4,7 @@
 #include <type_traits>
 #include <memory>
 #include <iterator>
+#include <utility>
 
 namespace chesspp
 {
@@ -124,6 +125,29 @@ namespace chesspp
                 return a.it == b.it;
             }
         };
+    }
+}
+namespace std //for std::begin and std::end specializations
+{
+    /**
+     * Allows iterating over the return value of equal_range().
+     * \tparam Iter the iterator type, to be decuded by the compiler.
+     * \param p the return value of equal_range().
+     */
+    template<typename Iter, typename = typename iterator_traits<Iter>::iterator_category>
+    Iter begin(pair<Iter, Iter> const &p)
+    {
+        return p.first;
+    }
+    /**
+     * Allows iterating over the return value of equal_range().
+     * \tparam Iter the iterator type, to be decuded by the compiler.
+     * \param p the return value of equal_range().
+     */
+    template<typename Iter, typename = typename iterator_traits<Iter>::iterator_category>
+    Iter end(pair<Iter, Iter> const &p)
+    {
+        return p.second;
     }
 }
 

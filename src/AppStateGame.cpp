@@ -85,36 +85,41 @@ namespace chesspp
         {
             if(find(p) == board.end() || (*find(p))->suit != (*selected)->suit)[&]
             {
-                if(std::find_if(board.pieceCapturings().begin(),
-                                board.pieceCapturings().end(),
-                                [&](board::Board::Movements_t::value_type const &m)
-                                {
-                                    return m.first == selected && m.second == p;
-                                }) != board.pieceCapturings().end())
                 {
-                    for(auto it = board.pieceCapturables().begin(); it != board.pieceCapturables().end(); ++it)
+                    auto it = std::find_if(board.pieceCapturings().begin(),
+                                           board.pieceCapturings().end(),
+                                           [&](board::Board::Movements_t::value_type const &m)
+                                           {
+                                               return m.first == selected && m.second == p;
+                                           });
+                    if(it != board.pieceCapturings().end())
                     {
-                        if(it->first == selected && it->second == p)
+                        for(auto jt = board.pieceCapturables().begin(); jt != board.pieceCapturables().end(); ++jt)
                         {
-                            if(board.capture(selected, it))
+                            if(jt->second == p)
                             {
-                                nextTurn();
-                                return;
+                                if(board.capture(selected, it))
+                                {
+                                    nextTurn();
+                                    return;
+                                }
                             }
                         }
                     }
                 }
-                auto it = std::find_if(board.pieceTrajectories().begin(),
-                                       board.pieceTrajectories().end(),
-                                       [&](board::Board::Movements_t::value_type const &m)
-                                       {
-                                           return m.first == selected && m.second == p;
-                                       });
-                if(it != board.pieceTrajectories().end())
                 {
-                    if(board.move(selected, it))
+                    auto it = std::find_if(board.pieceTrajectories().begin(),
+                                           board.pieceTrajectories().end(),
+                                           [&](board::Board::Movements_t::value_type const &m)
+                                           {
+                                               return m.first == selected && m.second == p;
+                                           });
+                    if(it != board.pieceTrajectories().end())
                     {
-                        nextTurn();
+                        if(board.move(selected, it))
+                        {
+                            nextTurn();
+                        }
                     }
                 }
             }();

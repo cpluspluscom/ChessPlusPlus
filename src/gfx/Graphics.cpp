@@ -49,16 +49,12 @@ namespace chesspp
                 {
                     if(!p.board.occupied(it.second))
                     {
-                        bool capturable = false;
-                        for(auto const &c : p.board.pieceCapturables())
-                        {
-                            if(c.second == it.second && (*c.first)->suit != p.suit)
-                            {
-                                capturable = true;
-                                break;
-                            }
-                        }
-                        if(!capturable)
+                        if(std::find_if(p.board.pieceCapturables().begin(),
+                                        p.board.pieceCapturables().end(),
+                                        [&](board::Board::Movements_t::value_type const &m)
+                                        {
+                                            return m.second == it.second && (*m.first)->suit != p.suit;
+                                        }) == p.board.pieceCapturables().end())
                         {
                             drawSpriteAtCell(sprite, it.second.x, it.second.y);
                         }

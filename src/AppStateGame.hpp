@@ -25,12 +25,13 @@ namespace chesspp
         gfx::GraphicsHandler graphics;
         board::Board board;
 
-        board::Piece *selected = nullptr;
+        board::Board::Pieces_t::iterator selected = board.end();
         board::Board::Position_t p;
         using Players_t = std::set<board::Board::Suit>;
         Players_t players;
         Players_t::const_iterator turn;
         void nextTurn();
+        board::Board::Pieces_t::iterator find(board::Board::Position_t const &pos) const;
 
     public:
         AppStateGame(Application *app, sf::RenderWindow &display);

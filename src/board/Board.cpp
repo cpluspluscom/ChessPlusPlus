@@ -16,45 +16,48 @@ namespace chesspp
 
         void Board::update(Position_t const &pos)
         {
-            captures.clear();
+            trajectories.clear();
+            capturings.clear();
+            capturables.clear();
             for(auto &p : pieces)
             {
-                p.second->tick(pos);
-                p.second->makeTrajectory();
+                p->tick(pos);
+                p->makeTrajectory();
             }
         }
 
-        bool Board::capture(Position_t source, Captures_t::const_iterator target)
+        bool Board::capture(Pieces_t::iterator source, Movements_t::const_iterator target)
         {
-            if(pieces.find(source) == pieces.end())
+            if(source == pieces.end())
             {
-                std::cerr << "source position of piece to move does not contain a piece: " << source << std::endl;
+                std::cerr << "source iterator of piece to capture with is invalid" << std::endl;
                 return false;
             }
 
             pieces.erase(target->first); //remove the target
-            return move(source, target->second); //re-use existing code
+            return move(source, target); //re-use existing code
         }
-        bool Board::move(Position_t source, Position_t target)
+        bool Board::move(Pieces_t::iterator source, Movements_t::const_iterator target)
         {
-            if(pieces.find(source) == pieces.end())
+            if(source == pieces.end())
             {
-                std::cerr << "source position of piece to move does not contain a piece: " << source << std::endl;
+                std::cerr << "source iterator of piece to move is invalid" << std::endl;
                 return false;
             }
-            if(pieces.find(target) != pieces.end())
+            if(target == trajectories.end() && target == capturings.end())
             {
-                std::cerr << "target position to move to contains a piece: " << target << " -> " << *pieces[target] << std::endl;
+                std::cerr << "target iterator of position to move to is invalid" << std::endl;
+                return false;
+            }
+            if(target->first != pieces.end())
+            {
+                std::cerr << "target iterator to move to contains a piece: " << target->second << " -> " << **(target->first) << std::endl;
                 return false;
             }
 
-            auto &tomove = *pieces[source]; //grab pieces to be moved
-            pieces[target].swap(pieces[source]); //swap unique_ptrs
-            pieces.erase(source); //remove empty unique_ptr
-            tomove.move(target); //update position
-
-            update(tomove.pos);
-            std::clog << "Moved piece at " << source << " to " << target << std::endl;
+            (*source)->move(target->second);
+            update(target->second);
+            std::clog << "Moved piece at " << (*source)->pos << " to " << target->second << std::endl;
             return true;
         }
     }

@@ -2,6 +2,7 @@
 #define MiscellaneousUtilities_HeaderPlusPlus
 
 #include <type_traits>
+#include <memory>
 #include <iterator>
 
 namespace chesspp
@@ -23,6 +24,28 @@ namespace chesspp
         -> typename std::enable_if<std::is_base_of<T, U>::value || std::is_base_of<U, T>::value, decltype(!(t == u))>::type
         {
             return !(t == u);
+        }
+        /**
+         * Allows comparison of std::unique_ptr and pointer.
+         * \tparam T the type that std::unique_ptr wraps
+         * \param up the std::unique_ptr
+         * \param p the pointer
+         */
+        template<typename T>
+        bool operator==(std::unique_ptr<T> const &up, T const *p) noexcept(noexcept(up.get() == p))
+        {
+            return up.get() == p;
+        }
+        /**
+         * Allows comparison of std::unique_ptr and pointer.
+         * \tparam T the type that std::unique_ptr wraps
+         * \param p the pointer
+         * \param up the std::unique_ptr
+         */
+        template<typename T>
+        bool operator==(T const *p, std::unique_ptr<T> const &up) noexcept(noexcept(p == up.get()))
+        {
+            return p == up.get();
         }
     }
     namespace util

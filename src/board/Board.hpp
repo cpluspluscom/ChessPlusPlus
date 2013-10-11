@@ -74,7 +74,7 @@ namespace chesspp
                 {
                     if(board.valid(tile))
                     {
-                        board.trajectories.insert(Board::Movements_t::value_type(std::find(std::begin(board.pieces), std::end(board.pieces), this), tile));
+                        board.trajectories.insert(Board::Movements_t::value_type(self(), tile));
                     }
                 }
                 //further deriving classes can call this to remove a trajectory calculated by their parent class
@@ -96,7 +96,7 @@ namespace chesspp
                 {
                     if(board.valid(tile))
                     {
-                        board.capturings.insert(Board::Movements_t::value_type(std::find(std::begin(board.pieces), std::end(board.pieces), this), tile));
+                        board.capturings.insert(Board::Movements_t::value_type(self(), tile));
                     }
                 }
                 //further deriving classes can call this to remove a capturable tile calculated by their parent class

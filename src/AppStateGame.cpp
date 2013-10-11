@@ -89,16 +89,18 @@ namespace chesspp
                                 board.pieceCapturings().end(),
                                 [&](board::Board::Movements_t::value_type const &m)
                                 {
-                                    return m.second == p;
+                                    return m.first == selected && m.second == p;
                                 }) != board.pieceCapturings().end())
                 {
                     for(auto it = board.pieceCapturables().begin(); it != board.pieceCapturables().end(); ++it)
                     {
-                        if(it->second == p)
+                        if(it->first == selected && it->second == p)
                         {
-                            board.capture(selected, it);
-                            nextTurn();
-                            return;
+                            if(board.capture(selected, it))
+                            {
+                                nextTurn();
+                                return;
+                            }
                         }
                     }
                 }
@@ -106,12 +108,14 @@ namespace chesspp
                                        board.pieceTrajectories().end(),
                                        [&](board::Board::Movements_t::value_type const &m)
                                        {
-                                           return m.second == p;
+                                           return m.first == selected && m.second == p;
                                        });
                 if(it != board.pieceTrajectories().end())
                 {
-                    board.move(selected, it);
-                    nextTurn();
+                    if(board.move(selected, it))
+                    {
+                        nextTurn();
+                    }
                 }
             }();
             selected = board.end(); //deselect

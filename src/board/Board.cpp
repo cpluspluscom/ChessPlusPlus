@@ -33,8 +33,20 @@ namespace chesspp
                 std::cerr << "source iterator of piece to capture with is invalid" << std::endl;
                 return false;
             }
+            if(source != target->first)
+            {
+                std::cerr << "target iterator does not match source iterator, source{" << **source << "}, target {" << **(target->first) << "}" << std::endl;
+                return false;
+            }
 
-            pieces.erase(target->first); //remove the target
+            for(auto it = pieces.begin(); it != pieces.end(); )
+            {
+                if((*it)->pos == target->second)
+                {
+                    it = pieces.erase(it);
+                }
+                else ++it;
+            }
             return move(source, target); //re-use existing code
         }
         bool Board::move(Pieces_t::iterator source, Movements_t::const_iterator target)
@@ -46,12 +58,17 @@ namespace chesspp
             }
             if(target == trajectories.end() && target == capturings.end())
             {
-                std::cerr << "target iterator of position to move to is invalid" << std::endl;
+                std::cerr << "target iterator of piece to move to is invalid" << std::endl;
                 return false;
             }
-            if(target->first != pieces.end())
+            if(source != target->first)
             {
-                std::cerr << "target iterator to move to contains a piece: " << target->second << " -> " << **(target->first) << std::endl;
+                std::cerr << "target iterator does not match source iterator, source{" << **source << "}, target {" << **(target->first) << "}" << std::endl;
+                return false;
+            }
+            if(occupied(target->second))
+            {
+                std::cerr << "target iterator to move to contains a piece " << std::endl;
                 return false;
             }
 

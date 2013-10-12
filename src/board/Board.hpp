@@ -333,7 +333,7 @@ namespace chesspp
             void update(Position_t const &pos);
         public:
             //Capture a capturable piece
-            bool capture(Pieces_t::iterator source, Movements_t::const_iterator target);
+            bool capture(Pieces_t::iterator source, Movements_t::const_iterator target, Movements_t::const_iterator capturable);
             //Move a piece without capturing
             bool move(Pieces_t::iterator source, Movements_t::const_iterator target);
 

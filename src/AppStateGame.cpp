@@ -98,7 +98,7 @@ namespace chesspp
                         {
                             if(jt->second == p)
                             {
-                                if(board.capture(selected, it))
+                                if(board.capture(selected, it, jt))
                                 {
                                     nextTurn();
                                     return;

@@ -26,7 +26,7 @@ namespace chesspp
             }
         }
 
-        bool Board::capture(Pieces_t::iterator source, Movements_t::const_iterator target)
+        bool Board::capture(Pieces_t::iterator source, Movements_t::const_iterator target, Movements_t::const_iterator capturable)
         {
             if(source == pieces.end())
             {
@@ -38,15 +38,13 @@ namespace chesspp
                 std::cerr << "target iterator does not match source iterator, source{" << **source << "}, target {" << **(target->first) << "}" << std::endl;
                 return false;
             }
-
-            for(auto it = pieces.begin(); it != pieces.end(); )
+            if(capturable->second != target->second)
             {
-                if((*it)->pos == target->second)
-                {
-                    it = pieces.erase(it);
-                }
-                else ++it;
+                std::cerr << "capturable may not be captured at target" << std::endl;
             }
+
+            pieces.erase(capturable->first);
+            std::clog << "Capture: ";
             return move(source, target); //re-use existing code
         }
         bool Board::move(Pieces_t::iterator source, Movements_t::const_iterator target)

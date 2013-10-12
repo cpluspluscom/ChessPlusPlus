@@ -45,39 +45,40 @@ namespace chesspp
         {
             {
                 auto &sprite = (enemy? enemy_move : valid_move);
-                for(auto const &pos : p.trajectory)
+                for(auto const &it : p.board.pieceTrajectory(p))
                 {
-                    if(p.board.at(pos) == nullptr)
+                    if(!p.board.occupied(it.second))
                     {
-                        bool capturable = false;
-                        for(auto const &c : p.board.Captures())
+                        if(std::find_if(p.board.pieceCapturables().begin(),
+                                        p.board.pieceCapturables().end(),
+                                        [&](board::Board::Movements_t::value_type const &m)
+                                        {
+                                            return m.second == it.second && (*m.first)->suit != p.suit;
+                                        }) == p.board.pieceCapturables().end())
                         {
-                            if(c.second == pos && c.first->second->suit != p.suit)
-                            {
-                                capturable = true;
-                                break;
-                            }
-                        }
-                        if(!capturable)
-                        {
-                            drawSpriteAtCell(sprite, pos.x, pos.y);
+                            drawSpriteAtCell(sprite, it.second.x, it.second.y);
                         }
                     }
                 }
             }
             {
                 auto &sprite = (enemy? enemy_capture : valid_capture);
-                for(auto const &pos : p.captures)
+                for(auto const &it : p.board.pieceCapturing(p))
                 {
-                    auto piece = p.board.at(pos);
-                    for(auto const &c : p.board.Captures())
+                    for(auto const &c : p.board.pieceCapturables())
                     {
-                        if(c.second == pos && c.first->second->suit != p.suit)
+                        if(c.second == it.second && (*c.first)->suit != p.suit)
                         {
-                            drawSpriteAtCell(sprite, pos.x, pos.y);
-                            if(piece != nullptr)
+                            drawSpriteAtCell(sprite, it.second.x, it.second.y);
+                            auto jt = std::find_if(p.board.pieceTrajectories().begin(),
+                                                   p.board.pieceTrajectories().end(),
+                                                   [&](board::Board::Movements_t::value_type const &m)
+                                                   {
+                                                       return (*m.first)->pos == it.second;
+                                                   });
+                            if(jt != p.board.pieceTrajectories().end())
                             {
-                                drawPiece(*piece); //redraw
+                                drawPiece(**(jt->first)); //redraw
                             }
                             break;
                         }
@@ -91,7 +92,7 @@ namespace chesspp
 
             for(auto const &pp : b)
             {
-                drawPiece(*pp.second);
+                drawPiece(*pp);
             }
         }
     }

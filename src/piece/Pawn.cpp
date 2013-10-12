@@ -37,7 +37,7 @@ namespace chesspp
             addTrajectory(Position_t(pos).move(facing));
             if(moves == 0) //first move
             {
-                if(board.at(Position_t(pos).move(facing)) == nullptr) //can't jump over pieces
+                if(!board.occupied(Position_t(pos).move(facing))) //can't jump over pieces
                 {
                     addTrajectory(Position_t(pos).move(facing, 2));
                 }

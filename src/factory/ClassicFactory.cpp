@@ -18,7 +18,7 @@ namespace chesspp
         : board_config(bc)
         , cf(
         {
-            {"Pawn", [&](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Pawn", [&](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
                 auto d = util::Direction::East; //should not happen
                 auto val = bc.metadata("pawn facing", p.y, p.x);
@@ -30,33 +30,33 @@ namespace chesspp
                 {
                     d = util::Direction::South;
                 }
-                return board::Board::Pieces_t::mapped_type(new piece::Pawn(b, p, s, d));
+                return board::Board::Pieces_t::value_type(new piece::Pawn(b, p, s, d));
             }},
-            {"Rook", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Rook", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::Rook(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::Rook(b, p, s));
             }},
-            {"Knight", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Knight", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::Knight(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::Knight(b, p, s));
             }},
-            {"Bishop", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Bishop", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::Bishop(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::Bishop(b, p, s));
             }},
-            {"King", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"King", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::King(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::King(b, p, s));
             }},
-            {"Queen", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Queen", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::Queen(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::Queen(b, p, s));
             }}
         #ifdef CHESSPP_ENABLE_EXTRA_PIECES
             ,
-            {"Archer", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::mapped_type
+            {"Archer", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::mapped_type(new piece::Archer(b, p, s));
+                return board::Board::Pieces_t::value_type(new piece::Archer(b, p, s));
             }}
         #endif
         })

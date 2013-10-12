@@ -3,6 +3,7 @@
 #include "util/Utilities.hpp"
 
 #include <iostream>
+#include <algorithm>
 
 namespace chesspp
 {
@@ -35,19 +36,28 @@ namespace chesspp
         }
     }
 
+    board::Board::Pieces_t::iterator AppStateGame::find(board::Board::Position_t const &pos) const
+    {
+        return std::find_if(board.begin(), board.end(),
+        [&](std::unique_ptr<board::Piece> const &up) -> bool
+        {
+            return up->pos == pos;
+        });
+    }
+
     void AppStateGame::OnRender()
     {
         graphics.drawBoard(board);
-        if(selected != nullptr)
+        if(selected != board.end())
         {
-            graphics.drawTrajectory(*selected);
+            graphics.drawTrajectory(**selected);
         }
         if(board.valid(p))
         {
-            auto piece = board.at(p);
-            if(piece != nullptr)
+            auto piece = find(p);
+            if(piece != board.end())
             {
-                graphics.drawTrajectory(*piece, piece->suit != *turn);
+                graphics.drawTrajectory(**piece, (*piece)->suit != *turn);
             }
         }
     }
@@ -63,37 +73,57 @@ namespace chesspp
     void AppStateGame::OnLButtonReleased(int x, int y) noexcept
     {
         if(!board.valid(p)) return;
-        if(selected == nullptr)
+        if(selected == board.end())
         {
-            selected = board.at(p); //doesn't matter if nullptr, selected won't change then
-            if(selected != nullptr && selected->suit != *turn)
+            selected = find(p); //doesn't matter if board.end(), selected won't change then
+            if(selected != board.end() && (*selected)->suit != *turn)
             {
-                selected = nullptr; //can't select enemy pieces
+                selected = board.end(); //can't select enemy pieces
             }
         }
         else
         {
-            if(board.at(p) == nullptr || board.at(p)->suit != selected->suit)[&]
+            if(find(p) == board.end() || (*find(p))->suit != (*selected)->suit)[&]
             {
-                if(selected->captures.find(p) != selected->captures.end())
                 {
-                    for(auto it = board.Captures().cbegin(); it != board.Captures().cend(); ++it)
+                    auto it = std::find_if(board.pieceCapturings().begin(),
+                                           board.pieceCapturings().end(),
+                                           [&](board::Board::Movements_t::value_type const &m)
+                                           {
+                                               return m.first == selected && m.second == p;
+                                           });
+                    if(it != board.pieceCapturings().end())
                     {
-                        if(it->second == p)
+                        for(auto jt = board.pieceCapturables().begin(); jt != board.pieceCapturables().end(); ++jt)
                         {
-                            board.capture(selected->pos, it);
-                            nextTurn();
-                            return;
+                            if(jt->second == p)
+                            {
+                                if(board.capture(selected, it, jt))
+                                {
+                                    nextTurn();
+                                    return;
+                                }
+                            }
                         }
                     }
                 }
-                if(selected->trajectory.find(p) != selected->trajectory.end())
                 {
-                    board.move(selected->pos, p);
-                    nextTurn();
+                    auto it = std::find_if(board.pieceTrajectories().begin(),
+                                           board.pieceTrajectories().end(),
+                                           [&](board::Board::Movements_t::value_type const &m)
+                                           {
+                                               return m.first == selected && m.second == p;
+                                           });
+                    if(it != board.pieceTrajectories().end())
+                    {
+                        if(board.move(selected, it))
+                        {
+                            nextTurn();
+                        }
+                    }
                 }
             }();
-            selected = nullptr; //deselect
+            selected = board.end(); //deselect
         }
     }
 }

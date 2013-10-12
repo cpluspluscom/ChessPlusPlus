@@ -74,7 +74,7 @@ namespace chesspp
                                                    p.board.pieceTrajectories().end(),
                                                    [&](board::Board::Movements_t::value_type const &m)
                                                    {
-                                                       return m.second == it.second;
+                                                       return (*m.first)->pos == it.second;
                                                    });
                             if(jt != p.board.pieceTrajectories().end())
                             {

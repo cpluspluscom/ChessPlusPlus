@@ -16,6 +16,7 @@ namespace chesspp
          */
         enum class Direction
         {
+            None,
             North,
             NorthEast,
             East,
@@ -84,7 +85,23 @@ namespace chesspp
             case D::SouthWest: return os << "SouthWest";
             case D::West:      return os << "West";
             case D::NorthWest: return os << "NorthWest";
+            case D::None:      return os << "None";
             }
+        }
+        inline std::istream &operator>>(std::istream &is, Direction &d)
+        {
+            using D = Direction;
+            std::string ds;
+            is >> ds;
+            if     (ds == "North"    ) return (d = D::North    ), is;
+            else if(ds == "NorthEast") return (d = D::NorthEast), is;
+            else if(ds == "East"     ) return (d = D::East     ), is;
+            else if(ds == "SouthEast") return (d = D::SouthEast), is;
+            else if(ds == "South"    ) return (d = D::South    ), is;
+            else if(ds == "SouthWest") return (d = D::SouthWest), is;
+            else if(ds == "West"     ) return (d = D::West     ), is;
+            else if(ds == "NorthWest") return (d = D::NorthWest), is;
+            else                       return (d = D::None     ), is;
         }
 
         /**

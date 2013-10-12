@@ -10,6 +10,8 @@
 #include "piece/Archer.hpp"
 #endif
 
+#include <sstream>
+
 namespace chesspp
 {
     namespace factory
@@ -20,16 +22,8 @@ namespace chesspp
         {
             {"Pawn", [&](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type
             {
-                auto d = util::Direction::East; //should not happen
-                auto val = bc.metadata("pawn facing", p.y, p.x);
-                if(std::string(val) == "North")
-                {
-                    d = util::Direction::North;
-                }
-                else if(std::string(val) == "South")
-                {
-                    d = util::Direction::South;
-                }
+                auto d = util::Direction::None;
+                std::istringstream {std::string(bc.metadata("pawn facing", p.y, p.x))} >> d;
                 return board::Board::Pieces_t::value_type(new piece::Pawn(b, p, s, d));
             }},
             {"Rook", [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s) -> board::Board::Pieces_t::value_type

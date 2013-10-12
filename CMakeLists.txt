@@ -74,13 +74,6 @@ if(WIN32)
     endif()
 endif()
 
-# Copy resources to build directory if build directory is 
-# different from source directory.
-if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
-    configure_file(config.json ${CMAKE_CURRENT_BINARY_DIR}/config.json COPYONLY)
-    file(COPY res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
-endif()
-
 # Application bundle if on an apple machine
 if(APPLE)
     # Set bundle properties
@@ -118,9 +111,15 @@ if(APPLE)
         MACOSX_BUNDLE 
         ${CHESSPP_SOURCES} 
         ${CHESSPP_RESOURCES}
-        ${CHESSPP_CONFIG}
         )    
 else()
+    # Copy resources to build directory if build directory is 
+    # different from source directory.
+    if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+        configure_file(config.json ${CMAKE_CURRENT_BINARY_DIR}/config.json COPYONLY)
+        file(COPY res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+    endif()
+
     add_executable (chesspp ${CHESSPP_SOURCES})
 endif()
 

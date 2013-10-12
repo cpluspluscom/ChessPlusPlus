@@ -62,15 +62,15 @@ namespace chesspp
         }
     }
 
-    void AppStateGame::OnMouseMoved(int x, int y) noexcept
+    void AppStateGame::OnMouseMoved(int x, int y)
     {
         p.x = static_cast<board::Board::Position_t::value_type>(x/board.config.cellWidth());
         p.y = static_cast<board::Board::Position_t::value_type>(y/board.config.cellHeight());
     }
-    void AppStateGame::OnLButtonPressed(int x, int y) noexcept
+    void AppStateGame::OnLButtonPressed(int x, int y)
     {
     }
-    void AppStateGame::OnLButtonReleased(int x, int y) noexcept
+    void AppStateGame::OnLButtonReleased(int x, int y)
     {
         if(!board.valid(p)) return;
         if(selected == board.end())

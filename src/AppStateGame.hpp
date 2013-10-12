@@ -39,9 +39,9 @@ namespace chesspp
 
         virtual void OnRender() override;
 
-        virtual void OnMouseMoved(int x, int y) noexcept override;
-        virtual void OnLButtonPressed(int x, int y) noexcept override;
-        virtual void OnLButtonReleased(int x, int y) noexcept override;
+        virtual void OnMouseMoved(int x, int y) override;
+        virtual void OnLButtonPressed(int x, int y) override;
+        virtual void OnLButtonReleased(int x, int y) override;
     };
 }
 

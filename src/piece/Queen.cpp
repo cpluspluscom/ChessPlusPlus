@@ -34,7 +34,7 @@ namespace chesspp
                 for(signed i = 1; board.valid(t = Position_t(pos).move(d, i)); ++i)
                 {
                     addCapturing(t);
-                    if(board.occupied(t))
+                    if(!board.occupied(t))
                     {
                         addTrajectory(t);
                     }

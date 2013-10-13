@@ -8,7 +8,7 @@
 
 namespace chesspp
 {
-    inline namespace util
+    inline namespace util_ops
     {
         /**
          * Alternative global operator!=.
@@ -123,6 +123,10 @@ namespace chesspp
             friend bool operator==(KeyIter const &a, KeyIter const &b)
             {
                 return a.it == b.it;
+            }
+            friend bool operator!=(KeyIter const &a, KeyIter const &b)
+            {
+                return a.it != b.it;
             }
         };
     }

@@ -116,9 +116,8 @@ else()
     # Copy resources to build directory if build directory is 
     # different from source directory.
     if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
-        configure_file(config/board.json ${CMAKE_CURRENT_BINARY_DIR}/config/board.json COPYONLY)
-        configure_file(config/graphics.json ${CMAKE_CURRENT_BINARY_DIR}/config/graphics.json COPYONLY)
-        file(COPY res/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+        file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
+        file(COPY res/    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
     endif()
 
     add_executable (chesspp ${CHESSPP_SOURCES})

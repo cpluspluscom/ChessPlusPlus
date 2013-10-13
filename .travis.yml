@@ -13,11 +13,16 @@ install:
     - make install
     - cd ../../..
 #    - sudo apt-get install libboost-dev=1.54.0
-    - svn --version
+    - cd lib
+    - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost
+    - cd boost
+    - ./bootstrap.sh clang --prefix=installation
+    - ./b2 toolset=clang install
+    - cd ../..
 
 before_script:
     - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11" -DSFML_ROOT="lib/SFML/installation" ../
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
     - make
 after_script:

@@ -22,11 +22,11 @@ install:
 
 before_script:
     - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11 -isystem lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11 -isystem lib/boost/installation" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
     - make
 after_script:
-    - true
+    - ls
 
 branches:
   only:

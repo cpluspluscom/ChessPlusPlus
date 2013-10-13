@@ -48,6 +48,7 @@ namespace chesspp
                 case D::SouthWest: d = D::West;      break;
                 case D::West:      d = D::NorthWest; break;
                 case D::NorthWest: d = D::North;     break;
+                default:                             break;
                 }
             }
             for(signed i = 0; i > r; --i) //rotate negatively
@@ -62,6 +63,7 @@ namespace chesspp
                 case D::SouthWest: d = D::South;     break;
                 case D::West:      d = D::SouthWest; break;
                 case D::NorthWest: d = D::West;      break;
+                default:                             break;
                 }
             }
             return d;
@@ -197,6 +199,7 @@ namespace chesspp
                     case D::SouthWest: --x; ++y; break;
                     case D::West:      --x;      break;
                     case D::NorthWest: --x; --y; break;
+                    default:                     break;
                     }
                 }
                 if(times < 0)

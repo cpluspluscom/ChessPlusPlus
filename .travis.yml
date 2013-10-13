@@ -14,7 +14,7 @@ install:
     - cd ../../..
 #    - sudo apt-get install libboost-dev=1.54.0
     - cd lib
-    - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost
+    - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost --quiet
     - cd boost
     - ./bootstrap.sh clang --prefix=installation
     - ./b2 toolset=clang variant=release link=static install

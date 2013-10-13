@@ -9,7 +9,7 @@ install:
     - sudo apt-get install libsndfile-dev
     - cd lib/SFML && mkdir build && cd build && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" ../ && sudo make install
     - cd ../../..
-    - sudo apt-get install libboost-dev=1.54.0
+    - sudo apt-get install libboost-dev
 
 before_script:
     - mkdir build

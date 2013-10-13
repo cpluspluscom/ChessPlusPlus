@@ -303,7 +303,6 @@ namespace chesspp
                 MovementsRange(MovementsRange &&) = default;
                 MovementsRange &operator=(MovementsRange const &) = default;
                 MovementsRange &operator=(MovementsRange &&) = default;
-                ~MovementsRange() = default;
                 friend class ::chesspp::board::Board;
 
             public:
@@ -315,6 +314,7 @@ namespace chesspp
                 {
                     return r.second;
                 }
+                ~MovementsRange() = default;
             };
             MovementsRange pieceTrajectory(Piece const &p)
             {

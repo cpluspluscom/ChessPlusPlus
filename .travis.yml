@@ -13,7 +13,7 @@ install:
     - make install
     - cd ../../..
 #    - sudo apt-get install libboost-dev=1.54.0
-    - sudo apt-get install libboost-dev
+    - svn --version
 
 before_script:
     - mkdir build && cd build

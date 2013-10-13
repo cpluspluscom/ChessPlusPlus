@@ -7,14 +7,16 @@ install:
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev
     - sudo apt-get install libsndfile-dev
-    - cd lib/SFML && mkdir build && cd build && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" ../ && sudo make install
+    - cd lib/SFML && mkdir build && cd build
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" ../
+    - sudo make install
     - cd ../../..
     - sudo apt-get install libboost-dev
 
 before_script:
     - mkdir build
     - cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" -DSFML_ROOT="/usr/local" ../
 script: make
 
 branches:

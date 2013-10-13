@@ -4,6 +4,7 @@ compiler:
 #    - gcc
 
 install:
+    - sudo apt-get install clang-3.4 libclang-common-dev libclang-dev=3.4 libclang1 libclang1-dbg libllvm-3.4-ocaml-dev libllvm3.4 libllvm3.4-dbg lldb-3.4 llvm-3.4 llvm-3.4-dev llvm-3.4-runtime
 #    - sudo apt-get install libsfml-dev=2.0
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev

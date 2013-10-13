@@ -17,7 +17,7 @@ install:
     - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost --quiet
     - cd boost
     - ./bootstrap.sh clang --prefix=installation
-    - ./b2 toolset=clang variant=release link=static --with-filesystem --with-system install
+    - ./b2 toolset=clang variant=release link=static --with-filesystem --with-system install -d0
     - cd ../..
 
 before_script:

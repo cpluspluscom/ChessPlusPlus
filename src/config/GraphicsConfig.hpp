@@ -24,7 +24,7 @@ namespace chesspp
                 {
                     return reader()["chesspp"]["missing"];
                 }
-                return val;
+                return res_path + std::string(val);
             }
             template<typename... Args>
             std::map<std::string, util::JsonReader::NestedValue> spritePaths(Args const &... path) const

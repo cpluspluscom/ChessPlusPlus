@@ -118,14 +118,14 @@ if(APPLE)
             )
     endif()
 endif()
-
-# Copy resources to build directory if build directory is 
-# different from source directory.
-if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
-    file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
-    file(COPY res/    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+if(NOT APPLE OR NOT BUILD_APPBUNDLE)
+    # Copy resources to build directory if build directory is 
+    # different from source directory.
+    if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+        file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
+        file(COPY res/    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+    endif()
+    add_executable(chesspp ${CHESSPP_SOURCES})
 endif()
-
-add_executable(chesspp ${CHESSPP_SOURCES})
 
 target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})

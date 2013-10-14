@@ -14,6 +14,11 @@ install:
     - sudo make install
     - cd ../../../../..
     - clang++ --version
+    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
+    - mkdir build && cd build
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+    - sudo make install
+    - cd ../../..
 #    - sudo apt-get install libsfml-dev=2.0
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev
@@ -27,14 +32,12 @@ install:
     - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost --quiet
     - cd boost
     - ./bootstrap.sh clang --prefix=installation
-# cxxflags="-stdlib=libc++" linkflags="-stdlib=libc++"
-    - ./b2 toolset=clang variant=release link=static --with-filesystem --with-system install -d0
+    - ./b2 toolset=clang cxxflags="-std=c++11 -stdlib=libc++" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
     - cd ../..
 
 before_script:
     - mkdir build && cd build
-# -stdlib=libc++
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11 -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11 -stdlib=libc++ -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
     - make
 after_script:

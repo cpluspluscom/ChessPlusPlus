@@ -12,6 +12,7 @@ install:
     - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
     - sudo make install
     - cd ../../..
+    - clang++ --version
 #    - sudo apt-get install libsfml-dev=2.0
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev

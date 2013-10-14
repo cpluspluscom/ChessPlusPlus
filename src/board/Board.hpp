@@ -167,7 +167,7 @@ namespace chesspp
         private:
             struct Pieces_t_iterator_compare
             {
-                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b)
+                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b) const
                 {
                     return *a < *b;
                 }
@@ -303,10 +303,11 @@ namespace chesspp
                 MovementsRange(MovementsRange &&) = default;
                 MovementsRange &operator=(MovementsRange const &) = default;
                 MovementsRange &operator=(MovementsRange &&) = default;
-                ~MovementsRange() = default;
                 friend class ::chesspp::board::Board;
 
             public:
+                ~MovementsRange() = default;
+
                 Movements_t::const_iterator begin() const
                 {
                     return r.first;

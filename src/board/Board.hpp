@@ -167,7 +167,7 @@ namespace chesspp
         private:
             struct Pieces_t_iterator_compare
             {
-                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b)
+                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b) const
                 {
                     return *a < *b;
                 }

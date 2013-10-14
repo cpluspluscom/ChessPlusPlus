@@ -58,7 +58,7 @@ namespace chesspp
                 {
                     for(auto const &piece : suit.second.object())
                     {
-                        textures[suit.first][piece.first] = Textures_t::mapped_type::mapped_type(piece.second);
+                        textures[suit.first][piece.first] = gfx.normalize(Textures_t::mapped_type::mapped_type(piece.second));
                     }
                 }
             }

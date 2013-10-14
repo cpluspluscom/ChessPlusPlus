@@ -16,18 +16,23 @@ namespace chesspp
             }
             virtual ~GraphicsConfig() = default;
 
+            std::string normalize(std::string const &path) const
+            {
+                return res_path + path;
+            }
             template<typename... Args>
             std::string spritePath(Args const &... path) const
             {
                 auto val = reader.navigate("chesspp", path...);
                 if(val.type() != json_string)
                 {
-                    return reader()["chesspp"]["missing"];
+                    return normalize(reader()["chesspp"]["missing"]);
                 }
-                return val;
+                return normalize(val);
             }
+            //Must normalize return value
             template<typename... Args>
-            std::map<std::string, util::JsonReader::NestedValue> spritePaths(Args const &... path) const
+            auto spritePaths(Args const &... path) const -> std::map<std::string, util::JsonReader::NestedValue>
             {
                 return reader.navigate("chesspp", path...).object();
             }

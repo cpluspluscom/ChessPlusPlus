@@ -4,6 +4,7 @@
 #include <typeinfo>
 
 #include "Application.hpp"
+#include "ChessPlusPlusState.hpp"
 #include "Debug.hpp"
 #include "Exception.hpp"
 
@@ -13,7 +14,15 @@ int main()
 
     try
     {
-        return chesspp::Application().exec();
+        sf::RenderWindow disp
+        {
+            sf::VideoMode(640, 640),
+            "ChessPlusPlus",
+            sf::Style::Close
+        };
+        chesspp::Application app {disp};
+        app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(disp));
+        return app.execute();
     }
     catch(std::exception &e)
     {

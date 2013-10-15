@@ -1,4 +1,4 @@
-#include "AppStateGame.hpp"
+#include "ChessPlusPlusState.hpp"
 
 #include "util/Utilities.hpp"
 
@@ -7,8 +7,8 @@
 
 namespace chesspp
 {
-    AppStateGame::AppStateGame(Application *_app, sf::RenderWindow &_display)
-    : AppState(_display)
+    ChessPlusPlusState::ChessPlusPlusState(Application &_app, sf::RenderWindow &disp)
+    : AppState(disp)
     , app(_app)
     , board_config(gfx_config)
     , classic_factory(board_config)
@@ -28,7 +28,7 @@ namespace chesspp
         }
     }
 
-    void AppStateGame::nextTurn()
+    void ChessPlusPlusState::nextTurn()
     {
         if(++turn == players.end())
         {
@@ -36,7 +36,7 @@ namespace chesspp
         }
     }
 
-    board::Board::Pieces_t::iterator AppStateGame::find(board::Board::Position_t const &pos) const
+    board::Board::Pieces_t::iterator ChessPlusPlusState::find(board::Board::Position_t const &pos) const
     {
         return std::find_if(board.begin(), board.end(),
         [&](std::unique_ptr<board::Piece> const &up) -> bool
@@ -45,7 +45,7 @@ namespace chesspp
         });
     }
 
-    void AppStateGame::OnRender()
+    void ChessPlusPlusState::onRender()
     {
         graphics.drawBoard(board);
         if(selected != board.end())
@@ -62,15 +62,15 @@ namespace chesspp
         }
     }
 
-    void AppStateGame::OnMouseMoved(int x, int y)
+    void ChessPlusPlusState::onMouseMoved(int x, int y)
     {
         p.x = static_cast<board::Board::Position_t::value_type>(x/board.config.cellWidth());
         p.y = static_cast<board::Board::Position_t::value_type>(y/board.config.cellHeight());
     }
-    void AppStateGame::OnLButtonPressed(int x, int y)
+    void ChessPlusPlusState::onLButtonPressed(int x, int y)
     {
     }
-    void AppStateGame::OnLButtonReleased(int x, int y)
+    void ChessPlusPlusState::onLButtonReleased(int x, int y)
     {
         if(!board.valid(p)) return;
         if(selected == board.end())

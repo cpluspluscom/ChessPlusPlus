@@ -9,30 +9,30 @@ namespace chesspp
     {
     public:
         using uint = unsigned int;
-        virtual void OnClosed                ()                                                                      {}
-        virtual void OnResized               (uint w, uint h)                                                        {}
-        virtual void OnLostFocus             ()                                                                      {}
-        virtual void OnGainedFocus           ()                                                                      {}
-        virtual void OnTextEntered           (sf::Uint32 unicode)                                                    {}
-        virtual void OnKeyPressed            (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system){}
-        virtual void OnKeyReleased           (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system){}
-        virtual void OnMouseWheelMoved       (int delta, int x, int y)                                               {}
-        virtual void OnLButtonPressed        (int x, int y)                                                          {}
-        virtual void OnLButtonReleased       (int x, int y)                                                          {}
-        virtual void OnRButtonPressed        (int x, int y)                                                          {}
-        virtual void OnRButtonReleased       (int x, int y)                                                          {}
-        virtual void OnMButtonPressed        (int x, int y)                                                          {}
-        virtual void OnMButtonReleased       (int x, int y)                                                          {}
-        virtual void OnMouseButtonPressed    (sf::Mouse::Button button, int x, int y)                                {}
-        virtual void OnMouseButtonReleased   (sf::Mouse::Button button, int x, int y)                                {}
-        virtual void OnMouseMoved            (int x, int y)                                                          {}
-        virtual void OnMouseEnteredWindow    ()                                                                      {}
-        virtual void OnMouseLeftWindow       ()                                                                      {}
-        virtual void OnJoystickButtonPressed (uint joystickID, uint button)                                          {}
-        virtual void OnJoystickButtonReleased(uint joystickID, uint button)                                          {}
-        virtual void OnJoystickMoved         (uint joystickID, sf::Joystick::Axis axis, float position)              {}
-        virtual void OnJoystickConnected     (uint joystickID)                                                       {}
-        virtual void OnJoystickDisconnected  (uint joystickID)                                                       {}
+        virtual void onClosed                ()                                                                      {}
+        virtual void onResized               (uint w, uint h)                                                        {}
+        virtual void onLostFocus             ()                                                                      {}
+        virtual void onGainedFocus           ()                                                                      {}
+        virtual void onTextEntered           (sf::Uint32 unicode)                                                    {}
+        virtual void onKeyPressed            (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system){}
+        virtual void onKeyReleased           (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system){}
+        virtual void onMouseWheelMoved       (int delta, int x, int y)                                               {}
+        virtual void onLButtonPressed        (int x, int y)                                                          {}
+        virtual void onLButtonReleased       (int x, int y)                                                          {}
+        virtual void onRButtonPressed        (int x, int y)                                                          {}
+        virtual void onRButtonReleased       (int x, int y)                                                          {}
+        virtual void onMButtonPressed        (int x, int y)                                                          {}
+        virtual void onMButtonReleased       (int x, int y)                                                          {}
+        virtual void onMouseButtonPressed    (sf::Mouse::Button button, int x, int y)                                {}
+        virtual void onMouseButtonReleased   (sf::Mouse::Button button, int x, int y)                                {}
+        virtual void onMouseMoved            (int x, int y)                                                          {}
+        virtual void onMouseEnteredWindow    ()                                                                      {}
+        virtual void onMouseLeftWindow       ()                                                                      {}
+        virtual void onJoystickButtonPressed (uint joystickID, uint button)                                          {}
+        virtual void onJoystickButtonReleased(uint joystickID, uint button)                                          {}
+        virtual void onJoystickMoved         (uint joystickID, sf::Joystick::Axis axis, float position)              {}
+        virtual void onJoystickConnected     (uint joystickID)                                                       {}
+        virtual void onJoystickDisconnected  (uint joystickID)                                                       {}
 
         virtual ~SFMLEventHandler() = default;
     };

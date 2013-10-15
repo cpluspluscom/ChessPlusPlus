@@ -1,5 +1,5 @@
-#ifndef GameApllicationStateClass_HeaderPlusPlus
-#define GameApllicationStateClass_HeaderPlusPlus
+#ifndef ChessPlusPlusGameStateClass_HeaderPlusPlus
+#define ChessPlusPlusGameStateClass_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "TextureManager.hpp"
@@ -10,15 +10,15 @@
 #include "factory/ClassicFactory.hpp"
 
 #include "AppState.hpp"
+#include "Application.hpp"
 
 #include <set>
 
 namespace chesspp
 {
-    class Application;
-    class AppStateGame : public AppState
+    class ChessPlusPlusState : public AppState
     {
-        Application *app;
+        Application &app;
         config::GraphicsConfig gfx_config;
         config::BoardConfig board_config;
         factory::ClassicFactory classic_factory;
@@ -34,14 +34,14 @@ namespace chesspp
         board::Board::Pieces_t::iterator find(board::Board::Position_t const &pos) const;
 
     public:
-        AppStateGame(Application *app, sf::RenderWindow &display);
-        virtual ~AppStateGame() = default;
+        ChessPlusPlusState(Application &app, sf::RenderWindow &display);
+        virtual ~ChessPlusPlusState() = default;
 
-        virtual void OnRender() override;
+        virtual void onRender() override;
 
-        virtual void OnMouseMoved(int x, int y) override;
-        virtual void OnLButtonPressed(int x, int y) override;
-        virtual void OnLButtonReleased(int x, int y) override;
+        virtual void onMouseMoved(int x, int y) override;
+        virtual void onLButtonPressed(int x, int y) override;
+        virtual void onLButtonReleased(int x, int y) override;
     };
 }
 

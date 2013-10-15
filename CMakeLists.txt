@@ -17,15 +17,15 @@ if(WIN32)
 endif()
 
 #Add json-parser
-if(NOT JSONLIB)
-    set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
-endif()
+#if(NOT JSONLIB)
+ #   set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
+#endif()
 include_directories (${JSONLIB}) 
 
 #Get all source files
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
 file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")
-list(APPEND CHESSPP_SOURCES "lib/json-parser/json.c")
+#list(APPEND CHESSPP_SOURCES "lib/json-parser/json.c")
 
 set (CHESSPP_INCLUDE_DIRS "")
 foreach (_headerFile ${CHESSPP_HEADERS})

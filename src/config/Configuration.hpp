@@ -16,7 +16,9 @@
 #endif
 
 #include "Exception.hpp"
-#include "util/JsonReader.hpp"
+//#include "util/JsonReader.hpp"
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
 
 namespace chesspp
 {
@@ -65,12 +67,12 @@ namespace chesspp
             }
 
             std::string res_path;
-            util::JsonReader reader;
+           /* util::JsonReader*/ boost::property_tree::ptree reader;
 
         public:
             Configuration(std::string const &configFile) noexcept(false) 
-            : reader(std::ifstream(validateConfigFile(configFile)))
             {
+                boost::property_tree::json_parser::read_json(validateConfigFile(configFile), reader);
             }
             virtual ~Configuration()
             {
@@ -105,12 +107,13 @@ namespace chesspp
         public:
             BoardConfig()
             : Configuration("config.json")
-            , initial_layout (res_path + std::string(reader()["chesspp"]["board"]["initial_layout"]))
-            , board_width                           (reader()["chesspp"]["board"]["width"]          )
-            , board_height                          (reader()["chesspp"]["board"]["height"]         )
-            , cell_width                            (reader()["chesspp"]["board"]["cell_width"]     )
-            , cell_height                           (reader()["chesspp"]["board"]["cell_height"]    )
+            , initial_layout (res_path + reader.get<std::string>("chesspp.board.initial_layout"))
             {
+                board_width = reader.get<std::uint8_t>("chesspp.board.width");
+                board_height = reader.get<std::uint8_t>("chesspp.board.height");
+                cell_width = reader.get<std::uint16_t>("chesspp.board.cell_width");
+                cell_height = reader.get<std::uint16_t>("chesspp.board.cell_height");
+
             }
 
             std::string getInitialLayout() const noexcept { return initial_layout; }
@@ -127,9 +130,9 @@ namespace chesspp
         public:
             GraphicsConfig()
             : Configuration("config.json")
-            , path_board    (res_path + std::string(reader()["chesspp"]["board"]["images"]["board"])    )
-            , path_pieces   (res_path + std::string(reader()["chesspp"]["board"]["images"]["pieces"])   )
-            , path_validMove(res_path + std::string(reader()["chesspp"]["board"]["images"]["validMove"]))
+            , path_board    (res_path + reader.get<std::string>("chesspp.board.images.board")    )
+            , path_pieces   (res_path + reader.get<std::string>("chesspp.board.images.pieces")   )
+            , path_validMove(res_path + reader.get<std::string>("chesspp.board.images.validMove"))
             {
             }
 

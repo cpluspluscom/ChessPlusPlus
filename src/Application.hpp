@@ -25,7 +25,7 @@ namespace chesspp
         ~Application() = default;
 
         template<class NewState, typename... Args>
-        void changeState(Args... args)
+        void changeState(Args &&... args)
         {
             //make sure we can create the new state first
             std::unique_ptr<AppState> temp {new NewState(std::forward<Args>(args)...)};

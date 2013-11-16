@@ -74,5 +74,58 @@ if(WIN32)
     endif()
 endif()
 
-add_executable (chesspp ${CHESSPP_SOURCES})
+# Application bundle if on an apple machine
+if(APPLE)
+    # Optionally build application bundle
+    set(BUILD_APPBUNDLE TRUE CACHE BOOL "Build into OS x Application Bundle.")
+    if(BUILD_APPBUNDLE)
+        # Set bundle properties
+        set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)
+        set(MACOSX_BUNDLE_INFO_STRING ChessPlusPlus)
+        set(MACOSX_BUNDLE_SHORT_VERSION_STRING 0.0.1)
+        set(MACOSX_BUNDLE_BUNDLE_VERSION 0.0.1)
+        set(MACOSX_BUNDLE_GUI_IDENTIFIER com.cplusplus.chesspp)
+
+        # Throw all the resource paths into a variable
+        file(GLOB_RECURSE CHESSPP_RESOURCES
+            ${PROJECT_SOURCE_DIR}/res/*
+            ${PROJECT_SOURCE_DIR}/config/*)
+
+        # Make sure each resource file gets put in the right directory
+        # in the application bundle
+        FOREACH(file ${CHESSPP_RESOURCES})
+            file(RELATIVE_PATH relPath ${PROJECT_SOURCE_DIR} ${file})
+            string(FIND ${relPath} "/" inSubDirectory REVERSE)
+            if(${inSubDirectory} GREATER 0)
+                string(SUBSTRING ${relPath} 0 ${inSubDirectory} relDir)
+                set(PACKAGE_LOCATION Resources/${relDir})
+            else()
+                set(PACKAGE_LOCATION Resources)
+            endif()
+            set_source_files_properties(
+                ${file}
+                PROPERTIES
+                MACOSX_PACKAGE_LOCATION
+                ${PACKAGE_LOCATION}
+                )
+        ENDFOREACH()
+
+        add_executable(
+            chesspp 
+            MACOSX_BUNDLE 
+            ${CHESSPP_SOURCES} 
+            ${CHESSPP_RESOURCES}
+            )
+    endif()
+endif()
+if(NOT APPLE OR NOT BUILD_APPBUNDLE)
+    # Copy resources to build directory if build directory is 
+    # different from source directory.
+    if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+        file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
+        file(COPY res/    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+    endif()
+    add_executable(chesspp ${CHESSPP_SOURCES})
+endif()
+
 target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})

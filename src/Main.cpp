@@ -4,16 +4,25 @@
 #include <typeinfo>
 
 #include "Application.hpp"
+#include "ChessPlusPlusState.hpp"
 #include "Debug.hpp"
 #include "Exception.hpp"
 
 int main()
 {
-    LogUtil::EnableRedirection();
+    LogUtil::enableRedirection();
 
     try
     {
-        return chesspp::Application().Exec();
+        sf::RenderWindow disp
+        {
+            sf::VideoMode(640, 640),
+            "ChessPlusPlus",
+            sf::Style::Close
+        };
+        chesspp::Application app {disp};
+        app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(disp));
+        return app.execute();
     }
     catch(std::exception &e)
     {

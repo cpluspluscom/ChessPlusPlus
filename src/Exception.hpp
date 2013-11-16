@@ -1,10 +1,10 @@
-#ifndef _EXCEPTION_H
-#define _EXCEPTION_H
+#ifndef ChessPlusPlusExceptionClass_HeaderPlusPlus
+#define ChessPlusPlusExceptionClass_HeaderPlusPlus
+
+#include "util/Utilities.hpp"
 
 #include <string>
 #include <exception>
-
-#include "util/Utilities.hpp"
 
 namespace chesspp
 {
@@ -13,15 +13,15 @@ namespace chesspp
         std::string e; //message
 
     public:
-        Exception(std::string const &e = "") noexcept(noexcept(std::string(std::string(""))))
-        : e(e)
+        Exception(std::string const &e_ = "") noexcept(noexcept(std::string(std::string(""))))
+        : e(e_)
         {
         }
         Exception(Exception const &) = default;
-        Exception(Exception &&) noexcept = default;
+        Exception(Exception &&) = default;
         Exception &operator=(Exception const &) = default;
         Exception &operator=(Exception &&) = default;
-        virtual ~Exception() noexcept = default;
+        virtual ~Exception() = default;
 
         virtual bool operator==(std::exception const &other) const noexcept
         {

@@ -7,16 +7,21 @@
 *.filters
 *.opensdf
 *.exe
+*.bat
 *.pdb
 *.ilk
 *.DS_Store
 *.dll
 *.log
 *.bin
+*.cmake
 
 /chesspp
 debug.txt
-
+build/
+docs/
+Makefile
+CMakeCache.txt
 ChessPlusPlus/
 Debug/
 Release/
@@ -25,3 +30,4 @@ bin/
 obj/
 deps.debug/
 objs.debug/
+CMakeFiles/

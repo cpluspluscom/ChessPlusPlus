@@ -1,105 +1,92 @@
 #include "Application.hpp"
-#include <iostream>
 
 namespace chesspp
 {
-    Application::Application()
-    : display(sf::VideoMode(640, 640), "ChessPlusPlus", sf::Style::Close)
-    , running(true)
-    , state(new AppStateGame(this, &display))
+    int Application::execute()
     {
-        display.setVerticalSyncEnabled(true);
-    }
-
-    int Application::Exec()
-    {
-        sf::Event Event;
+        running = true;
+        sf::Event event;
         while(running)
         {
-            while(display.pollEvent(Event))
+            while(display.pollEvent(event))
             {
-                OnEvent(&Event);
+                onEvent(event);
             }
 
-            state->OnRender();
+            state->onRender();
             display.display();
         }
 
         return 0;
     }
 
-    Application::~Application()
+    void Application::onEvent(sf::Event &e)
     {
-        delete state;
-    }
-
-    void Application::OnEvent(sf::Event *Event)
-    {
-        switch(Event->type)
+        switch(e.type)
         {
         case sf::Event::Closed:
             {
-                state->OnClosed();
+                state->onClosed();
                 running = false;
                 break;
             }
         case sf::Event::Resized:
             {
-                state->OnResized(Event->size.width, Event->size.height);
+                state->onResized(e.size.width, e.size.height);
                 break;
             }
         case sf::Event::LostFocus:
             {
-                state->OnLostFocus();
+                state->onLostFocus();
                 break;
             }
         case sf::Event::GainedFocus:
             {
-                state->OnGainedFocus();
+                state->onGainedFocus();
                 break;
             }
         case sf::Event::TextEntered:
             {
-                state->OnTextEntered(Event->text.unicode);
+                state->onTextEntered(e.text.unicode);
                 break;
             }
         case sf::Event::KeyPressed:
             {
-                state->OnKeyPressed(Event->key.code, Event->key.alt, Event->key.control, Event->key.shift, Event->key.system);
+                state->onKeyPressed(e.key.code, e.key.alt, e.key.control, e.key.shift, e.key.system);
                 break;
             }
         case sf::Event::KeyReleased:
             {
-                state->OnKeyReleased(Event->key.code, Event->key.alt, Event->key.control, Event->key.shift, Event->key.system);
+                state->onKeyReleased(e.key.code, e.key.alt, e.key.control, e.key.shift, e.key.system);
                 break;
             }
         case sf::Event::MouseWheelMoved:
             {
-                state->OnMouseWheelMoved(Event->mouseWheel.delta, Event->mouseWheel.x, Event->mouseWheel.y);
+                state->onMouseWheelMoved(e.mouseWheel.delta, e.mouseWheel.x, e.mouseWheel.y);
                 break;
             }
         case sf::Event::MouseButtonPressed:
             {
-                switch(Event->mouseButton.button)
+                switch(e.mouseButton.button)
                 {
                 case sf::Mouse::Left:
                     {
-                        state->OnLButtonPressed(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onLButtonPressed(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 case sf::Mouse::Right:
                     {
-                        state->OnRButtonPressed(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onRButtonPressed(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 case sf::Mouse::Middle:
                     {
-                        state->OnMButtonPressed(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onMButtonPressed(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 default:
                     {
-                        state->OnMouseButtonPressed(Event->mouseButton.button, Event->mouseButton.x, Event->mouseButton.y);
+                        state->onMouseButtonPressed(e.mouseButton.button, e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 }
@@ -107,26 +94,26 @@ namespace chesspp
             }
         case sf::Event::MouseButtonReleased:
             {
-                switch(Event->mouseButton.button)
+                switch(e.mouseButton.button)
                 {
                 case sf::Mouse::Left:
                     {
-                        state->OnLButtonReleased(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onLButtonReleased(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 case sf::Mouse::Right:
                     {
-                        state->OnRButtonReleased(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onRButtonReleased(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 case sf::Mouse::Middle:
                     {
-                        state->OnMButtonReleased(Event->mouseButton.x, Event->mouseButton.y);
+                        state->onMButtonReleased(e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 default:
                     {
-                        state->OnMouseButtonPressed(Event->mouseButton.button, Event->mouseButton.x, Event->mouseButton.y);
+                        state->onMouseButtonPressed(e.mouseButton.button, e.mouseButton.x, e.mouseButton.y);
                         break;
                     }
                 }
@@ -134,46 +121,45 @@ namespace chesspp
             }
         case sf::Event::MouseMoved:
             {
-                state->OnMouseMoved(Event->mouseMove.x, Event->mouseMove.y);
+                state->onMouseMoved(e.mouseMove.x, e.mouseMove.y);
                 break;
             }
         case sf::Event::MouseEntered:
             {
-                state->OnMouseEnteredWindow();
+                state->onMouseEnteredWindow();
                 break;
             }
         case sf::Event::MouseLeft:
             {
-                state->OnMouseLeftWindow();
+                state->onMouseLeftWindow();
                 break;
             }
         case sf::Event::JoystickButtonPressed:
             {
-                state->OnJoystickButtonPressed(Event->joystickButton.joystickId, Event->joystickButton.button);
+                state->onJoystickButtonPressed(e.joystickButton.joystickId, e.joystickButton.button);
                 break;
             }
         case sf::Event::JoystickButtonReleased:
             {
-                state->OnJoystickButtonReleased(Event->joystickButton.joystickId, Event->joystickButton.button);
+                state->onJoystickButtonReleased(e.joystickButton.joystickId, e.joystickButton.button);
                 break;
             }
         case sf::Event::JoystickMoved:
             {
-                state->OnJoystickMoved(Event->joystickMove.joystickId, Event->joystickMove.axis, Event->joystickMove.position);
+                state->onJoystickMoved(e.joystickMove.joystickId, e.joystickMove.axis, e.joystickMove.position);
                 break;
             }
         case sf::Event::JoystickConnected:
             {
-                state->OnJoystickConnected(Event->joystickConnect.joystickId);
+                state->onJoystickConnected(e.joystickConnect.joystickId);
                 break;
             }
         case sf::Event::JoystickDisconnected:
             {
-                state->OnJoystickDisconnected(Event->joystickConnect.joystickId);
+                state->onJoystickDisconnected(e.joystickConnect.joystickId);
                 break;
             }
-        default:
-            break;
+        default: break;
         }
     }
 

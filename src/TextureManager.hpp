@@ -1,10 +1,10 @@
-#ifndef _TEXTUREMANAGER_H
-#define _TEXTUREMANAGER_H
-
-#include <iostream>
+#ifndef TextureManagerClass_HeaderPlusPlus
+#define TextureManagerClass_HeaderPlusPlus
 
 #include "ResourceManager.hpp"
 #include "SFML.hpp"
+
+#include <iostream>
 
 
 namespace chesspp
@@ -28,25 +28,25 @@ namespace chesspp
         }
 
         //no copying
-        TextureManager(const TextureManager &) = delete;
-        TextureManager &operator=(const TextureManager &) = delete;
+        TextureManager(TextureManager const &) = delete;
+        TextureManager &operator=(TextureManager const &) = delete;
 
     public:
-        static TextureManager &getInstance() noexcept //singleton class
+        static TextureManager &instance() noexcept //singleton class
         {
-            static TextureManager instance;
-            return instance;
+            static TextureManager inst;
+            return inst;
         }
 
     protected:
         //Method that loads an sf::Texture from file name 'location'.
-        virtual sf::Texture *onLoadResource(const std::string &location) noexcept
+        virtual sf::Texture *onLoadResource(std::string const &location) noexcept override
         {
-            sf::Texture *ret = new sf::Texture();
+            sf::Texture *ret = new sf::Texture(); //should change to std::shared_ptr eventually
             if(!ret->loadFromFile(location))
             {
                 std::clog << "Failed to load " << location << std::endl;
-                return nullptr;
+                return delete ret, ret = nullptr;
             }
             std::clog << "Loaded " << location << " into memory." << std::endl;
             return ret;

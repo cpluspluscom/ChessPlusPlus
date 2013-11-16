@@ -1,0 +1,53 @@
+language: c++
+compiler:
+    - clang
+#    - gcc
+
+install:
+    - mkdir compiler
+    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
+    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
+    - cd ../
+    - mkdir build && cd build
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+    - cd tools/clang
+    - sudo make install
+    - cd ../../../../..
+    - clang++ --version
+# -std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
+#    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
+#    - mkdir build && cd build
+#    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+#    - sudo make install
+#    - cd ../../..
+#    - sudo apt-get install libsfml-dev=2.0
+    - sudo apt-get install libglew-dev
+    - sudo apt-get install libopenal-dev
+    - sudo apt-get install libsndfile-dev
+    - cd lib/SFML && mkdir build && cd build
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
+    - make install
+    - cd ../../..
+#    - sudo apt-get install libboost-dev=1.54.0
+    - cd lib
+    - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_54_0/ boost --quiet
+    - cd boost
+    - ./bootstrap.sh clang --prefix=installation
+    - ./b2 toolset=clang cxxflags="-std=c++11" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
+    - cd ../..
+
+before_script:
+    - mkdir build && cd build
+    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++11 -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+script:
+    - make
+after_script:
+    - ls
+
+branches:
+  only:
+    - master
+    - lb-refactor
+
+notifications:
+    email: false

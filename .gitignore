@@ -31,5 +31,3 @@ obj/
 deps.debug/
 objs.debug/
 CMakeFiles/
-
-png_split

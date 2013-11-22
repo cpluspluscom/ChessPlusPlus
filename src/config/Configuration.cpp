@@ -20,7 +20,7 @@ namespace chesspp
         //<.app>/Contents/Resources/res/img... should be where resources are stored.
         std::string Configuration::executablePath()
         {
-            
+
             char buf[1024];
             std::uint32_t size = sizeof(buf);
             memset(buf, 0, size);
@@ -53,6 +53,30 @@ namespace chesspp
             std::clog << "Executable path = \"" << ret << '"' << std::endl;
 
             return ret;
+        }
+        std::string Configuration::validateConfigFile(std::string const &configFile)
+        {
+            static std::string exe_path = executablePath();
+
+            if(boost::filesystem::extension(configFile) != ".json")
+            {
+                throw Exception("Configuration cannot read non-json config files.");
+            }
+
+            if(boost::filesystem::exists(configFile))
+            {
+                res_path = "";
+            }
+            else
+            {
+                res_path = exe_path;
+            }
+            return res_path + configFile;
+        }
+
+        Configuration::Configuration(std::string const &configFile) noexcept(false)
+        : reader(std::ifstream(validateConfigFile(configFile)))
+        {
         }
     }
 }

@@ -13,14 +13,14 @@ project (CHESSPP)
 if(WIN32)
     set(SFML_ROOT "" CACHE PATH "Path to SFML root directory")
     set(BOOST_ROOT "" CACHE PATH "Path to Boost root directory")
-    set(STATIC_BUILD TRUE CACHE BOOL "Link SFML statically") #option(STATIC_BUILD "Link statically" FALSE)    
+    set(STATIC_BUILD TRUE CACHE BOOL "Link SFML statically") #option(STATIC_BUILD "Link statically" FALSE)
 endif()
 
 #Add json-parser
 if(NOT JSONLIB)
     set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
 endif()
-include_directories (${JSONLIB}) 
+include_directories (${JSONLIB})
 
 #Get all source files
 file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
@@ -43,7 +43,7 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
     endif()
 endif()
- 
+
 # Detect and add SFML
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 if(STATIC_BUILD)
@@ -111,15 +111,15 @@ if(APPLE)
         ENDFOREACH()
 
         add_executable(
-            chesspp 
-            MACOSX_BUNDLE 
-            ${CHESSPP_SOURCES} 
+            chesspp
+            MACOSX_BUNDLE
+            ${CHESSPP_SOURCES}
             ${CHESSPP_RESOURCES}
             )
     endif()
 endif()
 if(NOT APPLE OR NOT BUILD_APPBUNDLE)
-    # Copy resources to build directory if build directory is 
+    # Copy resources to build directory if build directory is
     # different from source directory.
     if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
         file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)

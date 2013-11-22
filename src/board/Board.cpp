@@ -6,12 +6,43 @@ namespace chesspp
 {
     namespace board
     {
-        Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
-        : board(b)
-        , p(pos_)
-        , s(s_)
+        /***********************************************************************
+         * BOARD
+         **********************************************************************/
+        Board::Board(config::BoardConfig const &conf, Factory_t const &fact)
+        : config(conf)
+        , factory(fact)
         {
-            std::clog << "Creation of " << *this << std::endl;
+            for(auto const &slot : conf.initialLayout())
+            {
+                pieces.emplace(factory.at(slot.second.first)(*this, slot.first, slot.second.second));
+            }
+
+            for(auto const &p : pieces)
+            {
+                p->makeTrajectory();
+            }
+        }
+        bool Board::occupied(Position_t const &pos) const
+        {
+            for(auto const &p : *this)
+            {
+                if(p->pos == pos)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        Board::Pieces_t::const_iterator Board::begin() const
+        {
+            return pieces.begin();
+        }
+
+        Board::Pieces_t::const_iterator Board::end() const
+        {
+            return pieces.end();
         }
 
         void Board::update(Position_t const &pos)
@@ -82,6 +113,208 @@ namespace chesspp
             update(target->second);
             std::clog << " to " << target->second << std::endl;
             return true;
+        }
+
+        Board::Movements const &Board::pieceTrajectories() const
+        {
+            return trajs;
+        }
+
+        Board::Movements const &Board::pieceCapturings() const
+        {
+            return captings;
+        }
+
+        Board::Movements const &Board::pieceCapturables() const
+        {
+            return captables;
+        }
+
+        Board::MovementsRange Board::pieceTrajectory(Piece const &p)
+        {
+            return trajectories.equal_range(p.self());
+        }
+
+        Board::MovementsRange Board::pieceCapturing(Piece const &p)
+        {
+            return capturings.equal_range(p.self());
+        }
+
+        Board::MovementsRange Board::pieceCapturable(Piece const &p)
+        {
+            return capturables.equal_range(p.self());
+        }
+
+        bool Board::valid(Position_t const &pos) const noexcept
+        {
+            return pos.isWithin(Position_t::Origin(), {config.boardWidth(), config.boardHeight()});
+        }
+
+        /***********************************************************************
+         * PIECE
+         **********************************************************************/
+
+        Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
+        : board(b)
+        , p(pos_)
+        , s(s_)
+        {
+            std::clog << "Creation of " << *this << std::endl;
+        }
+        //non-virtual, calls calcTrajectory(), which should call
+        //addTrajectory() for each possible tile
+        void Board::Piece::makeTrajectory()
+        {
+            addCapturable(pos);
+            calcTrajectory();
+        }
+
+        //deriving classes should call this from makeTrajectory
+        //to add a calculated trajectory tile
+        void Board::Piece::addTrajectory(Position_t const &tile)
+        {
+            if(board.valid(tile))
+            {
+                board.trajectories.insert(Board::Movements_t::value_type(self(), tile));
+            }
+        }
+        //further deriving classes can call this to remove a
+        //trajectory calculated by their parent class
+        void Board::Piece::removeTrajectory(Position_t const &tile)
+        {
+            auto range = board.trajectories.equal_range(self());
+            for(auto it = range.first; it != range.second; )
+            {
+                if(it->second == tile)
+                {
+                    it = board.trajectories.erase(it);
+                }
+                else ++it;
+            }
+        }
+
+        //deriving classes should call this from makeTrajectory
+        //to add a calculated capturable tile
+        void Board::Piece::addCapturing(Position_t const &tile)
+        {
+            if(board.valid(tile))
+            {
+                board.capturings.insert(Board::Movements_t::value_type(self(), tile));
+            }
+        }
+
+        //further deriving classes can call this
+        //to remove a capturable tile calculated by their parent class
+        void Board::Piece::removeCapturing(Position_t const &tile)
+        {
+            auto range = board.capturings.equal_range(self());
+            for(auto it = range.first; it != range.second; )
+            {
+                if(it->second == tile)
+                {
+                    it = board.capturings.erase(it);
+                }
+                else ++it;
+            }
+        }
+
+        //deriving classes should call this from makeTrajectory
+        //to add a calculated capturable tile
+        void Board::Piece::addCapturable(Position_t const &tile)
+        {
+            if(board.valid(tile))
+            {
+                board.capturables.insert(Board::Movements_t::value_type(self(), tile));
+            }
+        }
+
+        //further deriving classes can call this
+        //to remove a capturable tile calculated by their parent class
+        void Board::Piece::removeCapturable(Position_t const &tile)
+        {
+            auto range = board.capturables.equal_range(self());
+            for(auto it = range.first; it != range.second; )
+            {
+                if(it->second == tile)
+                {
+                    it = board.capturables.erase(it);
+                }
+                else ++it;
+            }
+        }
+
+        //Called with the position of the piece that just moved
+        void Board::Piece::tick(Position_t const &m)
+        {
+        }
+
+        //Sets the piece position as instructed by the board
+        //and recalculates the trajectory
+        void Board::Piece::move(Position_t const &to)
+        {
+            Position_t from = pos;
+            p = to;
+            moveUpdate(from, to);
+            ++movenum;
+        }
+
+        //Called by move(), reacts to being moved
+        void Board::Piece::moveUpdate(Position_t const &from, Position_t const &to)
+        {
+        }
+
+        /***********************************************************************
+         * PIECES_T_INTERATOR_COMPARE
+         **********************************************************************/
+
+        bool Board::Pieces_t_iterator_compare::operator()(Board::Pieces_t::iterator const &a, Board::Pieces_t::iterator const &b) const
+        {
+            return *a < *b;
+        }
+        /***********************************************************************
+         * INTERACTION
+         **********************************************************************/
+
+         Board::Interaction::Interaction ( Board& b )
+         : board(b)
+         {
+         }
+
+        /***********************************************************************
+         * MOVEMENTS
+         **********************************************************************/
+
+        Board::Movements::Movements(Movements_t const &m_)
+        : m(m_)
+        {
+        }
+
+        Board::Movements_t::const_iterator Board::Movements::begin() const
+        {
+            return m.cbegin();
+        }
+
+        Board::Movements_t::const_iterator Board::Movements::end() const
+        {
+            return m.cend();
+        }
+
+        /***********************************************************************
+         * MOVEMENTS RANGE
+         **********************************************************************/
+
+        Board::MovementsRange::MovementsRange(std::pair<Movements_t::iterator, Movements_t::iterator> const &r_)
+        : r(r_)
+        {
+        }
+
+        Board::Movements_t::const_iterator Board::MovementsRange::begin() const
+        {
+            return r.first;
+        }
+        Board::Movements_t::const_iterator Board::MovementsRange::end() const
+        {
+            return r.second;
         }
     }
 }

@@ -49,11 +49,7 @@ namespace chesspp
                 virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const = 0;
 
                 //non-virtual, calls calcTrajectory(), which should call addTrajectory() for each possible tile
-                void makeTrajectory()
-                {
-                    addCapturable(pos);
-                    calcTrajectory();
-                }
+                void makeTrajectory();
 
                 friend bool operator==(std::unique_ptr<Piece> const &up, Piece const *p) noexcept(noexcept(up.get() == p))
                 {
@@ -66,94 +62,45 @@ namespace chesspp
                 }
 
             protected:
+
                 //should call addTrajectory() for each calculated trajectory
                 //and addCapture() for each possible capture
                 virtual void calcTrajectory() = 0;
-                //deriving classes should call this from makeTrajectory to add a calculated trajectory tile
-                void addTrajectory(Position_t const &tile)
-                {
-                    if(board.valid(tile))
-                    {
-                        board.trajectories.insert(Board::Movements_t::value_type(self(), tile));
-                    }
-                }
-                //further deriving classes can call this to remove a trajectory calculated by their parent class
-                void removeTrajectory(Position_t const &tile)
-                {
-                    auto range = board.trajectories.equal_range(self());
-                    for(auto it = range.first; it != range.second; )
-                    {
-                        if(it->second == tile)
-                        {
-                            it = board.trajectories.erase(it);
-                        }
-                        else ++it;
-                    }
-                }
 
-                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
-                void addCapturing(Position_t const &tile)
-                {
-                    if(board.valid(tile))
-                    {
-                        board.capturings.insert(Board::Movements_t::value_type(self(), tile));
-                    }
-                }
-                //further deriving classes can call this to remove a capturable tile calculated by their parent class
-                void removeCapturing(Position_t const &tile)
-                {
-                    auto range = board.capturings.equal_range(self());
-                    for(auto it = range.first; it != range.second; )
-                    {
-                        if(it->second == tile)
-                        {
-                            it = board.capturings.erase(it);
-                        }
-                        else ++it;
-                    }
-                }
+                //deriving classes should call this from makeTrajectory
+                //to add a calculated trajectory tile
+                void addTrajectory(Position_t const &tile);
 
-                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
-                void addCapturable(Position_t const &tile)
-                {
-                    if(board.valid(tile))
-                    {
-                        board.capturables.insert(Board::Movements_t::value_type(self(), tile));
-                    }
-                }
-                //further deriving classes can call this to remove a capturable tile calculated by their parent class
-                void removeCapturable(Position_t const &tile)
-                {
-                    auto range = board.capturables.equal_range(self());
-                    for(auto it = range.first; it != range.second; )
-                    {
-                        if(it->second == tile)
-                        {
-                            it = board.capturables.erase(it);
-                        }
-                        else ++it;
-                    }
-                }
+                //further deriving classes can call this to remove a trajectory
+                //calculated by their parent class
+                void removeTrajectory(Position_t const &tile);
+
+                //deriving classes should call this from makeTrajectory
+                //to add a calculated capturable tile
+                void addCapturing(Position_t const &tile);
+
+                //further deriving classes can call this to remove a capturable
+                //tile calculated by their parent class
+                void removeCapturing(Position_t const &tile);
+
+                //deriving classes should call this from makeTrajectory
+                //to add a calculated capturable tile
+                void addCapturable(Position_t const &tile);
+
+                //further deriving classes can call this to remove a
+                //capturable tile calculated by their parent class
+                void removeCapturable(Position_t const &tile);
 
             private:
                 //Called with the position of the piece that just moved
-                virtual void tick(Position_t const &m)
-                {
-                }
+                virtual void tick(Position_t const &m);
 
-                //Sets the piece position as instructed by the board and recalculates the trajectory
-                void move(Position_t const &to)
-                {
-                    Position_t from = pos;
-                    p = to;
-                    moveUpdate(from, to);
-                    ++movenum;
-                }
+                //Sets the piece position as instructed by the board and
+                //recalculates the trajectory
+                void move(Position_t const &to);
 
                 //Called by move(), reacts to being moved
-                virtual void moveUpdate(Position_t const &from, Position_t const &to)
-                {
-                }
+                virtual void moveUpdate(Position_t const &from, Position_t const &to);
 
             public:
                 friend class ::chesspp::board::Board;
@@ -167,10 +114,7 @@ namespace chesspp
         private:
             struct Pieces_t_iterator_compare
             {
-                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b) const
-                {
-                    return *a < *b;
-                }
+                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b) const;
             };
         public:
             using Movements_t = std::multimap<Pieces_t::iterator, Position_t, Pieces_t_iterator_compare>;
@@ -182,10 +126,7 @@ namespace chesspp
             public:
                 Board &board;
 
-                Interaction(Board &b)
-                : board(b)
-                {
-                }
+                Interaction(Board &b);
                 virtual ~Interaction() = 0;
 
                 //
@@ -202,20 +143,7 @@ namespace chesspp
             Interactions_t interactions;
 
         public:
-            Board(config::BoardConfig const &conf, Factory_t const &fact)
-            : config(conf)
-            , factory(fact)
-            {
-                for(auto const &slot : conf.initialLayout())
-                {
-                    pieces.emplace(factory.at(slot.second.first)(*this, slot.first, slot.second.second));
-                }
-
-                for(auto const &p : pieces)
-                {
-                    p->makeTrajectory();
-                }
-            }
+            Board(config::BoardConfig const &conf, Factory_t const &fact);
             ~Board() = default;
 
             template<typename InteractionT>
@@ -230,34 +158,18 @@ namespace chesspp
                 return dynamic_cast<InteractionT &>(*interactions[t]);
             }
 
-            bool occupied(Position_t const &pos) const
-            {
-                for(auto const &p : *this)
-                {
-                    if(p->pos == pos)
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
+            bool occupied(Position_t const &pos) const;
 
-            Pieces_t::const_iterator begin() const
-            {
-                return pieces.begin();
-            }
-            Pieces_t::const_iterator end() const
-            {
-                return pieces.end();
-            }
+            Pieces_t::const_iterator begin() const;
+
+            Pieces_t::const_iterator end() const;
 
             class Movements
             {
                 Movements_t const &m;
-                Movements(Movements_t const &m_)
-                : m(m_)
-                {
-                }
+
+                Movements(Movements_t const &m_);
+
                 Movements(Movements const &) = delete;
                 Movements(Movements &&) = delete;
                 Movements &operator=(Movements const &) = delete;
@@ -266,39 +178,24 @@ namespace chesspp
                 friend class ::chesspp::board::Board;
 
             public:
-                Movements_t::const_iterator begin() const
-                {
-                    return m.cbegin();
-                }
-                Movements_t::const_iterator end() const
-                {
-                    return m.cend();
-                }
+
+                Movements_t::const_iterator begin() const;
+                Movements_t::const_iterator end() const;
             };
         private:
             Movements const trajs {trajectories};
             Movements const captings {capturings};
             Movements const captables {capturables};
         public:
-            Movements const &pieceTrajectories() const
-            {
-                return trajs;
-            }
-            Movements const &pieceCapturings() const
-            {
-                return captings;
-            }
-            Movements const &pieceCapturables() const
-            {
-                return captables;
-            }
+            Movements const &pieceTrajectories() const;
+            Movements const   &pieceCapturings() const;
+            Movements const  &pieceCapturables() const;
+
+
             class MovementsRange
             {
                 std::pair<Movements_t::iterator, Movements_t::iterator> r;
-                MovementsRange(std::pair<Movements_t::iterator, Movements_t::iterator> const &r_)
-                : r(r_)
-                {
-                }
+                MovementsRange(std::pair<Movements_t::iterator, Movements_t::iterator> const &r_);
                 MovementsRange(MovementsRange const &) = default;
                 MovementsRange(MovementsRange &&) = default;
                 MovementsRange &operator=(MovementsRange const &) = default;
@@ -306,28 +203,14 @@ namespace chesspp
                 friend class ::chesspp::board::Board;
 
             public:
-                Movements_t::const_iterator begin() const
-                {
-                    return r.first;
-                }
-                Movements_t::const_iterator end() const
-                {
-                    return r.second;
-                }
+                Movements_t::const_iterator begin() const;
+                Movements_t::const_iterator end() const;
                 ~MovementsRange() = default;
             };
-            MovementsRange pieceTrajectory(Piece const &p)
-            {
-                return trajectories.equal_range(p.self());
-            }
-            MovementsRange pieceCapturing(Piece const &p)
-            {
-                return capturings.equal_range(p.self());
-            }
-            MovementsRange pieceCapturable(Piece const &p)
-            {
-                return capturables.equal_range(p.self());
-            }
+
+            MovementsRange pieceTrajectory(Piece const &p);
+            MovementsRange  pieceCapturing(Piece const &p);
+            MovementsRange pieceCapturable(Piece const &p);
 
         private:
             void update(Position_t const &pos);
@@ -338,10 +221,7 @@ namespace chesspp
             bool move(Pieces_t::iterator source, Movements_t::const_iterator target);
 
             //Check if a position is a valid position that exists on the board
-            bool valid(Position_t const &pos) const noexcept
-            {
-                return pos.isWithin(Position_t::Origin(), {config.boardWidth(), config.boardHeight()});
-            }
+            bool valid(Position_t const &pos) const noexcept;
         };
 
         using Suit = Board::Suit;

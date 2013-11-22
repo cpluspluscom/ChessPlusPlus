@@ -63,40 +63,32 @@ namespace chesspp
 
             protected:
 
-                //should call addTrajectory() for each calculated trajectory
-                //and addCapture() for each possible capture
+                //should call addTrajectory() for each calculated trajectory and addCapture() for each possible capture
                 virtual void calcTrajectory() = 0;
 
-                //deriving classes should call this from makeTrajectory
-                //to add a calculated trajectory tile
+                //deriving classes should call this from makeTrajectory to add a calculated trajectory tile
                 void addTrajectory(Position_t const &tile);
 
-                //further deriving classes can call this to remove a trajectory
-                //calculated by their parent class
+                //further deriving classes can call this to remove a trajectory calculated by their parent class
                 void removeTrajectory(Position_t const &tile);
 
-                //deriving classes should call this from makeTrajectory
-                //to add a calculated capturable tile
+                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
                 void addCapturing(Position_t const &tile);
 
-                //further deriving classes can call this to remove a capturable
-                //tile calculated by their parent class
+                //further deriving classes can call this to remove a capturable tile calculated by their parent class
                 void removeCapturing(Position_t const &tile);
 
-                //deriving classes should call this from makeTrajectory
-                //to add a calculated capturable tile
+                //deriving classes should call this from makeTrajectory to add a calculated capturable tile
                 void addCapturable(Position_t const &tile);
 
-                //further deriving classes can call this to remove a
-                //capturable tile calculated by their parent class
+                //further deriving classes can call this to remove a capturable tile calculated by their parent class
                 void removeCapturable(Position_t const &tile);
 
             private:
                 //Called with the position of the piece that just moved
                 virtual void tick(Position_t const &m);
 
-                //Sets the piece position as instructed by the board and
-                //recalculates the trajectory
+                //Sets the piece position as instructed by the board and recalculates the trajectory
                 void move(Position_t const &to);
 
                 //Called by move(), reacts to being moved

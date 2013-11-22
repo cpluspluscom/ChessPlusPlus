@@ -6,9 +6,6 @@ namespace chesspp
 {
     namespace board
     {
-        /***********************************************************************
-         * BOARD
-         **********************************************************************/
         Board::Board(config::BoardConfig const &conf, Factory_t const &fact)
         : config(conf)
         , factory(fact)
@@ -150,10 +147,6 @@ namespace chesspp
             return pos.isWithin(Position_t::Origin(), {config.boardWidth(), config.boardHeight()});
         }
 
-        /***********************************************************************
-         * PIECE
-         **********************************************************************/
-
         Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
         : board(b)
         , p(pos_)
@@ -161,16 +154,13 @@ namespace chesspp
         {
             std::clog << "Creation of " << *this << std::endl;
         }
-        //non-virtual, calls calcTrajectory(), which should call
-        //addTrajectory() for each possible tile
+
         void Board::Piece::makeTrajectory()
         {
             addCapturable(pos);
             calcTrajectory();
         }
 
-        //deriving classes should call this from makeTrajectory
-        //to add a calculated trajectory tile
         void Board::Piece::addTrajectory(Position_t const &tile)
         {
             if(board.valid(tile))
@@ -178,8 +168,7 @@ namespace chesspp
                 board.trajectories.insert(Board::Movements_t::value_type(self(), tile));
             }
         }
-        //further deriving classes can call this to remove a
-        //trajectory calculated by their parent class
+
         void Board::Piece::removeTrajectory(Position_t const &tile)
         {
             auto range = board.trajectories.equal_range(self());
@@ -193,8 +182,6 @@ namespace chesspp
             }
         }
 
-        //deriving classes should call this from makeTrajectory
-        //to add a calculated capturable tile
         void Board::Piece::addCapturing(Position_t const &tile)
         {
             if(board.valid(tile))
@@ -203,8 +190,6 @@ namespace chesspp
             }
         }
 
-        //further deriving classes can call this
-        //to remove a capturable tile calculated by their parent class
         void Board::Piece::removeCapturing(Position_t const &tile)
         {
             auto range = board.capturings.equal_range(self());
@@ -218,8 +203,6 @@ namespace chesspp
             }
         }
 
-        //deriving classes should call this from makeTrajectory
-        //to add a calculated capturable tile
         void Board::Piece::addCapturable(Position_t const &tile)
         {
             if(board.valid(tile))
@@ -228,8 +211,6 @@ namespace chesspp
             }
         }
 
-        //further deriving classes can call this
-        //to remove a capturable tile calculated by their parent class
         void Board::Piece::removeCapturable(Position_t const &tile)
         {
             auto range = board.capturables.equal_range(self());
@@ -243,13 +224,10 @@ namespace chesspp
             }
         }
 
-        //Called with the position of the piece that just moved
         void Board::Piece::tick(Position_t const &m)
         {
         }
 
-        //Sets the piece position as instructed by the board
-        //and recalculates the trajectory
         void Board::Piece::move(Position_t const &to)
         {
             Position_t from = pos;
@@ -258,31 +236,20 @@ namespace chesspp
             ++movenum;
         }
 
-        //Called by move(), reacts to being moved
         void Board::Piece::moveUpdate(Position_t const &from, Position_t const &to)
         {
         }
-
-        /***********************************************************************
-         * PIECES_T_INTERATOR_COMPARE
-         **********************************************************************/
 
         bool Board::Pieces_t_iterator_compare::operator()(Board::Pieces_t::iterator const &a, Board::Pieces_t::iterator const &b) const
         {
             return *a < *b;
         }
-        /***********************************************************************
-         * INTERACTION
-         **********************************************************************/
 
-         Board::Interaction::Interaction ( Board& b )
-         : board(b)
-         {
-         }
+        Board::Interaction::Interaction ( Board& b )
+        : board(b)
+        {
+        }
 
-        /***********************************************************************
-         * MOVEMENTS
-         **********************************************************************/
 
         Board::Movements::Movements(Movements_t const &m_)
         : m(m_)
@@ -298,10 +265,6 @@ namespace chesspp
         {
             return m.cend();
         }
-
-        /***********************************************************************
-         * MOVEMENTS RANGE
-         **********************************************************************/
 
         Board::MovementsRange::MovementsRange(std::pair<Movements_t::iterator, Movements_t::iterator> const &r_)
         : r(r_)

@@ -44,8 +44,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
 
         int sync() override;
 
-        //returns std::string containing current system time.
-        //should eventually be updated to use std::put_time
+        //returns std::string containing current system time. should eventually be updated to use std::put_time
         static std::string timestamp();
 
     };

@@ -1,4 +1,4 @@
-#include <Debug.hpp>
+#include "Debug.hpp"
 
 
 LogUtil::LogUtil_buffer::LogUtil_buffer(std::ostream &sink_, std::size_t buff_sz )
@@ -10,7 +10,6 @@ LogUtil::LogUtil_buffer::LogUtil_buffer(std::ostream &sink_, std::size_t buff_sz
     setp(base, base + buffer.size()-1); //reserve an extra char for calls to overflow
 }
 
-//Applies timestamps and flushes buffer
 bool LogUtil::LogUtil_buffer::timestamp_and_flush()
 {
     std::stringstream out;
@@ -32,7 +31,6 @@ bool LogUtil::LogUtil_buffer::timestamp_and_flush()
     return (!sink.fail() && !sink.bad());
 }
 
-//Overridden streambuf functions
 LogUtil::LogUtil_buffer::int_type LogUtil::LogUtil_buffer::overflow(int_type ch)
 {
     if(sink && ch != traits_type::eof())
@@ -50,8 +48,6 @@ int LogUtil::LogUtil_buffer::sync()
     return timestamp_and_flush() ? 0 : -1;
 }
 
-//returns std::string containing current system time.
-//should eventually be updated to use std::put_time
 std::string LogUtil::LogUtil_buffer::timestamp()
 {
     std::time_t curr_time_raw = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());

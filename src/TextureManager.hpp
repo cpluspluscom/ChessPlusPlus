@@ -11,9 +11,7 @@ namespace chesspp
 {
     struct TextureDeleter
     {
-        //Structure used by std::shared_ptr to delete an sf::Texture.
-        //This isn't needed because std::default_delete does the same thing.
-        //Using it for debugging purposes, though.
+        //Structure used by std::shared_ptr to delete an sf::Texture.  This isn't needed because std::default_delete does the same thing.  Using it for debugging purposes, though.
         void operator()(sf::Texture *texture) noexcept;
     };
 

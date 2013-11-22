@@ -1,4 +1,4 @@
-#include <BoardConfig.hpp>
+#include "BoardConfig.hpp"
 
 namespace chesspp
 {

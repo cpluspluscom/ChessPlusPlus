@@ -1,3 +1,33 @@
+Want to contribute? Here's how!
+================================
+## General
+Contributing is as easy as forking the project and creating a branch for the change you want. Once you're done working give us a pull request.
+If we like and agree with your work then we'll accept your pull request and merge your branch with the main development branch. Once development is
+up to snuff, it gets merged with master.
+
+## Branching
+There are two main branches in ChessPlusPlus - Master and Development. The master branch is the most bug-free and should build and run without any
+issues. Development is the most up-to-date branch, and as such as is the one you should be branching off of to work on.
+When creating a branch, we like to conform to a style to know what kind of work the branch is for, and who owns it.
+The name of the branch should start with some sort of identifier for yourself. If you have a short user name, use that. If you have a long user name,
+abbreviate it some way. For example, ResidentBiscuit uses rb as his identifer. The next part of the branch name should be the type of work the branch
+pertains to. This could be Feature, Update, Bugfix, etc. This part should be followed by a hypen, and then a very small mention of what the branch does.
+
+Here's an example:
+git checkout -b rbUpdate-contribHowto.
+
+rb = Identifier for ResidentBiscuit
+Update = Type of work being done. In this case, I'm updating documentation
+contribHowTo = The work that has been done. I added a sort of "How to" to the contributing document
+
+One more example:
+git checkout -b rbBugfix-pieceMovement
+
+rb = Again, it's me
+Bugfix = This time I'm fixing a bug
+pieceMovement = The bug is pertaining to how pieces move
+
+
 Style Guide & Coding Conventions
 ================================
 

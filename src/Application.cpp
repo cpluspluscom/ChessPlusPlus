@@ -19,7 +19,7 @@ namespace chesspp
 
             if(state->stateChange() != AppState::States::CURRENTSTATE)
             {
-                std::cout << "Changing state.\n";
+                std::cout << "Changing state " << (int)state->stateChange() << std::endl << std::endl;
                 this->changeState<chesspp::ChessPlusPlusState>(std::ref(*this), std::ref(display));
             }
             state->onRender();

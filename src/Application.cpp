@@ -1,4 +1,8 @@
 #include "Application.hpp"
+#include "ChessPlusPlusState.hpp"
+
+#include <typeinfo>
+#include <iostream>
 
 namespace chesspp
 {
@@ -13,6 +17,11 @@ namespace chesspp
                 onEvent(event);
             }
 
+            if(state->stateChange() != AppState::States::CURRENTSTATE)
+            {
+                std::cout << "Changing state.\n";
+                this->changeState<chesspp::ChessPlusPlusState>(std::ref(*this), std::ref(display));
+            }
             state->onRender();
             display.display();
         }

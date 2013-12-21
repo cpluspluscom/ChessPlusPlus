@@ -1,5 +1,5 @@
 #ifndef STARTMENUSTATE_H
-#define STARTMENUSTATE
+#define STARTMENUSTATE_H
 
 #include "SFML.hpp"
 
@@ -23,6 +23,8 @@ namespace chesspp
             sf::Texture menuBackgroundTexture;
             sf::Sprite menuBackground;
             Application &app;
+            
+            AppState::States destState;
     };
 }
 

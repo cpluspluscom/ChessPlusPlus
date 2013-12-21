@@ -17,9 +17,14 @@ namespace chesspp
         virtual ~AppState() = default;
 
         virtual void onRender() = 0;
+        
+        enum class States : int {CURRENTSTATE, STARTMENUSTATE, CHESSPLUSPLUSSTATE};
+        
+        virtual States stateChange() { return destState; }
 
     protected:
         sf::RenderWindow &display;
+        States destState;
     };
 }
 

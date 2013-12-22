@@ -18,7 +18,7 @@ namespace chesspp
 
         virtual void onRender() = 0;
         
-        enum class States : int {CURRENTSTATE = 0, STARTMENUSTATE = 1, CHESSPLUSPLUSSTATE = 2};
+        enum States {CURRENTSTATE = 0, STARTMENUSTATE = 1, CHESSPLUSPLUSSTATE = 2};
         
         virtual States stateChange() { return destState; }
 

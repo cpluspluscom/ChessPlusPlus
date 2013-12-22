@@ -11,7 +11,7 @@
 
 int main()
 {
-    //LogUtil::enableRedirection();
+    LogUtil::enableRedirection();
 
     try
     {

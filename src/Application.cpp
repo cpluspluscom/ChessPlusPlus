@@ -19,7 +19,7 @@ namespace chesspp
 
             if(state->stateChange() != AppState::States::CURRENTSTATE)
             {
-                std::clog << "Changing state " << static_cast<int>(state->stateChange()) << std::endl << std::endl;
+                std::clog << std::endl << "Changing state to: " << static_cast<int>(state->stateChange()) << std::endl;
                 this->changeState<chesspp::ChessPlusPlusState>(std::ref(*this), std::ref(display));
             }
             state->onRender();

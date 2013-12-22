@@ -11,7 +11,7 @@ namespace chesspp
     {
     public:
         AppState(sf::RenderWindow &disp)
-        : display(disp)
+        : display(disp), destState(States::CURRENTSTATE)
         {
         }
         virtual ~AppState() = default;

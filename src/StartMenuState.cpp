@@ -7,8 +7,6 @@ namespace chesspp
         if(!menuBackgroundTexture.loadFromFile("../res/img/chessboard_640x640.png"))
             std::cerr << "Start menu background image failed to load.\n";
         menuBackground.setTexture(menuBackgroundTexture);
-        
-        destState = AppState::States::CURRENTSTATE;
     }
 
     void StartMenuState::onRender()
@@ -20,7 +18,8 @@ namespace chesspp
 
     void StartMenuState::onLButtonPressed(int x, int y)
     {
-        //destState = AppState::States::CHESSPLUSPLUSSTATE;
+        destState = AppState::States::CHESSPLUSPLUSSTATE;
+        std::clog << "destState changing to: " << static_cast<int>(destState) << std::endl;
     }
     
 }

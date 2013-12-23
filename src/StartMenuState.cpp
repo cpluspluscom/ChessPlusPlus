@@ -36,7 +36,7 @@ namespace chesspp
         
         quitText.setString("Quit");
         quitText.setCharacterSize(75);
-        quitText.setPosition(((display.getSize().x / 2) - (quitText.getLocalBounds().width / 2)) , (display.getSize().y * .50));
+        quitText.setPosition(((display.getSize().x / 2) - (quitText.getLocalBounds().width / 2)) , (display.getSize().y * .47));
         quitText.setColor(sf::Color::Black);
         quitText.setStyle(sf::Text::Bold);
     }

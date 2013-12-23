@@ -6,12 +6,16 @@ namespace chesspp
     {
         /** Load and initialize resources **/
         if(!menuBackgroundTexture.loadFromFile("../res/img/MainMenuBackground.png"))
+        {
             std::cerr << "Start menu background image failed to load." << std::endl;
+        }
         else menuBackground.setTexture(menuBackgroundTexture);
             
             
         if(!logoTexture.loadFromFile("../res/img/Logo.png"))
+        {
             std::cerr << "Logo failed to load." << std::endl;
+        }
         else
         {
             logo.setTexture(logoTexture, true);
@@ -20,7 +24,9 @@ namespace chesspp
         }
         
         if(!font.loadFromFile("../res/fonts/FreeMono.ttf"))
+        {
             std::cerr << "Font failed to load." << std::endl;
+        }
         else
         {
             startText.setFont(font);

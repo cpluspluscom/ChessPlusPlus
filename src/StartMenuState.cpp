@@ -16,7 +16,7 @@ namespace chesspp
         display.display();
     }
 
-    void StartMenuState::onLButtonPressed(int x, int y)
+    void StartMenuState::onLButtonReleased(int x, int y)
     {
         /** If clicked on Start button **/
         if((x >= 250 && x <= 370) && (y >= 250 && y <= 300))
@@ -24,6 +24,7 @@ namespace chesspp
             std::clog << "State changing to ChessPlusPlus." << std::endl;
             app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(display));
         }
+        
         /** If clicked on Exit button **/
         if((x >= 260 && x <= 360) && (y >= 330 && y <= 380))
         {

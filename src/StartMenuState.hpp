@@ -18,7 +18,7 @@ namespace chesspp
             
             virtual void onRender() override;
             
-            virtual void onLButtonPressed(int x, int y) override;
+            virtual void onLButtonReleased(int x, int y) override;
             
         private:
             sf::Texture menuBackgroundTexture;

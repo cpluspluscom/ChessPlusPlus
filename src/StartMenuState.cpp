@@ -5,7 +5,7 @@ namespace chesspp
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
     {
         if(!menuBackgroundTexture.loadFromFile("../res/img/MainMenu.png"))
-            std::cerr << "Start menu background image failed to load.\n";
+            std::cerr << "Start menu background image failed to load." << std::endl;
         menuBackground.setTexture(menuBackgroundTexture);
     }
 

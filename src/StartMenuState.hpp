@@ -4,6 +4,7 @@
 #include "SFML.hpp"
 
 #include "AppState.hpp"
+#include "ChessPlusPlusState.hpp"
 #include "Application.hpp"
 
 #include <iostream>
@@ -23,8 +24,6 @@ namespace chesspp
             sf::Texture menuBackgroundTexture;
             sf::Sprite menuBackground;
             Application &app;
-            
-            AppState::States destState;
     };
 }
 

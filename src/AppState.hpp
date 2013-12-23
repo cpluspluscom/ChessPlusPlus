@@ -11,20 +11,15 @@ namespace chesspp
     {
     public:
         AppState(sf::RenderWindow &disp)
-        : display(disp), destState(States::CURRENTSTATE)
+        : display(disp)
         {
         }
         virtual ~AppState() = default;
 
         virtual void onRender() = 0;
-        
-        enum States {CURRENTSTATE = 0, STARTMENUSTATE = 1, CHESSPLUSPLUSSTATE = 2};
-        
-        virtual States stateChange() { return destState; }
 
     protected:
         sf::RenderWindow &display;
-        States destState;
     };
 }
 

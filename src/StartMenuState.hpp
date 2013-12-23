@@ -26,6 +26,12 @@ namespace chesspp
             
             sf::Texture logoTexture;
             sf::Sprite logo;
+            
+            sf::Text startText;
+            sf::Text quitText;
+            
+            sf::Font font;
+            
             Application &app;
     };
 }

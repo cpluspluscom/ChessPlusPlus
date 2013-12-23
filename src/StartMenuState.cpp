@@ -15,7 +15,7 @@ namespace chesspp
         else
         {
             logo.setTexture(logoTexture, true);
-            //Sets position at centered horizontally, down 10% vertically;
+            /** Sets position at centered horizontally, down 10% vertically **/
             logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
         }
         

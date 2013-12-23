@@ -1,4 +1,8 @@
 #include "Application.hpp"
+#include "ChessPlusPlusState.hpp"
+
+#include <typeinfo>
+#include <iostream>
 
 namespace chesspp
 {
@@ -18,6 +22,11 @@ namespace chesspp
         }
 
         return 0;
+    }
+    
+    void Application::setRunning(bool running)
+    {
+        this->running = running;
     }
 
     void Application::onEvent(sf::Event &e)

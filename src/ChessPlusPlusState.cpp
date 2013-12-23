@@ -26,7 +26,9 @@ namespace chesspp
         {
             turn = players.begin();
         }
+        
     }
+    
 
     void ChessPlusPlusState::nextTurn()
     {

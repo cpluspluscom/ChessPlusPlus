@@ -23,6 +23,9 @@ namespace chesspp
         private:
             sf::Texture menuBackgroundTexture;
             sf::Sprite menuBackground;
+            
+            sf::Texture logoTexture;
+            sf::Sprite logo;
             Application &app;
     };
 }

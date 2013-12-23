@@ -42,6 +42,7 @@ namespace chesspp
         virtual void onMouseMoved(int x, int y) override;
         virtual void onLButtonPressed(int x, int y) override;
         virtual void onLButtonReleased(int x, int y) override;
+        
     };
 }
 

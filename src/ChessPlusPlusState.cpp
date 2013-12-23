@@ -22,7 +22,6 @@ namespace chesspp
     , turn(players.find(board_config.metadata("first turn")))
     {
         std::clog << "Number of players: " << players.size() << std::endl;
-        destState = AppState::States::CURRENTSTATE;
         if(turn == players.end())
         {
             turn = players.begin();

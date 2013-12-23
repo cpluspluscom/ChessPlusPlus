@@ -43,7 +43,6 @@ namespace chesspp
         virtual void onLButtonPressed(int x, int y) override;
         virtual void onLButtonReleased(int x, int y) override;
         
-        //virtual AppState::States stateChange() override;
     };
 }
 

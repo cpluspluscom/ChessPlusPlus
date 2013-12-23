@@ -20,9 +20,9 @@ namespace chesspp
         return 0;
     }
     
-    void Application::setRunning(bool running)
+    void Application::stop()
     {
-        this->running = running;
+        running = false;
     }
 
     void Application::onEvent(sf::Event &e)

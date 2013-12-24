@@ -5,8 +5,9 @@ namespace chesspp
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
     {
         // Load and initialize resources
-        menuBackground.setTexture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "menu", "background")));
-        logo.setTexture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "logo")), true);
+        menuBackground.setTexture(TextureManager::instance().load(gfx_config.spritePath("menu", "background")));
+        logo.setTexture(TextureManager::instance().load(gfx_config.spritePath("logo")), true);
+        
         // Sets position at centered horizontally, down 10% vertically
         logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
         

@@ -70,7 +70,7 @@ namespace chesspp
         if(quitText.getGlobalBounds().contains(x,y))
         {
             std::clog << "Exiting from StartMenuState." << std::endl;
-            app.setRunning(false);
+            app.stop();
         }
     }
     

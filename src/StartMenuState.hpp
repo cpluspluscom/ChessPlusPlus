@@ -24,11 +24,11 @@ namespace chesspp
             virtual void onLButtonReleased(int x, int y) override;
             
         private:
-            sf::Sprite menuBackground;
+            sf::Sprite menu_background;
             sf::Sprite logo;
             
-            sf::Text startText;
-            sf::Text quitText;
+            sf::Text start_text;
+            sf::Text quit_text;
             sf::Font font;
             
             Application &app;

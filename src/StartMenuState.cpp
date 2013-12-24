@@ -5,7 +5,7 @@ namespace chesspp
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
     {
         // Load and initialize resources
-        menuBackground.setTexture(TextureManager::instance().load(gfx_config.spritePath("menu", "background")));
+        menu_background.setTexture(TextureManager::instance().load(gfx_config.spritePath("menu", "background")));
         logo.setTexture(TextureManager::instance().load(gfx_config.spritePath("logo")), true);
         
         // Sets position at centered horizontally, down 10% vertically
@@ -17,45 +17,45 @@ namespace chesspp
         }
         else
         {
-            startText.setFont(font);
-            quitText.setFont(font);
+            start_text.setFont(font);
+            quit_text.setFont(font);
         }
         
         // Initialize text
-        startText.setString("Start");
-        startText.setCharacterSize(75);
-        startText.setPosition(((display.getSize().x / 2) - (startText.getLocalBounds().width / 2)) , (display.getSize().y * .35));
-        startText.setColor(sf::Color::Black);
-        startText.setStyle(sf::Text::Bold);
+        start_text.setString("Start");
+        start_text.setCharacterSize(75);
+        start_text.setPosition(((display.getSize().x / 2) - (start_text.getLocalBounds().width / 2)) , (display.getSize().y * .35));
+        start_text.setColor(sf::Color::Black);
+        start_text.setStyle(sf::Text::Bold);
         
-        quitText.setString("Quit");
-        quitText.setCharacterSize(75);
-        quitText.setPosition(((display.getSize().x / 2) - (quitText.getLocalBounds().width / 2)) , (display.getSize().y * .47));
-        quitText.setColor(sf::Color::Black);
-        quitText.setStyle(sf::Text::Bold);
+        quit_text.setString("Quit");
+        quit_text.setCharacterSize(75);
+        quit_text.setPosition(((display.getSize().x / 2) - (quit_text.getLocalBounds().width / 2)) , (display.getSize().y * .47));
+        quit_text.setColor(sf::Color::Black);
+        quit_text.setStyle(sf::Text::Bold);
     }
 
     void StartMenuState::onRender()
     {
         display.clear();
-        display.draw(menuBackground);
+        display.draw(menu_background);
         display.draw(logo);
-        display.draw(startText);
-        display.draw(quitText);
+        display.draw(start_text);
+        display.draw(quit_text);
         display.display();
     }
 
     void StartMenuState::onLButtonReleased(int x, int y)
     {
         // If clicked on Start button
-        if(startText.getGlobalBounds().contains(x,y))
+        if(start_text.getGlobalBounds().contains(x,y))
         {
             std::clog << "State changing to ChessPlusPlus." << std::endl;
             app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(display));
         }
         
         // If clicked on Exit button
-        if(quitText.getGlobalBounds().contains(x,y))
+        if(quit_text.getGlobalBounds().contains(x,y))
         {
             std::clog << "Exiting from StartMenuState." << std::endl;
             app.stop();

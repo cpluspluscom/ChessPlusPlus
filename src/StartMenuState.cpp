@@ -4,22 +4,22 @@ namespace chesspp
 {
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
     {
-        /** Load and initialize resources **/
-        if(!menuBackgroundTexture.loadFromFile("../res/img/MainMenuBackground.png"))
+        // Load and initialize resources
+        if(!menuBackgroundTexture.loadFromFile("../res/img/main_menu_background.png"))
         {
             std::cerr << "Start menu background image failed to load." << std::endl;
         }
         else menuBackground.setTexture(menuBackgroundTexture);
             
             
-        if(!logoTexture.loadFromFile("../res/img/Logo.png"))
+        if(!logoTexture.loadFromFile("../res/img/logo.png"))
         {
             std::cerr << "Logo failed to load." << std::endl;
         }
         else
         {
             logo.setTexture(logoTexture, true);
-            /** Sets position at centered horizontally, down 10% vertically **/
+            // Sets position at centered horizontally, down 10% vertically
             logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
         }
         
@@ -33,7 +33,7 @@ namespace chesspp
             quitText.setFont(font);
         }
         
-        /** Initialize text **/
+        // Initialize text
         startText.setString("Start");
         startText.setCharacterSize(75);
         startText.setPosition(((display.getSize().x / 2) - (startText.getLocalBounds().width / 2)) , (display.getSize().y * .35));
@@ -59,14 +59,14 @@ namespace chesspp
 
     void StartMenuState::onLButtonReleased(int x, int y)
     {
-        /** If clicked on Start button **/
+        // If clicked on Start button
         if(startText.getGlobalBounds().contains(x,y))
         {
             std::clog << "State changing to ChessPlusPlus." << std::endl;
             app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(display));
         }
         
-        /** If clicked on Exit button **/
+        // If clicked on Exit button
         if(quitText.getGlobalBounds().contains(x,y))
         {
             std::clog << "Exiting from StartMenuState." << std::endl;

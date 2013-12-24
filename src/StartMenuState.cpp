@@ -11,7 +11,7 @@ namespace chesspp
         // Sets position at centered horizontally, down 10% vertically
         logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
         
-        if(!font.loadFromFile("../res/fonts/FreeMono.ttf"))
+        if(!font.loadFromFile("res/fonts/FreeMono.ttf"))
         {
             std::cerr << "Font failed to load." << std::endl;
         }

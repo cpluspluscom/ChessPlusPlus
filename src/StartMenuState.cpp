@@ -5,23 +5,10 @@ namespace chesspp
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
     {
         // Load and initialize resources
-        if(!menuBackgroundTexture.loadFromFile("../res/img/main_menu_background.png"))
-        {
-            std::cerr << "Start menu background image failed to load." << std::endl;
-        }
-        else menuBackground.setTexture(menuBackgroundTexture);
-            
-            
-        if(!logoTexture.loadFromFile("../res/img/logo.png"))
-        {
-            std::cerr << "Logo failed to load." << std::endl;
-        }
-        else
-        {
-            logo.setTexture(logoTexture, true);
-            // Sets position at centered horizontally, down 10% vertically
-            logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
-        }
+        menuBackground.setTexture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "menu", "background")));
+        logo.setTexture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "logo")), true);
+        // Sets position at centered horizontally, down 10% vertically
+        logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
         
         if(!font.loadFromFile("../res/fonts/FreeMono.ttf"))
         {

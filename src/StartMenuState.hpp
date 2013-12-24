@@ -6,8 +6,11 @@
 #include "AppState.hpp"
 #include "ChessPlusPlusState.hpp"
 #include "Application.hpp"
+#include "config/GraphicsConfig.hpp"
+#include "TextureManager.hpp"
 
 #include <iostream>
+#include <memory>
 
 namespace chesspp
 {
@@ -21,18 +24,15 @@ namespace chesspp
             virtual void onLButtonReleased(int x, int y) override;
             
         private:
-            sf::Texture menuBackgroundTexture;
             sf::Sprite menuBackground;
-            
-            sf::Texture logoTexture;
             sf::Sprite logo;
             
             sf::Text startText;
             sf::Text quitText;
-            
             sf::Font font;
             
             Application &app;
+            config::GraphicsConfig gfx_config;
     };
 }
 

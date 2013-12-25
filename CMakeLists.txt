@@ -44,26 +44,41 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     endif()
 endif()
 
-# Detect and add SFML
+# Add CMAKE modules path for detecting libraries
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+
+#SFML variables for static/dynamic builds
 if(STATIC_BUILD)
-	set(SFML_STATIC_LIBRARIES TRUE)
+    set(SFML_STATIC_LIBRARIES TRUE)
 else()
-	set(SFML_STATIC_LIBRARIES FALSE)
+    set(SFML_STATIC_LIBRARIES FALSE)
 endif()
+
+#Detect SFML
+#If found, use found include directories
+#Otherwise use SFML_ROOT
 find_package(SFML 2 REQUIRED graphics window network system audio)
-include_directories (${SFML_INCLUDE_DIR})
-link_directories(${SFML_ROOT}/lib)
+if(SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+else()
+    include_directories (${SFML_ROOT})
+    link_directories(${SFML_ROOT}/lib)
+endif()
 
 #Detect Boost
+#If boost found, use found include directores.
+#Ohterwise use BOOST_ROOT
 find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
-include_directories(${BOOST_ROOT})
-set(Boost_LIBRARYDIR ${BOOST_ROOT}/lib)
-link_directories(${Boost_LIBRARY_DIR})
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+else()
+    include_directories(${BOOST_ROOT})
+    link_directories(${BOOST_ROOT}/lib)
+endif()
 
 #Set static runtime for msvc
 if(WIN32)
-	if(MSVC AND STATIC_BUILD)
+    if(MSVC AND STATIC_BUILD)
         foreach(flag
                 CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
                 CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)

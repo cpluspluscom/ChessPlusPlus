@@ -49,36 +49,45 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
 #SFML variables for static/dynamic builds
 if(STATIC_BUILD)
-    set(SFML_STATIC_LIBRARIES TRUE)
+	set(SFML_STATIC_LIBRARIES TRUE)
 else()
-    set(SFML_STATIC_LIBRARIES FALSE)
+	set(SFML_STATIC_LIBRARIES FALSE)
 endif()
 
 #Detect SFML
-#If found, use found include directories
-#Otherwise use SFML_ROOT
+#If SFML_ROOT is specified, use that path. 
+#Otherwise use the one provided by find_package
 find_package(SFML 2 REQUIRED graphics window network system audio)
-if(SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-else()
-    include_directories (${SFML_ROOT})
+if(NOT "${SFML_ROOT}" STREQUAL "")
+    include_direcotires(${SFML_ROOT})
     link_directories(${SFML_ROOT}/lib)
+else()
+    if(SFML_FOUND)
+        include_directories(${SFML_INCLUDE_DIR})
+    else()
+        message(FATAL_ERROR "SFML not found by find_package. Try specifying SFML_ROOT")
+    endif()
 endif()
 
 #Detect Boost
-#If boost found, use found include directores.
-#Ohterwise use BOOST_ROOT
+#If BOOST_ROOT is specified, use that path
+#Ohterwise use the one provided by find_package
 find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
-if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-else()
+if(NOT "${BOOST_ROOT}" STREQUAL "")
     include_directories(${BOOST_ROOT})
-    link_directories(${BOOST_ROOT}/lib)
+    link_directories(${BOOST_ROOT}/lib})
+else()
+    if(Boost_FOUND)
+        include_directories(${Boost_INCLUDE_DIRS})
+    else()
+        message(FATAL_ERROR "Boost not found by find_package. Try specifying BOOST_ROOT")
+    endif()
 endif()
+
 
 #Set static runtime for msvc
 if(WIN32)
-    if(MSVC AND STATIC_BUILD)
+	if(MSVC AND STATIC_BUILD)
         foreach(flag
                 CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
                 CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
@@ -92,7 +101,7 @@ endif()
 # Application bundle if on an apple machine
 if(APPLE)
     # Optionally build application bundle
-    set(BUILD_APPBUNDLE TRUE CACHE BOOL "Build into OS x Application Bundle.")
+    set(BUILD_APPBUNDLE FALSE CACHE BOOL "Build into OS x Application Bundle.")
     if(BUILD_APPBUNDLE)
         # Set bundle properties
         set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)

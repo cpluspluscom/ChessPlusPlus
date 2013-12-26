@@ -44,22 +44,38 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     endif()
 endif()
 
-# Detect and add SFML
+# Add CMAKE modules path for detecting libraries
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
+
+#SFML variables for static/dynamic builds
 if(STATIC_BUILD)
 	set(SFML_STATIC_LIBRARIES TRUE)
 else()
 	set(SFML_STATIC_LIBRARIES FALSE)
 endif()
-find_package(SFML 2 REQUIRED graphics window network system audio)
-include_directories (${SFML_INCLUDE_DIR})
-link_directories(${SFML_ROOT}/lib)
 
-#Detect Boost
+#Detect and add SFML
+#if SFML_ROOT is set in Windows, the SFML find_package module
+#will work properly. Otherwise an error is thrown.
+find_package(SFML 2 REQUIRED graphics window network system audio)
+if(SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
+    link_directories(${SFML_ROOT}/lib)
+else()
+    message(FATAL_ERROR "SFML not found by find_package. Try specifying SFML_ROOT")
+endif()
+
+#Detect and add Boost
+#if BOOST_ROOT is set in Windows, the Boost find_package module
+#will work properly. Otherwise an error is thrown.
 find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
-include_directories(${BOOST_ROOT})
-set(Boost_LIBRARYDIR ${BOOST_ROOT}/lib)
-link_directories(${Boost_LIBRARY_DIR})
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${BOOST_ROOT}/lib)
+else()
+    message(FATAL_ERROR "Boost not found by find_package. Try specifying BOOST_ROOT")
+endif()
+
 
 #Set static runtime for msvc
 if(WIN32)
@@ -77,7 +93,7 @@ endif()
 # Application bundle if on an apple machine
 if(APPLE)
     # Optionally build application bundle
-    set(BUILD_APPBUNDLE TRUE CACHE BOOL "Build into OS x Application Bundle.")
+    set(BUILD_APPBUNDLE FALSE CACHE BOOL "Build into OS x Application Bundle.")
     if(BUILD_APPBUNDLE)
         # Set bundle properties
         set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)

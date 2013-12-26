@@ -54,34 +54,26 @@ else()
 	set(SFML_STATIC_LIBRARIES FALSE)
 endif()
 
-#Detect SFML
-#If SFML_ROOT is specified, use that path. 
-#Otherwise use the one provided by find_package
+#Detect and add SFML
+#if SFML_ROOT is set in Windows, the SFML find_package module
+#will work properly. Otherwise an error is thrown.
 find_package(SFML 2 REQUIRED graphics window network system audio)
-if(NOT "${SFML_ROOT}" STREQUAL "")
-    include_direcotires(${SFML_ROOT})
+if(SFML_FOUND)
+    include_directories(${SFML_INCLUDE_DIR})
     link_directories(${SFML_ROOT}/lib)
 else()
-    if(SFML_FOUND)
-        include_directories(${SFML_INCLUDE_DIR})
-    else()
-        message(FATAL_ERROR "SFML not found by find_package. Try specifying SFML_ROOT")
-    endif()
+    message(FATAL_ERROR "SFML not found by find_package. Try specifying SFML_ROOT")
 endif()
 
-#Detect Boost
-#If BOOST_ROOT is specified, use that path
-#Ohterwise use the one provided by find_package
+#Detect and add Boost
+#if BOOST_ROOT is set in Windows, the Boost find_package module
+#will work properly. Otherwise an error is thrown.
 find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
-if(NOT "${BOOST_ROOT}" STREQUAL "")
-    include_directories(${BOOST_ROOT})
-    link_directories(${BOOST_ROOT}/lib})
+if(Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${BOOST_ROOT}/lib)
 else()
-    if(Boost_FOUND)
-        include_directories(${Boost_INCLUDE_DIRS})
-    else()
-        message(FATAL_ERROR "Boost not found by find_package. Try specifying BOOST_ROOT")
-    endif()
+    message(FATAL_ERROR "Boost not found by find_package. Try specifying BOOST_ROOT")
 endif()
 
 

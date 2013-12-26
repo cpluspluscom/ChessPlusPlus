@@ -42,7 +42,7 @@ namespace chesspp
         display.draw(logo);
         display.draw(start_text);
         display.draw(quit_text);
-        display.display();
+        //display.display();
     }
 
     void StartMenuState::onLButtonReleased(int x, int y)

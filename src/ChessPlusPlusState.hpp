@@ -5,7 +5,7 @@
 #include "TextureManager.hpp"
 #include "gfx/Graphics.hpp"
 #include "config/Configuration.hpp"
-#include "config/GraphicsConfig.hpp"
+#include "config/ResourceConfig.hpp"
 #include "board/Board.hpp"
 #include "factory/ClassicFactory.hpp"
 

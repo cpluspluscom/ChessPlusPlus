@@ -2,7 +2,7 @@
 #define GraphicsHandlerClass_HeaderPlusPlus
 
 #include "SFML.hpp"
-#include "config/GraphicsConfig.hpp"
+#include "config/ResourceConfig.hpp"
 #include "config/BoardConfig.hpp"
 #include "board/Board.hpp"
 

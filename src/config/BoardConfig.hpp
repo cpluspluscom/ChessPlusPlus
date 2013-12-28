@@ -2,7 +2,7 @@
 #define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
-#include "GraphicsConfig.hpp"
+#include "ResourceConfig.hpp"
 #include "util/Position.hpp"
 
 #include <string>

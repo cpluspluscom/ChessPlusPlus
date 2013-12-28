@@ -31,7 +31,7 @@ namespace chesspp
             Textures_t textures;
 
         public:
-            BoardConfig(GraphicsConfig const &gfx)
+            BoardConfig(ResourceConfig const &rcc)
             : Configuration("config/chesspp/board.json")
             , board_width  (reader()["board"]["width"]      )
             , board_height (reader()["board"]["height"]     )
@@ -53,12 +53,12 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = gfx.spritePaths("board", "pieces");
+                auto const &tex = rcc.spritePaths("board", "pieces");
                 for(auto const &suit : tex)
                 {
                     for(auto const &piece : suit.second.object())
                     {
-                        textures[suit.first][piece.first] = gfx.normalize(Textures_t::mapped_type::mapped_type(piece.second));
+                        textures[suit.first][piece.first] = rcc.normalize(Textures_t::mapped_type::mapped_type(piece.second));
                     }
                 }
             }

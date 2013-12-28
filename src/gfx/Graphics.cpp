@@ -9,15 +9,15 @@ namespace chesspp
 {
     namespace gfx
     {
-        GraphicsHandler::GraphicsHandler(sf::RenderWindow &disp, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow &disp, config::ResourceConfig &rcc, config::BoardConfig &bc)
         : display(disp)
-        , gfx_config(gfxc)
+        , rc_config(rcc)
         , board_config(bc)
-        , board        (TextureManager::instance().load(gfx_config.spritePath("board", "board"        )))
-        , valid_move   (TextureManager::instance().load(gfx_config.spritePath("board", "valid move"   )))
-        , enemy_move   (TextureManager::instance().load(gfx_config.spritePath("board", "enemy move"   )))
-        , valid_capture(TextureManager::instance().load(gfx_config.spritePath("board", "valid capture")))
-        , enemy_capture(TextureManager::instance().load(gfx_config.spritePath("board", "enemy capture")))
+        , board        (TextureManager::instance().load(rc_config.spritePath("board", "board"        )))
+        , valid_move   (TextureManager::instance().load(rc_config.spritePath("board", "valid move"   )))
+        , enemy_move   (TextureManager::instance().load(rc_config.spritePath("board", "enemy move"   )))
+        , valid_capture(TextureManager::instance().load(rc_config.spritePath("board", "valid capture")))
+        , enemy_capture(TextureManager::instance().load(rc_config.spritePath("board", "enemy capture")))
         {
         }
 

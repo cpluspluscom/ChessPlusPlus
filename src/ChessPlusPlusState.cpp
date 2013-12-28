@@ -10,9 +10,9 @@ namespace chesspp
     ChessPlusPlusState::ChessPlusPlusState(Application &_app, sf::RenderWindow &disp)
     : AppState(disp)
     , app(_app)
-    , board_config(gfx_config)
+    , board_config(rc_config)
     , classic_factory(board_config)
-    , graphics(display, gfx_config, board_config)
+    , graphics(display, rc_config, board_config)
     , board(board_config, classic_factory.factory())
     , p(-1, -1)
     , players(util::KeyIter<config::BoardConfig::Textures_t>

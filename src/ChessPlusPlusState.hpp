@@ -19,7 +19,7 @@ namespace chesspp
     class ChessPlusPlusState : public AppState
     {
         Application &app;
-        config::GraphicsConfig gfx_config;
+        config::ResourceConfig rc_config;
         config::BoardConfig board_config;
         factory::ClassicFactory classic_factory;
         gfx::GraphicsHandler graphics;

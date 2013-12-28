@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusGraphicsConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlusGraphicsConfigurationManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlusResourceConfigurationManagerClass_HeaderPlusPlus
+#define ChessPlusPlusResourceConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
 
@@ -7,14 +7,14 @@ namespace chesspp
 {
     namespace config
     {
-        class GraphicsConfig : public Configuration
+        class ResourceConfig : public Configuration
         {
         public:
-            GraphicsConfig()
-            : Configuration("config/chesspp/graphics.json")
+            ResourceConfig()
+            : Configuration("config/chesspp/resources.json")
             {
             }
-            virtual ~GraphicsConfig() = default;
+            virtual ~ResourceConfig() = default;
 
             std::string normalize(std::string const &path) const
             {
@@ -26,7 +26,7 @@ namespace chesspp
                 auto val = reader.navigate(path...);
                 if(val.type() != json_string)
                 {
-                    return normalize(reader()["chesspp"]["missing"]);
+                    return normalize(reader()["missing"]);
                 }
                 return normalize(val);
             }

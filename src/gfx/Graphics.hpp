@@ -15,7 +15,7 @@ namespace chesspp
         class GraphicsHandler
         {
             sf::RenderWindow &display;
-            config::GraphicsConfig &gfx_config;
+            config::ResourceConfig &rc_config;
             config::BoardConfig &board_config;
 
             sf::Sprite board
@@ -25,7 +25,7 @@ namespace chesspp
             ,          enemy_capture;
 
         public:
-            GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc);
+            GraphicsHandler(sf::RenderWindow &display, config::ResourceConfig &rcc, config::BoardConfig &bc);
 
             //Draws the board background.
             void drawBackground();

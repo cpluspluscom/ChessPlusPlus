@@ -66,6 +66,8 @@ namespace chesspp
                 {
                     res.emplace(key, Res_t::mapped_type{new ResT{path}});
                 }
+                //This cast is guaranteed to be correct
+                return static_cast<ResT &>(*res[key]);
             }
         };
         inline ResourceManager::Resource::~Resource() = default;

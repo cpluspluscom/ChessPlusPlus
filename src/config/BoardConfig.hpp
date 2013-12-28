@@ -53,7 +53,7 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = gfx.spritePaths("chesspp", "board", "pieces");
+                auto const &tex = gfx.spritePaths("board", "pieces");
                 for(auto const &suit : tex)
                 {
                     for(auto const &piece : suit.second.object())

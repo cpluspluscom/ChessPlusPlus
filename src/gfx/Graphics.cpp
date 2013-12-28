@@ -13,11 +13,11 @@ namespace chesspp
         : display(disp)
         , gfx_config(gfxc)
         , board_config(bc)
-        , board        (TextureManager::instance().load(gfx_config.spritePath("chesspp", "board", "board"        )))
-        , valid_move   (TextureManager::instance().load(gfx_config.spritePath("chesspp", "board", "valid move"   )))
-        , enemy_move   (TextureManager::instance().load(gfx_config.spritePath("chesspp", "board", "enemy move"   )))
-        , valid_capture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "board", "valid capture")))
-        , enemy_capture(TextureManager::instance().load(gfx_config.spritePath("chesspp", "board", "enemy capture")))
+        , board        (TextureManager::instance().load(gfx_config.spritePath("board", "board"        )))
+        , valid_move   (TextureManager::instance().load(gfx_config.spritePath("board", "valid move"   )))
+        , enemy_move   (TextureManager::instance().load(gfx_config.spritePath("board", "enemy move"   )))
+        , valid_capture(TextureManager::instance().load(gfx_config.spritePath("board", "valid capture")))
+        , enemy_capture(TextureManager::instance().load(gfx_config.spritePath("board", "enemy capture")))
         {
         }
 

@@ -11,7 +11,7 @@ namespace chesspp
         {
         public:
             GraphicsConfig()
-            : Configuration("config/graphics.json")
+            : Configuration("config/chesspp/graphics.json")
             {
             }
             virtual ~GraphicsConfig() = default;
@@ -23,7 +23,7 @@ namespace chesspp
             template<typename... Args>
             std::string spritePath(Args const &... path) const
             {
-                auto val = reader.navigate("chesspp", path...);
+                auto val = reader.navigate(path...);
                 if(val.type() != json_string)
                 {
                     return normalize(reader()["chesspp"]["missing"]);
@@ -34,7 +34,7 @@ namespace chesspp
             template<typename... Args>
             auto spritePaths(Args const &... path) const -> std::map<std::string, util::JsonReader::NestedValue>
             {
-                return reader.navigate("chesspp", path...).object();
+                return reader.navigate(path...).object();
             }
         };
     }

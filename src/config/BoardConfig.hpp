@@ -32,7 +32,7 @@ namespace chesspp
 
         public:
             BoardConfig(GraphicsConfig const &gfx)
-            : Configuration("config/board.json")
+            : Configuration("config/chesspp/board.json")
             , board_width  (reader()["chesspp"]["board"]["width"]      )
             , board_height (reader()["chesspp"]["board"]["height"]     )
             , cell_width   (reader()["chesspp"]["board"]["cell width"] )
@@ -53,7 +53,7 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = gfx.spritePaths("board", "pieces");
+                auto const &tex = gfx.spritePaths("chesspp", "board", "pieces");
                 for(auto const &suit : tex)
                 {
                     for(auto const &piece : suit.second.object())

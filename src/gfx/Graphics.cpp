@@ -13,11 +13,11 @@ namespace chesspp
         : display(disp)
         , rc_config(rcc)
         , board_config(bc)
-        , board        (TextureManager::instance().load(rc_config.spritePath("board", "board"        )))
-        , valid_move   (TextureManager::instance().load(rc_config.spritePath("board", "valid move"   )))
-        , enemy_move   (TextureManager::instance().load(rc_config.spritePath("board", "enemy move"   )))
-        , valid_capture(TextureManager::instance().load(rc_config.spritePath("board", "valid capture")))
-        , enemy_capture(TextureManager::instance().load(rc_config.spritePath("board", "enemy capture")))
+        , board        (TextureManager::instance().load(rc_config.filePath("board", "board"        )))
+        , valid_move   (TextureManager::instance().load(rc_config.filePath("board", "valid move"   )))
+        , enemy_move   (TextureManager::instance().load(rc_config.filePath("board", "enemy move"   )))
+        , valid_capture(TextureManager::instance().load(rc_config.filePath("board", "valid capture")))
+        , enemy_capture(TextureManager::instance().load(rc_config.filePath("board", "enemy capture")))
         {
         }
 

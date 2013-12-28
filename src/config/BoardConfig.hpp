@@ -53,7 +53,7 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = rcc.spritePaths("board", "pieces");
+                auto const &tex = rcc.filePaths("board", "pieces");
                 for(auto const &suit : tex)
                 {
                     for(auto const &piece : suit.second.object())

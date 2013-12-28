@@ -5,6 +5,7 @@
 #include <memory>
 #include <iterator>
 #include <utility>
+#include <sstream>
 
 namespace chesspp
 {
@@ -129,6 +130,28 @@ namespace chesspp
                 return a.it != b.it;
             }
         };
+
+        /**
+         * Allows unpacking a template parameter pack
+         * into a string path with a custom delimiter.
+         * \tparam ...Args The type parameter pack.
+         * \param delim The delimiter, between each arg and at the end.
+         * \param ...args The template parameter pack.
+         */
+        template<typename... Args>
+        std::string path_concat(std::string const &delim, Args const &... args);
+        template<typename First, typename... Rest>
+        std::string path_concat(std::string const &delim, First const &first, Rest const &... rest)
+        {
+            std::ostringstream oss;
+            oss << first << delim << path_concat<Rest...>(delim, rest...);
+            return oss.str();
+        }
+        template<>
+        inline std::string path_concat(std::string const &delim)
+        {
+            return "";
+        }
     }
 }
 namespace std //for std::begin and std::end specializations

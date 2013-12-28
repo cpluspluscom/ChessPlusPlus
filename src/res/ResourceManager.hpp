@@ -2,6 +2,7 @@
 #define GenericResourcesManagerClass_HeaderPlusPlus
 
 #include "config/Configuration.hpp"
+#include "util/Utilities.hpp"
 
 #include <map>
 #include <typeinfo>
@@ -44,7 +45,7 @@ namespace chesspp
                 ResT &
             >::type
             {
-                Res_t::key_type key {"", typeid(ResT)};
+                Res_t::key_type key {util::path_concat(std::string("\0", 1), path...), typeid(ResT)};
                 if(res.find(key) == std::end(res))
                 {
                     res.emplace(key, Res_t::mapped_type{new ResT{conf.setting(path...)}});

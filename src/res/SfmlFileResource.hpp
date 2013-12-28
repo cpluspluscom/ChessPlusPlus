@@ -9,28 +9,40 @@
 
 namespace chesspp
 {
-    template<typename sfmlT>
-    class SfmlFileResource : public ResourceManager::Resource
+    namespace res
     {
-    public:
-        sfmlT res;
-
-        SfmlFileResource(std::string const &file_path) noexcept
+        template<typename sfmlT>
+        class SfmlFileResource : public ResourceManager::Resource
         {
-            if(!res.loadFromFile(file_path))
+        public:
+            sfmlT res;
+
+            SfmlFileResource(std::string const &file_path) noexcept
             {
-                std::cerr << "SFML Resource failed to load \""
-                          << file_path << "\" for "
-                          << typeid(sfmlT).name() << std::endl;
+                if(!res.loadFromFile(file_path))
+                {
+                    std::cerr << "SFML Resource failed to load \""
+                              << file_path << "\" for "
+                              << typeid(sfmlT).name() << std::endl;
+                }
+                else
+                {
+                    std::clog << "SFML Resource loaded \""
+                              << file_path << "\" for "
+                              << typeid(sfmlT).name() << std::endl;
+                }
             }
-            else
+
+            operator sfmlT &() noexcept
             {
-                std::clog << "SFML Resource loaded \""
-                          << file_path << "\" for "
-                          << typeid(sfmlT).name() << std::endl;
+                return res;
             }
-        }
-    };
+            operator sfmlT const &() const noexcept
+            {
+                return res;
+            }
+        };
+    }
 }
 
 #endif

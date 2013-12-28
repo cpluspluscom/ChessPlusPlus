@@ -2,7 +2,7 @@
 #define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
-#include "GraphicsConfig.hpp"
+#include "ResourcesConfig.hpp"
 #include "util/Position.hpp"
 
 #include <string>
@@ -31,7 +31,7 @@ namespace chesspp
             Textures_t textures;
 
         public:
-            BoardConfig(GraphicsConfig const &gfx)
+            BoardConfig(ResourcesConfig &res)
             : Configuration("config/board.json")
             , board_width  (reader()["chesspp"]["board"]["width"]      )
             , board_height (reader()["chesspp"]["board"]["height"]     )
@@ -53,12 +53,12 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = gfx.spritePaths("board", "pieces");
-                for(auto const &suit : tex)
+                auto const &tex = res.setting("chesspp", "board", "pieces");
+                for(auto const &suit : tex.object())
                 {
                     for(auto const &piece : suit.second.object())
                     {
-                        textures[suit.first][piece.first] = gfx.normalize(Textures_t::mapped_type::mapped_type(piece.second));
+                        textures[suit.first][piece.first] = std::string(Textures_t::mapped_type::mapped_type(piece.second));
                     }
                 }
             }

@@ -2,7 +2,7 @@
 #define GraphicsHandlerClass_HeaderPlusPlus
 
 #include "SFML.hpp"
-#include "config/GraphicsConfig.hpp"
+#include "config/ResourcesConfig.hpp"
 #include "config/BoardConfig.hpp"
 #include "board/Board.hpp"
 
@@ -15,8 +15,9 @@ namespace chesspp
         class GraphicsHandler
         {
             sf::RenderWindow &display;
-            config::GraphicsConfig &gfx_config;
+            config::ResourcesConfig &res_config;
             config::BoardConfig &board_config;
+            res::ResourceManager &res;
 
             sf::Sprite board
             ,          valid_move
@@ -25,7 +26,7 @@ namespace chesspp
             ,          enemy_capture;
 
         public:
-            GraphicsHandler(sf::RenderWindow &display, config::GraphicsConfig &gfxc, config::BoardConfig &bc);
+            GraphicsHandler(sf::RenderWindow &display, config::ResourcesConfig &resc, config::BoardConfig &bc);
 
             //Draws the board background.
             void drawBackground();

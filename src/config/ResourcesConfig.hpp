@@ -10,7 +10,7 @@ namespace chesspp
     {
         class ResourcesConfig : public Configuration
         {
-            ResourceManager res;
+            res::ResourceManager res;
 
         public:
             ResourcesConfig()
@@ -19,7 +19,7 @@ namespace chesspp
             {
             }
 
-            RsourceManager &resources()
+            res::ResourceManager &resources() noexcept
             {
                 return res;
             }

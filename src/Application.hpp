@@ -33,6 +33,7 @@ namespace chesspp
             state.swap(temp);
             //temp properly deletes the old state at the end of its scope
         }
+
         int execute();
     };
 }

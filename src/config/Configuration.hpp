@@ -49,6 +49,13 @@ namespace chesspp
             {
             }
             virtual ~Configuration() = default;
+
+            template<typename... Path>
+            auto setting(Path const &... path)
+            -> decltype(reader.navigate(path...))
+            {
+                return reader.navigate(path...);
+            }
         };
     }
 }

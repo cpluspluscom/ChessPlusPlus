@@ -2,10 +2,7 @@
 #define ChessPlusPlusGameStateClass_HeaderPlusPlus
 
 #include "SFML.hpp"
-#include "ResourceManager.hpp"
 #include "gfx/Graphics.hpp"
-#include "config/Configuration.hpp"
-#include "config/ResourcesConfig.hpp"
 #include "board/Board.hpp"
 #include "factory/ClassicFactory.hpp"
 
@@ -19,7 +16,7 @@ namespace chesspp
     class ChessPlusPlusState : public AppState
     {
         Application &app;
-        config::ResourcesConfig res_config;
+        config::ResourcesConfig &res_config;
         config::BoardConfig board_config;
         factory::ClassicFactory classic_factory;
         gfx::GraphicsHandler graphics;

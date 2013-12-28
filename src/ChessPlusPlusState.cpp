@@ -10,6 +10,7 @@ namespace chesspp
     ChessPlusPlusState::ChessPlusPlusState(Application &_app, sf::RenderWindow &disp)
     : AppState(disp)
     , app(_app)
+    , res_config(app.resourcesConfig())
     , board_config(res_config)
     , classic_factory(board_config)
     , graphics(display, res_config, board_config)

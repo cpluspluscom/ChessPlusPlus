@@ -1,6 +1,11 @@
 {
     "chesspp":
     {
+        "logo":    "res/img/logo.png",
+        "menu":
+        {
+            "background":   "res/img/main_menu_background.png"
+        },
         "missing": "res/img/missing.png",
         "board":
         {

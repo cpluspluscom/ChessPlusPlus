@@ -19,6 +19,11 @@ namespace chesspp
 
         return 0;
     }
+    
+    void Application::stop()
+    {
+        running = false;
+    }
 
     void Application::onEvent(sf::Event &e)
     {

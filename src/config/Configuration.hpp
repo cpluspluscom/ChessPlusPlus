@@ -23,31 +23,10 @@ namespace chesspp
             util::JsonReader reader;
 
         private:
-            std::string validateConfigFile(std::string const &configFile)
-            {
-                static std::string exe_path = executablePath();
-
-                if(boost::filesystem::extension(configFile) != ".json")
-                {
-                    throw Exception("Configuration cannot read non-json config files.");
-                }
-
-                if(boost::filesystem::exists(configFile))
-                {
-                    res_path = "";
-                }
-                else
-                {
-                    res_path = exe_path;
-                }
-                return res_path + configFile;
-            }
+            std::string validateConfigFile(std::string const &configFile);
 
         public:
-            Configuration(std::string const &configFile) noexcept(false)
-            : reader(std::ifstream(validateConfigFile(configFile)))
-            {
-            }
+            Configuration(std::string const &configFile) noexcept(false);
             virtual ~Configuration() = default;
         };
     }

@@ -14,12 +14,14 @@ namespace chesspp
             : Configuration("config/graphics.json")
             {
             }
+
             virtual ~GraphicsConfig() = default;
 
             std::string normalize(std::string const &path) const
             {
                 return res_path + path;
             }
+
             template<typename... Args>
             std::string spritePath(Args const &... path) const
             {
@@ -30,6 +32,7 @@ namespace chesspp
                 }
                 return normalize(val);
             }
+
             //Must normalize return value
             template<typename... Args>
             auto spritePaths(Args const &... path) const -> std::map<std::string, util::JsonReader::NestedValue>

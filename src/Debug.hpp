@@ -100,9 +100,9 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
         }
     };
 
-    std::ofstream log {"debug_log.log", std::ios::out|std::ios::trunc}
-                , err {"debug_err.log", std::ios::out|std::ios::trunc}
-                , out {"debug_out.log", std::ios::out|std::ios::trunc};
+    std::ofstream log {"debug_log.log", std::ios::out|std::ios::app}
+                , err {"debug_err.log", std::ios::out|std::ios::app}
+                , out {"debug_out.log", std::ios::out|std::ios::app};
     LogUtil_buffer logbuf {log}
                  , errbuf {err}
                  , outbuf {out};

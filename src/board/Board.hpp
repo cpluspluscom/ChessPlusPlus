@@ -198,17 +198,20 @@ namespace chesspp
             Movements_t trajectories; //where pieces can go
             Movements_t capturings;   //where pieces can capture
             Movements_t capturables;  //where pieces can be captured
-            Factory_t const &factory;
+            static Factory_t &factory()
+            {
+                static Factory_t f;
+                return f;
+            }
             Interactions_t interactions;
 
         public:
-            Board(config::BoardConfig const &conf, Factory_t const &fact)
+            Board(config::BoardConfig const &conf)
             : config(conf)
-            , factory(fact)
             {
                 for(auto const &slot : conf.initialLayout())
                 {
-                    pieces.emplace(factory.at(slot.second.first)(*this, slot.first, slot.second.second));
+                    pieces.emplace(factory().at(slot.second.first)(*this, slot.first, slot.second.second));
                 }
 
                 for(auto const &p : pieces)
@@ -217,6 +220,11 @@ namespace chesspp
                 }
             }
             ~Board() = default;
+
+            static Factory_t::iterator registerPieceClass(Factory_t::key_type const &type, Factory_t::mapped_type ctor)
+            {
+                return factory().insert({type, ctor}).first;
+            }
 
             template<typename InteractionT>
             InteractionT &getInteraction()

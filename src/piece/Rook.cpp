@@ -7,6 +7,16 @@ namespace chesspp
 {
     namespace piece
     {
+        static auto RookRegistration = board::Board::registerPieceClass
+        (
+            "Rook",
+            [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s)
+            -> board::Board::Pieces_t::value_type
+            {
+                return board::Board::Pieces_t::value_type(new Rook(b, p, s));
+            }
+        );
+
         Rook::Rook(board::Board &b, Position_t const &pos_, Suit const &s_)
         : Piece(b, pos_, s_)
         , castling(b.getInteraction<board::Castling>())

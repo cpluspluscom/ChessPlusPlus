@@ -38,14 +38,11 @@ namespace chesspp
 
         int execute();
         void stop();
-<<<<<<< HEAD
 
         config::ResourcesConfig &resourcesConfig()
         {
             return res_config;
         }
-=======
->>>>>>> rb-MenuState
     };
 }
 

@@ -6,8 +6,8 @@
 #include "AppState.hpp"
 #include "ChessPlusPlusState.hpp"
 #include "Application.hpp"
-#include "config/GraphicsConfig.hpp"
-#include "TextureManager.hpp"
+#include "res/SfmlFileResource.hpp"
+
 
 #include <iostream>
 #include <memory>
@@ -24,15 +24,17 @@ namespace chesspp
             virtual void onLButtonReleased(int x, int y) override;
             
         private:
+            using Font_res = res::SfmlFileResource<sf::Font>;
+            using Texture_res = res::SfmlFileResource<sf::Texture>;
+            
             sf::Sprite menu_background;
             sf::Sprite logo;
             
             sf::Text start_text;
             sf::Text quit_text;
-            sf::Font font;
+            sf::Font &font;
             
             Application &app;
-            config::GraphicsConfig gfx_config;
     };
 }
 

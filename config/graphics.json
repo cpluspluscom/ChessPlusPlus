@@ -4,7 +4,8 @@
         "logo":    "res/img/logo.png",
         "menu":
         {
-            "background":   "res/img/main_menu_background.png"
+            "background":   "res/img/chessboard_640x640.png",
+            "font": "res/fonts/FreeMono.ttf"
         },
         "missing": "res/img/missing.png",
         "board":

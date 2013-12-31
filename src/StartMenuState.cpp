@@ -2,24 +2,20 @@
 
 namespace chesspp
 {
-    StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display) : AppState(display), app(app)
+    StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display)
+    : AppState(display)
+    , app(app)
+    , font(app.resourcesConfig().resources().from_config<Font_res>("chesspp", "menu", "font"))
     {
         // Load and initialize resources
-        menu_background.setTexture(TextureManager::instance().load(gfx_config.spritePath("menu", "background")));
-        logo.setTexture(TextureManager::instance().load(gfx_config.spritePath("logo")), true);
+        menu_background.setTexture(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "menu", "background"));
+        logo.setTexture(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "logo"), true);
         
         // Sets position at centered horizontally, down 10% vertically
         logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
-        
-        if(!font.loadFromFile("res/fonts/FreeMono.ttf"))
-        {
-            std::cerr << "Font failed to load." << std::endl;
-        }
-        else
-        {
-            start_text.setFont(font);
-            quit_text.setFont(font);
-        }
+
+        start_text.setFont(font);
+        quit_text.setFont(font);
         
         // Initialize text
         start_text.setString("Start");

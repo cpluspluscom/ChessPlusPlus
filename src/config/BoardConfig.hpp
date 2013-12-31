@@ -2,7 +2,7 @@
 #define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
-#include "GraphicsConfig.hpp"
+#include "ResourceConfig.hpp"
 #include "util/Position.hpp"
 
 #include <string>
@@ -31,15 +31,15 @@ namespace chesspp
             Textures_t textures;
 
         public:
-            BoardConfig(GraphicsConfig const &gfx)
-            : Configuration("config/board.json")
-            , board_width  (reader()["chesspp"]["board"]["width"]      )
-            , board_height (reader()["chesspp"]["board"]["height"]     )
-            , cell_width   (reader()["chesspp"]["board"]["cell width"] )
-            , cell_height  (reader()["chesspp"]["board"]["cell height"])
+            BoardConfig(ResourceConfig const &rcc)
+            : Configuration("config/chesspp/board.json")
+            , board_width  (reader()["board"]["width"]      )
+            , board_height (reader()["board"]["height"]     )
+            , cell_width   (reader()["board"]["cell width"] )
+            , cell_height  (reader()["board"]["cell height"])
             {
-                auto pieces = reader()["chesspp"]["board"]["pieces"];
-                auto suits  = reader()["chesspp"]["board"]["suits"];
+                auto pieces = reader()["board"]["pieces"];
+                auto suits  = reader()["board"]["suits"];
                 for(BoardSize_t r = 0; r < board_height; ++r)
                 {
                     for(BoardSize_t c = 0; c < board_width; ++c)
@@ -53,12 +53,12 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = gfx.spritePaths("board", "pieces");
+                auto const &tex = rcc.filePaths("board", "pieces");
                 for(auto const &suit : tex)
                 {
                     for(auto const &piece : suit.second.object())
                     {
-                        textures[suit.first][piece.first] = gfx.normalize(Textures_t::mapped_type::mapped_type(piece.second));
+                        textures[suit.first][piece.first] = rcc.normalize(Textures_t::mapped_type::mapped_type(piece.second));
                     }
                 }
             }
@@ -74,7 +74,7 @@ namespace chesspp
             template<typename... Args>
             util::JsonReader::NestedValue metadata(Args const &... path) const
             {
-                return reader.navigate("chesspp", "board", "metadata", path...);
+                return reader.navigate("board", "metadata", path...);
             }
         };
     }

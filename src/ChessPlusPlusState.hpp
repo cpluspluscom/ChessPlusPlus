@@ -5,7 +5,7 @@
 #include "TextureManager.hpp"
 #include "gfx/Graphics.hpp"
 #include "config/Configuration.hpp"
-#include "config/GraphicsConfig.hpp"
+#include "config/ResourceConfig.hpp"
 #include "board/Board.hpp"
 #include "factory/ClassicFactory.hpp"
 
@@ -19,7 +19,7 @@ namespace chesspp
     class ChessPlusPlusState : public AppState
     {
         Application &app;
-        config::GraphicsConfig gfx_config;
+        config::ResourceConfig rc_config;
         config::BoardConfig board_config;
         factory::ClassicFactory classic_factory;
         gfx::GraphicsHandler graphics;

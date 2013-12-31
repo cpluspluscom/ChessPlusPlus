@@ -14,7 +14,7 @@ namespace chesspp
 
         public:
             ResourcesConfig()
-            : Configuration("config/graphics.json")
+            : Configuration("config/chesspp/resources.json")
             , res(*this)
             {
             }

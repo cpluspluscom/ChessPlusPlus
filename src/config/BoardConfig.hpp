@@ -32,14 +32,14 @@ namespace chesspp
 
         public:
             BoardConfig(ResourcesConfig &res)
-            : Configuration("config/board.json")
-            , board_width  (reader()["chesspp"]["board"]["width"]      )
-            , board_height (reader()["chesspp"]["board"]["height"]     )
-            , cell_width   (reader()["chesspp"]["board"]["cell width"] )
-            , cell_height  (reader()["chesspp"]["board"]["cell height"])
+            : Configuration("config/chesspp/board.json")
+            , board_width  (reader()["board"]["width"]      )
+            , board_height (reader()["board"]["height"]     )
+            , cell_width   (reader()["board"]["cell width"] )
+            , cell_height  (reader()["board"]["cell height"])
             {
-                auto pieces = reader()["chesspp"]["board"]["pieces"];
-                auto suits  = reader()["chesspp"]["board"]["suits"];
+                auto pieces = reader()["board"]["pieces"];
+                auto suits  = reader()["board"]["suits"];
                 for(BoardSize_t r = 0; r < board_height; ++r)
                 {
                     for(BoardSize_t c = 0; c < board_width; ++c)
@@ -53,7 +53,7 @@ namespace chesspp
                     }
                 }
 
-                auto const &tex = res.setting("chesspp", "board", "pieces");
+                auto const &tex = res.setting("board", "pieces");
                 for(auto const &suit : tex.object())
                 {
                     for(auto const &piece : suit.second.object())
@@ -74,7 +74,7 @@ namespace chesspp
             template<typename... Args>
             util::JsonReader::NestedValue metadata(Args const &... path) const
             {
-                return reader.navigate("chesspp", "board", "metadata", path...);
+                return reader.navigate("board", "metadata", path...);
             }
         };
     }

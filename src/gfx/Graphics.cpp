@@ -15,11 +15,11 @@ namespace chesspp
         , res_config(resc)
         , board_config(bc)
         , res(resc.resources())
-        , board        (res.from_config<Texture_res>("chesspp", "board", "board"        ))
-        , valid_move   (res.from_config<Texture_res>("chesspp", "board", "valid move"   ))
-        , enemy_move   (res.from_config<Texture_res>("chesspp", "board", "enemy move"   ))
-        , valid_capture(res.from_config<Texture_res>("chesspp", "board", "valid capture"))
-        , enemy_capture(res.from_config<Texture_res>("chesspp", "board", "enemy capture"))
+        , board        (res.from_config<Texture_res>("board", "board"        ))
+        , valid_move   (res.from_config<Texture_res>("board", "valid move"   ))
+        , enemy_move   (res.from_config<Texture_res>("board", "enemy move"   ))
+        , valid_capture(res.from_config<Texture_res>("board", "valid capture"))
+        , enemy_capture(res.from_config<Texture_res>("board", "enemy capture"))
         {
         }
 

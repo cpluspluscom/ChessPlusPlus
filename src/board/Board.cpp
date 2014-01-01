@@ -78,9 +78,10 @@ namespace chesspp
             }
 
             std::clog << "Moved piece at " << (*source)->pos << std::flush;
-            (*source)->move(target->second);
-            update(target->second);
-            std::clog << " to " << target->second << std::endl;
+            auto t = target->second;
+            (*source)->move(t);
+            update(t);
+            std::clog << " to " << t << std::endl;
             return true;
         }
     }

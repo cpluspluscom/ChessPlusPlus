@@ -2,7 +2,7 @@
 #define ChessPlusPlusGameStateClass_HeaderPlusPlus
 
 #include "SFML.hpp"
-#include "TextureManager.hpp"
+#include "ResourceManager.hpp"
 #include "gfx/Graphics.hpp"
 #include "config/Configuration.hpp"
 #include "config/GraphicsConfig.hpp"

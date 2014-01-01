@@ -1,64 +1,80 @@
-#ifndef GameResourcesManagerClass_HeaderPlusPlus
-#define GameResourcesManagerClass_HeaderPlusPlus
+#ifndef GenericResourceManagerClass_HeaderPlusPlus
+#define GenericResourceManagerClass_HeaderPlusPlus
 
-#include "Exception.hpp"
+#include "ResourceManager_impl.hpp"
+#include "SFML.hpp"
 
-#include <map>
-#include <memory>
+#include <functional>
+#include <typeinfo>
+#include <iostream>
 
 namespace chesspp
 {
-    template<class T, class key_type, class deleter_type = std::default_delete<T>>
-    class ResourceManager
+
+template<typename resource_type>
+struct generic_deleter
+{
+    void operator()(resource_type *resource) noexcept
     {
-        ResourceManager(ResourceManager const &) = delete;
-        ResourceManager &operator=(ResourceManager const &) = delete;
+        std::clog << typeid(resource_type).name()
+                  << " has been deleted from a resource manager." 
+                  << std::endl;
+        delete resource;
+    }
+};
 
-        using ptr_t = std::unique_ptr<T, deleter_type>;
-        using map_t = std::map<key_type, ptr_t>;
-        using map_i = typename map_t::iterator;
+template<typename T>
+struct sfml_resource_loader
+{
+  template<typename... Args>
+  bool operator()(T& obj, Args&... args)
+  {
+    return obj.loadFromFile(std::forward<Args>(args)...);
+  }
+};
 
-        map_t m_map; //resource map
+template<typename resource_type, 
+         typename identifier_type, 
+         typename loader_type = sfml_resource_loader<resource_type>
+        >
+class GenericResourceManager 
+: public ResourceManager_impl<resource_type, 
+                              identifier_type, 
+                              generic_deleter<resource_type>
+                             >
+{
 
-    protected:
-        ResourceManager() = default;
-        ResourceManager(ResourceManager &&) = default;
-        ResourceManager &operator=(ResourceManager &&) = default;
-        ~ResourceManager() = default;
+public:
+    GenericResourceManager() = default;
 
-        //pure virtual, defined depending on what is being loaded.
-        virtual T *onLoadResource(key_type const &key) noexcept = 0;
+    //no copying
+    GenericResourceManager(GenericResourceManager const &) = delete;
+    GenericResourceManager &operator=(GenericResourceManager const &) = delete;
 
-    public:
-        //Deletes the entry of a key in the resource map.
-        //This will call deleter_type to deallocate the resource from memory as well.
-        void free(key_type const &key) noexcept
+protected:
+    //Method that loads a resource from file name 'location'
+    //using 'loader_type' to do so
+    virtual resource_type *onLoadResource(std::string const &location) noexcept override
+    {
+        resource_type *ret = new resource_type();
+        if(!loader_type()(*ret, location))
         {
-            map_i i = m_map.find(key);
-            m_map.erase(i);
+            std::clog << "Failed to load type " << typeid(resource_type).name()
+                      << " from location " << location << std::endl;;
+            return delete ret, ret = nullptr;
         }
+        std::clog << "Loaded a(n) " << typeid(resource_type).name()
+                  << "from location " << location
+                  << " into memory." << std::endl;
+        return ret;
+    } 
+};
 
-        //Returns a reference to the resource associated with the file name 'key' if it exists in memory.
-        //Otherwise it loads the texture into memory, and returns a reference to the the resource.
-        T &load(key_type const &key) noexcept(false)
-        {
-            map_i i = m_map.find(key);
-            if(i != m_map.end())
-            {
-                return *i->second.get(); //return resource if exists
-            }
+template<typename T> using ResourceManager_t = GenericResourceManager<T, std::string>;
 
-            //else, load resource
-            ptr_t p {onLoadResource(key)};
-            if(p.get() == NULL)
-            {
-                throw Exception(std::string("Error loading Image at ") + key);
-            }
+ResourceManager_t<sf::Texture>       TextureManager;
+ResourceManager_t<sf::Font>          FontManager;
+ResourceManager_t<sf::SoundBuffer>   SoundBufferManager;
 
-            m_map.insert(std::make_pair(key, std::move(p)));
-            return *m_map[key].get();
-        }
-    };
-}
-
+}; // namespace chesspp
 #endif

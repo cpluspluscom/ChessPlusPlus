@@ -15,6 +15,7 @@
 *.log
 *.bin
 *.cmake
+*~
 
 /chesspp
 debug.txt

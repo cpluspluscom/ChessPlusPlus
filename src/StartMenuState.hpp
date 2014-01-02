@@ -10,22 +10,21 @@ namespace chesspp
 {
     class StartMenuState : public AppState
     {
-        public:
-            StartMenuState(Application &app, sf::RenderWindow &display);
+        Application &app;
 
-            virtual void onRender() override;
+        sf::Sprite menu_background;
+        sf::Sprite logo;
 
-            virtual void onLButtonReleased(int x, int y) override;
+        sf::Font &font;
+        sf::Text start_text;
+        sf::Text quit_text;
 
-        private:
-            Application &app;
+    public:
+        StartMenuState(Application &app, sf::RenderWindow &display);
 
-            sf::Sprite menu_background;
-            sf::Sprite logo;
+        virtual void onRender() override;
 
-            sf::Font &font;
-            sf::Text start_text;
-            sf::Text quit_text;
+        virtual void onLButtonReleased(int x, int y) override;
     };
 }
 

@@ -12,9 +12,8 @@ namespace chesspp
     , app(_app)
     , res_config(app.resourcesConfig())
     , board_config(res_config)
-    , classic_factory(board_config)
     , graphics(display, res_config, board_config)
-    , board(board_config, classic_factory.factory())
+    , board(board_config)
     , p(-1, -1)
     , players(util::KeyIter<config::BoardConfig::Textures_t>
                            (board_config.texturePaths().cbegin()),

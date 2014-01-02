@@ -4,7 +4,6 @@
 #include "SFML.hpp"
 #include "gfx/Graphics.hpp"
 #include "board/Board.hpp"
-#include "factory/ClassicFactory.hpp"
 
 #include "AppState.hpp"
 #include "Application.hpp"
@@ -18,7 +17,6 @@ namespace chesspp
         Application &app;
         config::ResourcesConfig &res_config;
         config::BoardConfig board_config;
-        factory::ClassicFactory classic_factory;
         gfx::GraphicsHandler graphics;
         board::Board board;
 

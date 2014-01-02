@@ -1,11 +1,24 @@
 #include "Pawn.hpp"
 
 #include <iostream>
+#include <sstream>
 
 namespace chesspp
 {
     namespace piece
     {
+        static auto PawnRegistration = board::Board::registerPieceClass
+        (
+            "Pawn",
+            [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s)
+            -> board::Board::Pieces_t::value_type
+            {
+                auto d = util::Direction::None;
+                std::istringstream {std::string(b.config.metadata("pawn facing", p.y, p.x))} >> d;
+                return board::Board::Pieces_t::value_type(new Pawn(b, p, s, d));
+            }
+        );
+
         Pawn::Pawn(board::Board &b, Position_t const &pos_, Suit const &s_, util::Direction const &face)
         : Piece(b, pos_, s_)
         , facing(face)

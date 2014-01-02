@@ -1,15 +1,15 @@
 #ifndef ApplicationStateBaseClass_HeaderPlusPlus
 #define ApplicationStateBaseClass_HeaderPlusPlus
 
-#include "SFMLEventHandler.hpp"
 #include "SFML.hpp"
+#include "SfmlEventHandler.hpp"
 
 namespace chesspp
 {
     namespace app
     {
         //Pure virtual abstract base class for game state management
-        class AppState : public virtual SFMLEventHandler
+        class AppState : public virtual SfmlEventHandler
         {
         public:
             AppState(sf::RenderWindow &disp)

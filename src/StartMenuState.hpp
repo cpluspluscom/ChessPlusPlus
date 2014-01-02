@@ -27,14 +27,14 @@ namespace chesspp
             using Font_res = res::SfmlFileResource<sf::Font>;
             using Texture_res = res::SfmlFileResource<sf::Texture>;
             
+            Application &app;
+            
             sf::Sprite menu_background;
             sf::Sprite logo;
             
+            sf::Font &font;
             sf::Text start_text;
             sf::Text quit_text;
-            sf::Font &font;
-            
-            Application &app;
     };
 }
 

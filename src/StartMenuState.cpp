@@ -5,27 +5,20 @@ namespace chesspp
     StartMenuState::StartMenuState(Application &app, sf::RenderWindow &display)
     : AppState(display)
     , app(app)
+    , menu_background(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "menu", "background"))
+    , logo(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "logo"))
     , font(app.resourcesConfig().resources().from_config<Font_res>("chesspp", "menu", "font"))
-    {
-        // Load and initialize resources
-        menu_background.setTexture(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "menu", "background"));
-        logo.setTexture(app.resourcesConfig().resources().from_config<Texture_res>("chesspp", "logo"), true);
-        
+    , start_text("Start", font, 75)
+    , quit_text("Quit", font, 75)
+    {   
         // Sets position at centered horizontally, down 10% vertically
         logo.setPosition(((display.getSize().x / 2) - (logo.getLocalBounds().width / 2)) , (display.getSize().y * .10));
-
-        start_text.setFont(font);
-        quit_text.setFont(font);
         
-        // Initialize text
-        start_text.setString("Start");
-        start_text.setCharacterSize(75);
+        // Set up text
         start_text.setPosition(((display.getSize().x / 2) - (start_text.getLocalBounds().width / 2)) , (display.getSize().y * .35));
         start_text.setColor(sf::Color::Black);
         start_text.setStyle(sf::Text::Bold);
         
-        quit_text.setString("Quit");
-        quit_text.setCharacterSize(75);
         quit_text.setPosition(((display.getSize().x / 2) - (quit_text.getLocalBounds().width / 2)) , (display.getSize().y * .47));
         quit_text.setColor(sf::Color::Black);
         quit_text.setStyle(sf::Text::Bold);

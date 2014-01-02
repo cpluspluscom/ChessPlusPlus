@@ -3,8 +3,8 @@
 #include <streambuf>
 #include <typeinfo>
 
-#include "Application.hpp"
-#include "StartMenuState.hpp"
+#include "app/Application.hpp"
+#include "app/StartMenuState.hpp"
 #include "Debug.hpp"
 #include "Exception.hpp"
 
@@ -20,8 +20,8 @@ int main()
             "ChessPlusPlus",
             sf::Style::Close
         };
-        chesspp::Application app {disp};
-        app.changeState<chesspp::StartMenuState>(std::ref(app), std::ref(disp));
+        chesspp::app::Application app {disp};
+        app.changeState<chesspp::app::StartMenuState>(std::ref(app), std::ref(disp));
         return app.execute();
     }
     catch(std::exception &e)

@@ -8,24 +8,27 @@
 
 namespace chesspp
 {
-    class StartMenuState : public AppState
+    namespace app
     {
-        Application &app;
+        class StartMenuState : public AppState
+        {
+            Application &app;
 
-        sf::Sprite menu_background;
-        sf::Sprite logo;
+            sf::Sprite menu_background;
+            sf::Sprite logo;
 
-        sf::Font &font;
-        sf::Text start_text;
-        sf::Text quit_text;
+            sf::Font &font;
+            sf::Text start_text;
+            sf::Text quit_text;
 
-    public:
-        StartMenuState(Application &app, sf::RenderWindow &display);
+        public:
+            StartMenuState(Application &app, sf::RenderWindow &display);
 
-        virtual void onRender() override;
+            virtual void onRender() override;
 
-        virtual void onLButtonReleased(int x, int y) override;
-    };
+            virtual void onLButtonReleased(int x, int y) override;
+        };
+    }
 }
 
 #endif

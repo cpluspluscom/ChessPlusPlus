@@ -4,7 +4,7 @@
 #include <typeinfo>
 
 #include "Application.hpp"
-#include "ChessPlusPlusState.hpp"
+#include "StartMenuState.hpp"
 #include "Debug.hpp"
 #include "Exception.hpp"
 
@@ -21,7 +21,7 @@ int main()
             sf::Style::Close
         };
         chesspp::Application app {disp};
-        app.changeState<chesspp::ChessPlusPlusState>(std::ref(app), std::ref(disp));
+        app.changeState<chesspp::StartMenuState>(std::ref(app), std::ref(disp));
         return app.execute();
     }
     catch(std::exception &e)

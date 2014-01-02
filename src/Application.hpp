@@ -37,8 +37,9 @@ namespace chesspp
         }
 
         int execute();
+        void stop() noexcept;
 
-        config::ResourcesConfig &resourcesConfig()
+        config::ResourcesConfig &resourcesConfig() noexcept
         {
             return res_config;
         }

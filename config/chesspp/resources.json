@@ -1,5 +1,11 @@
 {
     "": "res/img/missing.png",
+    "menu":
+    {
+        "title":      "res/img/title.png",
+        "background": "res/img/chessboard_640x640.png",
+        "font":       "res/font/FreeMono.ttf"
+    },
     "board":
     {
         "board":         "res/img/chessboard_640x640.png",

@@ -7,7 +7,6 @@
 #include "config/Configuration.hpp"
 #include "config/GraphicsConfig.hpp"
 #include "board/Board.hpp"
-#include "factory/ClassicFactory.hpp"
 
 #include "AppState.hpp"
 #include "Application.hpp"
@@ -21,7 +20,6 @@ namespace chesspp
         Application &app;
         config::GraphicsConfig gfx_config;
         config::BoardConfig board_config;
-        factory::ClassicFactory classic_factory;
         gfx::GraphicsHandler graphics;
         board::Board board;
 

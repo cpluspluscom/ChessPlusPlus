@@ -2,6 +2,7 @@
 #define ApplicationManagementClass_HeaderPlusPlus
 
 #include "AppState.hpp"
+#include "config/ResourcesConfig.hpp"
 
 #include <memory>
 #include <utility>
@@ -10,6 +11,7 @@ namespace chesspp
 {
     class Application
     {
+        config::ResourcesConfig res_config;
         sf::RenderWindow &display;
         bool running = false;
         std::unique_ptr<AppState> state;
@@ -33,7 +35,13 @@ namespace chesspp
             state.swap(temp);
             //temp properly deletes the old state at the end of its scope
         }
+
         int execute();
+
+        config::ResourcesConfig &resourcesConfig()
+        {
+            return res_config;
+        }
     };
 }
 

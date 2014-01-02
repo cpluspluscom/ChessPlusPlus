@@ -1,0 +1,46 @@
+{
+    "board":
+    {
+        "width":  8,
+        "height": 8,
+        "pieces":
+        [
+            ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"],
+            ["Pawn", "Pawn"  , "Pawn"  , "Pawn" , "Pawn", "Pawn"  , "Pawn"  , "Pawn"],
+            [null  , null    , null    , null   , null  , null    , null    , null  ],
+            [null  , null    , null    , null   , null  , null    , null    , null  ],
+            [null  , null    , null    , null   , null  , null    , null    , null  ],
+            [null  , null    , null    , null   , null  , null    , null    , null  ],
+            ["Pawn", "Pawn"  , "Pawn"  , "Pawn" , "Pawn", "Pawn"  , "Pawn"  , "Pawn"],
+            ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"]
+        ],
+        "suits":
+        [
+            ["Black", "Black", "Black", "Black", "Black", "Black", "Black", "Black"],
+            ["Black", "Black", "Black", "Black", "Black", "Black", "Black", "Black"],
+            [null   , null   , null   , null   , null   , null   , null   , null   ],
+            [null   , null   , null   , null   , null   , null   , null   , null   ],
+            [null   , null   , null   , null   , null   , null   , null   , null   ],
+            [null   , null   , null   , null   , null   , null   , null   , null   ],
+            ["White", "White", "White", "White", "White", "White", "White", "White"],
+            ["White", "White", "White", "White", "White", "White", "White", "White"]
+        ],
+        "cell width":  80,
+        "cell height": 80,
+        "metadata":
+        {
+            "pawn facing":
+            [
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                ["South", "South", "South", "South", "South", "South", "South", "South"],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                [null   , null   , null   , null   , null   , null   , null   , null   ],
+                ["North", "North", "North", "North", "North", "North", "North", "North"],
+                [null   , null   , null   , null   , null   , null   , null   , null   ]
+            ],
+            "first turn": "White"
+        }
+    }
+}

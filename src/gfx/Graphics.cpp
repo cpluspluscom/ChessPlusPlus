@@ -1,6 +1,6 @@
 #include "Graphics.hpp"
 
-#include "TextureManager.hpp"
+#include "res/SfmlFileResource.hpp"
 #include "config/Configuration.hpp"
 
 #include <iostream>
@@ -9,15 +9,17 @@ namespace chesspp
 {
     namespace gfx
     {
-        GraphicsHandler::GraphicsHandler(sf::RenderWindow &disp, config::GraphicsConfig &gfxc, config::BoardConfig &bc)
+        using Texture_res = res::SfmlFileResource<sf::Texture>;
+        GraphicsHandler::GraphicsHandler(sf::RenderWindow &disp, config::ResourcesConfig &resc, config::BoardConfig &bc)
         : display(disp)
-        , gfx_config(gfxc)
+        , res_config(resc)
         , board_config(bc)
-        , board        (TextureManager::instance().load(gfx_config.spritePath("board", "board"        )))
-        , valid_move   (TextureManager::instance().load(gfx_config.spritePath("board", "valid move"   )))
-        , enemy_move   (TextureManager::instance().load(gfx_config.spritePath("board", "enemy move"   )))
-        , valid_capture(TextureManager::instance().load(gfx_config.spritePath("board", "valid capture")))
-        , enemy_capture(TextureManager::instance().load(gfx_config.spritePath("board", "enemy capture")))
+        , res(resc.resources())
+        , board        (res.from_config<Texture_res>("board", "board"        ))
+        , valid_move   (res.from_config<Texture_res>("board", "valid move"   ))
+        , enemy_move   (res.from_config<Texture_res>("board", "enemy move"   ))
+        , valid_capture(res.from_config<Texture_res>("board", "valid capture"))
+        , enemy_capture(res.from_config<Texture_res>("board", "enemy capture"))
         {
         }
 
@@ -32,12 +34,12 @@ namespace chesspp
         }
         void GraphicsHandler::drawPiece(board::Piece const &p)
         {
-            sf::Sprite piece {TextureManager::instance().load(p.texture())};
+            sf::Sprite piece {res.from_path<Texture_res>(p.texture())};
             drawSpriteAtCell(piece, p.pos.x, p.pos.y);
         }
         void GraphicsHandler::drawPieceAt(board::Piece const &p, sf::Vector2i const &pos)
         {
-            sf::Sprite piece {TextureManager::instance().load(p.texture())};
+            sf::Sprite piece {res.from_path<Texture_res>(p.texture())};
             piece.setPosition(pos.x - (board_config.cellWidth()/2), pos.y - (board_config.cellHeight()/2));
             display.draw(piece);
         }

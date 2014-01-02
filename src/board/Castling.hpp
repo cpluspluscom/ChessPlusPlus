@@ -1,5 +1,5 @@
-#ifndef CastlingPieceInteraction_HeaderPlusPlus
-#define CastlingPieceInteraction_HeaderPlusPlus
+#ifndef ChessPlusPlus_Board_CastlingPieceInteraction_HeaderPlusPlus
+#define ChessPlusPlus_Board_CastlingPieceInteraction_HeaderPlusPlus
 
 #include "Board.hpp"
 
@@ -14,7 +14,7 @@ namespace chesspp
             std::set<Piece *> slow, fast;
         public:
             Castling(Board &b)
-            : Interaction(b)
+            : Interaction{b}
             {
             }
             virtual ~Castling() = default;

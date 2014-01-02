@@ -1,5 +1,5 @@
-#ifndef ApplicationStateBaseClass_HeaderPlusPlus
-#define ApplicationStateBaseClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_App_ApplicationStateBaseClass_HeaderPlusPlus
+#define ChessPlusPlus_App_ApplicationStateBaseClass_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "SfmlEventHandler.hpp"
@@ -13,10 +13,9 @@ namespace chesspp
         {
         public:
             AppState(sf::RenderWindow &disp)
-            : display(disp)
+            : display(disp) //cannot use {}
             {
             }
-            virtual ~AppState() = default;
 
             virtual void onRender() = 0;
 

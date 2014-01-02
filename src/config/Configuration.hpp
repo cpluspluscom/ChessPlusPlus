@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlusConfigurationManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Config_ConfigurationManagerClass_HeaderPlusPlus
+#define ChessPlusPlus_Config_ConfigurationManagerClass_HeaderPlusPlus
 
 #include "Exception.hpp"
 #include "util/JsonReader.hpp"
@@ -45,7 +45,7 @@ namespace chesspp
 
         public:
             Configuration(std::string const &configFile) noexcept(false)
-            : reader(std::ifstream(validateConfigFile(configFile)))
+            : reader{std::ifstream(validateConfigFile(configFile))}
             {
             }
             virtual ~Configuration() = default;

@@ -18,8 +18,8 @@ namespace chesspp
         );
 
         King::King(board::Board &b, Position_t const &pos_, Suit const &s_)
-        : Piece(b, pos_, s_)
-        , castling(b.getInteraction<board::Castling>())
+        : Piece{b, pos_, s_}
+        , castling(b.getInteraction<board::Castling>()) //can't use {}
         {
             //not yet moved, can castle
             castling.addSlow(this);

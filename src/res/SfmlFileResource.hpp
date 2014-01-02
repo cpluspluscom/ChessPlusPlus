@@ -1,11 +1,10 @@
-#ifndef SfmlFileResourceClass_HeaderPlusPlus
-#define SfmlFileResourceClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Res_SfmlFileResourceClass_HeaderPlusPlus
+#define ChessPlusPlus_Res_SfmlFileResourceClass_HeaderPlusPlus
 
 #include "ResourceManager.hpp"
 //#include "SFML.hpp"
 
 #include <iostream>
-
 
 namespace chesspp
 {

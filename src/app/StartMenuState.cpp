@@ -12,13 +12,13 @@ namespace chesspp
         using Font_res = res::SfmlFileResource<sf::Font>;
         using Texture_res = res::SfmlFileResource<sf::Texture>;
         StartMenuState::StartMenuState(Application &app_, sf::RenderWindow &display_)
-        : AppState(display_)
-        , app(app_)
-        , menu_background(app.resourcesConfig().resources().from_config<Texture_res>("menu", "background"))
-        , logo           (app.resourcesConfig().resources().from_config<Texture_res>("menu", "title"))
-        , font           (app.resourcesConfig().resources().from_config<Font_res>   ("menu", "font"))
-        , start_text("Start", font, 75)
-        , quit_text ("Quit",  font, 75)
+        : AppState(display_) //can't use {}
+        , app(app_)          //can't use {}
+        , menu_background{app.resourcesConfig().resources().from_config<Texture_res>("menu", "background")}
+        , logo           {app.resourcesConfig().resources().from_config<Texture_res>("menu", "title")     }
+        , font           (app.resourcesConfig().resources().from_config<Font_res>   ("menu", "font")      ) //can't use {}
+        , start_text{"Start", font, 75}
+        , quit_text {"Quit",  font, 75}
         {
             //Sets position at centered horizontally, down 10% vertically
             logo.setPosition      (((display.getSize().x/2) - (logo.getLocalBounds()      .width/2)), (display.getSize().y*0.10));

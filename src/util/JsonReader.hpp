@@ -1,5 +1,5 @@
-#ifndef JSONReaderClass_HeaderPlusPlus
-#define JSONReaderClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Util_JsonReaderClass_HeaderPlusPlus
+#define ChessPlusPlus_Util_JsonReaderClass_HeaderPlusPlus
 
 #include "Exception.hpp"
 
@@ -58,7 +58,7 @@ namespace chesspp
              * \param s The temporary stream containing the JSON.
              */
             JsonReader(std::istream &&s)
-            : JsonReader(s)
+            : JsonReader{s}
             {
             }
             /**
@@ -66,7 +66,7 @@ namespace chesspp
              * \param from the JsonReader to move.
              */
             JsonReader(JsonReader &&from)
-            : json(from.json)
+            : json{from.json}
             {
                 from.json = nullptr;
             }
@@ -121,7 +121,7 @@ namespace chesspp
                  * \param value_ The json_value this instance shall represent.
                  */
                 NestedValue(json_value const &value_) noexcept
-                : value(value_)
+                : value(value_) //can't use {}
                 {
                 }
                 NestedValue &operator=(NestedValue const &) noexcept = delete;

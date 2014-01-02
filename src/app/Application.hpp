@@ -1,5 +1,5 @@
-#ifndef ApplicationManagementClass_HeaderPlusPlus
-#define ApplicationManagementClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_App_ApplicationManagementClass_HeaderPlusPlus
+#define ChessPlusPlus_App_ApplicationManagementClass_HeaderPlusPlus
 
 #include "AppState.hpp"
 #include "config/ResourcesConfig.hpp"
@@ -22,11 +22,10 @@ namespace chesspp
 
         public:
             Application(sf::RenderWindow &disp)
-            : display(disp)
+            : display(disp) //can't use {}
             {
                 display.setVerticalSyncEnabled(true);
             }
-            ~Application() = default;
 
             template<class NewState, typename... Args>
             void changeState(Args &&... args)

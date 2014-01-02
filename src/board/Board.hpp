@@ -1,5 +1,5 @@
-#ifndef GeneralizedChessBoardClass_HeaderPlusPlus
-#define GeneralizedChessBoardClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Board_GeneralizedChessBoardClass_HeaderPlusPlus
+#define ChessPlusPlus_Board_GeneralizedChessBoardClass_HeaderPlusPlus
 
 #include "config/BoardConfig.hpp"
 #include "util/Position.hpp"
@@ -207,7 +207,7 @@ namespace chesspp
 
         public:
             Board(config::BoardConfig const &conf)
-            : config(conf)
+            : config(conf) //can't use {}
             {
                 for(auto const &slot : conf.initialLayout())
                 {
@@ -263,14 +263,13 @@ namespace chesspp
             {
                 Movements_t const &m;
                 Movements(Movements_t const &m_)
-                : m(m_)
+                : m(m_) //can't use {}
                 {
                 }
                 Movements(Movements const &) = delete;
                 Movements(Movements &&) = delete;
                 Movements &operator=(Movements const &) = delete;
                 Movements &operator=(Movements &&) = delete;
-                ~Movements() = default;
                 friend class ::chesspp::board::Board;
 
             public:
@@ -304,13 +303,9 @@ namespace chesspp
             {
                 std::pair<Movements_t::iterator, Movements_t::iterator> r;
                 MovementsRange(std::pair<Movements_t::iterator, Movements_t::iterator> const &r_)
-                : r(r_)
+                : r{r_}
                 {
                 }
-                MovementsRange(MovementsRange const &) = default;
-                MovementsRange(MovementsRange &&) = default;
-                MovementsRange &operator=(MovementsRange const &) = default;
-                MovementsRange &operator=(MovementsRange &&) = default;
                 friend class ::chesspp::board::Board;
 
             public:
@@ -322,7 +317,6 @@ namespace chesspp
                 {
                     return r.second;
                 }
-                ~MovementsRange() = default;
             };
             MovementsRange pieceTrajectory(Piece const &p)
             {

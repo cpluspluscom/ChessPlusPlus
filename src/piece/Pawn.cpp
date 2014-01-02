@@ -20,8 +20,8 @@ namespace chesspp
         );
 
         Pawn::Pawn(board::Board &b, Position_t const &pos_, Suit const &s_, util::Direction const &face)
-        : Piece(b, pos_, s_)
-        , facing(face)
+        : Piece{b, pos_, s_}
+        , facing{face}
         {
         }
 

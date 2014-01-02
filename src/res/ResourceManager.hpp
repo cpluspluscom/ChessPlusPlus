@@ -1,5 +1,5 @@
-#ifndef GenericResourcesManagerClass_HeaderPlusPlus
-#define GenericResourcesManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Res_GenericResourcesManagerClass_HeaderPlusPlus
+#define ChessPlusPlus_Res_GenericResourcesManagerClass_HeaderPlusPlus
 
 #include "config/Configuration.hpp"
 #include "util/Utilities.hpp"
@@ -22,7 +22,7 @@ namespace chesspp
 
         public:
             ResourceManager(config::Configuration &conf_) noexcept
-            : conf(conf_)
+            : conf(conf_) //can't use {}
             {
             }
 

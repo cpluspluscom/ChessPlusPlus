@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusExceptionClass_HeaderPlusPlus
-#define ChessPlusPlusExceptionClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_ExceptionClass_HeaderPlusPlus
+#define ChessPlusPlus_ExceptionClass_HeaderPlusPlus
 
 #include "util/Utilities.hpp"
 
@@ -8,13 +8,13 @@
 
 namespace chesspp
 {
-    class Exception : public std::exception
+    class Exception : public virtual std::exception
     {
         std::string e; //message
 
     public:
         Exception(std::string const &e_ = "") noexcept(noexcept(std::string(std::string(""))))
-        : e(e_)
+        : e{e_}
         {
         }
         Exception(Exception const &) = default;
@@ -32,7 +32,7 @@ namespace chesspp
             return e2 == e1; //calls above operator==
         }
 
-        virtual const char *what() const noexcept
+        virtual const char *what() const noexcept override
         {
             return e.c_str();
         }

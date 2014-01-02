@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusStartMenuState_HeaderPlusPlus
-#define ChessPlusPlusStartMenuState_HeaderPlusPlus
+#ifndef ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
+#define ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
 
 #include "SFML.hpp"
 

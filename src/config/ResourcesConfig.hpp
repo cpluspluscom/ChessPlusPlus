@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusResourcesConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlusResourcesConfigurationManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Config_ResourcesConfigurationManagerClass_HeaderPlusPlus
+#define ChessPlusPlus_Config_ResourcesConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
 #include "res/ResourceManager.hpp"
@@ -14,8 +14,8 @@ namespace chesspp
 
         public:
             ResourcesConfig()
-            : Configuration("config/chesspp/resources.json")
-            , res(*this)
+            : Configuration{"config/chesspp/resources.json"}
+            , res{*this}
             {
             }
 

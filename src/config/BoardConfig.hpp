@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlusBoardConfigurationManagerClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_Config_BoardConfigurationManagerClass_HeaderPlusPlus
+#define ChessPlusPlus_Config_BoardConfigurationManagerClass_HeaderPlusPlus
 
 #include "Configuration.hpp"
 #include "ResourcesConfig.hpp"
@@ -32,11 +32,11 @@ namespace chesspp
 
         public:
             BoardConfig(ResourcesConfig &res)
-            : Configuration("config/chesspp/board.json")
-            , board_width  (reader()["board"]["width"]      )
-            , board_height (reader()["board"]["height"]     )
-            , cell_width   (reader()["board"]["cell width"] )
-            , cell_height  (reader()["board"]["cell height"])
+            : Configuration{"config/chesspp/board.json"}
+            , board_width  {reader()["board"]["width"]      }
+            , board_height {reader()["board"]["height"]     }
+            , cell_width   {reader()["board"]["cell width"] }
+            , cell_height  {reader()["board"]["cell height"]}
             {
                 auto pieces = reader()["board"]["pieces"];
                 auto suits  = reader()["board"]["suits"];

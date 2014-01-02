@@ -1,7 +1,6 @@
-#ifndef ChessPlusPlusGameStateClass_HeaderPlusPlus
-#define ChessPlusPlusGameStateClass_HeaderPlusPlus
+#ifndef ChessPlusPlus_App_GameStateClass_HeaderPlusPlus
+#define ChessPlusPlus_App_GameStateClass_HeaderPlusPlus
 
-#include "SFML.hpp"
 #include "gfx/Graphics.hpp"
 #include "board/Board.hpp"
 
@@ -32,7 +31,6 @@ namespace chesspp
 
         public:
             ChessPlusPlusState(Application &app, sf::RenderWindow &display);
-            virtual ~ChessPlusPlusState() = default;
 
             virtual void onRender() override;
 

@@ -1,5 +1,5 @@
-#ifndef GenericPositionClasses_HeaderPlusPlus
-#define GenericPositionClasses_HeaderPlusPlus
+#ifndef ChessPlusPlus_Util_GenericPositionClasses_HeaderPlusPlus
+#define ChessPlusPlus_Util_GenericPositionClasses_HeaderPlusPlus
 
 #include "Utilities.hpp"
 
@@ -139,8 +139,8 @@ namespace chesspp
              * \param y_ the y coordinate of this position, or T()
              */
             Position(T x_ = T(), T y_ = T()) noexcept
-            : x(x_)
-            , y(y_)
+            : x{x_}
+            , y{y_}
             {
             }
             Position(Position const &) = default;
@@ -243,7 +243,13 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<std::is_integral<T>::value && std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
+        auto operator<<(std::ostream &os, Position<T> const &p) noexcept
+        -> typename std::enable_if
+        <
+            std::is_integral<T>::value
+         && std::is_same<T, typename MakeSigned<T>::type>::value,
+            std::ostream &
+        >::type
         {
             //cast in case of char
             return os << '('  << static_cast<std::intmax_t>(p.x)
@@ -257,7 +263,13 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<std::is_integral<T>::value && !std::is_same<T, typename MakeSigned<T>::type>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
+        auto operator<<(std::ostream &os, Position<T> const &p) noexcept
+        -> typename std::enable_if
+        <
+            std::is_integral<T>::value
+         && !std::is_same<T, typename MakeSigned<T>::type>::value,
+            std::ostream &
+        >::type
         {
             //cast in case of char
             return os << '('  << static_cast<std::uintmax_t>(p.x)
@@ -271,7 +283,12 @@ namespace chesspp
          * \return os
          */
         template<typename T>
-        typename std::enable_if<!std::is_integral<T>::value, std::ostream &>::type operator<<(std::ostream &os, Position<T> const &p) noexcept
+        auto operator<<(std::ostream &os, Position<T> const &p) noexcept
+        -> typename std::enable_if
+        <
+            !std::is_integral<T>::value,
+            std::ostream &
+        >::type
         {
             return os << '('  << p.x  << ", " << p.y << ')';
         }

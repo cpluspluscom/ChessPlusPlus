@@ -1,5 +1,5 @@
-#ifndef MiscellaneousUtilities_HeaderPlusPlus
-#define MiscellaneousUtilities_HeaderPlusPlus
+#ifndef ChessPlusPlus_Util_MiscellaneousUtilities_HeaderPlusPlus
+#define ChessPlusPlus_Util_MiscellaneousUtilities_HeaderPlusPlus
 
 #include <type_traits>
 #include <memory>
@@ -92,7 +92,7 @@ namespace chesspp
             typename Map::const_iterator it;
         public:
             KeyIter(typename Map::const_iterator mapit)
-            : it(mapit)
+            : it{mapit}
             {
             }
             KeyIter(KeyIter const &) = default;

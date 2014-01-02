@@ -20,6 +20,12 @@
     #endif
 #endif
 
+#ifdef CHESSPP_TRUNC_LOGS
+    #define CHESSPP_LOG_FILE_OPEN_MODE std::ios::trunc
+#else
+    #define CHESSPP_LOG_FILE_OPEN_MODE std::ios::app
+#endif
+
 class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
 {
     class LogUtil_buffer : public std::streambuf
@@ -30,8 +36,8 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
 
     public:
         explicit LogUtil_buffer(std::ostream &sink_, std::size_t buff_sz = 256)
-        : sink(sink_)
-        , buffer(buff_sz + 1)
+        : sink(sink_) //can't use {}
+        , buffer(buff_sz + 1) //don't use {}
         {
             sink.clear();
             char *base = &buffer.front();
@@ -100,9 +106,9 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
         }
     };
 
-    std::ofstream log {"debug_log.log", std::ios::out|std::ios::app}
-                , err {"debug_err.log", std::ios::out|std::ios::app}
-                , out {"debug_out.log", std::ios::out|std::ios::app};
+    std::ofstream log {"debug_log.log", std::ios::out|CHESSPP_LOG_FILE_OPEN_MODE}
+                , err {"debug_err.log", std::ios::out|CHESSPP_LOG_FILE_OPEN_MODE}
+                , out {"debug_out.log", std::ios::out|CHESSPP_LOG_FILE_OPEN_MODE};
     LogUtil_buffer logbuf {log}
                  , errbuf {err}
                  , outbuf {out};
@@ -115,7 +121,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
     LogUtil &operator=(LogUtil const &) = delete;
     LogUtil &operator=(LogUtil &&) = delete;
 public:
-    static void enableRedirection()
+    static void enableRedirection() noexcept
     {
         static LogUtil lu;
     }

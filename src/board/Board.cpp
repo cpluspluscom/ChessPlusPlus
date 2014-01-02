@@ -7,9 +7,9 @@ namespace chesspp
     namespace board
     {
         Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
-        : board(b)
-        , p(pos_)
-        , s(s_)
+        : board(b) //can't use {}
+        , p{pos_}
+        , s{s_}
         {
             std::clog << "Creation of " << *this << std::endl;
         }

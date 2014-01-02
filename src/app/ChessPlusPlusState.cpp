@@ -9,19 +9,18 @@ namespace chesspp
 {
     namespace app
     {
-        ChessPlusPlusState::ChessPlusPlusState(Application &_app, sf::RenderWindow &disp)
-        : AppState(disp)
-        , app(_app)
-        , res_config(app.resourcesConfig())
-        , board_config(res_config)
-        , graphics(display, res_config, board_config)
-        , board(board_config)
-        , p(-1, -1)
-        , players(util::KeyIter<config::BoardConfig::Textures_t>
+        ChessPlusPlusState::ChessPlusPlusState(Application &app_, sf::RenderWindow &disp)
+        : AppState(disp)                    //can't use {}
+        , app(app_)                         //can't use {}
+        , res_config(app.resourcesConfig()) //can't use {}
+        , board_config{res_config}
+        , graphics{display, res_config, board_config}
+        , board{board_config}
+        , players{util::KeyIter<config::BoardConfig::Textures_t>
                                (board_config.texturePaths().cbegin()),
                   util::KeyIter<config::BoardConfig::Textures_t>
-                               (board_config.texturePaths().cend()))
-        , turn(players.find(board_config.metadata("first turn")))
+                               (board_config.texturePaths().cend())}
+        , turn{players.find(board_config.metadata("first turn"))}
         {
             std::clog << "Number of players: " << players.size() << std::endl;
             if(turn == players.end())

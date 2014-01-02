@@ -18,7 +18,7 @@ namespace chesspp
         );
 
         Queen::Queen(board::Board &b, Position_t const &pos_, Suit const &s_)
-        : Piece(b, pos_, s_)
+        : Piece{b, pos_, s_}
         {
         }
 

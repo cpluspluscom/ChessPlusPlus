@@ -23,7 +23,12 @@ namespace chesspp
          */
         template<typename T, typename U>
         auto operator!=(T const &t, U const &u) noexcept(noexcept(!(t == u)))
-        -> typename std::enable_if<std::is_base_of<T, U>::value || std::is_base_of<U, T>::value, decltype(!(t == u))>::type
+        -> typename std::enable_if
+        <
+            std::is_base_of<T, U>::value
+         || std::is_base_of<U, T>::value,
+            decltype(!(t == u))
+        >::type
         {
             return !(t == u);
         }
@@ -91,7 +96,7 @@ namespace chesspp
         {
             typename Map::const_iterator it;
         public:
-            KeyIter(typename Map::const_iterator mapit)
+            KeyIter(typename Map::const_iterator mapit) noexcept
             : it{mapit}
             {
             }
@@ -100,12 +105,12 @@ namespace chesspp
             KeyIter &operator=(KeyIter const &) = default;
             KeyIter &operator=(KeyIter &&) = default;
 
-            KeyIter &operator++()
+            KeyIter &operator++() noexcept
             {
                 ++it;
                 return *this;
             }
-            KeyIter operator++(int)
+            KeyIter operator++(int) noexcept
             {
                 KeyIter temp = *this;
                 ++*this;
@@ -121,11 +126,11 @@ namespace chesspp
                 return &(it->first);
             }
 
-            friend bool operator==(KeyIter const &a, KeyIter const &b)
+            friend bool operator==(KeyIter const &a, KeyIter const &b) noexcept
             {
                 return a.it == b.it;
             }
-            friend bool operator!=(KeyIter const &a, KeyIter const &b)
+            friend bool operator!=(KeyIter const &a, KeyIter const &b) noexcept
             {
                 return a.it != b.it;
             }
@@ -138,20 +143,20 @@ namespace chesspp
          * std::begin, std::end, and range-based for loops.
          * \tparam ItT The iterator type, e.g. container::const_iterator
          */
-        template<typename ItT, bool Const = false>
+        template<typename ItT>
         class Range
         {
             std::pair<ItT, ItT> r;
         public:
-            Range(std::pair<ItT, ItT> const &range)
+            Range(std::pair<ItT, ItT> const &range) noexcept
             : r{range}
             {
             }
-            ItT begin() const
+            ItT begin() const noexcept
             {
                 return r.first;
             }
-            ItT end() const
+            ItT end() const noexcept
             {
                 return r.second;
             }
@@ -163,7 +168,7 @@ namespace chesspp
          * \tparam ItT The iterator type, best if left to be deduced by the compiler.
          */
         template<typename ItT>
-        auto as_range(std::pair<ItT, ItT> const &range)
+        auto as_range(std::pair<ItT, ItT> const &range) noexcept
         -> Range<ItT>
         {
             return range;

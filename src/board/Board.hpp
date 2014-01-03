@@ -61,13 +61,28 @@ namespace chesspp
                 return factory().insert({type, ctor}).first;
             }
 
-            bool occupied(Position_t const &pos) const;
+            bool occupied(Position_t const &pos) const noexcept;
+            auto find(piece::Piece const *p) noexcept
+            -> Pieces_t::const_iterator
+            {
+                return std::find_if
+                (
+                    std::begin(pieces),
+                    std::end(pieces),
+                    [p](Pieces_t::value_type const &v)
+                    {
+                        return v.get() == p;
+                    }
+                );
+            }
 
-            Pieces_t::const_iterator begin() const
+            auto begin() const noexcept
+            -> Pieces_t::const_iterator
             {
                 return pieces.begin();
             }
-            Pieces_t::const_iterator end() const
+            auto end() const noexcept
+            -> Pieces_t::const_iterator
             {
                 return pieces.end();
             }
@@ -100,22 +115,22 @@ namespace chesspp
             Movements const captings {capturings};
             Movements const captables {capturables};
         public:
-            Movements const &pieceTrajectories() const
+            Movements const &pieceTrajectories() const noexcept
             {
                 return trajs;
             }
-            Movements const &pieceCapturings() const
+            Movements const &pieceCapturings() const noexcept
             {
                 return captings;
             }
-            Movements const &pieceCapturables() const
+            Movements const &pieceCapturables() const noexcept
             {
                 return captables;
             }
             using MovementsRange = util::Range<Movements_t::const_iterator>;
-            MovementsRange pieceTrajectory(piece::Piece const &p);
-            MovementsRange pieceCapturing(piece::Piece const &p);
-            MovementsRange pieceCapturable(piece::Piece const &p);
+            MovementsRange pieceTrajectory(piece::Piece const &p) noexcept;
+            MovementsRange pieceCapturing(piece::Piece const &p) noexcept;
+            MovementsRange pieceCapturable(piece::Piece const &p) noexcept;
 
         private:
             void update(Position_t const &pos);

@@ -17,31 +17,16 @@ namespace chesspp
             std::clog << "Creation of " << *this << std::endl;
         }
 
-        bool operator==(std::unique_ptr<Piece> const &up, Piece const *p) noexcept
-        {
-            return up.get() == p;
-        }
-        auto Piece::self() noexcept
-        -> std::set<std::unique_ptr<Piece>>::iterator
-        {
-            return std::find(std::begin(board.pieces), std::end(board.pieces), this);
-        }
-        auto Piece::self() const noexcept
-        -> std::set<std::unique_ptr<Piece>>::iterator
-        {
-            return std::find(std::begin(board), std::end(board), this);
-        }
-
         void Piece::addTrajectory(Position_t const &tile)
         {
             if(board.valid(tile))
             {
-                board.trajectories.insert(board::Board::Movements_t::value_type(self(), tile));
+                board.trajectories.insert(board::Board::Movements_t::value_type(board.find(this), tile));
             }
         }
         void Piece::removeTrajectory(Position_t const &tile)
         {
-            auto range = board.trajectories.equal_range(self());
+            auto range = board.trajectories.equal_range(board.find(this));
             for(auto it = range.first; it != range.second; )
             {
                 if(it->second == tile)
@@ -56,12 +41,12 @@ namespace chesspp
         {
             if(board.valid(tile))
             {
-                board.capturings.insert(board::Board::Movements_t::value_type(self(), tile));
+                board.capturings.insert(board::Board::Movements_t::value_type(board.find(this), tile));
             }
         }
         void Piece::removeCapturing(Position_t const &tile)
         {
-            auto range = board.capturings.equal_range(self());
+            auto range = board.capturings.equal_range(board.find(this));
             for(auto it = range.first; it != range.second; )
             {
                 if(it->second == tile)
@@ -76,12 +61,12 @@ namespace chesspp
         {
             if(board.valid(tile))
             {
-                board.capturables.insert(board::Board::Movements_t::value_type(self(), tile));
+                board.capturables.insert(board::Board::Movements_t::value_type(board.find(this), tile));
             }
         }
         void Piece::removeCapturable(Position_t const &tile)
         {
-            auto range = board.capturables.equal_range(self());
+            auto range = board.capturables.equal_range(board.find(this));
             for(auto it = range.first; it != range.second; )
             {
                 if(it->second == tile)

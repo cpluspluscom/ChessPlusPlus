@@ -22,7 +22,7 @@ namespace chesspp
             }
         }
 
-        bool Board::occupied(Position_t const &pos) const
+        bool Board::occupied(Position_t const &pos) const noexcept
         {
             for(auto const &p : *this)
             {
@@ -34,22 +34,22 @@ namespace chesspp
             return false;
         }
 
-        auto Board::pieceTrajectory(piece::Piece const &p)
+        auto Board::pieceTrajectory(piece::Piece const &p) noexcept
         -> MovementsRange
         {
-            auto range = trajectories.equal_range(p.self());
+            auto range = trajectories.equal_range(find(&p));
             return {{range.first, range.second}};
         }
-        auto Board::pieceCapturing(piece::Piece const &p)
+        auto Board::pieceCapturing(piece::Piece const &p) noexcept
         -> MovementsRange
         {
-            auto range = capturings.equal_range(p.self());
+            auto range = capturings.equal_range(find(&p));
             return {{range.first, range.second}};
         }
-        auto Board::pieceCapturable(piece::Piece const &p)
+        auto Board::pieceCapturable(piece::Piece const &p) noexcept
         -> MovementsRange
         {
-            auto range = capturables.equal_range(p.self());
+            auto range = capturables.equal_range(find(&p));
             return {{range.first, range.second}};
         }
 

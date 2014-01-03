@@ -47,9 +47,6 @@ namespace chesspp
                 calcTrajectory();
             }
 
-            std::set<std::unique_ptr<Piece>>::iterator self() noexcept;
-            std::set<std::unique_ptr<Piece>>::iterator self() const noexcept;
-
         protected:
             //should call addTrajectory() for each calculated trajectory
             //and addCapture() for each possible capture

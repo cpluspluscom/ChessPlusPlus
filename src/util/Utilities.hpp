@@ -132,6 +132,44 @@ namespace chesspp
         };
 
         /**
+         * Takes a std::pair of iterators (e.g. the return value
+         * of some standard algorithms) and uses it for begin
+         * and end member functions to be compatible with
+         * std::begin, std::end, and range-based for loops.
+         * \tparam ItT The iterator type, e.g. container::const_iterator
+         */
+        template<typename ItT, bool Const = false>
+        class Range
+        {
+            std::pair<ItT, ItT> r;
+        public:
+            Range(std::pair<ItT, ItT> const &range)
+            : r{range}
+            {
+            }
+            ItT begin() const
+            {
+                return r.first;
+            }
+            ItT end() const
+            {
+                return r.second;
+            }
+        };
+        /**
+         * Takes a std::pair of iterators (e.g. the return value
+         * of some standard algorithms) and constructs a Range
+         * object from it as a convenience function.
+         * \tparam ItT The iterator type, best if left to be deduced by the compiler.
+         */
+        template<typename ItT>
+        auto as_range(std::pair<ItT, ItT> const &range)
+        -> Range<ItT>
+        {
+            return range;
+        }
+
+        /**
          * Allows unpacking a template parameter pack
          * into a string path with a custom delimiter.
          * \tparam ...Args The type parameter pack.

@@ -5,6 +5,7 @@
 #include "config/ResourcesConfig.hpp"
 #include "config/BoardConfig.hpp"
 #include "board/Board.hpp"
+#include "piece/Piece.hpp"
 
 #include <map>
 
@@ -35,13 +36,13 @@ namespace chesspp
             void drawSpriteAtCell(sf::Sprite &s, std::size_t x, std::size_t y);
 
             //Draws a piece
-            void drawPiece(board::Piece const &p);
+            void drawPiece(piece::Piece const &p);
 
             //Separate version of drawPiece to draw a piece at any location on the screen.
-            void drawPieceAt(board::Piece const &p, sf::Vector2i const &pos);
+            void drawPieceAt(piece::Piece const &p, sf::Vector2i const &pos);
 
             //draws the trajectory and captures for the piece
-            void drawTrajectory(board::Piece const &p, bool enemy = false);
+            void drawTrajectory(piece::Piece const &p, bool enemy = false);
 
             //Draws the board and pieces
             void drawBoard(board::Board const &b);

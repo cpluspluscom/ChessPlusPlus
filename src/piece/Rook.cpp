@@ -13,21 +13,13 @@ namespace chesspp
             [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s)
             -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::value_type(new Rook(b, p, s));
+                return board::Board::Pieces_t::value_type(new Rook(b, p, s, "Rook"));
             }
         );
 
-        Rook::Rook(board::Board &b, Position_t const &pos_, Suit const &s_)
-        : Piece{b, pos_, s_}
-        , castling(b.getInteraction<board::Castling>()) //can't use {}
+        Rook::Rook(board::Board &b, Position_t const &pos_, Suit_t const &s_, Class_t const &pc)
+        : Piece{b, pos_, s_, pc}
         {
-            //not yet moved, can castle
-            castling.addFast(this);
-        }
-
-        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Rook::texture() const
-        {
-            return board.config.texturePaths().at(suit).at("Rook");
         }
 
         void Rook::calcTrajectory()
@@ -50,12 +42,6 @@ namespace chesspp
                     else break; //can't jump over pieces
                 }
             }
-        }
-
-        void Rook::moveUpdate(Position_t const &from, Position_t const &to)
-        {
-            //moved, can no longer castle
-            castling.removeFast(this);
         }
     }
 }

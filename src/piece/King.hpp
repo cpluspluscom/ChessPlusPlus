@@ -2,7 +2,7 @@
 #define ChessPlusPlus_Piece_KingChessPiece_HeaderPlusPlus
 
 #include "board/Board.hpp"
-#include "board/Castling.hpp"
+#include "piece/Piece.hpp"
 
 namespace chesspp
 {
@@ -10,18 +10,11 @@ namespace chesspp
     {
         class King : public virtual Piece
         {
-            board::Castling &castling;
-
         public:
-            King(board::Board &b, Position_t const &pos, Suit const &s);
-
-            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;
+            King(board::Board &b, Position_t const &pos, Suit_t const &s, Class_t const &pc);
 
         protected:
             virtual void calcTrajectory() override;
-
-        private:
-            virtual void moveUpdate(Position_t const &from, Position_t const &to) override;
         };
     }
 }

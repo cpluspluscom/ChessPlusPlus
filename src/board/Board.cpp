@@ -1,17 +1,56 @@
 #include "Board.hpp"
 
+#include "piece/Piece.hpp"
+
 #include <iostream>
 
 namespace chesspp
 {
     namespace board
     {
-        Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
-        : board(b) //can't use {}
-        , p{pos_}
-        , s{s_}
+        Board::Board(config::BoardConfig const &conf)
+        : config(conf) //can't use {}
         {
-            std::clog << "Creation of " << *this << std::endl;
+            for(auto const &slot : conf.initialLayout())
+            {
+                pieces.emplace(factory().at(slot.second.first)(*this, slot.first, slot.second.second));
+            }
+
+            for(auto const &p : pieces)
+            {
+                p->makeTrajectory();
+            }
+        }
+
+        bool Board::occupied(Position_t const &pos) const
+        {
+            for(auto const &p : *this)
+            {
+                if(p->pos == pos)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        auto Board::pieceTrajectory(piece::Piece const &p)
+        -> MovementsRange
+        {
+            auto range = trajectories.equal_range(p.self());
+            return {{range.first, range.second}};
+        }
+        auto Board::pieceCapturing(piece::Piece const &p)
+        -> MovementsRange
+        {
+            auto range = capturings.equal_range(p.self());
+            return {{range.first, range.second}};
+        }
+        auto Board::pieceCapturable(piece::Piece const &p)
+        -> MovementsRange
+        {
+            auto range = capturables.equal_range(p.self());
+            return {{range.first, range.second}};
         }
 
         void Board::update(Position_t const &pos)

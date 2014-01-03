@@ -62,7 +62,7 @@ namespace chesspp
             }
 
             bool occupied(Position_t const &pos) const noexcept;
-            auto find(piece::Piece const *p) noexcept
+            auto find(piece::Piece const *p) const noexcept
             -> Pieces_t::const_iterator
             {
                 return std::find_if

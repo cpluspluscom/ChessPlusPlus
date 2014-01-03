@@ -34,18 +34,12 @@ namespace chesspp
         {
             //Kings can move one space in all eight directions
             using Dir = util::Direction;
-            for(Dir d : {Dir::North
-                        ,Dir::NorthEast
-                        ,Dir::East
-                        ,Dir::SouthEast
-                        ,Dir::South
-                        ,Dir::SouthWest
-                        ,Dir::West
-                        ,Dir::NorthWest})
+            for(Dir d{Dir::North}; d != Dir::None ; d = Rotate(d, +1))
             {
                 Position_t t = Position_t(pos).move(d);
                 addTrajectory(t);
                 addCapturing(t);
+                if(Rotate(d, +1) == Dir::North){d = Dir::None;}
             }
         }
 

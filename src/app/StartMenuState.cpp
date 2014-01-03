@@ -21,7 +21,7 @@ namespace chesspp
         , quit_text {"Quit",  font, 75}
         {
             //Sets position at centered horizontally, down 10% vertically
-            logo.setPosition      (((display.getSize().x/2) - (logo.getLocalBounds()      .width/2)), (display.getSize().y*0.10));
+            logo.setPosition      (((display.getSize().x/2) - (logo.getLocalBounds().width/2)), (display.getSize().y*0.10));
 
             //Set up text
             start_text.setPosition(((display.getSize().x/2) - (start_text.getLocalBounds().width/2)), (display.getSize().y*0.35));

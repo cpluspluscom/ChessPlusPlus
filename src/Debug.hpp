@@ -68,6 +68,7 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
             pbump(-n);
 
             sink << out.str();
+            sink.flush();
             return (!sink.fail() && !sink.bad());
         }
 

@@ -21,23 +21,21 @@ namespace chesspp
     {
         class Board
         {
-            friend class ::chesspp::piece::Piece;
-
         public:
             using BoardSize_t = config::BoardConfig::BoardSize_t;
             using Position_t = config::BoardConfig::Position_t;
             using Suit = config::BoardConfig::SuitClass_t;
             using Pieces_t = std::set<std::unique_ptr<piece::Piece>>;
         private:
-            struct Pieces_t_iterator_compare
+            struct Pieces_t_const_iterator_compare
             {
-                bool operator()(Pieces_t::iterator const &a, Pieces_t::iterator const &b) const
+                bool operator()(Pieces_t::const_iterator const &a, Pieces_t::const_iterator const &b) const
                 {
                     return *a < *b;
                 }
             };
         public:
-            using Movements_t = std::multimap<Pieces_t::iterator, Position_t, Pieces_t_iterator_compare>;
+            using Movements_t = std::multimap<Pieces_t::const_iterator, Position_t, Pieces_t_const_iterator_compare>;
             using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<Pieces_t::value_type (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
 
             config::BoardConfig const &config;
@@ -62,36 +60,26 @@ namespace chesspp
             }
 
             bool occupied(Position_t const &pos) const noexcept;
-            auto find(piece::Piece const *p) const noexcept
-            -> Pieces_t::const_iterator
-            {
-                return std::find_if
-                (
-                    std::begin(pieces),
-                    std::end(pieces),
-                    [p](Pieces_t::value_type const &v)
-                    {
-                        return v.get() == p;
-                    }
-                );
-            }
+            auto find(piece::Piece const &p) const noexcept -> Pieces_t::const_iterator;
 
             auto begin() const noexcept
             -> Pieces_t::const_iterator
             {
-                return pieces.begin();
+                return pieces.cbegin();
             }
             auto end() const noexcept
             -> Pieces_t::const_iterator
             {
-                return pieces.end();
+                return pieces.cend();
             }
 
             class Movements
             {
-                Movements_t const &m;
-                Movements(Movements_t const &m_)
-                : m(m_) //can't use {}
+                Board &b;
+                Movements_t &m;
+                Movements(Board &b_, Movements_t Board::*m_)
+                : b(b_)     //can't use {}
+                , m(b_.*m_) //can't use {}
                 {
                 }
                 Movements(Movements const &) = delete;
@@ -109,24 +97,21 @@ namespace chesspp
                 {
                     return m.cend();
                 }
+
+                void add(piece::Piece const &p, Position_t const &tile);
+                void remove(piece::Piece const &p, Position_t const &tile);
             };
         private:
-            Movements const trajs {trajectories};
-            Movements const captings {capturings};
-            Movements const captables {capturables};
+            Movements trajs     {*this, &Board::trajectories};
+            Movements captings  {*this, &Board::capturings  };
+            Movements captables {*this, &Board::capturables };
         public:
-            Movements const &pieceTrajectories() const noexcept
-            {
-                return trajs;
-            }
-            Movements const &pieceCapturings() const noexcept
-            {
-                return captings;
-            }
-            Movements const &pieceCapturables() const noexcept
-            {
-                return captables;
-            }
+            Movements const &pieceTrajectories() const noexcept { return trajs;     }
+            Movements       &pieceTrajectories()       noexcept { return trajs;     }
+            Movements const &pieceCapturings()   const noexcept { return captings;  }
+            Movements       &pieceCapturings()         noexcept { return captings;  }
+            Movements const &pieceCapturables()  const noexcept { return captables; }
+            Movements       &pieceCapturables()        noexcept { return captables; }
             using MovementsRange = util::Range<Movements_t::const_iterator>;
             MovementsRange pieceTrajectory(piece::Piece const &p) noexcept;
             MovementsRange pieceCapturing(piece::Piece const &p) noexcept;

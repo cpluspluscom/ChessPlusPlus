@@ -19,62 +19,29 @@ namespace chesspp
 
         void Piece::addTrajectory(Position_t const &tile)
         {
-            if(board.valid(tile))
-            {
-                board.trajectories.insert(board::Board::Movements_t::value_type(board.find(this), tile));
-            }
+            board.pieceTrajectories().add(*this, tile);
         }
         void Piece::removeTrajectory(Position_t const &tile)
         {
-            auto range = board.trajectories.equal_range(board.find(this));
-            for(auto it = range.first; it != range.second; )
-            {
-                if(it->second == tile)
-                {
-                    it = board.trajectories.erase(it);
-                }
-                else ++it;
-            }
+            board.pieceTrajectories().remove(*this, tile);
         }
 
         void Piece::addCapturing(Position_t const &tile)
         {
-            if(board.valid(tile))
-            {
-                board.capturings.insert(board::Board::Movements_t::value_type(board.find(this), tile));
-            }
+            board.pieceCapturings().add(*this, tile);
         }
         void Piece::removeCapturing(Position_t const &tile)
         {
-            auto range = board.capturings.equal_range(board.find(this));
-            for(auto it = range.first; it != range.second; )
-            {
-                if(it->second == tile)
-                {
-                    it = board.capturings.erase(it);
-                }
-                else ++it;
-            }
+            board.pieceCapturings().remove(*this, tile);
         }
 
         void Piece::addCapturable(Position_t const &tile)
         {
-            if(board.valid(tile))
-            {
-                board.capturables.insert(board::Board::Movements_t::value_type(board.find(this), tile));
-            }
+            board.pieceCapturables().add(*this, tile);
         }
         void Piece::removeCapturable(Position_t const &tile)
         {
-            auto range = board.capturables.equal_range(board.find(this));
-            for(auto it = range.first; it != range.second; )
-            {
-                if(it->second == tile)
-                {
-                    it = board.capturables.erase(it);
-                }
-                else ++it;
-            }
+            board.pieceCapturables().remove(*this, tile);
         }
     }
 }

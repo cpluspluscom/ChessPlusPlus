@@ -1,6 +1,12 @@
 #ifndef ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
 #define ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
 
+/**
+  * Class representing a start menu for the Chess++.
+  * If a new 'button' is added, the appropriate code needs to be added to onRender(),
+  * onMouseMoved(), and onKeyPressed(). Look at those methods for an example.
+ */
+
 #include "SFML.hpp"
 
 #include "AppState.hpp"

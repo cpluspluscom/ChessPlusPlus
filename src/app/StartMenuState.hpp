@@ -21,12 +21,18 @@ namespace chesspp
             sf::Text start_text;
             sf::Text quit_text;
 
+            sf::Text *selected_menu_item;
+
+            void setSelectedMenuItem(sf::Text *item);
+
         public:
             StartMenuState(Application &app, sf::RenderWindow &display);
 
             virtual void onRender() override;
 
             virtual void onLButtonReleased(int x, int y) override;
+            virtual void onMouseMoved(int x, int y) override;
+            virtual void onKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) override;
         };
     }
 }

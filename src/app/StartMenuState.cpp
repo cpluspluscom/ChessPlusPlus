@@ -48,7 +48,7 @@ namespace chesspp
             if(start_text.getGlobalBounds().contains(x,y))
             {
                 std::clog << "State changing to ChessPlusPlus" << std::endl;
-                app.changeState<ChessPlusPlusState>(std::ref(app), std::ref(display));
+                return app.changeState<ChessPlusPlusState>(std::ref(app), std::ref(display));
             }
 
             //If clicked on Exit button

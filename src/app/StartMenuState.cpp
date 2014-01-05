@@ -35,7 +35,6 @@ namespace chesspp
         }
 
         void StartMenuState::onRender()
-        \
         {
             display.clear();
             display.draw(menu_background);

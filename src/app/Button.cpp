@@ -16,10 +16,5 @@ namespace chesspp
 		{
 			target.draw(button, states);
 		}
-
-		bool Button::contains(int x, int y)
-		{
-			return button.getGlobalBounds().contains(x,y);
-		}
 	}
 }

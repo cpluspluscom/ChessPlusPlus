@@ -11,7 +11,7 @@ namespace chesspp
 		class Button : public sf::Drawable
 		{
 			sf::Text button;
-			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 
 		public:
 			Button(const std::string &text, unsigned font_size);
@@ -45,15 +45,17 @@ namespace chesspp
 			{
 				return button.getPosition();
 			}
-			//Returns underlying button representation. Need this since we just inherit from
+			//Returns underlying button (sf::Text) representation. Need this since we just inherit from
 			//sf::Drawable, and a lot of functionality is delegated down to more specific classes
 			//There's probably a better way to do this, but for now it works.
-			const sf::Text& getButton()
+			const sf::Text& getText()
 			{
 				return button;
 			}
-
-			bool contains(int x, int y);
+			bool contains(int x, int y)
+			{
+				return button.getGlobalBounds().contains(x,y);
+			}
 
 		};
 	}

@@ -23,11 +23,11 @@ namespace chesspp
             //Sets position at centered horizontally, down 10% vertically
             logo.setPosition      (((display.getSize().x/2) - (logo.getLocalBounds()      .width/2)), (display.getSize().y*0.10));
 
-            //Set up text
-            start_text.setPosition(((display.getSize().x/2) - (start_text.getButton().getLocalBounds().width/2)), (display.getSize().y*0.35));
+            //Set up text -- No idea why the centering stopped working correctly, so I had to manually adjust for now.
+            start_text.setPosition(((display.getSize().x/2) - (start_text.getButton().getLocalBounds().width/2) - 125), (display.getSize().y*0.35));
             start_text.setFont(font);
 
-            quit_text.setPosition (((display.getSize().x/2) - (quit_text.getButton().getLocalBounds() .width/2)), (display.getSize().y*0.47));
+            quit_text.setPosition (((display.getSize().x/2) - (quit_text.getButton().getLocalBounds() .width/2) - 100), (display.getSize().y*0.47));
             quit_text.setFont(font);
 
             //Register buttons with button_manager

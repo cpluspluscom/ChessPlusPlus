@@ -1,0 +1,63 @@
+#include "ButtonManager.hpp"
+
+namespace chesspp
+{
+	namespace app
+	{
+		ButtonManager::ButtonManager()
+		{
+
+		}
+
+		void ButtonManager::registerButton(Button &button)
+		{
+			buttons.push_back(std::ref(button));
+		}
+
+		bool ButtonManager::deregisterButton(Button &button)
+		{
+			for(int i = 0; i < buttons.size(); i++)
+			{
+				//Surely there's a better way to do this
+				if(&(buttons[i].get()) == &button)
+				{
+					buttons.erase(buttons.begin() + (i - 1));
+					return true;
+				}
+			}
+			return false;
+		}
+
+		bool ButtonManager::setSelected(Button &button)
+		{
+			bool isPresent = false;
+			//Checks to see if button is present
+			for(int i = 0; i < buttons.size(); i++)
+			{
+				if(&(buttons[i].get()) == &button)
+				{
+					isPresent = true;
+					break;
+				}
+			}
+			if(!isPresent) return false;
+			for(int i = 0; i < buttons.size(); i++)
+			{
+				if(&(buttons[i].get()) == &button)
+				{
+					//Need the .get() because of std::reference_wrapper
+					buttons[i].get().setColor(sf::Color::Blue);
+					selected_button = &(buttons[i].get());
+				}
+				else
+				{
+					buttons[i].get().setColor(sf::Color::Black);
+				}
+			}
+
+			return true;
+		}
+
+
+	}
+}

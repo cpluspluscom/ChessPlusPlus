@@ -5,12 +5,8 @@
 
 #include "AppState.hpp"
 #include "Application.hpp"
-
-/**
- * Class representing a start menu for the Chess++.
- * If a new 'button' is added, the appropriate code needs to be added to onRender(),
- * onMouseMoved(), and onKeyPressed(). Look at those methods for an example.
- */
+#include "Button.hpp"
+#include "ButtonManager.hpp"
 
 namespace chesspp
 {
@@ -23,13 +19,12 @@ namespace chesspp
             sf::Sprite menu_background;
             sf::Sprite logo;
 
-            sf::Font &font;
-            sf::Text start_text;
-            sf::Text quit_text;
+            sf::Font font;
 
-            sf::Text *selected_menu_item;
+            Button start_text;
+            Button quit_text;
 
-            void setSelectedMenuItem(sf::Text *item);
+            ButtonManager button_manager;
 
         public:
             StartMenuState(Application &app, sf::RenderWindow &display);

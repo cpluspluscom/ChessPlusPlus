@@ -39,6 +39,8 @@ namespace chesspp
 			bool deregisterButton(Button &button);
 			bool setSelected(Button &button);
 			void deselectAll();
+			void cycleSelectedUp();
+			void cycleSelectedDown();
 			const Button& getSelected()
 			{
 				return *selected_button;

@@ -95,25 +95,11 @@ namespace chesspp
             //Allowed to 'cycle' through menu items with arrow keys
             if(key == sf::Keyboard::Key::Up)
             {
-                if(button_manager.getSelected() == start_text)
-                {
-                    button_manager.setSelected(quit_text);
-                }
-                else if(button_manager.getSelected() == quit_text)
-                {
-                    button_manager.setSelected(start_text);
-                }
+                button_manager.cycleSelectedUp();
             }
             if(key == sf::Keyboard::Key::Down)
             {
-                if(button_manager.getSelected() == start_text)
-                {
-                    button_manager.setSelected(quit_text);
-                }
-                else if(button_manager.getSelected() == quit_text)
-                {
-                    button_manager.setSelected(start_text);
-                }
+                button_manager.cycleSelectedDown();
             }
 
         }

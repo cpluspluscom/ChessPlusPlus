@@ -58,6 +58,28 @@ namespace chesspp
 			return true;
 		}
 
+		void ButtonManager::cycleSelectedUp()
+		{
+			for(int i = 0; i < buttons.size(); i++)
+			{
+				if(&(buttons[i].get()) == selected_button)
+				{
+					setSelected(buttons[((i + 1) % buttons.size())].get());
+					return;
+				}
+			}
+		}
 
+		void ButtonManager::cycleSelectedDown()
+		{
+			for(int i = 0; i < buttons.size(); i++)
+			{
+				if(&(buttons[i].get()) == selected_button)
+				{
+					setSelected(buttons[((i - 1) % buttons.size())].get());
+					return;
+				}
+			}
+		}
 	}
 }

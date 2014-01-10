@@ -46,12 +46,12 @@ namespace chesspp
 				if(&(buttons[i].get()) == &button)
 				{
 					//Need the .get() because of std::reference_wrapper
-					buttons[i].get().setColor(sf::Color::Blue);
+					buttons[i].get().setSelected(true);
 					selected_button = &(buttons[i].get());
 				}
 				else
 				{
-					buttons[i].get().setColor(sf::Color::Black);
+					buttons[i].get().setSelected(false);
 				}
 			}
 

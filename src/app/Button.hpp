@@ -41,6 +41,11 @@ namespace chesspp
 			{
 				button.setFont(font);
 			}
+			void setSelected(bool selected)
+			{
+				if(selected) setColor(sf::Color::Blue);
+				else setColor(sf::Color::Black);
+			}
 			sf::Vector2f getPosition()
 			{
 				return button.getPosition();

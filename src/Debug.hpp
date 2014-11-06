@@ -11,7 +11,7 @@
 #include <cassert>
 
 #if !defined(USE_STD_PUT_TIME)
-    //GCC 4.8.1 doesn't support std::put_time yet
+    //GCC 4.9.2 doesn't support std::put_time yet
     #if !defined(__GNUC__) || (__GNUC__ > 4)
         #define USE_STD_PUT_TIME 1 //next version of GCC probably does
     #else

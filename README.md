@@ -1,4 +1,4 @@
-# ChessPlusPlus [![Build Status](https://travis-ci.org/LB--/ChessPlusPlus.png?branch=lb-refactor)](https://travis-ci.org/LB--/ChessPlusPlus)
+# ChessPlusPlus [![Build Status](https://travis-ci.org/cpluspluscom/ChessPlusPlus.png?branch=master)](https://travis-ci.org/cpluspluscom/ChessPlusPlus)
 
 Cplusplus.com community project.
 
@@ -23,4 +23,4 @@ Send an email to svogel76 (at) comcast.net with ChessPlusPlus in the subject. In
 To contribute to this project, fork this repository, commit your changes, and submit a pull request. You can open issues to start discussions if you like. Be sure to read `CONTRIBUTING.md`!
 
 ## Documentation
-See the [wiki](./../../wiki/) for more information.
+See the [wiki](https://github.com/cpluspluscom/ChessPlusPlus/wiki) for more information.

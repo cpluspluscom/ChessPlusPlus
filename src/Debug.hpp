@@ -12,7 +12,7 @@
 
 #if !defined(USE_STD_PUT_TIME)
     //GCC 4.8.1 doesn't support std::put_time yet
-    #if !defined(__GNUC__) || (__GNUC__ > 4 || ((__GNUC__ == 4) && __GNUC_MINOR__ > 8))
+    #if !defined(__GNUC__) || (__GNUC__ > 4)
         #define USE_STD_PUT_TIME 1 //next version of GCC probably does
     #else
         #define USE_STD_PUT_TIME 0 //use boost alternative

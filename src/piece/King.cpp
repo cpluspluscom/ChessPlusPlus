@@ -13,21 +13,13 @@ namespace chesspp
             [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s)
             -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::value_type(new King(b, p, s));
+                return board::Board::Pieces_t::value_type(new King(b, p, s, "King"));
             }
         );
 
-        King::King(board::Board &b, Position_t const &pos_, Suit const &s_)
-        : Piece{b, pos_, s_}
-        , castling(b.getInteraction<board::Castling>()) //can't use {}
+        King::King(board::Board &b, Position_t const &pos_, Suit_t const &s_, Class_t const &pc)
+        : Piece{b, pos_, s_, pc}
         {
-            //not yet moved, can castle
-            castling.addSlow(this);
-        }
-
-        config::BoardConfig::Textures_t::mapped_type::mapped_type const &King::texture() const
-        {
-            return board.config.texturePaths().at(suit).at("King");
         }
 
         void King::calcTrajectory()
@@ -47,12 +39,6 @@ namespace chesspp
                 addTrajectory(t);
                 addCapturing(t);
             }
-        }
-
-        void King::moveUpdate(Position_t const &from, Position_t const &to)
-        {
-            //moved, can no longer castle
-            castling.removeSlow(this);
         }
     }
 }

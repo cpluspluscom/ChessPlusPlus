@@ -40,7 +40,7 @@ namespace chesspp
         board::Board::Pieces_t::iterator ChessPlusPlusState::find(board::Board::Position_t const &pos) const
         {
             return std::find_if(board.begin(), board.end(),
-            [&](std::unique_ptr<board::Piece> const &up) -> bool
+            [&](std::unique_ptr<piece::Piece> const &up) -> bool
             {
                 return up->pos == pos;
             });

@@ -2,6 +2,7 @@
 #define ChessPlusPlus_Piece_ArcherChessPiece_HeaderPlusPlus
 
 #include "board/Board.hpp"
+#include "piece/Piece.hpp"
 
 namespace chesspp
 {
@@ -10,15 +11,10 @@ namespace chesspp
         class Archer : public virtual Piece
         {
         public:
-            Archer(board::Board &b, Position_t const &pos, Suit const &s);
-
-            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;
+            Archer(board::Board &b, Position_t const &pos, Suit_t const &s, Class_t const &pc);
 
         protected:
             virtual void calcTrajectory() override;
-
-        private:
-            virtual void moveUpdate(Position_t const &from, Position_t const &to) override;
         };
     }
 }

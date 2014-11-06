@@ -15,19 +15,14 @@ namespace chesspp
             {
                 auto d = util::Direction::None;
                 std::istringstream {std::string(b.config.metadata("pawn facing", p.y, p.x))} >> d;
-                return board::Board::Pieces_t::value_type(new Pawn(b, p, s, d));
+                return board::Board::Pieces_t::value_type(new Pawn(b, p, s, "Pawn", d));
             }
         );
 
-        Pawn::Pawn(board::Board &b, Position_t const &pos_, Suit const &s_, util::Direction const &face)
-        : Piece{b, pos_, s_}
+        Pawn::Pawn(board::Board &b, Position_t const &pos_, Suit_t const &s_, Class_t const &pc, util::Direction const &face)
+        : Piece{b, pos_, s_, pc}
         , facing{face}
         {
-        }
-
-        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Pawn::texture() const
-        {
-            return board.config.texturePaths().at(suit).at("Pawn");
         }
 
         void Pawn::tick(Position_t const &m)

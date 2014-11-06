@@ -13,18 +13,13 @@ namespace chesspp
             [](board::Board &b, board::Board::Position_t const &p, board::Board::Suit const &s)
             -> board::Board::Pieces_t::value_type
             {
-                return board::Board::Pieces_t::value_type(new Queen(b, p, s));
+                return board::Board::Pieces_t::value_type(new Queen(b, p, s, "Queen"));
             }
         );
 
-        Queen::Queen(board::Board &b, Position_t const &pos_, Suit const &s_)
-        : Piece{b, pos_, s_}
+        Queen::Queen(board::Board &b, Position_t const &pos_, Suit_t const &s_, Class_t const &pc)
+        : Piece{b, pos_, s_, pc}
         {
-        }
-
-        config::BoardConfig::Textures_t::mapped_type::mapped_type const &Queen::texture() const
-        {
-            return board.config.texturePaths().at(suit).at("Queen");
         }
 
         void Queen::calcTrajectory()

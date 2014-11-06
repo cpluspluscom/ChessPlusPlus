@@ -2,6 +2,7 @@
 #define ChessPlusPlus_Piece_KnightChessPiece_HeaderPlusPlus
 
 #include "board/Board.hpp"
+#include "piece/Piece.hpp"
 
 namespace chesspp
 {
@@ -10,9 +11,7 @@ namespace chesspp
         class Knight : public virtual Piece
         {
         public:
-            Knight(board::Board &b, Position_t const &pos, Suit const &s);
-
-            virtual config::BoardConfig::Textures_t::mapped_type::mapped_type const &texture() const override;
+            Knight(board::Board &b, Position_t const &pos, Suit_t const &s, Class_t const &pc);
 
         protected:
             virtual void calcTrajectory() override;

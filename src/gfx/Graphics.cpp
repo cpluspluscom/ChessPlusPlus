@@ -32,18 +32,18 @@ namespace chesspp
             s.setPosition(x*board_config.cellWidth(), y*board_config.cellHeight());
             display.draw(s);
         }
-        void GraphicsHandler::drawPiece(board::Piece const &p)
+        void GraphicsHandler::drawPiece(piece::Piece const &p)
         {
-            sf::Sprite piece {res.from_path<Texture_res>(p.texture())};
+            sf::Sprite piece {res.from_config<Texture_res>("board", "pieces", p.suit, p.pclass)};
             drawSpriteAtCell(piece, p.pos.x, p.pos.y);
         }
-        void GraphicsHandler::drawPieceAt(board::Piece const &p, sf::Vector2i const &pos)
+        void GraphicsHandler::drawPieceAt(piece::Piece const &p, sf::Vector2i const &pos)
         {
-            sf::Sprite piece {res.from_path<Texture_res>(p.texture())};
+            sf::Sprite piece {res.from_config<Texture_res>("board", "pieces", p.suit, p.pclass)};
             piece.setPosition(pos.x - (board_config.cellWidth()/2), pos.y - (board_config.cellHeight()/2));
             display.draw(piece);
         }
-        void GraphicsHandler::drawTrajectory(board::Piece const &p, bool enemy)
+        void GraphicsHandler::drawTrajectory(piece::Piece const &p, bool enemy)
         {
             {
                 auto &sprite = (enemy? enemy_move : valid_move);

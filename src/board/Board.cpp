@@ -1,17 +1,97 @@
 #include "Board.hpp"
 
+#include "piece/Piece.hpp"
+
 #include <iostream>
 
 namespace chesspp
 {
     namespace board
     {
-        Board::Piece::Piece(Board &b, Position_t const &pos_, Suit const &s_)
-        : board(b) //can't use {}
-        , p{pos_}
-        , s{s_}
+        Board::Board(config::BoardConfig const &conf)
+        : config(conf) //can't use {}
         {
-            std::clog << "Creation of " << *this << std::endl;
+            for(auto const &slot : conf.initialLayout())
+            {
+                pieces.emplace(factory().at(slot.second.first)(*this, slot.first, slot.second.second));
+            }
+
+            for(auto const &p : pieces)
+            {
+                p->makeTrajectory();
+            }
+        }
+
+        bool Board::occupied(Position_t const &pos) const noexcept
+        {
+            for(auto const &p : *this)
+            {
+                if(p->pos == pos)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        auto Board::find(piece::Piece const &p) const noexcept
+        -> Pieces_t::const_iterator
+        {
+            return std::find_if
+            (
+                std::begin(pieces),
+                std::end(pieces),
+                [&](Pieces_t::value_type const &v)
+                {
+                    return v.get() == std::addressof(p);
+                }
+            );
+        }
+
+        void Board::Movements::add(piece::Piece const &p, Position_t const &tile)
+        {
+            if(b.valid(tile))
+            {
+                auto it = b.find(p);
+                if(it != b.end())
+                {
+                    m.insert(Movements_t::value_type(it, tile));
+                }
+            }
+        }
+        void Board::Movements::remove(piece::Piece const &p, Position_t const &tile)
+        {
+            auto it = b.find(p);
+            if(it != b.end())
+            {
+                auto range = m.equal_range(it);
+                for(auto jt = range.first; jt != range.second; )
+                {
+                    if(jt->second == tile)
+                    {
+                        jt = m.erase(jt);
+                    }
+                    else ++jt;
+                }
+            }
+        }
+
+        auto Board::pieceTrajectory(piece::Piece const &p) noexcept
+        -> MovementsRange
+        {
+            auto range = trajectories.equal_range(find(p));
+            return {{range.first, range.second}};
+        }
+        auto Board::pieceCapturing(piece::Piece const &p) noexcept
+        -> MovementsRange
+        {
+            auto range = capturings.equal_range(find(p));
+            return {{range.first, range.second}};
+        }
+        auto Board::pieceCapturable(piece::Piece const &p) noexcept
+        -> MovementsRange
+        {
+            auto range = capturables.equal_range(find(p));
+            return {{range.first, range.second}};
         }
 
         void Board::update(Position_t const &pos)

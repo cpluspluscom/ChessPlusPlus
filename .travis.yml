@@ -6,7 +6,7 @@ before_install:
     # Add these so we can get a more up-to-date G++ and CMake, and SFML!
     - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
     - sudo add-apt-repository -y ppa:kalakris/cmake
-    - apt-add-repository ppa:sonkun/sfml-stable
+    - sudo apt-add-repository ppa:sonkun/sfml-stable
     - sudo apt-get update -qq
 
 install:

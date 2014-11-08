@@ -1,39 +1,29 @@
 language: c++
 compiler:
-    - clang
-#    - gcc
+    - gcc
+
+before_install:
+    # Add these so we can get a more up-to-date G++ and CMake, and SFML!
+    - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+    - sudo add-apt-repository -y ppa:kalakris/cmake
+    - sudo apt-add-repository -y ppa:sonkun/sfml-stable
+    - sudo apt-get update -qq
 
 install:
-    - mkdir compiler
-    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
-    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
-    - cd ../
-    - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-    - cd tools/clang
-    - sudo make install
-    - cd ../../../../..
-    - clang++ --version
-# -std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
-#    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
-#    - mkdir build && cd build
-#    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-#    - sudo make install
-#    - cd ../../..
-#    - sudo apt-get install libsfml-dev=2.0
+    - sudo apt-get install -qq g++-4.8
+    - sudo apt-get install -qq cmake
+    - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
+    - sudo apt-get install libsfml-dev
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev
     - sudo apt-get install libsndfile-dev
-    - cd lib/SFML && mkdir build && cd build
     - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
     - make install
-    - cd ../../..
-#    - sudo apt-get install libboost-dev=1.54.0
     - cd lib
     - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet
     - cd boost
-    - ./bootstrap.sh clang --prefix=installation
-    - ./b2 toolset=clang cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
+    - ./bootstrap.sh --prefix=installation
+    - ./b2 cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
     - cd ../..
 
 before_script:

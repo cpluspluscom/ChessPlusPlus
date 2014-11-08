@@ -1,6 +1,6 @@
 language: c++
 compiler:
-    - clang
+    #- clang
     - gcc
 
 before_install:
@@ -14,8 +14,8 @@ install:
     - sudo apt-get install -qq cmake
     - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
     - mkdir compiler
-    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
-    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
+    #- cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
+    #- cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
     - cd ../
     - mkdir build && cd build
     - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
@@ -24,10 +24,10 @@ install:
     - cd ../../../../..
     - clang++ --version
     - std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
-    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
-    - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-    - sudo make install
+    #- cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
+    #- mkdir build && cd build
+    #- cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+    #- sudo make install
     - cd ../../..
     - sudo apt-get install libsfml-dev=2.0
     - sudo apt-get install libglew-dev

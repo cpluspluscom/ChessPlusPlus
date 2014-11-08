@@ -13,7 +13,7 @@ install:
     - sudo apt-get install -qq g++-4.8
     - sudo apt-get install -qq cmake
     - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
-    - sudo apt-get install libsfml-dev=2.0
+    - sudo apt-get install libsfml-dev
     - sudo apt-get install libglew-dev
     - sudo apt-get install libopenal-dev
     - sudo apt-get install libsndfile-dev

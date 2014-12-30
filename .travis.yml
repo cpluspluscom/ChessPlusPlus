@@ -10,7 +10,7 @@ install:
   - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
   - sudo make install
   - cd ../../..
-  - sudo apt-get install libsfml-dev=2.0
+#  - sudo apt-get install libsfml-dev=2.0
   - sudo apt-get install libglew-dev
   - sudo apt-get install libopenal-dev
   - sudo apt-get install libsndfile-dev
@@ -45,6 +45,6 @@ notifications:
     channels:
     - "irc.freenode.net#ChessPlusPlus"
     template:
-    - "Build #%{build_number} at %{respository_slug}/%{branch}"
+    - "Build #%{build_number} at %{repository_slug}/%{branch}"
     - "%{author} %{commit} \"%{commit_message}\" %{compare_url}"
     - "%{message} %{build_url}"

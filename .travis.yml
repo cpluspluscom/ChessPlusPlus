@@ -4,15 +4,15 @@ compiler:
 #    - gcc
 
 install:
-    - mkdir compiler
-    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
-    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
-    - cd ../
-    - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-    - cd tools/clang
-    - sudo make install
-    - cd ../../../../..
+#    - mkdir compiler
+#    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
+#    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
+#    - cd ../
+#    - mkdir build && cd build
+#    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+#    - cd tools/clang
+#    - sudo make install
+#    - cd ../../../../..
     - clang++ --version
 # -std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
 #    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx

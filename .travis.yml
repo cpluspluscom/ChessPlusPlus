@@ -31,7 +31,7 @@ install:
   - sudo apt-get install libsndfile-dev
 # Manually build SFML
   - cd lib/SFML && mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
+  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -lc++abi -I../../libcxx/include -L../../libcxx/lib -I../../libcxxabi/include -L../../libcxxabi/lib -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
   - make install
   - cd ../../..
 #  - sudo apt-get install libboost-dev=1.54.0

@@ -27,6 +27,7 @@ install:
   - sudo apt-get install libglew-dev
   - sudo apt-get install libopenal-dev
   - sudo apt-get install libsndfile-dev
+  - sudo apt-get install libfreetype-dev
 # Manually build SFML
   - cd lib/SFML && mkdir build && cd build
   - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
@@ -46,7 +47,7 @@ after_install:
 
 before_script:
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL -lopenal -lsndfile -lfreetype" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
   - make
 after_script:

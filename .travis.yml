@@ -27,7 +27,7 @@ install:
   - sudo apt-get install libglew-dev
   - sudo apt-get install libopenal-dev
   - sudo apt-get install libsndfile-dev
-  - sudo apt-get install libfreetype-dev
+  - sudo apt-get install libfreetype6-dev
 # Manually build SFML
   - cd lib/SFML && mkdir build && cd build
   - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../

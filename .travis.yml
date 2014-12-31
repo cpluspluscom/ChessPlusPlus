@@ -5,7 +5,7 @@ compiler:
 
 before_install:
   - pwd
-  - set REPOHOME=$(pwd)
+  - set REPOHOME=`pwd`
   - echo $REPOHOME
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
 # Travis is using CMake 2.8.7, but libc++abi needs 2.8.8

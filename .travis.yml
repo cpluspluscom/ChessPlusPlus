@@ -4,6 +4,7 @@ compiler:
 #  - gcc
 
 before_install:
+  - set REPOHOME=$(pwd)
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
 # Travis is using CMake 2.8.7, but libc++abi needs 2.8.8
   - sudo add-apt-repository --yes ppa:kalakris/cmake
@@ -20,6 +21,7 @@ before_install:
   - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
 
 install:
+  - cd $REPOHOME
 # Install required libs
 #  - sudo apt-get install libsfml-dev=2.0
   - sudo apt-get install libglew-dev
@@ -40,12 +42,15 @@ install:
   - cd ../..
 
 before_script:
+  - cd $REPOHOME
   - mkdir build && cd build
 #-I../lib/libcxx/include -L../lib/libcxx/lib -I../lib/libcxxabi/include -L../lib/libcxxabi/lib
   - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -lc++abi -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
+  - cd $REPOHOME
   - make
 after_script:
+  - cd $REPOHOME
   - ls
 
 branches:

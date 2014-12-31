@@ -41,10 +41,12 @@ install:
   - ./b2 toolset=clang cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
   - cd ../..
 
+after_install:
+  - pwd
+
 before_script:
   - mkdir build && cd build
-#-I../lib/libcxx/include -L../lib/libcxx/lib -I../lib/libcxxabi/include -L../lib/libcxxabi/lib
-  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
   - make
 after_script:
@@ -60,6 +62,6 @@ notifications:
     channels:
     - "irc.freenode.net#ChessPlusPlus"
     template:
-    - "Build #%{build_number} at %{repository_slug}/%{branch}"
+    - "Build #%{build_number} at %{repository_slug}/%{branch} took %{duration}"
     - "%{author} %{commit} \"%{commit_message}\" %{compare_url}"
     - "%{message} %{build_url}"

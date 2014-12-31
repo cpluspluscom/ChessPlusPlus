@@ -4,8 +4,12 @@ compiler:
 #  - gcc
 
 install:
-#-std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
   - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
+  - mkdir build && cd build
+  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
+  - sudo make install
+  - cd ../../..
+  - cd lib && svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi --quiet && cd libcxxabi
   - mkdir build && cd build
   - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
   - sudo make install
@@ -28,7 +32,7 @@ install:
 
 before_script:
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -lsupc++ -Ilib/libcxx/include -Llib/libcxx/lib -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
   - make
 after_script:

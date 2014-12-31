@@ -14,10 +14,13 @@ install:
   - sudo add-apt-repository --yes ppa:kalakris/cmake
   - sudo apt-get update -qq
   - sudo apt-get install cmake
+# libc++abi needs the LLVM sources
+  - cd lib && svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_34/final llvm --quiet
+  - cd ../
 # Build libc++abi
   - cd lib && svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi --quiet && cd libcxxabi
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include ../
+  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include -DLLVM_PATH=../../llvm ../
   - sudo make install
   - cd ../../..
 # Install required libs

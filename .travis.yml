@@ -5,7 +5,7 @@ compiler:
 
 before_install:
   - pwd
-  - set REPOHOME=`pwd`
+  - set REPOHOME="$PWD"
   - echo $REPOHOME
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
 # Travis is using CMake 2.8.7, but libc++abi needs 2.8.8
@@ -47,7 +47,7 @@ before_script:
   - cd $REPOHOME
   - mkdir build && cd build
 #-I../lib/libcxx/include -L../lib/libcxx/lib -I../lib/libcxxabi/include -L../lib/libcxxabi/lib
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -lc++abi -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -lc++abi -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
   - cd $REPOHOME
   - make

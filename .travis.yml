@@ -3,26 +3,23 @@ compiler:
   - clang
 #  - gcc
 
-install:
-# Build libc++
-  - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
-  - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-  - sudo make install
-  - cd ../../..
+before_install:
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
 # Travis is using CMake 2.8.7, but libc++abi needs 2.8.8
   - sudo add-apt-repository --yes ppa:kalakris/cmake
   - sudo apt-get update -qq
   - sudo apt-get install cmake
-# libc++abi needs the LLVM sources
-  - cd lib && svn co http://llvm.org/svn/llvm-project/llvm/tags/RELEASE_34/final llvm --quiet
-  - cd ../
-# Build libc++abi
-  - cd lib && svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi --quiet && cd libcxxabi
-  - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" -DLIBCXXABI_LIBCXX_INCLUDES=../../libcxx/include -DLLVM_PATH=../../llvm ../
-  - sudo make install
-  - cd ../../..
+# Build libc++
+  - if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-std=c++0x -stdlib=libc++"; fi
+  - if [ "$CXX" == "clang++" ]; then svn co --quiet http://llvm.org/svn/llvm-project/libcxx/trunk libcxx; fi
+  - if [ "$CXX" == "clang++" ]; then cd libcxx/lib && bash buildit; fi
+  - if [ "$CXX" == "clang++" ]; then sudo cp ./libc++.so.1.0 /usr/lib/; fi
+  - if [ "$CXX" == "clang++" ]; then sudo mkdir /usr/include/c++/v1; fi
+  - if [ "$CXX" == "clang++" ]; then cd .. && sudo cp -r include/* /usr/include/c++/v1/; fi
+  - if [ "$CXX" == "clang++" ]; then cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so; fi
+  - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
+
+install:
 # Install required libs
 #  - sudo apt-get install libsfml-dev=2.0
   - sudo apt-get install libglew-dev

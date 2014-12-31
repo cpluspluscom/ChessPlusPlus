@@ -47,7 +47,7 @@ after_install:
 
 before_script:
   - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL -lopenal -lsndfile -lfreetype -ljpeg -lGLEW" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL -lopenal -lsndfile -lfreetype -ljpeg -lGLEW -lXrandr" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
   - make
 after_script:

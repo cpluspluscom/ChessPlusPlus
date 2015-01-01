@@ -1,53 +1,68 @@
 language: c++
 compiler:
-    - clang
-#    - gcc
+  - clang
+#  - gcc
+
+before_install:
+  - pushd .
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
+# Travis is using CMake 2.8.7, but libc++abi needs 2.8.8
+  - sudo add-apt-repository --yes ppa:kalakris/cmake
+  - sudo apt-get update -qq
+  - sudo apt-get install cmake
+# Build libc++
+  - if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-std=c++0x -stdlib=libc++"; fi
+  - if [ "$CXX" == "clang++" ]; then svn co --quiet http://llvm.org/svn/llvm-project/libcxx/trunk libcxx; fi
+  - if [ "$CXX" == "clang++" ]; then cd libcxx/lib && bash buildit; fi
+  - if [ "$CXX" == "clang++" ]; then sudo cp ./libc++.so.1.0 /usr/lib/; fi
+  - if [ "$CXX" == "clang++" ]; then sudo mkdir /usr/include/c++/v1; fi
+  - if [ "$CXX" == "clang++" ]; then cd .. && sudo cp -r include/* /usr/include/c++/v1/; fi
+  - if [ "$CXX" == "clang++" ]; then cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so; fi
+  - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
+  - popd
 
 install:
-#    - mkdir compiler
-#    - cd compiler   && svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm --quiet
-#    - cd llvm/tools && svn co http://llvm.org/svn/llvm-project/cfe/trunk clang --quiet
-#    - cd ../
-#    - mkdir build && cd build
-#    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-#    - cd tools/clang
-#    - sudo make install
-#    - cd ../../../../..
-    - clang++ --version
-# -std=c++11 -stdlib=libc++ -nostdinc++ -Ilib/libcxx/include -Llib/libcxx/lib
-#    - cd lib && svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx --quiet && cd libcxx
-#    - mkdir build && cd build
-#    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_CXX_FLAGS="-std=c++11" ../
-#    - sudo make install
-#    - cd ../../..
-#    - sudo apt-get install libsfml-dev=2.0
-    - sudo apt-get install libglew-dev
-    - sudo apt-get install libopenal-dev
-    - sudo apt-get install libsndfile-dev
-    - cd lib/SFML && mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++11 -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
-    - make install
-    - cd ../../..
-#    - sudo apt-get install libboost-dev=1.54.0
-    - cd lib
-    - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet
-    - cd boost
-    - ./bootstrap.sh clang --prefix=installation
-    - ./b2 toolset=clang cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
-    - cd ../..
+# Install required libs
+#  - sudo apt-get install libsfml-dev=2.0
+  - sudo apt-get install libglew-dev
+  - sudo apt-get install libopenal-dev
+  - sudo apt-get install libsndfile-dev
+  - sudo apt-get install libfreetype6-dev
+# Manually build SFML
+  - cd lib/SFML && mkdir build && cd build
+  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
+  - make install
+  - cd ../../..
+#  - sudo apt-get install libboost-dev=1.54.0
+# Manually build Boost
+  - cd lib
+  - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet
+  - cd boost
+  - ./bootstrap.sh clang --prefix=installation
+  - ./b2 toolset=clang cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
+  - cd ../..
+
+after_install:
+  - pwd
 
 before_script:
-    - mkdir build && cd build
-    - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -isystem ../lib/boost" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
+  - mkdir build && cd build
+  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL -lopenal -lsndfile -lfreetype -ljpeg -lGLEW -lXrandr" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
-    - make
+  - make
 after_script:
-    - ls
+  - ls
 
 branches:
   only:
     - master
 
 notifications:
-    email: false
-    irc: "irc.freenode.net#ChessPlusPlus"
+  email: false
+  irc:
+    channels:
+    - "irc.freenode.net#ChessPlusPlus"
+    template:
+    - "Build #%{build_number} at %{repository_slug}/%{branch} took %{duration}"
+    - "%{author} %{commit} \"%{commit_message}\" %{compare_url}"
+    - "%{message} %{build_url}"

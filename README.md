@@ -4,7 +4,7 @@ Cplusplus.com community project.
 
 Project repository: https://github.com/cpluspluscom/ChessPlusPlus
 
-irc.freenode.net#ChessPlusPlus
+`irc.freenode.net#ChessPlusPlus` or [![Join the chat at https://gitter.im/cpluspluscom/ChessPlusPlus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cpluspluscom/ChessPlusPlus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Description
 ChessPlusPlus is a modular game of chess programmed with the latest gadgets and gizmos in C++, namely whatever happens to be the most recently released standard (currently C++11, soon to be C++14). The project aims to show the simplicity and elegance of C++ and to constantly use the latest features of the language and the most modern design practices.

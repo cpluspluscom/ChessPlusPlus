@@ -66,3 +66,6 @@ notifications:
     - "Build #%{build_number} at %{repository_slug}/%{branch} took %{duration}"
     - "%{author} %{commit} \"%{commit_message}\" %{compare_url}"
     - "%{message} %{build_url}"
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/23283bd266397b30488c

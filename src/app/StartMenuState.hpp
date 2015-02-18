@@ -24,6 +24,8 @@ namespace chesspp
         public:
             StartMenuState(Application &app, sf::RenderWindow &display);
 
+            virtual void onMouseMoved(int x, int y) override;
+
             virtual void onRender() override;
 
             virtual void onLButtonReleased(int x, int y) override;

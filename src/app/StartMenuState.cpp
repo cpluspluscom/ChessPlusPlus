@@ -21,20 +21,49 @@ namespace chesspp
         , quit_text {"Quit",  font, 75}
         {
             //Sets position at centered horizontally, down 10% vertically
-            logo.setPosition      (((display.getSize().x/2) - (logo.getLocalBounds()      .width/2)), (display.getSize().y*0.10));
+            logo.setPosition(((display.getSize().x/2) - (logo.getLocalBounds().width/2)), (display.getSize().y*0.10));
 
             //Set up text
-            start_text.setPosition(((display.getSize().x/2) - (start_text.getLocalBounds().width/2)), (display.getSize().y*0.35));
             start_text.setColor(sf::Color::Black);
-            start_text.setStyle(sf::Text::Bold);
+            start_text.setStyle(sf::Text::Regular);
 
-            quit_text.setPosition (((display.getSize().x/2) - (quit_text.getLocalBounds() .width/2)), (display.getSize().y*0.47));
             quit_text.setColor(sf::Color::Black);
-            quit_text.setStyle(sf::Text::Bold);
+            quit_text.setStyle(sf::Text::Regular);
+        }
+
+        void StartMenuState::onMouseMoved(int x, int y)
+        {
+            //If hovering over Start button
+            if(start_text.getGlobalBounds().contains(x,y))
+            {
+                start_text.setStyle(sf::Text::Bold);
+                start_text.setColor(sf::Color::Red);
+            }
+            else
+            {
+                start_text.setStyle(sf::Text::Regular);
+                start_text.setColor(sf::Color::Black);
+            }
+
+            //If hovering over Exit button
+            if(quit_text.getGlobalBounds().contains(x,y))
+            {
+                quit_text.setStyle(sf::Text::Bold);
+                quit_text.setColor(sf::Color::Red);
+            }
+            else
+            {
+                quit_text.setStyle(sf::Text::Regular);
+                quit_text.setColor(sf::Color::Black);
+            }
         }
 
         void StartMenuState::onRender()
         {
+            //Sets positions at centered horizontally, because the display sizes change between bold and regular styles
+            start_text.setPosition(((display.getSize().x/2) - (start_text.getLocalBounds().width/2)), (display.getSize().y*0.35));
+            quit_text.setPosition (((display.getSize().x/2) - (quit_text.getLocalBounds() .width/2)), (display.getSize().y*0.47));
+
             display.clear();
             display.draw(menu_background);
             display.draw(logo);

@@ -1,5 +1,6 @@
 #include "ChessPlusPlusState.hpp"
 
+#include "StartMenuState.hpp"
 #include "util/Utilities.hpp"
 
 #include <iostream>
@@ -63,6 +64,13 @@ namespace chesspp
             }
         }
 
+        void ChessPlusPlusState::onKeyPressed(sf::Keyboard::Key key, bool /*alt*/, bool /*control*/, bool /*shift*/, bool /*system*/)
+        {
+            if(key == sf::Keyboard::Escape)
+            { //Exit to menu screen
+                return app.changeState<StartMenuState>(std::ref(app), std::ref(display));
+            }
+        }
         void ChessPlusPlusState::onMouseMoved(int x, int y)
         {
             p.x = static_cast<board::Board::Position_t::value_type>(x/board.config.cellWidth());

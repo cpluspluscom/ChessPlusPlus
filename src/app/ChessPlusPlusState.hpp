@@ -34,6 +34,7 @@ namespace chesspp
 
             virtual void onRender() override;
 
+            virtual void onKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) override;
             virtual void onMouseMoved(int x, int y) override;
             virtual void onLButtonPressed(int x, int y) override;
             virtual void onLButtonReleased(int x, int y) override;

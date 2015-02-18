@@ -43,7 +43,7 @@ namespace chesspp
                     throw Exception("stream given to JsonReader in bad state");
                 }
                 std::string str ((std::istreambuf_iterator<char>(s)), std::istreambuf_iterator<char>());
-                json_settings options {0, 0, nullptr, nullptr, nullptr};
+                json_settings options {0, 0, nullptr, nullptr, nullptr, 0U};
                 char error[json_error_max];
                 json = json_parse_ex(&options, str.c_str(), str.length(), error);
                 if(json == nullptr)

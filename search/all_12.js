@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['setting',['setting',['../classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a',1,'chesspp::config::Configuration']]],
+  ['sfml_2ehpp',['SFML.hpp',['../_s_f_m_l_8hpp.html',1,'']]],
+  ['sfmleventhandler',['SfmlEventHandler',['../classchesspp_1_1_sfml_event_handler.html',1,'chesspp']]],
+  ['sfmleventhandler_2ehpp',['SfmlEventHandler.hpp',['../_sfml_event_handler_8hpp.html',1,'']]],
+  ['sfmlfileresource',['SfmlFileResource',['../classchesspp_1_1res_1_1_sfml_file_resource.html',1,'chesspp::res']]],
+  ['sfmlfileresource',['SfmlFileResource',['../classchesspp_1_1res_1_1_sfml_file_resource.html#ae06150a664edfa1afce0dc0f37404c4e',1,'chesspp::res::SfmlFileResource']]],
+  ['sfmlfileresource_2ehpp',['SfmlFileResource.hpp',['../_sfml_file_resource_8hpp.html',1,'']]],
+  ['south',['South',['../namespacechesspp_1_1util.html#a16096d0bfaa45039b49d0f2637be6138a263d7b2cf53802c9ed127b718c0bf9fd',1,'chesspp::util']]],
+  ['southeast',['SouthEast',['../namespacechesspp_1_1util.html#a16096d0bfaa45039b49d0f2637be6138a865a51dff69223f0cf5ad630e5ada190',1,'chesspp::util']]],
+  ['southwest',['SouthWest',['../namespacechesspp_1_1util.html#a16096d0bfaa45039b49d0f2637be6138ae8eaf797b01fdb4246ed54904368b592',1,'chesspp::util']]],
+  ['startmenustate',['StartMenuState',['../classchesspp_1_1app_1_1_start_menu_state.html#ab76786cb3d0b5716d6bb117e37a3885a',1,'chesspp::app::StartMenuState']]],
+  ['startmenustate',['StartMenuState',['../classchesspp_1_1app_1_1_start_menu_state.html',1,'chesspp::app']]],
+  ['startmenustate_2ecpp',['StartMenuState.cpp',['../_start_menu_state_8cpp.html',1,'']]],
+  ['startmenustate_2ehpp',['StartMenuState.hpp',['../_start_menu_state_8hpp.html',1,'']]],
+  ['std',['std',['../namespacestd.html',1,'']]],
+  ['stop',['stop',['../classchesspp_1_1app_1_1_application.html#ae1aeb464d0163424257d8add50b82aec',1,'chesspp::app::Application']]],
+  ['suit',['Suit',['../classchesspp_1_1board_1_1_board.html#a37c1db78d7f2d015fcd07d9d8b16f37e',1,'chesspp::board::Board::Suit()'],['../classchesspp_1_1piece_1_1_piece.html#a114f4a91e75e79c092207203acb0fac6',1,'chesspp::piece::Piece::suit()']]],
+  ['suit_5ft',['Suit_t',['../classchesspp_1_1piece_1_1_piece.html#aef23403a90214c297327c4642649d902',1,'chesspp::piece::Piece']]],
+  ['suitclass_5ft',['SuitClass_t',['../classchesspp_1_1config_1_1_board_config.html#a73a6e959f8ee3513e934517ccc27c068',1,'chesspp::config::BoardConfig']]]
+];

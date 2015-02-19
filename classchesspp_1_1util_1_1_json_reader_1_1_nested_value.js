@@ -1,0 +1,27 @@
+var classchesspp_1_1util_1_1_json_reader_1_1_nested_value =
+[
+    [ "NestedValue", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a7580d1647db939a48e22fc57e4bbade6", null ],
+    [ "NestedValue", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a80357683521acc07d09b6d0bb02a254e", null ],
+    [ "~NestedValue", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#ac9807515bc0347345c013eecb101b5fa", null ],
+    [ "implementation", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#ab83a2dfcec1ccbded7ff53f4f44c4ce9", null ],
+    [ "length", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a319c840218efd204049457b0e390e69a", null ],
+    [ "object", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a08f66ebfed22529673d90b5b1896b377", null ],
+    [ "operator bool", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a44cddeb072102a2f90d1341e451a8762", null ],
+    [ "operator double", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a765b15f616d052ad848cfadc9af0127f", null ],
+    [ "operator std::int16_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a52716ba284a2489292064cc34f85a063", null ],
+    [ "operator std::int32_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a47ebacc98c98885c780b1bde9942cf89", null ],
+    [ "operator std::int64_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a5d132662f23f43f82aa2e369805793a8", null ],
+    [ "operator std::int8_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#aeb3e740508201af6afd4fdbf23333558", null ],
+    [ "operator std::string", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a7a56fb8f3ca52c838b426a8e1b738847", null ],
+    [ "operator std::uint16_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#aa3f528b13766830b16e31c08c063ddbe", null ],
+    [ "operator std::uint32_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#ab1765d3cfcf5ddfae0dcb9d54a5422a6", null ],
+    [ "operator std::uint64_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a894557d0afc19af18940d9b30ae8df42", null ],
+    [ "operator std::uint8_t", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a93c2499184c19b3fd2ff104f6a9877eb", null ],
+    [ "operator=", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a9cd9f78bcbfab3baea0cd5c1358ff600", null ],
+    [ "operator[]", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#aadb5335e570277db225832050b9748c8", null ],
+    [ "operator[]", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a876942a3dea28cdc2b8f036477bd2638", null ],
+    [ "operator[]", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#ae0e440cfd2f62db9824fe8717ec51a61", null ],
+    [ "parent", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a3bf176ece74bfdbcb89e446181e55f44", null ],
+    [ "type", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a94b5279624f25e2c8616504bef7aaf44", null ],
+    [ "::chesspp::util::JsonReader", "classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html#a3e2a233fc34bbd350101f25d3699745c", null ]
+];

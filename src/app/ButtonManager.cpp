@@ -16,7 +16,7 @@ namespace chesspp
 
 		bool ButtonManager::deregisterButton(Button &button)
 		{
-			for(int i = 0; i < buttons.size(); i++)
+			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
 				//Surely there's a better way to do this
 				if(&(buttons[i].get()) == &button)
@@ -32,7 +32,7 @@ namespace chesspp
 		{
 			bool isPresent = false;
 			//Checks to see if button is present
-			for(int i = 0; i < buttons.size(); i++)
+			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
 				if(&(buttons[i].get()) == &button)
 				{
@@ -41,7 +41,7 @@ namespace chesspp
 				}
 			}
 			if(!isPresent) return false;
-			for(int i = 0; i < buttons.size(); i++)
+			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
 				if(&(buttons[i].get()) == &button)
 				{
@@ -60,7 +60,7 @@ namespace chesspp
 
 		void ButtonManager::cycleSelectedUp()
 		{
-			for(int i = 0; i < buttons.size(); i++)
+			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
 				if(&(buttons[i].get()) == selected_button)
 				{
@@ -72,7 +72,7 @@ namespace chesspp
 
 		void ButtonManager::cycleSelectedDown()
 		{
-			for(int i = 0; i < buttons.size(); i++)
+			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
 				if(&(buttons[i].get()) == selected_button)
 				{

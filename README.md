@@ -16,6 +16,8 @@ But fear not, for you are not the only one seeking the latest and greatest - for
 ## Resources
 Chess piece images by @Lowest0ne with unspecified licensing.
 
+Open Sans font by Steve Matteson, used under the Apache License 2.0.
+
 ## Contact
 Send an email to svogel76 (at) comcast.net with ChessPlusPlus in the subject. Include in the email your email address and github ID. You can also open issues here or start topics in the [forums](http://www.cplusplus.com/forum/), specifically the Lounge.
 

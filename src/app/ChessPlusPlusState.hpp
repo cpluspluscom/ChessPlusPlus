@@ -13,6 +13,13 @@ namespace chesspp
 {
     namespace app
     {
+        /**
+         * \brief
+         * The AppState class for the state of the chess gameplay.
+         * 
+         * This class handles user-interaction by manipulating the chesspp::board::Board
+         * directly.
+         */
         class ChessPlusPlusState : public AppState
         {
             Application &app;
@@ -30,12 +37,36 @@ namespace chesspp
             board::Board::Pieces_t::iterator find(board::Board::Position_t const &pos) const;
 
         public:
+            /**
+             * \brief
+             * Construct from the Application and sf::RenderWindow to be used.
+             * 
+             * \param app The Application owning this instance, must outlive this instance.
+             * \param display The sf::RenderWindow use during onRender(), must outlive this
+             * instance.
+             */
             ChessPlusPlusState(Application &app, sf::RenderWindow &display);
 
+            /**
+             * \brief
+             * Renders the chessboard, all chess pieces, and any highlighted moves.
+             */
             virtual void onRender() override;
 
+            /**
+             * \brief
+             * Updates which highlighted moves are visible.
+             */
             virtual void onMouseMoved(int x, int y) override;
+            /**
+             * \brief
+             * Currently does nothing.
+             */
             virtual void onLButtonPressed(int x, int y) override;
+            /**
+             * \brief
+             * Selects or deselects pieces, or moves a selected piece to the clicked position.
+             */
             virtual void onLButtonReleased(int x, int y) override;
         };
     }

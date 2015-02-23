@@ -14,6 +14,10 @@ namespace chesspp
 {
     namespace config
     {
+        /**
+         * \brief
+         * Holds configuration values for the board (layout, metadata, etc)
+         */
         class BoardConfig : public Configuration
         {
         public:
@@ -31,6 +35,12 @@ namespace chesspp
             Textures_t textures;
 
         public:
+            /**
+             * \brief
+             * Loads board configuration from "config/chesspp/board.json"
+             * 
+             * \param The ResourcesConfig to use for resource configuration.
+             */
             BoardConfig(ResourcesConfig &res)
             : Configuration{"config/chesspp/board.json"}
             , board_width  {reader()["board"]["width"]      }
@@ -71,6 +81,13 @@ namespace chesspp
             CellSize_t        cellHeight   () const noexcept { return cell_height;  }
             Textures_t const &texturePaths () const noexcept { return textures;     }
 
+            /**
+             * \brief
+             * Get metadata for the board pieces.
+             * 
+             * Equivalent to calling `setting("board", "metadata", ...)`
+             * \see setting()
+             */
             template<typename... Args>
             util::JsonReader::NestedValue metadata(Args const &... path) const
             {

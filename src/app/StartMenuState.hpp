@@ -5,6 +5,8 @@
 
 #include "AppState.hpp"
 #include "Application.hpp"
+#include "Button.hpp"
+#include "ButtonManager.hpp"
 
 namespace chesspp
 {
@@ -21,9 +23,12 @@ namespace chesspp
             sf::Sprite menu_background;
             sf::Sprite logo;
 
-            sf::Font &font;
-            sf::Text start_text;
-            sf::Text quit_text;
+            sf::Font font;
+
+            Button start_text;
+            Button quit_text;
+
+            ButtonManager button_manager;
 
         public:
             /**
@@ -47,6 +52,8 @@ namespace chesspp
              * Handles clicking on the menu buttons.
              */
             virtual void onLButtonReleased(int x, int y) override;
+            virtual void onMouseMoved(int x, int y) override;
+            virtual void onKeyPressed(sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) override;
         };
     }
 }

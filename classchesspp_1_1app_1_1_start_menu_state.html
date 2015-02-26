@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1app_1_1_start_menu_sta
 </div><!--header-->
 <div class="contents">
 
+<p>Handles the start screen/main menu for the game.  
+ <a href="classchesspp_1_1app_1_1_start_menu_state.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_start_menu_state_8hpp_source.html">StartMenuState.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::app::StartMenuState:</div>
@@ -123,21 +126,25 @@ Inheritance diagram for chesspp::app::StartMenuState:</div>
  <div class="center">
   <img src="classchesspp_1_1app_1_1_start_menu_state.png" usemap="#chesspp::app::StartMenuState_map" alt=""/>
   <map id="chesspp::app::StartMenuState_map" name="chesspp::app::StartMenuState_map">
-<area href="classchesspp_1_1app_1_1_app_state.html" alt="chesspp::app::AppState" shape="rect" coords="0,56,178,80"/>
-<area href="classchesspp_1_1_sfml_event_handler.html" alt="chesspp::SfmlEventHandler" shape="rect" coords="0,0,178,24"/>
+<area href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. " alt="chesspp::app::AppState" shape="rect" coords="0,56,178,80"/>
+<area href="classchesspp_1_1_sfml_event_handler.html" title="Base class for all classes wishing to process SFML events. " alt="chesspp::SfmlEventHandler" shape="rect" coords="0,0,178,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab76786cb3d0b5716d6bb117e37a3885a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_start_menu_state.html#ab76786cb3d0b5716d6bb117e37a3885a">StartMenuState</a> (<a class="el" href="classchesspp_1_1app_1_1_application.html">Application</a> &amp;app, sf::RenderWindow &amp;<a class="el" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>)</td></tr>
+<tr class="memdesc:ab76786cb3d0b5716d6bb117e37a3885a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from the <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and sf::RenderWindow to be used.  <a href="#ab76786cb3d0b5716d6bb117e37a3885a">More...</a><br /></td></tr>
 <tr class="separator:ab76786cb3d0b5716d6bb117e37a3885a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac47654399687ef5b60c0d9605c274205"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_start_menu_state.html#ac47654399687ef5b60c0d9605c274205">onRender</a> () override</td></tr>
+<tr class="memdesc:ac47654399687ef5b60c0d9605c274205"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the menu title and menu buttons.  <a href="#ac47654399687ef5b60c0d9605c274205">More...</a><br /></td></tr>
 <tr class="separator:ac47654399687ef5b60c0d9605c274205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab01bde766841e3a7ec9edceeb5a8e39c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_start_menu_state.html#ab01bde766841e3a7ec9edceeb5a8e39c">onLButtonReleased</a> (int x, int y) override</td></tr>
+<tr class="memdesc:ab01bde766841e3a7ec9edceeb5a8e39c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles clicking on the menu buttons.  <a href="#ab01bde766841e3a7ec9edceeb5a8e39c">More...</a><br /></td></tr>
 <tr class="separator:ab01bde766841e3a7ec9edceeb5a8e39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classchesspp_1_1app_1_1_app_state"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classchesspp_1_1app_1_1_app_state')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></td></tr>
 <tr class="memitem:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">AppState</a> (sf::RenderWindow &amp;disp)</td></tr>
+<tr class="memdesc:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct bound to an sf::RenderWindow.  <a href="#ac78f58ddd8fcf312132b96dad1a3d068">More...</a><br /></td></tr>
 <tr class="separator:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classchesspp_1_1_sfml_event_handler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classchesspp_1_1_sfml_event_handler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classchesspp_1_1_sfml_event_handler.html">chesspp::SfmlEventHandler</a></td></tr>
 <tr class="memitem:a0a14b317847c5645aad37a058a611f32 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a0a14b317847c5645aad37a058a611f32">onClosed</a> ()</td></tr>
@@ -196,9 +203,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a43c008f43fc6ff47965a7f744c0ff4c2 inherit pub_types_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classchesspp_1_1app_1_1_app_state"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classchesspp_1_1app_1_1_app_state')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></td></tr>
 <tr class="memitem:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="memItemLeft" align="right" valign="top">sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a></td></tr>
+<tr class="memdesc:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sf::RenderWindow bound at construction.  <a href="#af562ea2aacde39026a7715d6308a460b">More...</a><br /></td></tr>
 <tr class="separator:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles the start screen/main menu for the game. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ab76786cb3d0b5716d6bb117e37a3885a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -222,6 +232,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Construct from the <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and sf::RenderWindow to be used. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">app</td><td>The <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> owning this instance, must outlive this instance. </td></tr>
+    <tr><td class="paramname">display</td><td>The sf::RenderWindow use during <a class="el" href="classchesspp_1_1app_1_1_start_menu_state.html#ac47654399687ef5b60c0d9605c274205" title="Renders the menu title and menu buttons. ">onRender()</a>, must outlive this instance. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -258,6 +277,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Handles clicking on the menu buttons. </p>
+
 <p>Reimplemented from <a class="el" href="classchesspp_1_1_sfml_event_handler.html#ab113e453887f074eab453ab73bdd914a">chesspp::SfmlEventHandler</a>.</p>
 
 </div>
@@ -283,13 +304,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Renders the menu title and menu buttons. </p>
+
 <p>Implements <a class="el" href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">chesspp::app::AppState</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_start_menu_state_8hpp_source.html">StartMenuState.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_start_menu_state_8cpp.html">StartMenuState.cpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_start_menu_state_8hpp_source.html">StartMenuState.hpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_start_menu_state_8cpp.html">StartMenuState.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -297,7 +320,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1app.html">app</a></li><li class="navelem"><a class="el" href="classchesspp_1_1app_1_1_start_menu_state.html">StartMenuState</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

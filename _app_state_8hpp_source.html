@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ChessPlusPlus: C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/AppState.hpp Source File</title>
+<title>ChessPlusPlus: /ChessPlusPlus/src/app/AppState.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -120,30 +120,29 @@ $(document).ready(function(){initNavTree('_app_state_8hpp_source.html','');});
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">namespace </span>app</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="comment">//Pure virtual abstract base class for game state management</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html">   12</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classchesspp_1_1app_1_1_app_state.html">AppState</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="classchesspp_1_1_sfml_event_handler.html">SfmlEventHandler</a></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">   15</a></span>&#160;            <a class="code" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">AppState</a>(sf::RenderWindow &amp;disp)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            : <a class="code" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>(disp) <span class="comment">//cannot use {}</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            }</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">onRender</a>() = 0;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">   23</a></span>&#160;            sf::RenderWindow &amp;<a class="code" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        };</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_ac78f58ddd8fcf312132b96dad1a3d068"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">chesspp::app::AppState::AppState</a></div><div class="ttdeci">AppState(sf::RenderWindow &amp;disp)</div><div class="ttdef"><b>Definition:</b> AppState.hpp:15</div></div>
-<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_ad1efa72f76eafcd5aadb9428045f3a07"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">chesspp::app::AppState::onRender</a></div><div class="ttdeci">virtual void onRender()=0</div></div>
-<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></div><div class="ttdef"><b>Definition:</b> AppState.hpp:12</div></div>
-<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_af562ea2aacde39026a7715d6308a460b"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">chesspp::app::AppState::display</a></div><div class="ttdeci">sf::RenderWindow &amp; display</div><div class="ttdef"><b>Definition:</b> AppState.hpp:23</div></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html">   17</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classchesspp_1_1app_1_1_app_state.html">AppState</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code" href="classchesspp_1_1_sfml_event_handler.html">SfmlEventHandler</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">   26</a></span>&#160;            <a class="code" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">AppState</a>(sf::RenderWindow &amp;disp)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            : <a class="code" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>(disp) <span class="comment">//cannot use {}</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">onRender</a>() = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">   44</a></span>&#160;            sf::RenderWindow &amp;<a class="code" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_ac78f58ddd8fcf312132b96dad1a3d068"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">chesspp::app::AppState::AppState</a></div><div class="ttdeci">AppState(sf::RenderWindow &amp;disp)</div><div class="ttdoc">Construct bound to an sf::RenderWindow. </div><div class="ttdef"><b>Definition:</b> AppState.hpp:26</div></div>
+<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_ad1efa72f76eafcd5aadb9428045f3a07"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">chesspp::app::AppState::onRender</a></div><div class="ttdeci">virtual void onRender()=0</div><div class="ttdoc">Called to render the current state. </div></div>
+<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></div><div class="ttdoc">Base class for application states. </div><div class="ttdef"><b>Definition:</b> AppState.hpp:17</div></div>
+<div class="ttc" id="classchesspp_1_1app_1_1_app_state_html_af562ea2aacde39026a7715d6308a460b"><div class="ttname"><a href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">chesspp::app::AppState::display</a></div><div class="ttdeci">sf::RenderWindow &amp; display</div><div class="ttdoc">The sf::RenderWindow bound at construction. </div><div class="ttdef"><b>Definition:</b> AppState.hpp:44</div></div>
 <div class="ttc" id="namespacechesspp_html"><div class="ttname"><a href="namespacechesspp.html">chesspp</a></div><div class="ttdef"><b>Definition:</b> Application.cpp:3</div></div>
-<div class="ttc" id="classchesspp_1_1_sfml_event_handler_html"><div class="ttname"><a href="classchesspp_1_1_sfml_event_handler.html">chesspp::SfmlEventHandler</a></div><div class="ttdef"><b>Definition:</b> SfmlEventHandler.hpp:8</div></div>
+<div class="ttc" id="classchesspp_1_1_sfml_event_handler_html"><div class="ttname"><a href="classchesspp_1_1_sfml_event_handler.html">chesspp::SfmlEventHandler</a></div><div class="ttdoc">Base class for all classes wishing to process SFML events. </div><div class="ttdef"><b>Definition:</b> SfmlEventHandler.hpp:16</div></div>
 <div class="ttc" id="_s_f_m_l_8hpp_html"><div class="ttname"><a href="_s_f_m_l_8hpp.html">SFML.hpp</a></div></div>
 <div class="ttc" id="_sfml_event_handler_8hpp_html"><div class="ttname"><a href="_sfml_event_handler_8hpp.html">SfmlEventHandler.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -152,7 +151,7 @@ $(document).ready(function(){initNavTree('_app_state_8hpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5194e5fea318fda12687127c23f8aba1.html">app</a></li><li class="navelem"><a class="el" href="_app_state_8hpp.html">AppState.hpp</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:06 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:29 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

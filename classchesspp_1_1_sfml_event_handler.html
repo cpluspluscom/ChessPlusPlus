@@ -117,6 +117,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1_sfml_event_handler.ht
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for all classes wishing to process SFML events.  
+ <a href="classchesspp_1_1_sfml_event_handler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_sfml_event_handler_8hpp_source.html">SfmlEventHandler.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::SfmlEventHandler:</div>
@@ -124,9 +127,9 @@ Inheritance diagram for chesspp::SfmlEventHandler:</div>
  <div class="center">
   <img src="classchesspp_1_1_sfml_event_handler.png" usemap="#chesspp::SfmlEventHandler_map" alt=""/>
   <map id="chesspp::SfmlEventHandler_map" name="chesspp::SfmlEventHandler_map">
-<area href="classchesspp_1_1app_1_1_app_state.html" alt="chesspp::app::AppState" shape="rect" coords="106,56,309,80"/>
-<area href="classchesspp_1_1app_1_1_chess_plus_plus_state.html" alt="chesspp::app::ChessPlusPlusState" shape="rect" coords="0,112,203,136"/>
-<area href="classchesspp_1_1app_1_1_start_menu_state.html" alt="chesspp::app::StartMenuState" shape="rect" coords="213,112,416,136"/>
+<area href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. " alt="chesspp::app::AppState" shape="rect" coords="106,56,309,80"/>
+<area href="classchesspp_1_1app_1_1_chess_plus_plus_state.html" title="The AppState class for the state of the chess gameplay. " alt="chesspp::app::ChessPlusPlusState" shape="rect" coords="0,112,203,136"/>
+<area href="classchesspp_1_1app_1_1_start_menu_state.html" title="Handles the start screen/main menu for the game. " alt="chesspp::app::StartMenuState" shape="rect" coords="213,112,416,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -188,7 +191,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7572ed056aa4ff1fb88da1a54f3e6f64"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a7572ed056aa4ff1fb88da1a54f3e6f64">~SfmlEventHandler</a> ()=default</td></tr>
 <tr class="separator:a7572ed056aa4ff1fb88da1a54f3e6f64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for all classes wishing to process SFML events. </p>
+<p>All of the member functions in this class are virtual and have a no-op default implementation. Deriving classes need only override the member functions corresponding to the events they are interested in. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a43c008f43fc6ff47965a7f744c0ff4c2"></a>
 <div class="memitem">
 <div class="memproto">
@@ -477,6 +483,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Reimplemented in <a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2c80bbc31b5db9f3e0ee0c8bd4b308bc">chesspp::app::ChessPlusPlusState</a>.</p>
 
 </div>
 </div>
@@ -1024,7 +1032,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/<a class="el" href="_sfml_event_handler_8hpp_source.html">SfmlEventHandler.hpp</a></li>
+<li>/ChessPlusPlus/src/<a class="el" href="_sfml_event_handler_8hpp_source.html">SfmlEventHandler.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -1032,7 +1040,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="classchesspp_1_1_sfml_event_handler.html">SfmlEventHandler</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:07 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

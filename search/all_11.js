@@ -16,7 +16,7 @@ var searchData=
   ['resourcemanager_2ehpp',['ResourceManager.hpp',['../_resource_manager_8hpp.html',1,'']]],
   ['resources',['resources',['../classchesspp_1_1config_1_1_resources_config.html#a52371cd4943007fa194a09670dc80b43',1,'chesspp::config::ResourcesConfig']]],
   ['resourcesconfig',['ResourcesConfig',['../classchesspp_1_1config_1_1_resources_config.html',1,'chesspp::config']]],
-  ['resourcesconfig',['resourcesConfig',['../classchesspp_1_1app_1_1_application.html#a8de16c83fe1bce7e834f846db768afe1',1,'chesspp::app::Application::resourcesConfig()'],['../classchesspp_1_1config_1_1_resources_config.html#a0dea18fcd5d2ce26f217ada5c127da55',1,'chesspp::config::ResourcesConfig::ResourcesConfig()']]],
+  ['resourcesconfig',['ResourcesConfig',['../classchesspp_1_1config_1_1_resources_config.html#a0dea18fcd5d2ce26f217ada5c127da55',1,'chesspp::config::ResourcesConfig::ResourcesConfig()'],['../classchesspp_1_1app_1_1_application.html#a8de16c83fe1bce7e834f846db768afe1',1,'chesspp::app::Application::resourcesConfig()']]],
   ['resourcesconfig_2ehpp',['ResourcesConfig.hpp',['../_resources_config_8hpp.html',1,'']]],
   ['rook',['Rook',['../classchesspp_1_1piece_1_1_rook.html',1,'chesspp::piece']]],
   ['rook',['Rook',['../classchesspp_1_1piece_1_1_rook.html#ab236221e9bcfebf5ad27a61ed764a120',1,'chesspp::piece::Rook']]],

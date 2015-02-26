@@ -116,23 +116,33 @@ $(document).ready(function(){initNavTree('classchesspp_1_1app_1_1_application.ht
 </div><!--header-->
 <div class="contents">
 
+<p>Represents the application and holds the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>.  
+ <a href="classchesspp_1_1app_1_1_application.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_application_8hpp_source.html">Application.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a97b062a1a651ff01bf0e24b30d89b9f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_application.html#a97b062a1a651ff01bf0e24b30d89b9f8">Application</a> (sf::RenderWindow &amp;disp)</td></tr>
+<tr class="memdesc:a97b062a1a651ff01bf0e24b30d89b9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from an sf::RenderWindow.  <a href="#a97b062a1a651ff01bf0e24b30d89b9f8">More...</a><br /></td></tr>
 <tr class="separator:a97b062a1a651ff01bf0e24b30d89b9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79e02e2b796ff0ddef4e48ab012e014b"><td class="memTemplParams" colspan="2">template&lt;class NewState , typename... Args&gt; </td></tr>
 <tr class="memitem:a79e02e2b796ff0ddef4e48ab012e014b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_application.html#a79e02e2b796ff0ddef4e48ab012e014b">changeState</a> (Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:a79e02e2b796ff0ddef4e48ab012e014b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> by constructing a new one in place and destructing the old one.  <a href="#a79e02e2b796ff0ddef4e48ab012e014b">More...</a><br /></td></tr>
 <tr class="separator:a79e02e2b796ff0ddef4e48ab012e014b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a127053fbfb533b8ca20679a4d3b882ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_application.html#a127053fbfb533b8ca20679a4d3b882ca">execute</a> ()</td></tr>
+<tr class="memdesc:a127053fbfb533b8ca20679a4d3b882ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begins running the application via the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>.  <a href="#a127053fbfb533b8ca20679a4d3b882ca">More...</a><br /></td></tr>
 <tr class="separator:a127053fbfb533b8ca20679a4d3b882ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1aeb464d0163424257d8add50b82aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_application.html#ae1aeb464d0163424257d8add50b82aec">stop</a> () noexcept</td></tr>
+<tr class="memdesc:ae1aeb464d0163424257d8add50b82aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Causes <a class="el" href="classchesspp_1_1app_1_1_application.html#a127053fbfb533b8ca20679a4d3b882ca" title="Begins running the application via the current AppState. ">execute()</a> to stop running and return.  <a href="#ae1aeb464d0163424257d8add50b82aec">More...</a><br /></td></tr>
 <tr class="separator:ae1aeb464d0163424257d8add50b82aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8de16c83fe1bce7e834f846db768afe1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_application.html#a8de16c83fe1bce7e834f846db768afe1">resourcesConfig</a> () noexcept</td></tr>
+<tr class="memdesc:a8de16c83fe1bce7e834f846db768afe1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives access to the <a class="el" href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) ">config::ResourcesConfig</a> used by this <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and its <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>.  <a href="#a8de16c83fe1bce7e834f846db768afe1">More...</a><br /></td></tr>
 <tr class="separator:a8de16c83fe1bce7e834f846db768afe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the application and holds the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a97b062a1a651ff01bf0e24b30d89b9f8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -154,6 +164,15 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct from an sf::RenderWindow. </p>
+<p>Also calls <code>sf::RenderWindow::setVerticalSyncEnabled(true)</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">disp</td><td>The sf::RenderWindow that will be drawn to. Must outlive this object. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -182,6 +201,22 @@ template&lt;class NewState , typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Changes the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> by constructing a new one in place and destructing the old one. </p>
+<p>The old <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> instance is destructed within this function, so it must not be referenced anymore.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">NewState</td><td>The type of <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> to construct. </td></tr>
+    <tr><td class="paramname">Args</td><td>deuced by the compiler from the parameter list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">args</td><td>Arguments to pass to the constructor of NewState </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a127053fbfb533b8ca20679a4d3b882ca"></a>
@@ -196,6 +231,10 @@ template&lt;class NewState , typename... Args&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Begins running the application via the current <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>. </p>
+<p>This function blocks while the application is running. <a class="el" href="classchesspp_1_1app_1_1_application.html#ae1aeb464d0163424257d8add50b82aec" title="Causes execute() to stop running and return. ">Application::stop()</a> can be called to cause this function to return.</p>
+<dl class="section return"><dt>Returns</dt><dd>An appropriate return value for returning from <a class="el" href="_main_8cpp.html#a7436fb0123a97031032c43125a1124f8" title="Entry point of the application. ">main()</a> </dd></dl>
 
 </div>
 </div>
@@ -220,6 +259,9 @@ template&lt;class NewState , typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Gives access to the <a class="el" href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) ">config::ResourcesConfig</a> used by this <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and its <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) ">config::ResourcesConfig</a> in use. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="ae1aeb464d0163424257d8add50b82aec"></a>
@@ -243,11 +285,13 @@ template&lt;class NewState , typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Causes <a class="el" href="classchesspp_1_1app_1_1_application.html#a127053fbfb533b8ca20679a4d3b882ca" title="Begins running the application via the current AppState. ">execute()</a> to stop running and return. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_application_8hpp_source.html">Application.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_application_8cpp.html">Application.cpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_application_8hpp_source.html">Application.hpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_application_8cpp.html">Application.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -255,7 +299,7 @@ template&lt;class NewState , typename... Args&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1app.html">app</a></li><li class="navelem"><a class="el" href="classchesspp_1_1app_1_1_application.html">Application</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:07 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

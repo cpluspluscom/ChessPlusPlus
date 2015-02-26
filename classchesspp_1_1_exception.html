@@ -117,6 +117,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1_exception.html','');}
 </div><!--header-->
 <div class="contents">
 
+<p>The base exception class for all ChessPlusPlus exceptions.  
+ <a href="classchesspp_1_1_exception.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_exception_8hpp_source.html">Exception.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::Exception:</div>
@@ -130,6 +133,7 @@ Inheritance diagram for chesspp::Exception:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9359994348a57411485a2707570c0390"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#a9359994348a57411485a2707570c0390">Exception</a> (std::string const &amp;e_=&quot;&quot;) noexcept(noexcept(std::string(std::string(&quot;&quot;))))</td></tr>
+<tr class="memdesc:a9359994348a57411485a2707570c0390"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an exception with an optional message.  <a href="#a9359994348a57411485a2707570c0390">More...</a><br /></td></tr>
 <tr class="separator:a9359994348a57411485a2707570c0390"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5816f9fe52dc5815d1de99101a72db7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#ab5816f9fe52dc5815d1de99101a72db7">Exception</a> (<a class="el" href="classchesspp_1_1_exception.html">Exception</a> const &amp;)=default</td></tr>
 <tr class="separator:ab5816f9fe52dc5815d1de99101a72db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,18 +146,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a19d5800eff60c85c14f3708bf557b6ed"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#a19d5800eff60c85c14f3708bf557b6ed">~Exception</a> ()=default</td></tr>
 <tr class="separator:a19d5800eff60c85c14f3708bf557b6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56dcc4c75ca66ef7d28f802ea1f3bf1c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#a56dcc4c75ca66ef7d28f802ea1f3bf1c">operator==</a> (std::exception const &amp;other) const noexcept</td></tr>
+<tr class="memdesc:a56dcc4c75ca66ef7d28f802ea1f3bf1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two exceptions by their memory address.  <a href="#a56dcc4c75ca66ef7d28f802ea1f3bf1c">More...</a><br /></td></tr>
 <tr class="separator:a56dcc4c75ca66ef7d28f802ea1f3bf1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77d33e2527ff615a8dcfbe351395ffd1"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#a77d33e2527ff615a8dcfbe351395ffd1">what</a> () const noexceptoverride</td></tr>
+<tr class="memdesc:a77d33e2527ff615a8dcfbe351395ffd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the message of the exception.  <a href="#a77d33e2527ff615a8dcfbe351395ffd1">More...</a><br /></td></tr>
 <tr class="separator:a77d33e2527ff615a8dcfbe351395ffd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2d1b35b5782373a6b8c0991a6957438"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#ae2d1b35b5782373a6b8c0991a6957438">operator std::string</a> () const noexcept</td></tr>
+<tr class="memdesc:ae2d1b35b5782373a6b8c0991a6957438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the message of the exception.  <a href="#ae2d1b35b5782373a6b8c0991a6957438">More...</a><br /></td></tr>
 <tr class="separator:ae2d1b35b5782373a6b8c0991a6957438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:ad906b9679ad64dcf059c59bc84655f7f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_exception.html#ad906b9679ad64dcf059c59bc84655f7f">operator==</a> (std::exception const &amp;e1, <a class="el" href="classchesspp_1_1_exception.html">Exception</a> const &amp;e2) noexcept</td></tr>
+<tr class="memdesc:ad906b9679ad64dcf059c59bc84655f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two exceptions by their memory address.  <a href="#ad906b9679ad64dcf059c59bc84655f7f">More...</a><br /></td></tr>
 <tr class="separator:ad906b9679ad64dcf059c59bc84655f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The base exception class for all ChessPlusPlus exceptions. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a9359994348a57411485a2707570c0390"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,6 +185,14 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct an exception with an optional message. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e_</td><td>optional message of exception. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -271,6 +289,9 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Returns the message of the exception. </p>
+<dl class="section return"><dt>Returns</dt><dd>The message of the exception. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa2e1a36d2de3e4936f38ca3a970b62bd"></a>
@@ -343,6 +364,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Compares two exceptions by their memory address. </p>
+
 </div>
 </div>
 <a class="anchor" id="a77d33e2527ff615a8dcfbe351395ffd1"></a>
@@ -365,6 +388,9 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the message of the exception. </p>
+<dl class="section return"><dt>Returns</dt><dd>The message of the exception. </dd></dl>
 
 </div>
 </div>
@@ -401,10 +427,12 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Compares two exceptions by their memory address. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/<a class="el" href="_exception_8hpp_source.html">Exception.hpp</a></li>
+<li>/ChessPlusPlus/src/<a class="el" href="_exception_8hpp_source.html">Exception.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -412,7 +440,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="classchesspp_1_1_exception.html">Exception</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:07 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

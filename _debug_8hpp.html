@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ChessPlusPlus: C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/Debug.hpp File Reference</title>
+<title>ChessPlusPlus: /ChessPlusPlus/src/Debug.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -127,11 +127,13 @@ $(document).ready(function(){initNavTree('_debug_8hpp.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log_util.html">LogUtil</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces std::clog, std::cerr, std::cout with file streams.  <a href="class_log_util.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ac8e9fb1fdc74ff2b2751078584c1a718"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_debug_8hpp.html#ac8e9fb1fdc74ff2b2751078584c1a718">USE_STD_PUT_TIME</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ac8e9fb1fdc74ff2b2751078584c1a718"><td class="mdescLeft">&#160;</td><td class="mdescRight">Controls whether or not to use std::put_time() or boost::posix_time::to_simple_string()  <a href="#ac8e9fb1fdc74ff2b2751078584c1a718">More...</a><br /></td></tr>
 <tr class="separator:ac8e9fb1fdc74ff2b2751078584c1a718"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ff2a9a1c6926ecc0c838589be856d58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_debug_8hpp.html#a1ff2a9a1c6926ecc0c838589be856d58">CHESSPP_LOG_FILE_OPEN_MODE</a>&#160;&#160;&#160;std::ios::app</td></tr>
 <tr class="separator:a1ff2a9a1c6926ecc0c838589be856d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,6 +161,10 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Controls whether or not to use std::put_time() or boost::posix_time::to_simple_string() </p>
+<p>If not defined, the decision will be made automatically - it is known that GCC 4.9.2 and below do not support std::put_time() and it is assumed that GCC 5.x will (maybe) support it.</p>
+<p>You can force one or the other by defining as 1 to favor std::put_time() or 0 to favor boost. </p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -167,7 +173,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="_debug_8hpp.html">Debug.hpp</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:07 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:30 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

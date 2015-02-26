@@ -117,6 +117,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1config_1_1_board_confi
 </div><!--header-->
 <div class="contents">
 
+<p>Holds configuration values for the board (layout, metadata, etc)  
+ <a href="classchesspp_1_1config_1_1_board_config.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_board_config_8hpp_source.html">BoardConfig.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::config::BoardConfig:</div>
@@ -124,7 +127,7 @@ Inheritance diagram for chesspp::config::BoardConfig:</div>
  <div class="center">
   <img src="classchesspp_1_1config_1_1_board_config.png" usemap="#chesspp::config::BoardConfig_map" alt=""/>
   <map id="chesspp::config::BoardConfig_map" name="chesspp::config::BoardConfig_map">
-<area href="classchesspp_1_1config_1_1_configuration.html" alt="chesspp::config::Configuration" shape="rect" coords="0,0,182,24"/>
+<area href="classchesspp_1_1config_1_1_configuration.html" title="Holds configuration settings that affect the behavior of the game. " alt="chesspp::config::Configuration" shape="rect" coords="0,0,182,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -148,6 +151,7 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac1febb3a91c5d234389ab3a27e6f8818"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_board_config.html#ac1febb3a91c5d234389ab3a27e6f8818">BoardConfig</a> (<a class="el" href="classchesspp_1_1config_1_1_resources_config.html">ResourcesConfig</a> &amp;res)</td></tr>
+<tr class="memdesc:ac1febb3a91c5d234389ab3a27e6f8818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads board configuration from "config/chesspp/board.json".  <a href="#ac1febb3a91c5d234389ab3a27e6f8818">More...</a><br /></td></tr>
 <tr class="separator:ac1febb3a91c5d234389ab3a27e6f8818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa96ca6a162c91ec460db760cd5642cdf"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_board_config.html#aa96ca6a162c91ec460db760cd5642cdf">~BoardConfig</a> ()=default</td></tr>
 <tr class="separator:aa96ca6a162c91ec460db760cd5642cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,28 +169,36 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abbcbb92f8ab693c5df4342f09cac1f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a735d2faad7933f7e67da00a7e0ca63c4"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a735d2faad7933f7e67da00a7e0ca63c4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html">util::JsonReader::NestedValue</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_board_config.html#a735d2faad7933f7e67da00a7e0ca63c4">metadata</a> (Args const &amp;...path) const </td></tr>
+<tr class="memdesc:a735d2faad7933f7e67da00a7e0ca63c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get metadata for the board pieces.  <a href="#a735d2faad7933f7e67da00a7e0ca63c4">More...</a><br /></td></tr>
 <tr class="separator:a735d2faad7933f7e67da00a7e0ca63c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classchesspp_1_1config_1_1_configuration"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classchesspp_1_1config_1_1_configuration')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classchesspp_1_1config_1_1_configuration.html">chesspp::config::Configuration</a></td></tr>
 <tr class="memitem:a46cac7c6b0db1c5186c6433159aa4628 inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a46cac7c6b0db1c5186c6433159aa4628">Configuration</a> (std::string const &amp;configFile) noexcept(false)</td></tr>
+<tr class="memdesc:a46cac7c6b0db1c5186c6433159aa4628 inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the configuration from the given file path.  <a href="#a46cac7c6b0db1c5186c6433159aa4628">More...</a><br /></td></tr>
 <tr class="separator:a46cac7c6b0db1c5186c6433159aa4628 inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfd5e74eda3c6e15c66fe233d82b5ef2 inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#abfd5e74eda3c6e15c66fe233d82b5ef2">~Configuration</a> ()=default</td></tr>
 <tr class="separator:abfd5e74eda3c6e15c66fe233d82b5ef2 inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db0aeab3e51263bf8a32ff1261cdf2a inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memTemplParams" colspan="2">template&lt;typename... Path&gt; </td></tr>
 <tr class="memitem:a2db0aeab3e51263bf8a32ff1261cdf2a inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a">setting</a> (Path const &amp;...path) -&gt; decltype(reader.navigate(path...))</td></tr>
+<tr class="memdesc:a2db0aeab3e51263bf8a32ff1261cdf2a inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access values in the configuration.  <a href="#a2db0aeab3e51263bf8a32ff1261cdf2a">More...</a><br /></td></tr>
 <tr class="separator:a2db0aeab3e51263bf8a32ff1261cdf2a inherit pub_methods_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_static_methods_classchesspp_1_1config_1_1_configuration"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classchesspp_1_1config_1_1_configuration')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="classchesspp_1_1config_1_1_configuration.html">chesspp::config::Configuration</a></td></tr>
 <tr class="memitem:a0b6964c6b90859bb3a5cef2088197e5b inherit pro_static_methods_classchesspp_1_1config_1_1_configuration"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a0b6964c6b90859bb3a5cef2088197e5b">executablePath</a> ()</td></tr>
+<tr class="memdesc:a0b6964c6b90859bb3a5cef2088197e5b inherit pro_static_methods_classchesspp_1_1config_1_1_configuration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path to the directory the executable is in.  <a href="#a0b6964c6b90859bb3a5cef2088197e5b">More...</a><br /></td></tr>
 <tr class="separator:a0b6964c6b90859bb3a5cef2088197e5b inherit pro_static_methods_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classchesspp_1_1config_1_1_configuration"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classchesspp_1_1config_1_1_configuration')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classchesspp_1_1config_1_1_configuration.html">chesspp::config::Configuration</a></td></tr>
 <tr class="memitem:ac48a08777dc591cdc49bc240ebef6fa6 inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#ac48a08777dc591cdc49bc240ebef6fa6">res_path</a></td></tr>
+<tr class="memdesc:ac48a08777dc591cdc49bc240ebef6fa6 inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the path to the directory where configuration paths are relative to.  <a href="#ac48a08777dc591cdc49bc240ebef6fa6">More...</a><br /></td></tr>
 <tr class="separator:ac48a08777dc591cdc49bc240ebef6fa6 inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6eac0216b6fdf46f896df3f1a13c33fc inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1util_1_1_json_reader.html">util::JsonReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a6eac0216b6fdf46f896df3f1a13c33fc">reader</a></td></tr>
+<tr class="memdesc:a6eac0216b6fdf46f896df3f1a13c33fc inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="mdescLeft">&#160;</td><td class="mdescRight">The chessp::util::JsonReader for reading the configuration values.  <a href="#a6eac0216b6fdf46f896df3f1a13c33fc">More...</a><br /></td></tr>
 <tr class="separator:a6eac0216b6fdf46f896df3f1a13c33fc inherit pro_attribs_classchesspp_1_1config_1_1_configuration"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Holds configuration values for the board (layout, metadata, etc) </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a758df1c89d85635425627db37d849565"></a>
 <div class="memitem">
 <div class="memproto">
@@ -293,6 +305,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Loads board configuration from "config/chesspp/board.json". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">The</td><td><a class="el" href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) ">ResourcesConfig</a> to use for resource configuration. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -459,6 +479,9 @@ template&lt;typename... Args&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Get metadata for the board pieces. </p>
+<p>Equivalent to calling <code>setting("board", "metadata", ...)</code> </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a" title="Access values in the configuration. ">setting()</a> </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="abbcbb92f8ab693c5df4342f09cac1f44"></a>
@@ -485,7 +508,7 @@ template&lt;typename... Args&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/config/<a class="el" href="_board_config_8hpp_source.html">BoardConfig.hpp</a></li>
+<li>/ChessPlusPlus/src/config/<a class="el" href="_board_config_8hpp_source.html">BoardConfig.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -493,7 +516,7 @@ template&lt;typename... Args&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1config.html">config</a></li><li class="navelem"><a class="el" href="classchesspp_1_1config_1_1_board_config.html">BoardConfig</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

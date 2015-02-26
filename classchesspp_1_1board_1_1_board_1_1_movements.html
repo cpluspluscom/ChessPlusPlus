@@ -117,17 +117,24 @@ $(document).ready(function(){initNavTree('classchesspp_1_1board_1_1_board_1_1_mo
 </div><!--header-->
 <div class="contents">
 
+<p>Holds the valid movements for all pieces on the board.  
+ <a href="classchesspp_1_1board_1_1_board_1_1_movements.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_board_8hpp_source.html">Board.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1b360b0c920caa9707d2bd62c88fc756"><td class="memItemLeft" align="right" valign="top">Movements_t::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html#a1b360b0c920caa9707d2bd62c88fc756">begin</a> () const </td></tr>
+<tr class="memdesc:a1b360b0c920caa9707d2bd62c88fc756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the beginning iterator of the valid movements.  <a href="#a1b360b0c920caa9707d2bd62c88fc756">More...</a><br /></td></tr>
 <tr class="separator:a1b360b0c920caa9707d2bd62c88fc756"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9eaa1e5e1e896bb80a6b07a8f5dccf1"><td class="memItemLeft" align="right" valign="top">Movements_t::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html#ae9eaa1e5e1e896bb80a6b07a8f5dccf1">end</a> () const </td></tr>
+<tr class="memdesc:ae9eaa1e5e1e896bb80a6b07a8f5dccf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the end iterator of the valid movements.  <a href="#ae9eaa1e5e1e896bb80a6b07a8f5dccf1">More...</a><br /></td></tr>
 <tr class="separator:ae9eaa1e5e1e896bb80a6b07a8f5dccf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fc367af9e3de5d60353d949bc3ec08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html#a6fc367af9e3de5d60353d949bc3ec08e">add</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p, <a class="el" href="classchesspp_1_1board_1_1_board.html#a9cea68783b5fef0145609889c8fab3ad">Position_t</a> const &amp;tile)</td></tr>
+<tr class="memdesc:a6fc367af9e3de5d60353d949bc3ec08e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a valid movement.  <a href="#a6fc367af9e3de5d60353d949bc3ec08e">More...</a><br /></td></tr>
 <tr class="separator:a6fc367af9e3de5d60353d949bc3ec08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13a3812788f3e0781a56e1dbd401d97c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html#a13a3812788f3e0781a56e1dbd401d97c">remove</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p, <a class="el" href="classchesspp_1_1board_1_1_board.html#a9cea68783b5fef0145609889c8fab3ad">Position_t</a> const &amp;tile)</td></tr>
+<tr class="memdesc:a13a3812788f3e0781a56e1dbd401d97c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a valid movement.  <a href="#a13a3812788f3e0781a56e1dbd401d97c">More...</a><br /></td></tr>
 <tr class="separator:a13a3812788f3e0781a56e1dbd401d97c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
@@ -135,7 +142,16 @@ Friends</h2></td></tr>
 <tr class="memitem:a5b41ef94e6bfe93d08d2bfaf3d35197f"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html#a5b41ef94e6bfe93d08d2bfaf3d35197f">::chesspp::board::Board</a></td></tr>
 <tr class="separator:a5b41ef94e6bfe93d08d2bfaf3d35197f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Holds the valid movements for all pieces on the board. </p>
+<p>There are three different kinds of movements:</p><ul>
+<li>Trajectory - the locations a piece can move to</li>
+<li>Capturing - the locations a piece can capture other pieces</li>
+<li>Capturable - the locations a piece can be captured by other pieces</li>
+</ul>
+<p>This class provides a consistent interface for all three types.</p>
+<p>Can be iterated over with a range-based for-loop. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a6fc367af9e3de5d60353d949bc3ec08e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -160,6 +176,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Adds a valid movement. </p>
+
 </div>
 </div>
 <a class="anchor" id="a1b360b0c920caa9707d2bd62c88fc756"></a>
@@ -183,6 +201,8 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the beginning iterator of the valid movements. </p>
+
 </div>
 </div>
 <a class="anchor" id="ae9eaa1e5e1e896bb80a6b07a8f5dccf1"></a>
@@ -205,6 +225,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get the end iterator of the valid movements. </p>
 
 </div>
 </div>
@@ -232,6 +254,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Removes a valid movement. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
@@ -256,8 +280,8 @@ Friends</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/board/<a class="el" href="_board_8hpp_source.html">Board.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/board/<a class="el" href="_board_8cpp.html">Board.cpp</a></li>
+<li>/ChessPlusPlus/src/board/<a class="el" href="_board_8hpp_source.html">Board.hpp</a></li>
+<li>/ChessPlusPlus/src/board/<a class="el" href="_board_8cpp.html">Board.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -265,7 +289,7 @@ Friends</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1board.html">board</a></li><li class="navelem"><a class="el" href="classchesspp_1_1board_1_1_board.html">Board</a></li><li class="navelem"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html">Movements</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

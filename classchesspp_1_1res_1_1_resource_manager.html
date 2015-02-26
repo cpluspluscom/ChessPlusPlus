@@ -117,22 +117,30 @@ $(document).ready(function(){initNavTree('classchesspp_1_1res_1_1_resource_manag
 </div><!--header-->
 <div class="contents">
 
+<p>Manages resources used by the application.  
+ <a href="classchesspp_1_1res_1_1_resource_manager.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html">Resource</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base class for all resource classes.  <a href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a5c6cbcc63bc846d3e03235a600463a23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1res_1_1_resource_manager.html#a5c6cbcc63bc846d3e03235a600463a23">ResourceManager</a> (<a class="el" href="classchesspp_1_1config_1_1_configuration.html">config::Configuration</a> &amp;conf_) noexcept</td></tr>
+<tr class="memdesc:a5c6cbcc63bc846d3e03235a600463a23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs from a <a class="el" href="classchesspp_1_1config_1_1_configuration.html" title="Holds configuration settings that affect the behavior of the game. ">chesspp::config::Configuration</a>.  <a href="#a5c6cbcc63bc846d3e03235a600463a23">More...</a><br /></td></tr>
 <tr class="separator:a5c6cbcc63bc846d3e03235a600463a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a370fb616b50b0dac64c529d8aec70d5e"><td class="memTemplParams" colspan="2">template&lt;typename ResT , typename... Path&gt; </td></tr>
 <tr class="memitem:a370fb616b50b0dac64c529d8aec70d5e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classchesspp_1_1res_1_1_resource_manager.html#a370fb616b50b0dac64c529d8aec70d5e">from_config</a> (Path const &amp;...path) -&gt; typename std::enable_if&lt; std::is_base_of&lt; <a class="el" href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html">Resource</a>, ResT &gt;::value, ResT &amp; &gt;::type</td></tr>
+<tr class="memdesc:a370fb616b50b0dac64c529d8aec70d5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtains a resource for a config setting, constructing it if it does not yet exist.  <a href="#a370fb616b50b0dac64c529d8aec70d5e">More...</a><br /></td></tr>
 <tr class="separator:a370fb616b50b0dac64c529d8aec70d5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages resources used by the application. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5c6cbcc63bc846d3e03235a600463a23"></a>
 <div class="memitem">
 <div class="memproto">
@@ -154,6 +162,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructs from a <a class="el" href="classchesspp_1_1config_1_1_configuration.html" title="Holds configuration settings that affect the behavior of the game. ">chesspp::config::Configuration</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conf_</td><td>the chesspp::config::Conriguration - it is referenced, not copied. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -187,10 +203,31 @@ template&lt;typename ResT , typename... Path&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Obtains a resource for a config setting, constructing it if it does not yet exist. </p>
+<p>Example invocation: </p><pre class="fragment">using Font_res = res::SfmlFileResource&lt;sf::Font&gt;;
+ResourceManager &amp;resmanager = blah;
+Font_res &amp;fontres = resmanager.from_config&lt;Font_res&gt;("menu", "font");
+sf::Font font (fontres);
+//...
+</pre><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ResT</td><td>The type of the <a class="el" href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html" title="The base class for all resource classes. ">Resource</a> to construct or return. </td></tr>
+    <tr><td class="paramname">Path</td><td>deduced by the compiler from the argument list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path, forwarded to <a class="el" href="classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a" title="Access values in the configuration. ">chesspp::config::Configuration::setting()</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a reference to the resource, of type ResT </dd></dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/res/<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a></li>
+<li>/ChessPlusPlus/src/res/<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -198,7 +235,7 @@ template&lt;typename ResT , typename... Path&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1res.html">res</a></li><li class="navelem"><a class="el" href="classchesspp_1_1res_1_1_resource_manager.html">ResourceManager</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:32 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

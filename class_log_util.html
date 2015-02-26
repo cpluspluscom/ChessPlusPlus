@@ -118,6 +118,9 @@ $(document).ready(function(){initNavTree('class_log_util.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Replaces std::clog, std::cerr, std::cout with file streams.  
+ <a href="class_log_util.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_debug_8hpp_source.html">Debug.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -128,9 +131,13 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a42f9e990dbf4eaa0ad9eaacd7b2aa2e6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log_util.html#a42f9e990dbf4eaa0ad9eaacd7b2aa2e6">enableRedirection</a> () noexcept</td></tr>
+<tr class="memdesc:a42f9e990dbf4eaa0ad9eaacd7b2aa2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redirects std::clog, std::cerr, and std::cout to individual files, permanently.  <a href="#a42f9e990dbf4eaa0ad9eaacd7b2aa2e6">More...</a><br /></td></tr>
 <tr class="separator:a42f9e990dbf4eaa0ad9eaacd7b2aa2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Replaces std::clog, std::cerr, std::cout with file streams. </p>
+<p>Calling <a class="el" href="class_log_util.html#a42f9e990dbf4eaa0ad9eaacd7b2aa2e6" title="Redirects std::clog, std::cerr, and std::cout to individual files, permanently. ">enableRedirection()</a> will permanently redirect std::clog, std::cerr, and std::cout to individual files. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae370f7f32b28bcb6f7a5b4da99082735"></a>
 <div class="memitem">
 <div class="memproto">
@@ -176,10 +183,13 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Redirects std::clog, std::cerr, and std::cout to individual files, permanently. </p>
+<p>Calling this more than once is harmless and has no effect. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/<a class="el" href="_debug_8hpp_source.html">Debug.hpp</a></li>
+<li>/ChessPlusPlus/src/<a class="el" href="_debug_8hpp_source.html">Debug.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -187,7 +197,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_log_util.html">LogUtil</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:07 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

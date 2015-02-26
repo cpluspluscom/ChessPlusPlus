@@ -150,10 +150,11 @@ var NAVTREEINDEX0 =
 "classchesspp_1_1app_1_1_application.html#a97b062a1a651ff01bf0e24b30d89b9f8":[1,0,0,0,0,0],
 "classchesspp_1_1app_1_1_application.html#ae1aeb464d0163424257d8add50b82aec":[1,0,0,0,0,4],
 "classchesspp_1_1app_1_1_chess_plus_plus_state.html":[1,0,0,0,2],
-"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2d73fb8edaa9b79201249261a50846bf":[1,0,0,0,2,3],
-"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a6e2268e1b4a0637f645b0bc2489bf74c":[1,0,0,0,2,4],
-"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a9115c62ccb8a89d752663867dc116bde":[1,0,0,0,2,1],
-"classchesspp_1_1app_1_1_chess_plus_plus_state.html#abb4f14c0863bc869ddfed5120868ddda":[1,0,0,0,2,2],
+"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2c80bbc31b5db9f3e0ee0c8bd4b308bc":[1,0,0,0,2,1],
+"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2d73fb8edaa9b79201249261a50846bf":[1,0,0,0,2,4],
+"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a6e2268e1b4a0637f645b0bc2489bf74c":[1,0,0,0,2,5],
+"classchesspp_1_1app_1_1_chess_plus_plus_state.html#a9115c62ccb8a89d752663867dc116bde":[1,0,0,0,2,2],
+"classchesspp_1_1app_1_1_chess_plus_plus_state.html#abb4f14c0863bc869ddfed5120868ddda":[1,0,0,0,2,3],
 "classchesspp_1_1app_1_1_chess_plus_plus_state.html#af8159baef588bd2ae384f2646281a996":[1,0,0,0,2,0],
 "classchesspp_1_1app_1_1_start_menu_state.html":[1,0,0,0,3],
 "classchesspp_1_1app_1_1_start_menu_state.html#ab01bde766841e3a7ec9edceeb5a8e39c":[1,0,0,0,3,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classchesspp_1_1piece_1_1_piece.html#a1995a17d59abe3b173cf81d93d8cfb78":[1,0,0,4,5,0],
 "classchesspp_1_1piece_1_1_piece.html#a38880bd8850228328f24fa85f07812a1":[1,0,0,4,5,10],
 "classchesspp_1_1piece_1_1_piece.html#a5475c8f69be3d9b1495c06547e041578":[1,0,0,4,5,11],
-"classchesspp_1_1piece_1_1_piece.html#a5b41ef94e6bfe93d08d2bfaf3d35197f":[1,0,0,4,5,13],
-"classchesspp_1_1piece_1_1_piece.html#a62b8efc7a105bcbfa76db2d52c8d0a1e":[1,0,0,4,5,17]
+"classchesspp_1_1piece_1_1_piece.html#a5b41ef94e6bfe93d08d2bfaf3d35197f":[1,0,0,4,5,13]
 };

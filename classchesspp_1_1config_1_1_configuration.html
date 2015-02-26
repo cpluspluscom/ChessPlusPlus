@@ -118,6 +118,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1config_1_1_configurati
 </div><!--header-->
 <div class="contents">
 
+<p>Holds configuration settings that affect the behavior of the game.  
+ <a href="classchesspp_1_1config_1_1_configuration.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_configuration_8hpp_source.html">Configuration.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::config::Configuration:</div>
@@ -125,34 +128,42 @@ Inheritance diagram for chesspp::config::Configuration:</div>
  <div class="center">
   <img src="classchesspp_1_1config_1_1_configuration.png" usemap="#chesspp::config::Configuration_map" alt=""/>
   <map id="chesspp::config::Configuration_map" name="chesspp::config::Configuration_map">
-<area href="classchesspp_1_1config_1_1_board_config.html" alt="chesspp::config::BoardConfig" shape="rect" coords="0,56,203,80"/>
-<area href="classchesspp_1_1config_1_1_resources_config.html" alt="chesspp::config::ResourcesConfig" shape="rect" coords="213,56,416,80"/>
+<area href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) " alt="chesspp::config::BoardConfig" shape="rect" coords="0,56,203,80"/>
+<area href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) " alt="chesspp::config::ResourcesConfig" shape="rect" coords="213,56,416,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a46cac7c6b0db1c5186c6433159aa4628"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a46cac7c6b0db1c5186c6433159aa4628">Configuration</a> (std::string const &amp;configFile) noexcept(false)</td></tr>
+<tr class="memdesc:a46cac7c6b0db1c5186c6433159aa4628"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the configuration from the given file path.  <a href="#a46cac7c6b0db1c5186c6433159aa4628">More...</a><br /></td></tr>
 <tr class="separator:a46cac7c6b0db1c5186c6433159aa4628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfd5e74eda3c6e15c66fe233d82b5ef2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#abfd5e74eda3c6e15c66fe233d82b5ef2">~Configuration</a> ()=default</td></tr>
 <tr class="separator:abfd5e74eda3c6e15c66fe233d82b5ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2db0aeab3e51263bf8a32ff1261cdf2a"><td class="memTemplParams" colspan="2">template&lt;typename... Path&gt; </td></tr>
 <tr class="memitem:a2db0aeab3e51263bf8a32ff1261cdf2a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a">setting</a> (Path const &amp;...path) -&gt; decltype(reader.navigate(path...))</td></tr>
+<tr class="memdesc:a2db0aeab3e51263bf8a32ff1261cdf2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access values in the configuration.  <a href="#a2db0aeab3e51263bf8a32ff1261cdf2a">More...</a><br /></td></tr>
 <tr class="separator:a2db0aeab3e51263bf8a32ff1261cdf2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0b6964c6b90859bb3a5cef2088197e5b"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a0b6964c6b90859bb3a5cef2088197e5b">executablePath</a> ()</td></tr>
+<tr class="memdesc:a0b6964c6b90859bb3a5cef2088197e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the path to the directory the executable is in.  <a href="#a0b6964c6b90859bb3a5cef2088197e5b">More...</a><br /></td></tr>
 <tr class="separator:a0b6964c6b90859bb3a5cef2088197e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ac48a08777dc591cdc49bc240ebef6fa6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#ac48a08777dc591cdc49bc240ebef6fa6">res_path</a></td></tr>
+<tr class="memdesc:ac48a08777dc591cdc49bc240ebef6fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the path to the directory where configuration paths are relative to.  <a href="#ac48a08777dc591cdc49bc240ebef6fa6">More...</a><br /></td></tr>
 <tr class="separator:ac48a08777dc591cdc49bc240ebef6fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6eac0216b6fdf46f896df3f1a13c33fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1util_1_1_json_reader.html">util::JsonReader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1config_1_1_configuration.html#a6eac0216b6fdf46f896df3f1a13c33fc">reader</a></td></tr>
+<tr class="memdesc:a6eac0216b6fdf46f896df3f1a13c33fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The chessp::util::JsonReader for reading the configuration values.  <a href="#a6eac0216b6fdf46f896df3f1a13c33fc">More...</a><br /></td></tr>
 <tr class="separator:a6eac0216b6fdf46f896df3f1a13c33fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Holds configuration settings that affect the behavior of the game. </p>
+<p><a class="el" href="classchesspp_1_1config_1_1_configuration.html" title="Holds configuration settings that affect the behavior of the game. ">Configuration</a> files are in JSON format - <a href="http://www.json.org/">http://www.json.org/</a> </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a46cac7c6b0db1c5186c6433159aa4628"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,6 +185,20 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Loads the configuration from the given file path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">configFile</td><td>the relative path to the configuration file. Must end in .json </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classchesspp_1_1_exception.html" title="The base exception class for all ChessPlusPlus exceptions. ">chesspp::Exception</a></td><td>if the path does not end in .json </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -222,6 +247,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the path to the directory the executable is in. </p>
+<dl class="section return"><dt>Returns</dt><dd>Path to the directory the executable is in. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a2db0aeab3e51263bf8a32ff1261cdf2a"></a>
@@ -249,6 +277,15 @@ template&lt;typename... Path&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Access values in the configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the value as multiple parameters, e.g. <code>"a", 1, "c"</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The requested <a class="el" href="classchesspp_1_1util_1_1_json_reader_1_1_nested_value.html">chesspp::util::JsonReader::NestedValue</a> </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -270,6 +307,8 @@ template&lt;typename... Path&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>The chessp::util::JsonReader for reading the configuration values. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac48a08777dc591cdc49bc240ebef6fa6"></a>
@@ -290,11 +329,14 @@ template&lt;typename... Path&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Stores the path to the directory where configuration paths are relative to. </p>
+<p>This may not be the same as the directory containing the executable. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/config/<a class="el" href="_configuration_8hpp_source.html">Configuration.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/config/<a class="el" href="_configuration_8cpp.html">Configuration.cpp</a></li>
+<li>/ChessPlusPlus/src/config/<a class="el" href="_configuration_8hpp_source.html">Configuration.hpp</a></li>
+<li>/ChessPlusPlus/src/config/<a class="el" href="_configuration_8cpp.html">Configuration.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -302,7 +344,7 @@ template&lt;typename... Path&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1config.html">config</a></li><li class="navelem"><a class="el" href="classchesspp_1_1config_1_1_configuration.html">Configuration</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

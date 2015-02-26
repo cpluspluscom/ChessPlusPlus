@@ -120,11 +120,15 @@ $(document).ready(function(){initNavTree('classchesspp_1_1board_1_1_board.html',
 </div><!--header-->
 <div class="contents">
 
+<p>Manages pieces on a chess board.  
+ <a href="classchesspp_1_1board_1_1_board.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_board_8hpp_source.html">Board.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html">Movements</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds the valid movements for all pieces on the board.  <a href="classchesspp_1_1board_1_1_board_1_1_movements.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -147,14 +151,19 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e2abaf4efbe4f6b78007dcf72d847ec"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a0e2abaf4efbe4f6b78007dcf72d847ec">Board</a> (<a class="el" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> const &amp;conf)</td></tr>
+<tr class="memdesc:a0e2abaf4efbe4f6b78007dcf72d847ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs the <a class="el" href="classchesspp_1_1board_1_1_board.html" title="Manages pieces on a chess board. ">Board</a> from the given <a class="el" href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) ">chesspp::config::BoardConfig</a>.  <a href="#a0e2abaf4efbe4f6b78007dcf72d847ec">More...</a><br /></td></tr>
 <tr class="separator:a0e2abaf4efbe4f6b78007dcf72d847ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1abaf6f46d7a1e76bf8b5cf7ac69f85f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a1abaf6f46d7a1e76bf8b5cf7ac69f85f">occupied</a> (<a class="el" href="classchesspp_1_1board_1_1_board.html#a9cea68783b5fef0145609889c8fab3ad">Position_t</a> const &amp;pos) const noexcept</td></tr>
+<tr class="memdesc:a1abaf6f46d7a1e76bf8b5cf7ac69f85f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a location on the board is occupied by at least one piece.  <a href="#a1abaf6f46d7a1e76bf8b5cf7ac69f85f">More...</a><br /></td></tr>
 <tr class="separator:a1abaf6f46d7a1e76bf8b5cf7ac69f85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a676dc31ebf04e5bf63175ff16a726"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#ac1a676dc31ebf04e5bf63175ff16a726">find</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p) const noexcept-&gt; Pieces_t::const_iterator</td></tr>
+<tr class="memdesc:ac1a676dc31ebf04e5bf63175ff16a726"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a Piece, obtain its iterator.  <a href="#ac1a676dc31ebf04e5bf63175ff16a726">More...</a><br /></td></tr>
 <tr class="separator:ac1a676dc31ebf04e5bf63175ff16a726"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bfc622ff78c1771029e0898bfdeb336"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a5bfc622ff78c1771029e0898bfdeb336">begin</a> () const noexcept-&gt; Pieces_t::const_iterator</td></tr>
+<tr class="memdesc:a5bfc622ff78c1771029e0898bfdeb336"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the beginning iterator of the board pieces.  <a href="#a5bfc622ff78c1771029e0898bfdeb336">More...</a><br /></td></tr>
 <tr class="separator:a5bfc622ff78c1771029e0898bfdeb336"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e854c4111639db8974728978d972198"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a6e854c4111639db8974728978d972198">end</a> () const noexcept-&gt; Pieces_t::const_iterator</td></tr>
+<tr class="memdesc:a6e854c4111639db8974728978d972198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the end iterator of the board pieces.  <a href="#a6e854c4111639db8974728978d972198">More...</a><br /></td></tr>
 <tr class="separator:a6e854c4111639db8974728978d972198"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca2d18e9457d05b46364bc4eb29e0fe2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1board_1_1_board_1_1_movements.html">Movements</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#aca2d18e9457d05b46364bc4eb29e0fe2">pieceTrajectories</a> () const noexcept</td></tr>
 <tr class="separator:aca2d18e9457d05b46364bc4eb29e0fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,23 +184,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9ba7507549948240abe6225c1c4d077"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1board_1_1_board.html#a0527315741f8f45e7cbe017d3c971bc7">MovementsRange</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#ad9ba7507549948240abe6225c1c4d077">pieceCapturable</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p) noexcept</td></tr>
 <tr class="separator:ad9ba7507549948240abe6225c1c4d077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd6f2ea2a6dc587dfd149c7316a4b7db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#abd6f2ea2a6dc587dfd149c7316a4b7db">capture</a> (Pieces_t::iterator source, Movements_t::const_iterator target, Movements_t::const_iterator capturable)</td></tr>
+<tr class="memdesc:abd6f2ea2a6dc587dfd149c7316a4b7db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Capture a capturable piece.  <a href="#abd6f2ea2a6dc587dfd149c7316a4b7db">More...</a><br /></td></tr>
 <tr class="separator:abd6f2ea2a6dc587dfd149c7316a4b7db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa97f3f667afe59d90481b381535799"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#adfa97f3f667afe59d90481b381535799">move</a> (Pieces_t::iterator source, Movements_t::const_iterator target)</td></tr>
+<tr class="memdesc:adfa97f3f667afe59d90481b381535799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move a piece without capturing.  <a href="#adfa97f3f667afe59d90481b381535799">More...</a><br /></td></tr>
 <tr class="separator:adfa97f3f667afe59d90481b381535799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30623300290b1efafc09df05ec9b3277"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a30623300290b1efafc09df05ec9b3277">valid</a> (<a class="el" href="classchesspp_1_1board_1_1_board.html#a9cea68783b5fef0145609889c8fab3ad">Position_t</a> const &amp;pos) const noexcept</td></tr>
+<tr class="memdesc:a30623300290b1efafc09df05ec9b3277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a position is a valid position that exists on the board.  <a href="#a30623300290b1efafc09df05ec9b3277">More...</a><br /></td></tr>
 <tr class="separator:a30623300290b1efafc09df05ec9b3277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a9097d2facab1e0cab226a4a01dc7e592"><td class="memItemLeft" align="right" valign="top">static auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a9097d2facab1e0cab226a4a01dc7e592">registerPieceClass</a> (Factory_t::key_type const &amp;type, Factory_t::mapped_type ctor) -&gt; Factory_t::iterator</td></tr>
+<tr class="memdesc:a9097d2facab1e0cab226a4a01dc7e592"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register a new type of chess piece.  <a href="#a9097d2facab1e0cab226a4a01dc7e592">More...</a><br /></td></tr>
 <tr class="separator:a9097d2facab1e0cab226a4a01dc7e592"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a67ebd9763ea1a231b8c0af9bbfc4e8fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1board_1_1_board.html#a67ebd9763ea1a231b8c0af9bbfc4e8fd">config</a></td></tr>
+<tr class="memdesc:a67ebd9763ea1a231b8c0af9bbfc4e8fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) ">chesspp::config::BoardConfig</a> currently in use.  <a href="#a67ebd9763ea1a231b8c0af9bbfc4e8fd">More...</a><br /></td></tr>
 <tr class="separator:a67ebd9763ea1a231b8c0af9bbfc4e8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages pieces on a chess board. </p>
+<p>Can be iterated over with a range-based for-loop. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="adff9769792b07dd3efced25b57c88e5c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -291,6 +308,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs the <a class="el" href="classchesspp_1_1board_1_1_board.html" title="Manages pieces on a chess board. ">Board</a> from the given <a class="el" href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) ">chesspp::config::BoardConfig</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">conf</td><td>The BoardConfig, must outlive this instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -315,6 +340,8 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get the beginning iterator of the board pieces. </p>
 
 </div>
 </div>
@@ -348,6 +375,17 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Capture a capturable piece. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The piece performing the capture. </td></tr>
+    <tr><td class="paramname">target</td><td>The new location of the source piece. </td></tr>
+    <tr><td class="paramname">capturable</td><td>The location being captured. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the capture was successful, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a6e854c4111639db8974728978d972198"></a>
@@ -372,6 +410,8 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the end iterator of the board pieces. </p>
+
 </div>
 </div>
 <a class="anchor" id="ac1a676dc31ebf04e5bf63175ff16a726"></a>
@@ -395,6 +435,15 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Given a Piece, obtain its iterator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The Piece to search for. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The iterator to the piece, or the end iterator. </dd></dl>
 
 </div>
 </div>
@@ -422,6 +471,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Move a piece without capturing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The piece being moved. </td></tr>
+    <tr><td class="paramname">target</td><td>The new location of the source piece. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the capture was successful, false otherwise. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a1abaf6f46d7a1e76bf8b5cf7ac69f85f"></a>
@@ -445,6 +504,15 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Check if a location on the board is occupied by at least one piece. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>The position to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if at least one piece occupies the position, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -691,6 +759,17 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Register a new type of chess piece. </p>
+<p>This should be called via assignment to a global variable in the source file of the chess piece implementation.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The unique type of the chess piece. </td></tr>
+    <tr><td class="paramname">ctor</td><td>The function used to construct new instances of the chess piece. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The registration receipt, to be stored in the global variable. </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a30623300290b1efafc09df05ec9b3277"></a>
@@ -715,6 +794,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Check if a position is a valid position that exists on the board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>The position to check for validity. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the position is valid, false otherwise. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -728,11 +816,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>The <a class="el" href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) ">chesspp::config::BoardConfig</a> currently in use. </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/board/<a class="el" href="_board_8hpp_source.html">Board.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/board/<a class="el" href="_board_8cpp.html">Board.cpp</a></li>
+<li>/ChessPlusPlus/src/board/<a class="el" href="_board_8hpp_source.html">Board.hpp</a></li>
+<li>/ChessPlusPlus/src/board/<a class="el" href="_board_8cpp.html">Board.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -740,7 +830,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1board.html">board</a></li><li class="navelem"><a class="el" href="classchesspp_1_1board_1_1_board.html">Board</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

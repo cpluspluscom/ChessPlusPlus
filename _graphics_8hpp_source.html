@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>ChessPlusPlus: C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/gfx/Graphics.hpp Source File</title>
+<title>ChessPlusPlus: /ChessPlusPlus/src/gfx/Graphics.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -125,70 +125,64 @@ $(document).ready(function(){initNavTree('_graphics_8hpp_source.html','');});
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">namespace </span>gfx</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    {</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classchesspp_1_1gfx_1_1_graphics_handler.html">   16</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html">GraphicsHandler</a></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            sf::RenderWindow &amp;display;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            <a class="code" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;res_config;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> &amp;board_config;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <a class="code" href="classchesspp_1_1res_1_1_resource_manager.html">res::ResourceManager</a> &amp;res;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            sf::Sprite board</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            ,          valid_move</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            ,          enemy_move</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            ,          valid_capture</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            ,          enemy_capture;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a181915087a191d93953ab23462ae04c9">GraphicsHandler</a>(sf::RenderWindow &amp;display, <a class="code" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;resc, <a class="code" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> &amp;bc);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            <span class="comment">//Draws the board background.</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a20ee375e16698e81146d5c24000196b7">drawBackground</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <span class="comment">//Draws any sprite in the center of cell at (x, y).</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#aa1b62f6b4f25801ab1019fc50ba91ce4">drawSpriteAtCell</a>(sf::Sprite &amp;s, std::size_t x, std::size_t y);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            <span class="comment">//Draws a piece</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a3269fd123a550ababbdbdb72b7454d83">drawPiece</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <span class="comment">//Separate version of drawPiece to draw a piece at any location on the screen.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a4b1e8a584ee4497d61ebb8b8e7548060">drawPieceAt</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p, sf::Vector2i <span class="keyword">const</span> &amp;pos);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            <span class="comment">//draws the trajectory and captures for the piece</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#ae6ce20399a9686d9e124db90b0f69f9e">drawTrajectory</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p, <span class="keywordtype">bool</span> enemy = <span class="keyword">false</span>);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="comment">//Draws the board and pieces</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a059e3d79a3ba6fce2e898a00cb79de37">drawBoard</a>(<a class="code" href="classchesspp_1_1board_1_1_board.html">board::Board</a> <span class="keyword">const</span> &amp;b);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        };</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html">chesspp::gfx::GraphicsHandler</a></div><div class="ttdef"><b>Definition:</b> Graphics.hpp:16</div></div>
-<div class="ttc" id="classchesspp_1_1config_1_1_board_config_html"><div class="ttname"><a href="classchesspp_1_1config_1_1_board_config.html">chesspp::config::BoardConfig</a></div><div class="ttdef"><b>Definition:</b> BoardConfig.hpp:17</div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_ae6ce20399a9686d9e124db90b0f69f9e"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#ae6ce20399a9686d9e124db90b0f69f9e">chesspp::gfx::GraphicsHandler::drawTrajectory</a></div><div class="ttdeci">void drawTrajectory(piece::Piece const &amp;p, bool enemy=false)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:46</div></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classchesspp_1_1gfx_1_1_graphics_handler.html">   20</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html">GraphicsHandler</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            sf::RenderWindow &amp;display;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;res_config;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;            <a class="code" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> &amp;board_config;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <a class="code" href="classchesspp_1_1res_1_1_resource_manager.html">res::ResourceManager</a> &amp;res;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            sf::Sprite board</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            ,          valid_move</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            ,          enemy_move</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            ,          valid_capture</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            ,          enemy_capture;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a181915087a191d93953ab23462ae04c9">GraphicsHandler</a>(sf::RenderWindow &amp;display, <a class="code" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;resc, <a class="code" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> &amp;bc);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a20ee375e16698e81146d5c24000196b7">drawBackground</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#aa1b62f6b4f25801ab1019fc50ba91ce4">drawSpriteAtCell</a>(sf::Sprite &amp;s, std::size_t x, std::size_t y);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a3269fd123a550ababbdbdb72b7454d83">drawPiece</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a4b1e8a584ee4497d61ebb8b8e7548060">drawPieceAt</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p, sf::Vector2i <span class="keyword">const</span> &amp;pos);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#ae6ce20399a9686d9e124db90b0f69f9e">drawTrajectory</a>(<a class="code" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> <span class="keyword">const</span> &amp;p, <span class="keywordtype">bool</span> enemy = <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a059e3d79a3ba6fce2e898a00cb79de37">drawBoard</a>(<a class="code" href="classchesspp_1_1board_1_1_board.html">board::Board</a> <span class="keyword">const</span> &amp;b);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        };</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html">chesspp::gfx::GraphicsHandler</a></div><div class="ttdoc">Handles drawing graphics, such as pieces, trajectories, and boards. </div><div class="ttdef"><b>Definition:</b> Graphics.hpp:20</div></div>
+<div class="ttc" id="classchesspp_1_1config_1_1_board_config_html"><div class="ttname"><a href="classchesspp_1_1config_1_1_board_config.html">chesspp::config::BoardConfig</a></div><div class="ttdoc">Holds configuration values for the board (layout, metadata, etc) </div><div class="ttdef"><b>Definition:</b> BoardConfig.hpp:21</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_ae6ce20399a9686d9e124db90b0f69f9e"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#ae6ce20399a9686d9e124db90b0f69f9e">chesspp::gfx::GraphicsHandler::drawTrajectory</a></div><div class="ttdeci">void drawTrajectory(piece::Piece const &amp;p, bool enemy=false)</div><div class="ttdoc">Draws a piece&#39;s trajectory moves and capturing moves. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:46</div></div>
 <div class="ttc" id="_board_config_8hpp_html"><div class="ttname"><a href="_board_config_8hpp.html">BoardConfig.hpp</a></div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a3269fd123a550ababbdbdb72b7454d83"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a3269fd123a550ababbdbdb72b7454d83">chesspp::gfx::GraphicsHandler::drawPiece</a></div><div class="ttdeci">void drawPiece(piece::Piece const &amp;p)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:35</div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a059e3d79a3ba6fce2e898a00cb79de37"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a059e3d79a3ba6fce2e898a00cb79de37">chesspp::gfx::GraphicsHandler::drawBoard</a></div><div class="ttdeci">void drawBoard(board::Board const &amp;b)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:91</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a3269fd123a550ababbdbdb72b7454d83"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a3269fd123a550ababbdbdb72b7454d83">chesspp::gfx::GraphicsHandler::drawPiece</a></div><div class="ttdeci">void drawPiece(piece::Piece const &amp;p)</div><div class="ttdoc">Draws a piece at its real location. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:35</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a059e3d79a3ba6fce2e898a00cb79de37"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a059e3d79a3ba6fce2e898a00cb79de37">chesspp::gfx::GraphicsHandler::drawBoard</a></div><div class="ttdeci">void drawBoard(board::Board const &amp;b)</div><div class="ttdoc">Draws a board and its pieces. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:91</div></div>
 <div class="ttc" id="namespacechesspp_html"><div class="ttname"><a href="namespacechesspp.html">chesspp</a></div><div class="ttdef"><b>Definition:</b> Application.cpp:3</div></div>
-<div class="ttc" id="classchesspp_1_1res_1_1_resource_manager_html"><div class="ttname"><a href="classchesspp_1_1res_1_1_resource_manager.html">chesspp::res::ResourceManager</a></div><div class="ttdef"><b>Definition:</b> ResourceManager.hpp:19</div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a4b1e8a584ee4497d61ebb8b8e7548060"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a4b1e8a584ee4497d61ebb8b8e7548060">chesspp::gfx::GraphicsHandler::drawPieceAt</a></div><div class="ttdeci">void drawPieceAt(piece::Piece const &amp;p, sf::Vector2i const &amp;pos)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:40</div></div>
-<div class="ttc" id="classchesspp_1_1piece_1_1_piece_html"><div class="ttname"><a href="classchesspp_1_1piece_1_1_piece.html">chesspp::piece::Piece</a></div><div class="ttdef"><b>Definition:</b> Piece.hpp:19</div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a181915087a191d93953ab23462ae04c9"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a181915087a191d93953ab23462ae04c9">chesspp::gfx::GraphicsHandler::GraphicsHandler</a></div><div class="ttdeci">GraphicsHandler(sf::RenderWindow &amp;display, config::ResourcesConfig &amp;resc, config::BoardConfig &amp;bc)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:13</div></div>
-<div class="ttc" id="classchesspp_1_1config_1_1_resources_config_html"><div class="ttname"><a href="classchesspp_1_1config_1_1_resources_config.html">chesspp::config::ResourcesConfig</a></div><div class="ttdef"><b>Definition:</b> ResourcesConfig.hpp:11</div></div>
-<div class="ttc" id="classchesspp_1_1board_1_1_board_html"><div class="ttname"><a href="classchesspp_1_1board_1_1_board.html">chesspp::board::Board</a></div><div class="ttdef"><b>Definition:</b> Board.hpp:22</div></div>
+<div class="ttc" id="classchesspp_1_1res_1_1_resource_manager_html"><div class="ttname"><a href="classchesspp_1_1res_1_1_resource_manager.html">chesspp::res::ResourceManager</a></div><div class="ttdoc">Manages resources used by the application. </div><div class="ttdef"><b>Definition:</b> ResourceManager.hpp:23</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a4b1e8a584ee4497d61ebb8b8e7548060"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a4b1e8a584ee4497d61ebb8b8e7548060">chesspp::gfx::GraphicsHandler::drawPieceAt</a></div><div class="ttdeci">void drawPieceAt(piece::Piece const &amp;p, sf::Vector2i const &amp;pos)</div><div class="ttdoc">Draws a piece at a different location than it actually is. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:40</div></div>
+<div class="ttc" id="classchesspp_1_1piece_1_1_piece_html"><div class="ttname"><a href="classchesspp_1_1piece_1_1_piece.html">chesspp::piece::Piece</a></div><div class="ttdoc">A chess piece. </div><div class="ttdef"><b>Definition:</b> Piece.hpp:23</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a181915087a191d93953ab23462ae04c9"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a181915087a191d93953ab23462ae04c9">chesspp::gfx::GraphicsHandler::GraphicsHandler</a></div><div class="ttdeci">GraphicsHandler(sf::RenderWindow &amp;display, config::ResourcesConfig &amp;resc, config::BoardConfig &amp;bc)</div><div class="ttdoc">Constructs for a specific sf::RenderWindow given the resource and board configurations. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:13</div></div>
+<div class="ttc" id="classchesspp_1_1config_1_1_resources_config_html"><div class="ttname"><a href="classchesspp_1_1config_1_1_resources_config.html">chesspp::config::ResourcesConfig</a></div><div class="ttdoc">Holds configuration for resources (graphics, fonts, etc) </div><div class="ttdef"><b>Definition:</b> ResourcesConfig.hpp:15</div></div>
+<div class="ttc" id="classchesspp_1_1board_1_1_board_html"><div class="ttname"><a href="classchesspp_1_1board_1_1_board.html">chesspp::board::Board</a></div><div class="ttdoc">Manages pieces on a chess board. </div><div class="ttdef"><b>Definition:</b> Board.hpp:28</div></div>
 <div class="ttc" id="_piece_8hpp_html"><div class="ttname"><a href="_piece_8hpp.html">Piece.hpp</a></div></div>
 <div class="ttc" id="_resources_config_8hpp_html"><div class="ttname"><a href="_resources_config_8hpp.html">ResourcesConfig.hpp</a></div></div>
 <div class="ttc" id="_s_f_m_l_8hpp_html"><div class="ttname"><a href="_s_f_m_l_8hpp.html">SFML.hpp</a></div></div>
 <div class="ttc" id="_board_8hpp_html"><div class="ttname"><a href="_board_8hpp.html">Board.hpp</a></div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a20ee375e16698e81146d5c24000196b7"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a20ee375e16698e81146d5c24000196b7">chesspp::gfx::GraphicsHandler::drawBackground</a></div><div class="ttdeci">void drawBackground()</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:26</div></div>
-<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_aa1b62f6b4f25801ab1019fc50ba91ce4"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#aa1b62f6b4f25801ab1019fc50ba91ce4">chesspp::gfx::GraphicsHandler::drawSpriteAtCell</a></div><div class="ttdeci">void drawSpriteAtCell(sf::Sprite &amp;s, std::size_t x, std::size_t y)</div><div class="ttdef"><b>Definition:</b> Graphics.cpp:30</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_a20ee375e16698e81146d5c24000196b7"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#a20ee375e16698e81146d5c24000196b7">chesspp::gfx::GraphicsHandler::drawBackground</a></div><div class="ttdeci">void drawBackground()</div><div class="ttdoc">Draws the board background. </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:26</div></div>
+<div class="ttc" id="classchesspp_1_1gfx_1_1_graphics_handler_html_aa1b62f6b4f25801ab1019fc50ba91ce4"><div class="ttname"><a href="classchesspp_1_1gfx_1_1_graphics_handler.html#aa1b62f6b4f25801ab1019fc50ba91ce4">chesspp::gfx::GraphicsHandler::drawSpriteAtCell</a></div><div class="ttdeci">void drawSpriteAtCell(sf::Sprite &amp;s, std::size_t x, std::size_t y)</div><div class="ttdoc">Draws any sprite in the center of cell at (x, y). </div><div class="ttdef"><b>Definition:</b> Graphics.cpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c86603f79b902ad390ffc2674fbc4470.html">gfx</a></li><li class="navelem"><a class="el" href="_graphics_8hpp.html">Graphics.hpp</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:06 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:30 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

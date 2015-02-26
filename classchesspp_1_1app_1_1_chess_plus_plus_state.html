@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1app_1_1_chess_plus_plu
 </div><!--header-->
 <div class="contents">
 
+<p>The <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> class for the state of the chess gameplay.  
+ <a href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_chess_plus_plus_state_8hpp_source.html">ChessPlusPlusState.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::app::ChessPlusPlusState:</div>
@@ -123,25 +126,34 @@ Inheritance diagram for chesspp::app::ChessPlusPlusState:</div>
  <div class="center">
   <img src="classchesspp_1_1app_1_1_chess_plus_plus_state.png" usemap="#chesspp::app::ChessPlusPlusState_map" alt=""/>
   <map id="chesspp::app::ChessPlusPlusState_map" name="chesspp::app::ChessPlusPlusState_map">
-<area href="classchesspp_1_1app_1_1_app_state.html" alt="chesspp::app::AppState" shape="rect" coords="0,56,203,80"/>
-<area href="classchesspp_1_1_sfml_event_handler.html" alt="chesspp::SfmlEventHandler" shape="rect" coords="0,0,203,24"/>
+<area href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. " alt="chesspp::app::AppState" shape="rect" coords="0,56,203,80"/>
+<area href="classchesspp_1_1_sfml_event_handler.html" title="Base class for all classes wishing to process SFML events. " alt="chesspp::SfmlEventHandler" shape="rect" coords="0,0,203,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af8159baef588bd2ae384f2646281a996"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#af8159baef588bd2ae384f2646281a996">ChessPlusPlusState</a> (<a class="el" href="classchesspp_1_1app_1_1_application.html">Application</a> &amp;app, sf::RenderWindow &amp;<a class="el" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a>)</td></tr>
+<tr class="memdesc:af8159baef588bd2ae384f2646281a996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct from the <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and sf::RenderWindow to be used.  <a href="#af8159baef588bd2ae384f2646281a996">More...</a><br /></td></tr>
 <tr class="separator:af8159baef588bd2ae384f2646281a996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e2268e1b4a0637f645b0bc2489bf74c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a6e2268e1b4a0637f645b0bc2489bf74c">onRender</a> () override</td></tr>
+<tr class="memdesc:a6e2268e1b4a0637f645b0bc2489bf74c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders the chessboard, all chess pieces, and any highlighted moves.  <a href="#a6e2268e1b4a0637f645b0bc2489bf74c">More...</a><br /></td></tr>
 <tr class="separator:a6e2268e1b4a0637f645b0bc2489bf74c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c80bbc31b5db9f3e0ee0c8bd4b308bc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2c80bbc31b5db9f3e0ee0c8bd4b308bc">onKeyPressed</a> (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system) override</td></tr>
+<tr class="memdesc:a2c80bbc31b5db9f3e0ee0c8bd4b308bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows the player to exit to the main menu by pressing escape.  <a href="#a2c80bbc31b5db9f3e0ee0c8bd4b308bc">More...</a><br /></td></tr>
+<tr class="separator:a2c80bbc31b5db9f3e0ee0c8bd4b308bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d73fb8edaa9b79201249261a50846bf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a2d73fb8edaa9b79201249261a50846bf">onMouseMoved</a> (int x, int y) override</td></tr>
+<tr class="memdesc:a2d73fb8edaa9b79201249261a50846bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates which highlighted moves are visible.  <a href="#a2d73fb8edaa9b79201249261a50846bf">More...</a><br /></td></tr>
 <tr class="separator:a2d73fb8edaa9b79201249261a50846bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9115c62ccb8a89d752663867dc116bde"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a9115c62ccb8a89d752663867dc116bde">onLButtonPressed</a> (int x, int y) override</td></tr>
+<tr class="memdesc:a9115c62ccb8a89d752663867dc116bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Currently does nothing.  <a href="#a9115c62ccb8a89d752663867dc116bde">More...</a><br /></td></tr>
 <tr class="separator:a9115c62ccb8a89d752663867dc116bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb4f14c0863bc869ddfed5120868ddda"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#abb4f14c0863bc869ddfed5120868ddda">onLButtonReleased</a> (int x, int y) override</td></tr>
+<tr class="memdesc:abb4f14c0863bc869ddfed5120868ddda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selects or deselects pieces, or moves a selected piece to the clicked position.  <a href="#abb4f14c0863bc869ddfed5120868ddda">More...</a><br /></td></tr>
 <tr class="separator:abb4f14c0863bc869ddfed5120868ddda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classchesspp_1_1app_1_1_app_state"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classchesspp_1_1app_1_1_app_state')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></td></tr>
 <tr class="memitem:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_app_state.html#ac78f58ddd8fcf312132b96dad1a3d068">AppState</a> (sf::RenderWindow &amp;disp)</td></tr>
+<tr class="memdesc:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct bound to an sf::RenderWindow.  <a href="#ac78f58ddd8fcf312132b96dad1a3d068">More...</a><br /></td></tr>
 <tr class="separator:ac78f58ddd8fcf312132b96dad1a3d068 inherit pub_methods_classchesspp_1_1app_1_1_app_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classchesspp_1_1_sfml_event_handler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classchesspp_1_1_sfml_event_handler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classchesspp_1_1_sfml_event_handler.html">chesspp::SfmlEventHandler</a></td></tr>
 <tr class="memitem:a0a14b317847c5645aad37a058a611f32 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a0a14b317847c5645aad37a058a611f32">onClosed</a> ()</td></tr>
@@ -154,8 +166,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7c070ad5136f6bce7b3862492b118955 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53db75e9164470ad8e9d07e562ef4e4e inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a53db75e9164470ad8e9d07e562ef4e4e">onTextEntered</a> (sf::Uint32 unicode)</td></tr>
 <tr class="separator:a53db75e9164470ad8e9d07e562ef4e4e inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7538e6d715af512d7932245139b3083 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#ab7538e6d715af512d7932245139b3083">onKeyPressed</a> (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system)</td></tr>
-<tr class="separator:ab7538e6d715af512d7932245139b3083 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16e02df0a0dca0f9ecb0d44e40fa197a inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a16e02df0a0dca0f9ecb0d44e40fa197a">onKeyReleased</a> (sf::Keyboard::Key key, bool alt, bool control, bool shift, bool system)</td></tr>
 <tr class="separator:a16e02df0a0dca0f9ecb0d44e40fa197a inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97661aedf437d4e46ceb6f8318a8daf6 inherit pub_methods_classchesspp_1_1_sfml_event_handler"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1_sfml_event_handler.html#a97661aedf437d4e46ceb6f8318a8daf6">onMouseWheelMoved</a> (int delta, int x, int y)</td></tr>
@@ -196,9 +206,13 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a43c008f43fc6ff47965a7f744c0ff4c2 inherit pub_types_classchesspp_1_1_sfml_event_handler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classchesspp_1_1app_1_1_app_state"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classchesspp_1_1app_1_1_app_state')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classchesspp_1_1app_1_1_app_state.html">chesspp::app::AppState</a></td></tr>
 <tr class="memitem:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="memItemLeft" align="right" valign="top">sf::RenderWindow &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1app_1_1_app_state.html#af562ea2aacde39026a7715d6308a460b">display</a></td></tr>
+<tr class="memdesc:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sf::RenderWindow bound at construction.  <a href="#af562ea2aacde39026a7715d6308a460b">More...</a><br /></td></tr>
 <tr class="separator:af562ea2aacde39026a7715d6308a460b inherit pro_attribs_classchesspp_1_1app_1_1_app_state"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The <a class="el" href="classchesspp_1_1app_1_1_app_state.html" title="Base class for application states. ">AppState</a> class for the state of the chess gameplay. </p>
+<p>This class handles user-interaction by manipulating the <a class="el" href="classchesspp_1_1board_1_1_board.html" title="Manages pieces on a chess board. ">chesspp::board::Board</a> directly. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af8159baef588bd2ae384f2646281a996"></a>
 <div class="memitem">
 <div class="memproto">
@@ -223,9 +237,74 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Construct from the <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> and sf::RenderWindow to be used. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">app</td><td>The <a class="el" href="classchesspp_1_1app_1_1_application.html" title="Represents the application and holds the current AppState. ">Application</a> owning this instance, must outlive this instance. </td></tr>
+    <tr><td class="paramname">display</td><td>The sf::RenderWindow use during <a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html#a6e2268e1b4a0637f645b0bc2489bf74c" title="Renders the chessboard, all chess pieces, and any highlighted moves. ">onRender()</a>, must outlive this instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a2c80bbc31b5db9f3e0ee0c8bd4b308bc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chesspp::app::ChessPlusPlusState::onKeyPressed </td>
+          <td>(</td>
+          <td class="paramtype">sf::Keyboard::Key&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>alt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>control</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>system</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Allows the player to exit to the main menu by pressing escape. </p>
+
+<p>Reimplemented from <a class="el" href="classchesspp_1_1_sfml_event_handler.html#ab7538e6d715af512d7932245139b3083">chesspp::SfmlEventHandler</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a9115c62ccb8a89d752663867dc116bde"></a>
 <div class="memitem">
 <div class="memproto">
@@ -257,6 +336,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Currently does nothing. </p>
 
 <p>Reimplemented from <a class="el" href="classchesspp_1_1_sfml_event_handler.html#a8a5f6ab8d647d9baaf9d7d5cf57e166f">chesspp::SfmlEventHandler</a>.</p>
 
@@ -294,6 +375,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Selects or deselects pieces, or moves a selected piece to the clicked position. </p>
+
 <p>Reimplemented from <a class="el" href="classchesspp_1_1_sfml_event_handler.html#ab113e453887f074eab453ab73bdd914a">chesspp::SfmlEventHandler</a>.</p>
 
 </div>
@@ -330,6 +413,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Updates which highlighted moves are visible. </p>
+
 <p>Reimplemented from <a class="el" href="classchesspp_1_1_sfml_event_handler.html#a874df5f9a83428e1c157154508c72740">chesspp::SfmlEventHandler</a>.</p>
 
 </div>
@@ -355,13 +440,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Renders the chessboard, all chess pieces, and any highlighted moves. </p>
+
 <p>Implements <a class="el" href="classchesspp_1_1app_1_1_app_state.html#ad1efa72f76eafcd5aadb9428045f3a07">chesspp::app::AppState</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_chess_plus_plus_state_8hpp_source.html">ChessPlusPlusState.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/app/<a class="el" href="_chess_plus_plus_state_8cpp.html">ChessPlusPlusState.cpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_chess_plus_plus_state_8hpp_source.html">ChessPlusPlusState.hpp</a></li>
+<li>/ChessPlusPlus/src/app/<a class="el" href="_chess_plus_plus_state_8cpp.html">ChessPlusPlusState.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -369,7 +456,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1app.html">app</a></li><li class="navelem"><a class="el" href="classchesspp_1_1app_1_1_chess_plus_plus_state.html">ChessPlusPlusState</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

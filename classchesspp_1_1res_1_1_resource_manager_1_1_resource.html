@@ -116,6 +116,9 @@ $(document).ready(function(){initNavTree('classchesspp_1_1res_1_1_resource_manag
 </div><!--header-->
 <div class="contents">
 
+<p>The base class for all resource classes.  
+ <a href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for chesspp::res::ResourceManager::Resource:</div>
@@ -123,7 +126,7 @@ Inheritance diagram for chesspp::res::ResourceManager::Resource:</div>
  <div class="center">
   <img src="classchesspp_1_1res_1_1_resource_manager_1_1_resource.png" usemap="#chesspp::res::ResourceManager::Resource_map" alt=""/>
   <map id="chesspp::res::ResourceManager::Resource_map" name="chesspp::res::ResourceManager::Resource_map">
-<area href="classchesspp_1_1res_1_1_sfml_file_resource.html" alt="chesspp::res::SfmlFileResource&lt; sfmlT &gt;" shape="rect" coords="0,56,254,80"/>
+<area href="classchesspp_1_1res_1_1_sfml_file_resource.html" title="Wrap an SFML class for use with the ResourceManager as a file resource. " alt="chesspp::res::SfmlFileResource&lt; sfmlT &gt;" shape="rect" coords="0,56,254,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -132,7 +135,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1233acdb345903e2317c09eb01d3d15f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html#a1233acdb345903e2317c09eb01d3d15f">~Resource</a> ()=0</td></tr>
 <tr class="separator:a1233acdb345903e2317c09eb01d3d15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The base class for all resource classes. </p>
+<dl class="section user"><dt>Requirements</dt><dd>Deriving classes must have a public constructor that accepts one parameter in the form of <code>configuration.setting(path...)</code>. In other words, the result of <a class="el" href="classchesspp_1_1config_1_1_configuration.html#a2db0aeab3e51263bf8a32ff1261cdf2a" title="Access values in the configuration. ">chesspp::config::Configuration::setting()</a> should be able to be passed as the only argument to construct the resource. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1233acdb345903e2317c09eb01d3d15f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -157,7 +163,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/res/<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a></li>
+<li>/ChessPlusPlus/src/res/<a class="el" href="_resource_manager_8hpp_source.html">ResourceManager.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -165,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1res.html">res</a></li><li class="navelem"><a class="el" href="classchesspp_1_1res_1_1_resource_manager.html">ResourceManager</a></li><li class="navelem"><a class="el" href="classchesspp_1_1res_1_1_resource_manager_1_1_resource.html">Resource</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:32 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -8,7 +8,7 @@ var searchData=
   ['removetrajectory',['removeTrajectory',['../classchesspp_1_1piece_1_1_piece.html#aeabfeea5a829b1079955dedcaf4f36c9',1,'chesspp::piece::Piece']]],
   ['resourcemanager',['ResourceManager',['../classchesspp_1_1res_1_1_resource_manager.html#a5c6cbcc63bc846d3e03235a600463a23',1,'chesspp::res::ResourceManager']]],
   ['resources',['resources',['../classchesspp_1_1config_1_1_resources_config.html#a52371cd4943007fa194a09670dc80b43',1,'chesspp::config::ResourcesConfig']]],
-  ['resourcesconfig',['resourcesConfig',['../classchesspp_1_1app_1_1_application.html#a8de16c83fe1bce7e834f846db768afe1',1,'chesspp::app::Application::resourcesConfig()'],['../classchesspp_1_1config_1_1_resources_config.html#a0dea18fcd5d2ce26f217ada5c127da55',1,'chesspp::config::ResourcesConfig::ResourcesConfig()']]],
+  ['resourcesconfig',['ResourcesConfig',['../classchesspp_1_1config_1_1_resources_config.html#a0dea18fcd5d2ce26f217ada5c127da55',1,'chesspp::config::ResourcesConfig::ResourcesConfig()'],['../classchesspp_1_1app_1_1_application.html#a8de16c83fe1bce7e834f846db768afe1',1,'chesspp::app::Application::resourcesConfig()']]],
   ['rook',['Rook',['../classchesspp_1_1piece_1_1_rook.html#ab236221e9bcfebf5ad27a61ed764a120',1,'chesspp::piece::Rook']]],
   ['rotate',['Rotate',['../namespacechesspp_1_1util.html#ab0aabc4f4bdcc43ea5f32e1af34a898e',1,'chesspp::util']]]
 ];

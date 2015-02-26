@@ -116,26 +116,38 @@ $(document).ready(function(){initNavTree('classchesspp_1_1gfx_1_1_graphics_handl
 </div><!--header-->
 <div class="contents">
 
+<p>Handles drawing graphics, such as pieces, trajectories, and boards.  
+ <a href="classchesspp_1_1gfx_1_1_graphics_handler.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_graphics_8hpp_source.html">Graphics.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a181915087a191d93953ab23462ae04c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a181915087a191d93953ab23462ae04c9">GraphicsHandler</a> (sf::RenderWindow &amp;display, <a class="el" href="classchesspp_1_1config_1_1_resources_config.html">config::ResourcesConfig</a> &amp;resc, <a class="el" href="classchesspp_1_1config_1_1_board_config.html">config::BoardConfig</a> &amp;bc)</td></tr>
+<tr class="memdesc:a181915087a191d93953ab23462ae04c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs for a specific sf::RenderWindow given the resource and board configurations.  <a href="#a181915087a191d93953ab23462ae04c9">More...</a><br /></td></tr>
 <tr class="separator:a181915087a191d93953ab23462ae04c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20ee375e16698e81146d5c24000196b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a20ee375e16698e81146d5c24000196b7">drawBackground</a> ()</td></tr>
+<tr class="memdesc:a20ee375e16698e81146d5c24000196b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the board background.  <a href="#a20ee375e16698e81146d5c24000196b7">More...</a><br /></td></tr>
 <tr class="separator:a20ee375e16698e81146d5c24000196b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1b62f6b4f25801ab1019fc50ba91ce4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#aa1b62f6b4f25801ab1019fc50ba91ce4">drawSpriteAtCell</a> (sf::Sprite &amp;s, std::size_t x, std::size_t y)</td></tr>
+<tr class="memdesc:aa1b62f6b4f25801ab1019fc50ba91ce4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws any sprite in the center of cell at (x, y).  <a href="#aa1b62f6b4f25801ab1019fc50ba91ce4">More...</a><br /></td></tr>
 <tr class="separator:aa1b62f6b4f25801ab1019fc50ba91ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3269fd123a550ababbdbdb72b7454d83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a3269fd123a550ababbdbdb72b7454d83">drawPiece</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p)</td></tr>
+<tr class="memdesc:a3269fd123a550ababbdbdb72b7454d83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a piece at its real location.  <a href="#a3269fd123a550ababbdbdb72b7454d83">More...</a><br /></td></tr>
 <tr class="separator:a3269fd123a550ababbdbdb72b7454d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b1e8a584ee4497d61ebb8b8e7548060"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a4b1e8a584ee4497d61ebb8b8e7548060">drawPieceAt</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p, sf::Vector2i const &amp;pos)</td></tr>
+<tr class="memdesc:a4b1e8a584ee4497d61ebb8b8e7548060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a piece at a different location than it actually is.  <a href="#a4b1e8a584ee4497d61ebb8b8e7548060">More...</a><br /></td></tr>
 <tr class="separator:a4b1e8a584ee4497d61ebb8b8e7548060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ce20399a9686d9e124db90b0f69f9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#ae6ce20399a9686d9e124db90b0f69f9e">drawTrajectory</a> (<a class="el" href="classchesspp_1_1piece_1_1_piece.html">piece::Piece</a> const &amp;p, bool enemy=false)</td></tr>
+<tr class="memdesc:ae6ce20399a9686d9e124db90b0f69f9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a piece's trajectory moves and capturing moves.  <a href="#ae6ce20399a9686d9e124db90b0f69f9e">More...</a><br /></td></tr>
 <tr class="separator:ae6ce20399a9686d9e124db90b0f69f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a059e3d79a3ba6fce2e898a00cb79de37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html#a059e3d79a3ba6fce2e898a00cb79de37">drawBoard</a> (<a class="el" href="classchesspp_1_1board_1_1_board.html">board::Board</a> const &amp;b)</td></tr>
+<tr class="memdesc:a059e3d79a3ba6fce2e898a00cb79de37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a board and its pieces.  <a href="#a059e3d79a3ba6fce2e898a00cb79de37">More...</a><br /></td></tr>
 <tr class="separator:a059e3d79a3ba6fce2e898a00cb79de37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles drawing graphics, such as pieces, trajectories, and boards. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a181915087a191d93953ab23462ae04c9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -166,6 +178,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructs for a specific sf::RenderWindow given the resource and board configurations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">display</td><td>The sf::RenderWindow, must outlive this instance. </td></tr>
+    <tr><td class="paramname">resc</td><td>The <a class="el" href="classchesspp_1_1config_1_1_resources_config.html" title="Holds configuration for resources (graphics, fonts, etc) ">chesspp::config::ResourcesConfig</a>, must outlive this instance. </td></tr>
+    <tr><td class="paramname">bc</td><td>The <a class="el" href="classchesspp_1_1config_1_1_board_config.html" title="Holds configuration values for the board (layout, metadata, etc) ">chesspp::config::BoardConfig</a>, must outlive this instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -181,6 +203,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draws the board background. </p>
 
 </div>
 </div>
@@ -198,6 +222,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Draws a board and its pieces. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">b</td><td>The board to draw. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a3269fd123a550ababbdbdb72b7454d83"></a>
@@ -213,6 +245,14 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draws a piece at its real location. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The piece to draw. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -239,6 +279,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Draws a piece at a different location than it actually is. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The piece to draw. </td></tr>
+    <tr><td class="paramname">pos</td><td>The location to draw the piece at. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -272,6 +321,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Draws any sprite in the center of cell at (x, y). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>The sprite to draw, centered on (x, y). Changes the sprite's position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="ae6ce20399a9686d9e124db90b0f69f9e"></a>
@@ -298,11 +355,20 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Draws a piece's trajectory moves and capturing moves. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>The piece for which to draw trajectory and capturings. </td></tr>
+    <tr><td class="paramname">enemy</td><td>true if the piece is an enemy piece, false otherwise. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/gfx/<a class="el" href="_graphics_8hpp_source.html">Graphics.hpp</a></li>
-<li>C:/Users/Nicholas/Desktop/GitHub/ChessPlusPlus/src/gfx/<a class="el" href="_graphics_8cpp.html">Graphics.cpp</a></li>
+<li>/ChessPlusPlus/src/gfx/<a class="el" href="_graphics_8hpp_source.html">Graphics.hpp</a></li>
+<li>/ChessPlusPlus/src/gfx/<a class="el" href="_graphics_8cpp.html">Graphics.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -310,7 +376,7 @@ Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacechesspp.html">chesspp</a></li><li class="navelem"><a class="el" href="namespacechesspp_1_1gfx.html">gfx</a></li><li class="navelem"><a class="el" href="classchesspp_1_1gfx_1_1_graphics_handler.html">GraphicsHandler</a></li>
-    <li class="footer">Generated on Wed Feb 18 2015 22:11:08 for ChessPlusPlus by
+    <li class="footer">Generated on Wed Feb 25 2015 21:06:31 for ChessPlusPlus by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

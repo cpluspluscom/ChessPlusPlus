@@ -15,6 +15,7 @@ namespace chesspp
 		class Button : public sf::Drawable
 		{
 			sf::Text button;
+            sf::Vector2f center;
 			/**
 			 * \brief
 			 * Overriden sf::Drawable::draw method to provide to custom rendering behavior
@@ -23,6 +24,11 @@ namespace chesspp
 			 * \param states Current render states
 			 */
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+            void recenter() noexcept
+            {
+                button.setPosition(center.x - (button.getLocalBounds().width/2), center.y - (button.getLocalBounds().height/2));
+            }
 
 		public:
 			/**
@@ -54,7 +60,8 @@ namespace chesspp
 			 */
 			void setPosition(int x, int y)
 			{
-				button.setPosition(x,y);
+				center = sf::Vector2f{sf::Vector2i{x, y}};
+                recenter();
 			}
 			/**
 			 * \brief
@@ -64,7 +71,8 @@ namespace chesspp
 			 */
 			void setPosition(sf::Vector2f &pos)
 			{
-				button.setPosition(pos);
+				center = pos;
+                recenter();
 			}
 			/**
 			 * \brief
@@ -75,6 +83,7 @@ namespace chesspp
 			void setText(const std::string &text)
 			{
 				button.setString(text);
+                recenter();
 			}
 			/**
 			 * \brief
@@ -95,6 +104,7 @@ namespace chesspp
 			void setFont(const sf::Font &font)
 			{
 				button.setFont(font);
+                recenter();
 			}
 			/**
 			 * \brief
@@ -115,7 +125,7 @@ namespace chesspp
 			 */
 			sf::Vector2f getPosition()
 			{
-				return button.getPosition();
+				return center;
 			}
 			/**
 			 * \brief
@@ -135,6 +145,7 @@ namespace chesspp
 			 */
 			bool contains(int x, int y)
 			{
+                recenter();
 				return button.getGlobalBounds().contains(x,y);
 			}
 

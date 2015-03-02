@@ -10,6 +10,7 @@ namespace chesspp
 			button.setString(text);
 			button.setStyle(sf::Text::Bold);
 			button.setColor(sf::Color::Black);
+            recenter();
 		}
 
 		void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const

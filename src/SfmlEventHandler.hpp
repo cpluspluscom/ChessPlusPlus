@@ -5,6 +5,14 @@
 
 namespace chesspp
 {
+    /**
+     * \brief
+     * Base class for all classes wishing to process SFML events.
+     * 
+     * All of the member functions in this class are virtual and have a no-op default
+     * implementation. Deriving classes need only override the member functions corresponding to
+     * the events they are interested in.
+     */
     class SfmlEventHandler
     {
     public:

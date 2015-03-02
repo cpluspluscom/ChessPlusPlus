@@ -4,7 +4,7 @@
     {
         "title":      "res/img/title.png",
         "background": "res/img/chessboard_640x640.png",
-        "font":       "res/font/FreeMono.ttf"
+        "font":       "res/font/OpenSans/OpenSans-Semibold.ttf"
     },
     "board":
     {

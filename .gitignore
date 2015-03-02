@@ -20,7 +20,8 @@
 /chesspp
 debug.txt
 build/
-docs/
+/docs/
+!/docs/Doxyfile
 Makefile
 CMakeCache.txt
 ChessPlusPlus/

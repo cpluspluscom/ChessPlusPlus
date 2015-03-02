@@ -19,6 +19,12 @@ namespace chesspp
     }
     namespace board
     {
+        /**
+        * \brief
+         * Manages pieces on a chess board.
+         * 
+         * Can be iterated over with a range-based for-loop.
+         */
         class Board
         {
         public:
@@ -38,6 +44,10 @@ namespace chesspp
             using Movements_t = std::multimap<Pieces_t::const_iterator, Position_t, Pieces_t_const_iterator_compare>;
             using Factory_t = std::map<config::BoardConfig::PieceClass_t, std::function<Pieces_t::value_type (Board &, Position_t const &, Suit const &)>>; //Used to create new pieces
 
+            /**
+             * \brief
+             * The chesspp::config::BoardConfig currently in use.
+             */
             config::BoardConfig const &config;
         private:
             Pieces_t pieces;
@@ -51,28 +61,80 @@ namespace chesspp
             }
 
         public:
+            /**
+             * \brief
+             * Constructs the Board from the given chesspp::config::BoardConfig
+             * 
+             * \param conf The BoardConfig, must outlive this instance.
+             */
             Board(config::BoardConfig const &conf);
 
+            /**
+             * \brief
+             * Register a new type of chess piece.
+             * 
+             * This should be called via assignment to a global variable in the source file of
+             * the chess piece implementation.
+             * 
+             * \param type The unique type of the chess piece.
+             * \param ctor The function used to construct new instances of the chess piece.
+             * \return The registration receipt, to be stored in the global variable.
+             */
             static auto registerPieceClass(Factory_t::key_type const &type, Factory_t::mapped_type ctor)
             -> Factory_t::iterator
             {
                 return factory().insert({type, ctor}).first;
             }
 
+            /**
+             * \brief
+             * Check if a location on the board is occupied by at least one piece.
+             * 
+             * \param pos The position to check.
+             * \return true if at least one piece occupies the position, false otherwise.
+             */
             bool occupied(Position_t const &pos) const noexcept;
+            /**
+             * \brief
+             * Given a Piece, obtain its iterator.
+             * 
+             * \param p The Piece to search for.
+             * \return The iterator to the piece, or the end iterator.
+             */
             auto find(piece::Piece const &p) const noexcept -> Pieces_t::const_iterator;
 
+            /**
+             * \brief
+             * Get the beginning iterator of the board pieces.
+             */
             auto begin() const noexcept
             -> Pieces_t::const_iterator
             {
                 return pieces.cbegin();
             }
+            /**
+             * \brief
+             * Get the end iterator of the board pieces.
+             */
             auto end() const noexcept
             -> Pieces_t::const_iterator
             {
                 return pieces.cend();
             }
 
+            /**
+             * \brief
+             * Holds the valid movements for all pieces on the board.
+             * 
+             * There are three different kinds of movements:
+             * - Trajectory - the locations a piece can move to
+             * - Capturing - the locations a piece can capture other pieces
+             * - Capturable - the locations a piece can be captured by other pieces
+             * 
+             * This class provides a consistent interface for all three types.
+             * 
+             * Can be iterated over with a range-based for-loop.
+             */
             class Movements
             {
                 Board &b;
@@ -89,16 +151,32 @@ namespace chesspp
                 friend class ::chesspp::board::Board;
 
             public:
+                /**
+                 * \brief
+                 * Get the beginning iterator of the valid movements.
+                 */
                 Movements_t::const_iterator begin() const
                 {
                     return m.cbegin();
                 }
+                /**
+                 * \brief
+                 * Get the end iterator of the valid movements.
+                 */
                 Movements_t::const_iterator end() const
                 {
                     return m.cend();
                 }
 
+                /**
+                 * \brief
+                 * Adds a valid movement.
+                 */
                 void add(piece::Piece const &p, Position_t const &tile);
+                /**
+                 * \brief
+                 * Removes a valid movement.
+                 */
                 void remove(piece::Piece const &p, Position_t const &tile);
             };
         private:
@@ -120,12 +198,33 @@ namespace chesspp
         private:
             void update(Position_t const &pos);
         public:
-            //Capture a capturable piece
+            /**
+             * \brief
+             * Capture a capturable piece.
+             * 
+             * \param source The piece performing the capture.
+             * \param target The new location of the source piece.
+             * \param capturable The location being captured.
+             * \return true if the capture was successful, false otherwise.
+             */
             bool capture(Pieces_t::iterator source, Movements_t::const_iterator target, Movements_t::const_iterator capturable);
-            //Move a piece without capturing
+            /**
+             * \brief
+             * Move a piece without capturing.
+             * 
+             * \param source The piece being moved.
+             * \param target The new location of the source piece.
+             * \return true if the capture was successful, false otherwise.
+             */
             bool move(Pieces_t::iterator source, Movements_t::const_iterator target);
 
-            //Check if a position is a valid position that exists on the board
+            /**
+             * \brief
+             * Check if a position is a valid position that exists on the board.
+             * 
+             * \param pos The position to check for validity.
+             * \return true if the position is valid, false otherwise.
+             */
             bool valid(Position_t const &pos) const noexcept
             {
                 return pos.isWithin(Position_t::Origin(), {config.boardWidth(), config.boardHeight()});

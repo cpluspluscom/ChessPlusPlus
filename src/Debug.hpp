@@ -10,6 +10,16 @@
 #include <vector>
 #include <cassert>
 
+/**
+ * \def USE_STD_PUT_TIME
+ * \brief
+ * Controls whether or not to use std::put_time() or boost::posix_time::to_simple_string()
+ * 
+ * If not defined, the decision will be made automatically - it is known that GCC 4.9.2 and
+ * below do not support std::put_time() and it is assumed that GCC 5.x will (maybe) support it.
+ * 
+ * You can force one or the other by defining as 1 to favor std::put_time() or 0 to favor boost.
+ */
 #if !defined(USE_STD_PUT_TIME)
     //GCC 4.9.2 doesn't support std::put_time yet
     #if !defined(__GNUC__) || (__GNUC__ > 4)
@@ -20,13 +30,28 @@
     #endif
 #endif
 
+/**
+ * \def CHESSPP_TRUNC_LOGS
+ * \brief
+ * Controls whether logs are truncated on each run, or appended to.
+ * 
+ * To append to logs on each run, do not define.
+ * To truncate lots on each run, define via compiler command line.
+ */
 #ifdef CHESSPP_TRUNC_LOGS
     #define CHESSPP_LOG_FILE_OPEN_MODE std::ios::trunc
 #else
     #define CHESSPP_LOG_FILE_OPEN_MODE std::ios::app
 #endif
 
-class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
+/**
+ * \brief
+ * Replaces std::clog, std::cerr, std::cout with file streams.
+ * 
+ * Calling enableRedirection() will permanently redirect std::clog, std::cerr, and std::cout to
+ * individual files.
+ */
+class LogUtil
 {
     class LogUtil_buffer : public std::streambuf
     {
@@ -121,7 +146,14 @@ class LogUtil //replaces std::clog, std::cerr, std::cout with file streams
     LogUtil(LogUtil &&) = delete;
     LogUtil &operator=(LogUtil const &) = delete;
     LogUtil &operator=(LogUtil &&) = delete;
+
 public:
+    /**
+     * \brief
+     * Redirects std::clog, std::cerr, and std::cout to individual files, permanently.
+     * 
+     * Calling this more than once is harmless and has no effect.
+     */
     static void enableRedirection() noexcept
     {
         static LogUtil lu;

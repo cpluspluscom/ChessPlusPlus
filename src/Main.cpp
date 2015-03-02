@@ -1,5 +1,5 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <streambuf>
 #include <typeinfo>
 
@@ -8,7 +8,16 @@
 #include "Debug.hpp"
 #include "Exception.hpp"
 
-int main()
+/**
+ * \brief
+ * Entry point of the application.
+ * 
+ * Sets up the application window and then passes control to chesspp::app::StartMenuState
+ * 
+ * \param nargs argument count, not used.
+ * \param args arguments, not used.
+ */
+int main(int nargs, char const *const *args)
 {
     LogUtil::enableRedirection();
 

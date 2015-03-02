@@ -34,13 +34,55 @@ namespace chesspp
 			ButtonManager& operator=(const ButtonManager&) = delete;
 
 		public:
+			/**
+			 * \brief
+			 * Default constructor
+			 */
 			ButtonManager();
+			/**
+			 * \brief
+			 * Registers a new button with the ButtonManager
+			 *
+			 * \param button New button to be registered
+			 */
 			void registerButton(Button &button);
+			/**
+			 * \brief
+			 * Deregistered a button from the ButtonManager
+			 *
+			 * \param Button to be deregistered
+			 * \return True if succeeded to deregister
+			 */
 			bool deregisterButton(Button &button);
+			/**
+			 * \brief
+			 * Sets selected status of a button to true
+			 *
+			 * \param button Button to be set as selected
+			 * \return True if succeeded to set selected status
+			 */
 			bool setSelected(Button &button);
+			/**
+			 * \brief
+			 * Deselects all registered buttons
+			 */
 			void deselectAll();
-			void cycleSelectedUp();
-			void cycleSelectedDown();
+			/**
+			 * \brief
+			 * Sets selected status of next (according to time registered) button to true
+			 */
+			void cycleSelectedNext();
+			/**
+			 * \brief
+			 * Sets selected status of previous (according to time registered) button to true
+			 */
+			void cycleSelectedPrevious();
+			/**
+			 * \brief
+			 * Returns selected button
+			 *
+			 * \return Currently selected button
+			 */
 			const Button& getSelected()
 			{
 				return *selected_button;

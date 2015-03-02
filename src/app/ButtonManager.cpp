@@ -58,7 +58,7 @@ namespace chesspp
 			return true;
 		}
 
-		void ButtonManager::cycleSelectedUp()
+		void ButtonManager::cycleSelectedNext()
 		{
 			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{
@@ -70,7 +70,7 @@ namespace chesspp
 			}
 		}
 
-		void ButtonManager::cycleSelectedDown()
+		void ButtonManager::cycleSelectedPrevious()
 		{
 			for(std::size_t i = 0; i < buttons.size(); ++i)
 			{

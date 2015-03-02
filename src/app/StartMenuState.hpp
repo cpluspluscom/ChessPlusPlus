@@ -47,6 +47,12 @@ namespace chesspp
              * Handles clicking on the menu buttons.
              */
             virtual void onLButtonReleased(int x, int y) override;
+
+            /**
+             * \brief
+             * Handles mouse movement.
+             */
+            virtual void onMouseMoved(int x, int y) override;
         };
     }
 }

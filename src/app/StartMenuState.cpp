@@ -58,5 +58,27 @@ namespace chesspp
                 app.stop();
             }
         }
+
+        void StartMenuState::onMouseMoved(int x, int y)
+        {
+            //If moused over Start button
+            if(start_text.getGlobalBounds().contains(x,y))
+            {
+                start_text.setColor(sf::Color::Blue);
+                quit_text.setColor(sf::Color::Black);
+            }
+            //If moused over Quit button
+            else if(quit_text.getGlobalBounds().contains(x,y))
+            {
+                quit_text.setColor(sf::Color::Blue);
+                start_text.setColor(sf::Color::Black);
+            }
+            //If not moused over any button
+            else
+            {
+                quit_text.setColor(sf::Color::Black);
+                start_text.setColor(sf::Color::Black);
+            }
+        }
     }
 }

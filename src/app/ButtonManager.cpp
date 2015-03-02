@@ -76,7 +76,7 @@ namespace chesspp
 			{
 				if(&(buttons[i].get()) == selected_button)
 				{
-					setSelected(buttons[((i - 1) % buttons.size())].get());
+					setSelected(buttons[(((i + buttons.size()) - 1) % buttons.size())].get());
 					return;
 				}
 			}

@@ -9,6 +9,7 @@
 #include <chrono>
 #include <vector>
 #include <cassert>
+#include <cctype>
 
 /**
  * \def USE_STD_PUT_TIME

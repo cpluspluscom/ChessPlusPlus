@@ -125,7 +125,7 @@ class LogUtil
 
             std::stringstream time;
 #if USE_STD_PUT_TIME
-            time << "[" << std::put_time(lt, "%T") << "] ";
+            time << "[" << std::put_time(lt, "%H:%M:%S") << "] ";
 #else
             time << "[" << boost::posix_time::to_simple_string(boost::posix_time::time_duration(lt->tm_hour, lt->tm_min, lt->tm_sec)) << "] ";
 #endif

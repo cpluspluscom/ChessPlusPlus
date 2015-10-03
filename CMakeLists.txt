@@ -19,7 +19,11 @@ find_package(Boost REQUIRED COMPONENTS filesystem system)
 
 # Find SFML
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/deps/SFML/cmake/Modules" ${CMAKE_MODULE_PATH})
-find_package(SFML 2 REQUIRED COMPONENTS graphics window system audio)
+if(WIN32)
+	find_package(SFML 2 REQUIRED COMPONENTS graphics window system audio main)
+else()
+	find_package(SFML 2 REQUIRED COMPONENTS graphics window system audio)
+endif()
 
 # ChessPlusPlus
 if(APPLE) # Application bundle if on an apple machine
@@ -66,9 +70,15 @@ if(NOT APPLE OR NOT BUILD_APPBUNDLE)
 		file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
 		file(COPY res/	  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
 	endif()
-	add_executable(ChessPlusPlus
-		"src/Main.cpp"
-	)
+	if(WIN32)
+		add_executable(ChessPlusPlus WIN32
+			"src/Main.cpp"
+		)
+	else()
+		add_executable(ChessPlusPlus
+			"src/Main.cpp"
+		)
+	endif()
 endif()
 set_property(TARGET ChessPlusPlus PROPERTY CXX_STANDARD 14)
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
@@ -86,6 +96,28 @@ target_include_directories(ChessPlusPlus PUBLIC
 target_link_libraries(ChessPlusPlus json-parser ${SFML_LIBRARIES} ${SFML_DEPENDENCIES} ${Boost_LIBRARIES})
 if(SFML_STATIC_LIBRARIES)
 	target_link_libraries(ChessPlusPlus z bz2)
+endif()
+
+# options
+if(WIN32)
+	set(CHESSPP_REDIRECT_OUTPUT_DEFAULT ON)
+else()
+	set(CHESSPP_REDIRECT_OUTPUT_DEFAULT OFF)
+endif()
+option(CHESSPP_REDIRECT_OUTPUT "Redirects output to files instead of stdout and stderr" ${CHESSPP_REDIRECT_OUTPUT_DEFAULT})
+if(CHESSPP_REDIRECT_OUTPUT)
+	target_compile_definitions(ChessPlusPlus
+		PRIVATE CHESSPP_REDIRECT_OUTPUT
+	)
+endif()
+include(CMakeDependentOption)
+CMAKE_DEPENDENT_OPTION(CHESSPP_TRUNC_LOGS "Truncate the log files at the start of the program" ON
+	"CHESSPP_REDIRECT_OUTPUT" ON
+)
+if(CHESSPP_TRUNC_LOGS)
+	target_compile_definitions(ChessPlusPlus
+		PRIVATE CHESSPP_TRUNC_LOGS
+	)
 endif()
 
 # Divvy out work to subdirectories

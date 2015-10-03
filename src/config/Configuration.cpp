@@ -20,7 +20,6 @@ namespace chesspp
         //<.app>/Contents/Resources/res/img... should be where resources are stored.
         std::string Configuration::executablePath()
         {
-            
             char buf[1024];
             std::uint32_t size = sizeof(buf);
             memset(buf, 0, size);

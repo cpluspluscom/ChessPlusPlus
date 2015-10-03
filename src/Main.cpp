@@ -19,7 +19,9 @@
  */
 int main(int nargs, char const *const *args)
 {
+#ifdef CHESSPP_REDIRECT_OUTPUT
     LogUtil::enableRedirection();
+#endif
 
     try
     {
@@ -38,4 +40,5 @@ int main(int nargs, char const *const *args)
         std::clog << typeid(e).name() << " caught in main: " << e.what() << std::endl;
         return -1;
     }
+    std::clog << "Exiting normally from main" << std::endl;
 }

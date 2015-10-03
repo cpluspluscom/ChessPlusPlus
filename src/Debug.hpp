@@ -142,7 +142,13 @@ class LogUtil
     std::streambuf *clogbuf {log ? std::clog.rdbuf(&logbuf) : std::clog.rdbuf()}
                  , *cerrbuf {err ? std::cerr.rdbuf(&errbuf) : std::cerr.rdbuf()}
                  , *coutbuf {out ? std::cout.rdbuf(&outbuf) : std::cout.rdbuf()};
-    LogUtil() = default;
+    LogUtil()
+    {
+        //Force file output to appear instantly so crashes don't swallow buffered content
+        logbuf.pubsetbuf(0, 0);
+        errbuf.pubsetbuf(0, 0);
+        outbuf.pubsetbuf(0, 0);
+    }
     LogUtil(LogUtil const &) = delete;
     LogUtil(LogUtil &&) = delete;
     LogUtil &operator=(LogUtil const &) = delete;

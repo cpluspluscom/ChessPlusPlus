@@ -1,7 +1,7 @@
-#ifndef ChessPlusPlus_App_GameStateClass_HeaderPlusPlus
-#define ChessPlusPlus_App_GameStateClass_HeaderPlusPlus
+#ifndef chesspp_app_ChessPlusPlusState_HeaderPlusPlus
+#define chesspp_app_ChessPlusPlusState_HeaderPlusPlus
 
-#include "gfx/Graphics.hpp"
+#include "gfx/GraphicsHandler.hpp"
 #include "board/Board.hpp"
 
 #include "AppState.hpp"
@@ -20,7 +20,8 @@ namespace chesspp
          * This class handles user-interaction by manipulating the chesspp::board::Board
          * directly.
          */
-        class ChessPlusPlusState : public AppState
+        class ChessPlusPlusState
+        : public AppState
         {
             Application &app;
             config::ResourcesConfig &res_config;

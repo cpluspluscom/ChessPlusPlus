@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Res_GenericResourcesManagerClass_HeaderPlusPlus
-#define ChessPlusPlus_Res_GenericResourcesManagerClass_HeaderPlusPlus
+#ifndef chesspp_res_ResourcesManager_HeaderPlusPlus
+#define chesspp_res_ResourcesManager_HeaderPlusPlus
 
 #include "config/Configuration.hpp"
 #include "util/Utilities.hpp"

@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Config_ResourcesConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlus_Config_ResourcesConfigurationManagerClass_HeaderPlusPlus
+#ifndef chesspp_config_ResourcesConfig_HeaderPlusPlus
+#define chesspp_config_ResourcesConfig_HeaderPlusPlus
 
 #include "Configuration.hpp"
 #include "res/ResourceManager.hpp"
@@ -12,7 +12,8 @@ namespace chesspp
          * \brief
          * Holds configuration for resources (graphics, fonts, etc)
          */
-        class ResourcesConfig : public Configuration
+        class ResourcesConfig
+        : public Configuration
         {
             res::ResourceManager res;
 

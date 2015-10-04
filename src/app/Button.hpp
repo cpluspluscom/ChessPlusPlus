@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_App_Button_HeaderPlusPlus
-#define ChessPlusPlus_App_Button_HeaderPlusPlus
+#ifndef chesspp_app_Button_HeaderPlusPlus
+#define chesspp_app_Button_HeaderPlusPlus
 
 #include "SFML.hpp"
 
@@ -12,7 +12,8 @@ namespace chesspp
          * \brief
          * Simple text-based GUI buttons
          */
-        class Button : public sf::Drawable
+        class Button
+        : public sf::Drawable
         {
             sf::Text button;
             sf::Vector2f center;

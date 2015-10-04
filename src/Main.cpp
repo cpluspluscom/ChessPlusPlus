@@ -1,12 +1,11 @@
-#include <fstream>
-#include <iostream>
-#include <streambuf>
-#include <typeinfo>
-
 #include "app/Application.hpp"
 #include "app/StartMenuState.hpp"
 #include "Debug.hpp"
 #include "Exception.hpp"
+
+#include <iostream>
+#include <typeinfo>
+#include <cstdlib>
 
 /**
  * \brief
@@ -20,7 +19,7 @@
 int main(int nargs, char const *const *args)
 {
 #ifdef CHESSPP_REDIRECT_OUTPUT
-    LogUtil::enableRedirection();
+    chesspp::enableRedirection();
 #endif
 
     try
@@ -38,7 +37,7 @@ int main(int nargs, char const *const *args)
     catch(std::exception &e)
     {
         std::clog << typeid(e).name() << " caught in main: " << e.what() << std::endl;
-        return -1;
+        return EXIT_FAILURE;
     }
     std::clog << "Exiting normally from main" << std::endl;
 }

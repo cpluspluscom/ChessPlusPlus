@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Config_BoardConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlus_Config_BoardConfigurationManagerClass_HeaderPlusPlus
+#ifndef chesspp_config_BoardConfig_HeaderPlusPlus
+#define chesspp_config_BoardConfig_HeaderPlusPlus
 
 #include "Configuration.hpp"
 #include "ResourcesConfig.hpp"
@@ -18,7 +18,8 @@ namespace chesspp
          * \brief
          * Holds configuration values for the board (layout, metadata, etc)
          */
-        class BoardConfig : public Configuration
+        class BoardConfig
+        : public Configuration
         {
         public:
             using BoardSize_t = std::uint8_t;
@@ -41,37 +42,7 @@ namespace chesspp
              * 
              * \param The ResourcesConfig to use for resource configuration.
              */
-            BoardConfig(ResourcesConfig &res)
-            : Configuration{"config/chesspp/board.json"}
-            , board_width  {reader()["board"]["width"]      }
-            , board_height {reader()["board"]["height"]     }
-            , cell_width   {reader()["board"]["cell width"] }
-            , cell_height  {reader()["board"]["cell height"]}
-            {
-                auto pieces = reader()["board"]["pieces"];
-                auto suits  = reader()["board"]["suits"];
-                for(BoardSize_t r = 0; r < board_height; ++r)
-                {
-                    for(BoardSize_t c = 0; c < board_width; ++c)
-                    {
-                        auto piece = pieces[r][c];
-                        auto suit  = suits [r][c];
-                        if(piece.type() != json_null) //it is OK if suit is null
-                        {
-                            layout[{c, r}] = std::make_pair<PieceClass_t, SuitClass_t>(piece, suit);
-                        }
-                    }
-                }
-
-                auto const &tex = res.setting("board", "pieces");
-                for(auto const &suit : tex.object())
-                {
-                    for(auto const &piece : suit.second.object())
-                    {
-                        textures[suit.first][piece.first] = std::string(Textures_t::mapped_type::mapped_type(piece.second));
-                    }
-                }
-            }
+            BoardConfig(ResourcesConfig &res);
             virtual ~BoardConfig() = default;
 
             BoardSize_t       boardWidth   () const noexcept { return board_width;  }

@@ -1,28 +1,18 @@
-# ChessPlusPlus [![Build Status](https://travis-ci.org/cpluspluscom/ChessPlusPlus.png?branch=master)](https://travis-ci.org/cpluspluscom/ChessPlusPlus)
+# [ChessPlusPlus](https://github.com/cpluspluscom/ChessPlusPlus) [![Build Status](https://travis-ci.org/cpluspluscom/ChessPlusPlus.png?branch=master)](https://travis-ci.org/cpluspluscom/ChessPlusPlus) [![Join the chat at https://gitter.im/cpluspluscom/ChessPlusPlus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cpluspluscom/ChessPlusPlus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Cplusplus.com community project.
+ChessPlusPlus is a project by the cplusplus.com commuity aiming to support any and all variants of Chess in modern C++. We want to show the simplicity and elegance of modern C++ as well as demonstrate use of the latest features of the language and the more modern design practices.
 
-Project repository: https://github.com/cpluspluscom/ChessPlusPlus
+Currently we use C++14, so make sure your compiler has good support for it. Known good compilers are GCC 5.2, Clang 3.8, and Visual Studio 2015. Build with CMake 3.3 or later.
 
-`irc.freenode.net#ChessPlusPlus` or [![Join the chat at https://gitter.im/cpluspluscom/ChessPlusPlus](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cpluspluscom/ChessPlusPlus?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+## Interested in participating?
+Be sure to read `CONTRIBUTING.md` before submitting pull requests. If you want to join developer conversation, join the Gitter channel via the badge above. If you're an active community member on [cplusplus.com](http://www.cplusplus.com), let us know and we can add you to the community GitHub organization.
 
-## Description
-ChessPlusPlus is a modular game of chess programmed with the latest gadgets and gizmos in C++, namely whatever happens to be the most recently released standard (currently C++14, eventually C++17). The project aims to show the simplicity and elegance of modern C++ as well as demonstrate use of the latest features of the language and the more modern design practices.
+## Documentation
+General information is available on the [wiki](https://github.com/cpluspluscom/ChessPlusPlus/wiki), including build instructions for those unfamiliar with CMake.
 
-Indeed, you yourself will need the latest and greatest in C++ compliation technology if you wish to compile ChessPlusPlus for yourself. But fear not, for you are not the only one seeking the latest and greatest - for example the [nuwen MinGW distro](http://nuwen.net/mingw.html) is generally up to par with the most modern stuff, and if you're not on Windows you can always just use your friendly neighborhood gcc. LLVM's clang is a superhero too, you know, and libc++ rivals gcc's libstdc++.
+Source code documentation is [hosted on the `gh-pages` branch](https://CPlusPlusCom.GitHub.IO/ChessPlusPlus/) and is built with Doxygen.
 
-## Resources
+## Credits
 Chess piece images by @Lowest0ne with unspecified licensing.
 
 Open Sans font by Steve Matteson, used under the Apache License 2.0.
-
-## Contact
-Send an email to svogel76 (at) comcast.net with ChessPlusPlus in the subject. Include in the email your email address and github ID. You can also open issues here or start topics in the [forums](http://www.cplusplus.com/forum/), specifically the Lounge.
-
-## Contributing
-To contribute to this project, fork this repository, commit your changes, and submit a pull request. You can open issues to start discussions if you like. Be sure to read `CONTRIBUTING.md`!
-
-## Documentation
-Documentation is hosted on the gh-pages branch: https://cpluspluscom.github.io/ChessPlusPlus/
-
-There is also information on the [wiki](https://github.com/cpluspluscom/ChessPlusPlus/wiki).

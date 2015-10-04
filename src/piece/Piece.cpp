@@ -3,6 +3,7 @@
 #include "board/Board.hpp"
 
 #include <algorithm>
+#include <iostream>
 
 namespace chesspp
 {
@@ -42,6 +43,11 @@ namespace chesspp
         void Piece::removeCapturable(Position_t const &tile)
         {
             board.pieceCapturables().remove(*this, tile);
+        }
+
+        std::ostream &operator<<(std::ostream &os, Piece const &p)
+        {
+            return os << "Piece (" << typeid(p).name() << ") \"" << p.suit << "\" \"" << p.pclass << "\" at " << p.pos << " having made " << p.moves << " moves";
         }
     }
 }

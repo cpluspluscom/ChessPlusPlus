@@ -1,6 +1,5 @@
 #include "King.hpp"
 
-#include <iostream>
 #include <initializer_list>
 
 namespace chesspp

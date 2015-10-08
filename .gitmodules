@@ -1,6 +1,6 @@
-[submodule "lib/SFML"]
-	path = lib/SFML
-	url = https://github.com/LaurentGomila/SFML.git
-[submodule "lib/json-parser"]
-	path = lib/json-parser
+[submodule "deps/SFML"]
+	path = deps/SFML
+	url = https://github.com/SFML/SFML.git
+[submodule "deps/json-parser"]
+	path = deps/json-parser
 	url = https://github.com/udp/json-parser.git

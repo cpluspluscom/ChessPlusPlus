@@ -1,147 +1,124 @@
+cmake_minimum_required(VERSION 3.3)
+
+project(ChessPlusPlus)
+
+# json-parser
+add_library(json-parser
+	"deps/json-parser/json.c"
+)
+set_property(TARGET json-parser PROPERTY C_STANDARD 99)
+target_include_directories(json-parser
+	PUBLIC "deps/json-parser/"
+)
+target_compile_definitions(json-parser
+	PUBLIC JSON_TRACK_SOURCE
+)
+
+# Find Boost
+find_package(Boost REQUIRED COMPONENTS filesystem system)
+
+# Find SFML
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/deps/SFML/cmake/Modules" ${CMAKE_MODULE_PATH})
+if(WIN32)
+	find_package(SFML 2 REQUIRED COMPONENTS graphics window system audio main)
+else()
+	find_package(SFML 2 REQUIRED COMPONENTS graphics window system audio)
+endif()
 
 # ChessPlusPlus
-#
-# Configuration options:
-# -DCMAKE_BUILD_TYPE=Release|Debug
-# -DSTATIC_BUILD=1|0
+if(APPLE) # Application bundle if on an apple machine
+	# Optionally build application bundle
+	set(BUILD_APPBUNDLE FALSE CACHE BOOL "Build into OS x Application Bundle.")
+	if(BUILD_APPBUNDLE)
+		# Set bundle properties
+		set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)
+		set(MACOSX_BUNDLE_INFO_STRING ChessPlusPlus)
+		set(MACOSX_BUNDLE_SHORT_VERSION_STRING 0.0.1)
+		set(MACOSX_BUNDLE_BUNDLE_VERSION 0.0.1)
+		set(MACOSX_BUNDLE_GUI_IDENTIFIER com.cplusplus.chesspp)
 
-cmake_minimum_required (VERSION 2.8)
+		# Throw all the resource paths into a variable
+		file(GLOB_RECURSE CHESSPP_RESOURCES
+			${PROJECT_SOURCE_DIR}/res/*
+			${PROJECT_SOURCE_DIR}/config/*
+		)
 
-project (CHESSPP)
-
-#Set options
-if(WIN32)
-    set(SFML_ROOT "" CACHE PATH "Path to SFML root directory")
-    set(BOOST_ROOT "" CACHE PATH "Path to Boost root directory")
-    set(STATIC_BUILD TRUE CACHE BOOL "Link SFML statically") #option(STATIC_BUILD "Link statically" FALSE)
-endif()
-
-#Add json-parser
-if(NOT JSONLIB)
-    set(JSONLIB ${CHESSPP_SOURCE_DIR}/lib/json-parser)
-endif()
-include_directories (${JSONLIB})
-
-#Get all source files
-file(GLOB_RECURSE CHESSPP_SOURCES "src/*.cpp")
-file(GLOB_RECURSE CHESSPP_HEADERS "src/*.hpp")
-list(APPEND CHESSPP_SOURCES "lib/json-parser/json.c")
-
-set (CHESSPP_INCLUDE_DIRS "")
-foreach (_headerFile ${CHESSPP_HEADERS})
-    get_filename_component(_dir ${_headerFile} PATH)
-    list (APPEND CHESSPP_INCLUDE_DIRS ${_dir})
-endforeach()
-list(REMOVE_DUPLICATES CHESSPP_INCLUDE_DIRS)
-include_directories(${CHESSPP_INCLUDE_DIRS})
-
-# Add C++11 definitions -- list(append...) will not always work.
-set(CMAKE_CXX_FLAGS "-std=c++11 ${CMAKE_CXX_FLAGS}")
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
-    if(APPLE)
-        # Building with Clang (on OS x at least) requires -stdlib=libc++ flag
-        set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
-    endif()
-endif()
-
-# Add CMAKE modules path for detecting libraries
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
-
-#SFML variables for static/dynamic builds
-if(STATIC_BUILD)
-	set(SFML_STATIC_LIBRARIES TRUE)
-else()
-	set(SFML_STATIC_LIBRARIES FALSE)
-endif()
-
-#Detect and add SFML
-#if SFML_ROOT is set in Windows, the SFML find_package module
-#will work properly. Otherwise an error is thrown.
-find_package(SFML 2 REQUIRED graphics window network system audio)
-if(SFML_FOUND)
-    include_directories(${SFML_INCLUDE_DIR})
-    link_directories(${SFML_ROOT}/lib)
-else()
-    message(FATAL_ERROR "SFML not found by find_package. Try specifying SFML_ROOT")
-endif()
-
-#Detect and add Boost
-#if BOOST_ROOT is set in Windows, the Boost find_package module
-#will work properly. Otherwise an error is thrown.
-find_package(Boost 1.54.0 COMPONENTS filesystem system REQUIRED)
-if(Boost_FOUND)
-    include_directories(${Boost_INCLUDE_DIRS})
-    link_directories(${BOOST_ROOT}/lib)
-else()
-    message(FATAL_ERROR "Boost not found by find_package. Try specifying BOOST_ROOT")
-endif()
-
-
-#Set static runtime for msvc
-if(WIN32)
-	if(MSVC AND STATIC_BUILD)
-        foreach(flag
-                CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-                CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
-            if(${flag} MATCHES "/MD")
-                string(REGEX REPLACE "/MD" "/MT" ${flag} "${${flag}}")
-            endif()
-        endforeach()
-    endif()
-endif()
-
-# Application bundle if on an apple machine
-if(APPLE)
-    # Optionally build application bundle
-    set(BUILD_APPBUNDLE FALSE CACHE BOOL "Build into OS x Application Bundle.")
-    if(BUILD_APPBUNDLE)
-        # Set bundle properties
-        set(MACOSX_BUNDLE_BUNDLE_NAME ChessPlusPlus)
-        set(MACOSX_BUNDLE_INFO_STRING ChessPlusPlus)
-        set(MACOSX_BUNDLE_SHORT_VERSION_STRING 0.0.1)
-        set(MACOSX_BUNDLE_BUNDLE_VERSION 0.0.1)
-        set(MACOSX_BUNDLE_GUI_IDENTIFIER com.cplusplus.chesspp)
-
-        # Throw all the resource paths into a variable
-        file(GLOB_RECURSE CHESSPP_RESOURCES
-            ${PROJECT_SOURCE_DIR}/res/*
-            ${PROJECT_SOURCE_DIR}/config/*)
-
-        # Make sure each resource file gets put in the right directory
-        # in the application bundle
-        FOREACH(file ${CHESSPP_RESOURCES})
-            file(RELATIVE_PATH relPath ${PROJECT_SOURCE_DIR} ${file})
-            string(FIND ${relPath} "/" inSubDirectory REVERSE)
-            if(${inSubDirectory} GREATER 0)
-                string(SUBSTRING ${relPath} 0 ${inSubDirectory} relDir)
-                set(PACKAGE_LOCATION Resources/${relDir})
-            else()
-                set(PACKAGE_LOCATION Resources)
-            endif()
-            set_source_files_properties(
-                ${file}
-                PROPERTIES
-                MACOSX_PACKAGE_LOCATION
-                ${PACKAGE_LOCATION}
-                )
-        ENDFOREACH()
-
-        add_executable(
-            chesspp
-            MACOSX_BUNDLE
-            ${CHESSPP_SOURCES}
-            ${CHESSPP_RESOURCES}
-            )
-    endif()
+		# Make sure each resource file gets put in the right directory
+		# in the application bundle
+		FOREACH(file ${CHESSPP_RESOURCES})
+			file(RELATIVE_PATH relPath ${PROJECT_SOURCE_DIR} ${file})
+			string(FIND ${relPath} "/" inSubDirectory REVERSE)
+			if(${inSubDirectory} GREATER 0)
+				string(SUBSTRING ${relPath} 0 ${inSubDirectory} relDir)
+				set(PACKAGE_LOCATION Resources/${relDir})
+			else()
+				set(PACKAGE_LOCATION Resources)
+			endif()
+			set_source_files_properties(${file}
+				PROPERTIES
+					MACOSX_PACKAGE_LOCATION ${PACKAGE_LOCATION}
+			)
+		ENDFOREACH()
+		add_executable(ChessPlusPlus MACOSX_BUNDLE
+			"src/Main.cpp"
+		)
+	endif()
 endif()
 if(NOT APPLE OR NOT BUILD_APPBUNDLE)
-    # Copy resources to build directory if build directory is
-    # different from source directory.
-    if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
-        file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
-        file(COPY res/    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
-    endif()
-    add_executable(chesspp ${CHESSPP_SOURCES})
+	# Copy resources to build directory if build directory is different from source directory.
+	if(NOT ${CMAKE_CURRENT_BINARY_DIR} STREQUAL ${PROJECT_SOURCE_DIR})
+		file(COPY config/ DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/config/)
+		file(COPY res/	  DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/res/)
+	endif()
+	if(WIN32)
+		add_executable(ChessPlusPlus WIN32
+			"src/Main.cpp"
+		)
+	else()
+		add_executable(ChessPlusPlus
+			"src/Main.cpp"
+		)
+	endif()
+endif()
+set_property(TARGET ChessPlusPlus PROPERTY CXX_STANDARD 14)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
+	if(APPLE)
+		# Building with Clang (on OS x at least) requires -stdlib=libc++ flag
+		set(CMAKE_CXX_FLAGS "-stdlib=libc++ ${CMAKE_CXX_FLAGS}")
+		set(CMAKE_XCODE_ATTRIBUTE_CLANG_CXX_LIBRARY "libc++")
+	endif()
+endif()
+target_include_directories(ChessPlusPlus PUBLIC
+	"src/"
+	${SFML_INCLUDE_DIR}
+	${Boost_INCLUDE_DIRS}
+)
+target_link_libraries(ChessPlusPlus json-parser ${SFML_LIBRARIES} ${SFML_DEPENDENCIES} ${Boost_LIBRARIES})
+if(SFML_STATIC_LIBRARIES)
+	target_link_libraries(ChessPlusPlus z bz2)
 endif()
 
-target_link_libraries(chesspp ${SFML_LIBRARIES} ${Boost_LIBRARIES})
+# options
+if(WIN32)
+	set(CHESSPP_REDIRECT_OUTPUT_DEFAULT ON)
+else()
+	set(CHESSPP_REDIRECT_OUTPUT_DEFAULT OFF)
+endif()
+option(CHESSPP_REDIRECT_OUTPUT "Redirects output to files instead of stdout and stderr" ${CHESSPP_REDIRECT_OUTPUT_DEFAULT})
+if(CHESSPP_REDIRECT_OUTPUT)
+	target_compile_definitions(ChessPlusPlus
+		PRIVATE CHESSPP_REDIRECT_OUTPUT
+	)
+endif()
+include(CMakeDependentOption)
+CMAKE_DEPENDENT_OPTION(CHESSPP_TRUNC_LOGS "Truncate the log files at the start of the program" ON
+	"CHESSPP_REDIRECT_OUTPUT" ON
+)
+if(CHESSPP_TRUNC_LOGS)
+	target_compile_definitions(ChessPlusPlus
+		PRIVATE CHESSPP_TRUNC_LOGS
+	)
+endif()
+
+# Divvy out work to subdirectories
+add_subdirectory("src/")

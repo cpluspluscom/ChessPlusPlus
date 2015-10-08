@@ -1,61 +1,102 @@
 language: c++
-compiler:
-  - clang
-#  - gcc
+sudo: false
+matrix:
+  include:
+    - os: linux
+      compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise
+            - llvm-toolchain-precise-3.7
+          packages:
+            - clang-3.8
+            - g++-5
+            - libglew-dev
+            - libsndfile1-dev
+            - libopenal-dev
+            - libfreetype6-dev
+            - libx11-xcb-dev
+            - udev
+            - libudev-dev
+    - os: linux
+      compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+            - libglew-dev
+            - libsndfile1-dev
+            - libopenal-dev
+            - libfreetype6-dev
+            - libx11-xcb-dev
+            - udev
+            - libudev-dev
+cache:
+  apt: true
+  directories:
+  - "$HOME/.travis/cmake/build/install"
+  - "deps/SFML/build/install"
+  - "deps/SFML/build-static/install"
+  - "deps/boost-install"
 
 before_install:
-  - pushd .
-  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test; fi
-# Travis is using CMake 2.8.7, but libc++abi needs 2.8.8
-  - sudo add-apt-repository --yes ppa:kalakris/cmake
-  - sudo apt-get update -qq
-  - sudo apt-get install cmake
-# Build libc++
-  - if [ "$CXX" == "clang++" ]; then export CXXFLAGS="-std=c++0x -stdlib=libc++"; fi
-  - if [ "$CXX" == "clang++" ]; then svn co --quiet http://llvm.org/svn/llvm-project/libcxx/trunk libcxx; fi
-  - if [ "$CXX" == "clang++" ]; then cd libcxx/lib && bash buildit; fi
-  - if [ "$CXX" == "clang++" ]; then sudo cp ./libc++.so.1.0 /usr/lib/; fi
-  - if [ "$CXX" == "clang++" ]; then sudo mkdir /usr/include/c++/v1; fi
-  - if [ "$CXX" == "clang++" ]; then cd .. && sudo cp -r include/* /usr/include/c++/v1/; fi
-  - if [ "$CXX" == "clang++" ]; then cd /usr/lib && sudo ln -sf libc++.so.1.0 libc++.so; fi
-  - if [ "$CXX" == "clang++" ]; then sudo ln -sf libc++.so.1.0 libc++.so.1 && cd $cwd; fi
+  - if [ "$CC"  == "gcc"     ]; then export CC=gcc-5; fi
+  - if [ "$CXX" == "g++"     ]; then export CXX=g++-5; fi
+  - if [ "$CC"  == "clang"   ]; then export CC=clang-3.8; fi
+  - if [ "$CXX" == "clang++" ]; then export CXX=clang++-3.8; fi
+  - pushd . && cd $HOME
+  - git clone https://github.com/LB--/travis.git travis
+  - source "./travis/update-cmake.sh"
   - popd
 
 install:
-# Install required libs
-#  - sudo apt-get install libsfml-dev=2.0
-  - sudo apt-get install libglew-dev
-  - sudo apt-get install libopenal-dev
-  - sudo apt-get install libsndfile-dev
-  - sudo apt-get install libfreetype6-dev
-# Manually build SFML
-  - cd lib/SFML && mkdir build && cd build
-  - cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=RELEASE -DBUILD_SHARED_LIBS=0 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -Wno-c++11-narrowing" -DCMAKE_INSTALL_PREFIX=../installation ../
-  - make install
-  - cd ../../..
-#  - sudo apt-get install libboost-dev=1.54.0
-# Manually build Boost
-  - cd lib
-  - svn co http://svn.boost.org/svn/boost/tags/release/Boost_1_55_0/ boost --quiet
-  - cd boost
-  - ./bootstrap.sh clang --prefix=installation
-  - ./b2 toolset=clang cxxflags="-std=c++1y" linkflags="-stdlib=libc++" variant=release link=static --with-filesystem --with-system install -d0
-  - cd ../..
+  - pushd .
+  # SFML 2.3 has new dependencies that Travis doesn't have
+  - cd deps/SFML
+  - git checkout 2.2
+  - popd && pushd .
+  # Build SFML (dynamic)
+  - if [ ! -d "deps/SFML/build/install/lib" ]; then export REBUILD_SFML="yes"; else export REBUILD_SFML="no"; fi
+  - if [ "$REBUILD_SFML" == "yes" ]; then cd deps/SFML && rm -rf build && mkdir build && cd build; fi
+  - if [ "$REBUILD_SFML" == "yes" ]; then cmake .. -DCMAKE_INSTALL_PREFIX="$(pwd)/install" && cmake --build . && cmake --build . --target install; fi
+  - if [ "$REBUILD_SFML" == "yes" ]; then cd install/lib; fi
+  - if [ "$REBUILD_SFML" == "no"  ]; then cd deps/SFML/build/install/lib; fi
+  - export PATH="$(pwd):$PATH" && cd .. && export SFML_ROOT="$(pwd)"
+  - popd && pushd .
+  # Build SFML (static)
+  - if [ ! -d "deps/SFML/build-static/install/lib" ]; then export REBUILD_SFML_STATIC="yes"; else export REBUILD_SFML_STATIC="no"; fi
+  - if [ "$REBUILD_SFML_STATIC" == "yes" ]; then cd deps/SFML && rm -rf build-static && mkdir build-static && cd build-static; fi
+  - if [ "$REBUILD_SFML_STATIC" == "yes" ]; then cmake .. -DCMAKE_INSTALL_PREFIX="$(pwd)/install" -DBUILD_SHARED_LIBS=OFF && cmake --build . && cmake --build . --target install; fi
+  - if [ "$REBUILD_SFML_STATIC" == "yes" ]; then cd install; fi
+  - if [ "$REBUILD_SFML_STATIC" == "no"  ]; then cd deps/SFML/build-static/install; fi
+  - export SFML_STATIC_ROOT="$(pwd)"
+  - popd && pushd .
+  # Build Boost
+  - if [ ! -d "deps/boost-install/lib" ]; then export REBUILD_BOOST="yes"; else export REBUILD_BOOST="no"; fi
+  - cd deps
+  - if [ "$REBUILD_BOOST" == "yes" ]; then rm -rf boost && rm -rf boost-install; fi
+  - if [ "$REBUILD_BOOST" == "yes" ]; then git clone --quiet --recursive https://github.com/boostorg/boost.git boost; fi
+  - if [ "$REBUILD_BOOST" == "yes" ]; then cd boost && chmod +x bootstrap.sh; fi
+  - if [ "$REBUILD_BOOST" == "yes" ]; then ./bootstrap.sh --prefix="$(pwd)/../boost-install"; fi
+  - if [ "$REBUILD_BOOST" == "yes" ]; then ./b2 headers; fi
+  - if [ "$REBUILD_BOOST" == "yes" ]; then ./b2 toolset=gcc-5 cxxflags="-std=c++14" variant=release link=static --with-filesystem --with-system install -d0; fi
+  - if [ "$REBUILD_BOOST" == "no"  ]; then mkdir boost && cd boost; fi
+  - cd ../boost-install && export BOOST_ROOT="$(pwd)"
+  - popd
 
-after_install:
-  - pwd
-
-before_script:
-  - mkdir build && cd build
-  - cmake -G "Unix Makefiles" -k -DCMAKE_BUILD_TYPE=RELEASE -DSTATIC_BUILD=1 -DCMAKE_CXX_FLAGS="-std=c++1y -stdlib=libc++ -isystem ../lib/boost -lGL -lopenal -lsndfile -lfreetype -ljpeg -lGLEW -lXrandr" -DSFML_ROOT="lib/SFML/installation" -DBOOST_ROOT="lib/boost/installation" ../
 script:
-  - make
-after_script:
-  - ls
-
-branches:
-  only:
-    - master
+  - mkdir build && cd build
+  - cmake .. -DSFML_ROOT="$SFML_ROOT" -DBOOST_ROOT="$BOOST_ROOT"
+  - cmake --build .
+  - ctest -VV
+  - cd .. && mkdir build-static && cd build-static
+  - cmake .. -DSFML_ROOT="$SFML_STATIC_ROOT" -DSFML_STATIC_LIBRARIES=ON -DBOOST_ROOT="$BOOST_ROOT"
+  - cmake --build .
+  - ctest -VV
 
 notifications:
   email: false

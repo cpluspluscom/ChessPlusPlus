@@ -20,7 +20,6 @@ namespace chesspp
         //<.app>/Contents/Resources/res/img... should be where resources are stored.
         std::string Configuration::executablePath()
         {
-            
             char buf[1024];
             std::uint32_t size = sizeof(buf);
             memset(buf, 0, size);
@@ -50,7 +49,8 @@ namespace chesspp
             throw Exception("Unknown OS. Unable to determine executable path.");
         #endif
 
-            std::clog << "Executable path = \"" << ret << '"' << std::endl;
+            std::clog << "Executable path   = \"" << ret << '"' << std::endl;
+            std::clog << "Working directory = \"" << boost::filesystem::current_path().string() << '"' << std::endl;
 
             return ret;
         }

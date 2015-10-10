@@ -1,12 +1,12 @@
-#ifndef ChessPlusPlus_Piece_ChessPieceBaseClass_HeaderPlusPlus
-#define ChessPlusPlus_Piece_ChessPieceBaseClass_HeaderPlusPlus
+#ifndef chesspp_piece_Piece_HeaderPlusPlus
+#define chesspp_piece_Piece_HeaderPlusPlus
 
 #include "config/BoardConfig.hpp"
 
 #include <memory>
 #include <set>
 #include <typeinfo>
-#include <iostream>
+#include <iosfwd>
 
 namespace chesspp
 {
@@ -195,10 +195,7 @@ namespace chesspp
              * \param os The stream to which to describe this piece.
              * \param p The piece to describe.
              */
-            friend std::ostream &operator<<(std::ostream &os, Piece const &p)
-            {
-                return os << "Piece (" << typeid(p).name() << ") \"" << p.suit << "\" \"" << p.pclass << "\" at " << p.pos << " having made " << p.moves << " moves";
-            }
+            friend std::ostream &operator<<(std::ostream &os, Piece const &p);
         };
     }
 }

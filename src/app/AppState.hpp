@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_App_ApplicationStateBaseClass_HeaderPlusPlus
-#define ChessPlusPlus_App_ApplicationStateBaseClass_HeaderPlusPlus
+#ifndef chesspp_app_AppState_HeaderPlusPlus
+#define chesspp_app_AppState_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "SfmlEventHandler.hpp"
@@ -14,7 +14,8 @@ namespace chesspp
          * 
          * See also, chesspp::app::Application
          */
-        class AppState : public virtual SfmlEventHandler
+        class AppState
+        : public virtual SfmlEventHandler
         {
         public:
             /**

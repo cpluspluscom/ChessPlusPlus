@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Res_SfmlFileResourceClass_HeaderPlusPlus
-#define ChessPlusPlus_Res_SfmlFileResourceClass_HeaderPlusPlus
+#ifndef chesspp_res_SfmlFileResource_HeaderPlusPlus
+#define chesspp_res_SfmlFileResource_HeaderPlusPlus
 
 #include "ResourceManager.hpp"
 //#include "SFML.hpp"
@@ -20,7 +20,8 @@ namespace chesspp
          * \tparam The SFML class to wrap.
          */
         template<typename sfmlT>
-        class SfmlFileResource : public ResourceManager::Resource
+        class SfmlFileResource
+        : public ResourceManager::Resource
         {
         public:
             /**

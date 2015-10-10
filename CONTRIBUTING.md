@@ -4,8 +4,8 @@ Style Guide & Coding Conventions
 ## General
 - Indentation is to be consistently four spaces, not tabs or a mixture of spaces and tabs.
 - All files are to have a single blank line at their end, if possible.
-- Prefer C++11 features to C++03 features when possible, and avoid deprecated language features.
-- When using C++11 features, try to use those which are supported by at least both clang++ and gcc
+- Prefer C++14 features to C++03 features when possible, and avoid deprecated language features.
+- When using C++14 features, try to use those which are supported by at least both clang++ and gcc
 - Prefer to use `<c____>` rather than `<____.h>` for C standard library headers
 - Headers should be included in this order to reduce pollution: first ChessPlusPlus headers, then library headers, then C++ standard headers.
 - Prefer use of `class` to `struct` for declaring classes (this means you need to explicitly specify public inheritance).
@@ -34,6 +34,7 @@ Style Guide & Coding Conventions
 - Try to avoid excess or repetitive "access:" specifiers.
 - Avoid strange spaces before open parens and open braces and in other places unless you are lining up code with other code for readability and emphasis of relation.
 - There is no line character limit, but that is because you shouldn't have exceedingly long lines (unless they just have exceedingly long identifiers). Instead, avoid deeply nested compound expressions - they reduce readability and hinder understanding of what code is for and/or doing.
+- Include guards should mirror the primary namespace + class of the file, e.g. `chesspp::piece::Piece` maps to `chesspp_piece_Piece_HeaderPlusPlus`
 
 ## Specifics
 One-liners should be **one line**, otherwise they should be in braces:
@@ -46,8 +47,12 @@ if(condition)
 }
 ```
 
-Constructor initializer lists should have each element on their own line and have the same indentation level as the opening brace of the ctor:
+Constructor initializer lists and class inheritance lists should have each element on their own line and have the same indentation level as the opening brace of the ctor/class:
 ```cpp
+class OurClass
+: TheirClassA
+, TheirClassB
+{
     OurClass()
     : first(element)
     , second(element)
@@ -55,6 +60,7 @@ Constructor initializer lists should have each element on their own line and hav
     {
         //...
     }
+};
 ```
 
 The `const` keyword is to appear on the right side of types, to be consistent with other uses of the `const` keyword:

@@ -1,6 +1,5 @@
 #include "Rook.hpp"
 
-#include <iostream>
 #include <initializer_list>
 
 namespace chesspp

@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Piece_PawnChessPiece_HeaderPlusPlus
-#define ChessPlusPlus_Piece_PawnChessPiece_HeaderPlusPlus
+#ifndef chesspp_piece_Pawn_HeaderPlusPlus
+#define chesspp_piece_Pawn_HeaderPlusPlus
 
 #include "board/Board.hpp"
 #include "piece/Piece.hpp"
@@ -8,7 +8,8 @@ namespace chesspp
 {
     namespace piece
     {
-        class Pawn : public virtual Piece
+        class Pawn
+        : public virtual Piece
         {
             bool en_passant = true;
             util::Direction facing;

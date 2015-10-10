@@ -1,4 +1,4 @@
-#include "Graphics.hpp"
+#include "GraphicsHandler.hpp"
 
 #include "res/SfmlFileResource.hpp"
 #include "config/Configuration.hpp"

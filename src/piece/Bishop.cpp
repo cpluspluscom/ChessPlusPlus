@@ -1,6 +1,5 @@
 #include "Bishop.hpp"
 
-#include <iostream>
 #include <initializer_list>
 
 namespace chesspp

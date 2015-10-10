@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Util_MiscellaneousUtilities_HeaderPlusPlus
-#define ChessPlusPlus_Util_MiscellaneousUtilities_HeaderPlusPlus
+#ifndef chesspp_util_Utilities_HeaderPlusPlus
+#define chesspp_util_Utilities_HeaderPlusPlus
 
 #include <type_traits>
 #include <memory>
@@ -63,7 +63,7 @@ namespace chesspp
          * \tparam T must be scalar.
          */
         template<typename T>
-        struct MakeSigned
+        struct MakeSigned final
         {
             static_assert(std::is_scalar<T>::value, "Template parameter must be a scalar type");
             /**
@@ -92,7 +92,8 @@ namespace chesspp
          * \tparam Map must be std::map<Key, Value> or equivalent container
          */
         template<typename Map>
-        class KeyIter : public std::iterator<std::input_iterator_tag, typename Map::value_type>
+        class KeyIter final
+        : public std::iterator<std::input_iterator_tag, typename Map::value_type>
         {
             typename Map::const_iterator it;
         public:
@@ -144,7 +145,7 @@ namespace chesspp
          * \tparam ItT The iterator type, e.g. container::const_iterator
          */
         template<typename ItT>
-        class Range
+        class Range final
         {
             std::pair<ItT, ItT> r;
         public:

@@ -1,14 +1,9 @@
-#ifndef ChessPlusPlus_Config_ConfigurationManagerClass_HeaderPlusPlus
-#define ChessPlusPlus_Config_ConfigurationManagerClass_HeaderPlusPlus
+#ifndef chesspp_config_Configuration_HeaderPlusPlus
+#define chesspp_config_Configuration_HeaderPlusPlus
 
-#include "Exception.hpp"
 #include "util/JsonReader.hpp"
 
-#include <cstring>
-#include <cstdint>
-#include <boost/algorithm/string/replace.hpp>
-#include <boost/filesystem.hpp>
-#include <fstream>
+#include <string>
 
 namespace chesspp
 {
@@ -45,25 +40,7 @@ namespace chesspp
             util::JsonReader reader;
 
         private:
-            std::string validateConfigFile(std::string const &configFile)
-            {
-                static std::string exe_path = executablePath();
-
-                if(boost::filesystem::extension(configFile) != ".json")
-                {
-                    throw Exception("Configuration cannot read non-json config files.");
-                }
-
-                if(boost::filesystem::exists(configFile))
-                {
-                    res_path = "";
-                }
-                else
-                {
-                    res_path = exe_path;
-                }
-                return res_path + configFile;
-            }
+            std::string validateConfigFile(std::string const &configFile);
 
         public:
             /**
@@ -73,10 +50,7 @@ namespace chesspp
              * \param configFile the relative path to the configuration file. Must end in .json
              * \throw chesspp::Exception if the path does not end in .json
              */
-            Configuration(std::string const &configFile) noexcept(false)
-            : reader{std::ifstream(validateConfigFile(configFile))}
-            {
-            }
+            Configuration(std::string const &configFile) noexcept(false);
             virtual ~Configuration() = default;
 
             /**

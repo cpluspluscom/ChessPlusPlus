@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Board_GeneralizedChessBoardClass_HeaderPlusPlus
-#define ChessPlusPlus_Board_GeneralizedChessBoardClass_HeaderPlusPlus
+#ifndef chesspp_board_Board_HeaderPlusPlus
+#define chesspp_board_Board_HeaderPlusPlus
 
 #include "config/BoardConfig.hpp"
 #include "util/Utilities.hpp"

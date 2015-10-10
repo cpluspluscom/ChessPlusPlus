@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_App_ApplicationManagementClass_HeaderPlusPlus
-#define ChessPlusPlus_App_ApplicationManagementClass_HeaderPlusPlus
+#ifndef chesspp_app_Application_HeaderPlusPlus
+#define chesspp_app_Application_HeaderPlusPlus
 
 #include "AppState.hpp"
 #include "config/ResourcesConfig.hpp"

@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_App_ButtonManager_HeaderPlusPlus
-#define ChessPlusPlus_App_ButtonManager_HeaderPlusPlus
+#ifndef chesspp_app_ButtonManager_HeaderPlusPlus
+#define chesspp_app_ButtonManager_HeaderPlusPlus
 
 #include "Button.hpp"
 #include "SFML.hpp"

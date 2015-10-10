@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_SfmlEventHandlerBaseClass_HeaderPlusPlus
-#define ChessPlusPlus_SfmlEventHandlerBaseClass_HeaderPlusPlus
+#ifndef chesspp_SfmlEventHandler_HeaderPlusPlus
+#define chesspp_SfmlEventHandler_HeaderPlusPlus
 
 #include "SFML.hpp"
 

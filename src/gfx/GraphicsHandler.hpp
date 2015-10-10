@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_Gfx_GraphicsHandlerClass_HeaderPlusPlus
-#define ChessPlusPlus_Gfx_GraphicsHandlerClass_HeaderPlusPlus
+#ifndef chesspp_gfx_GraphicsHandler_HeaderPlusPlus
+#define chesspp_gfx_GraphicsHandler_HeaderPlusPlus
 
 #include "SFML.hpp"
 #include "config/ResourcesConfig.hpp"

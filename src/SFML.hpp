@@ -1,6 +1,6 @@
 #pragma once
-#ifndef AllSFMLHeaders_HeaderPlusPlus
-#define AllSFMLHeaders_HeaderPlusPlus
+#ifndef chesspp_SFML_HeaderPlusPlus
+#define chesspp_SFML_HeaderPlusPlus
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>

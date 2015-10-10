@@ -1,6 +1,5 @@
 #include "Pawn.hpp"
 
-#include <iostream>
 #include <sstream>
 
 namespace chesspp

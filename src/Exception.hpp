@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_ExceptionClass_HeaderPlusPlus
-#define ChessPlusPlus_ExceptionClass_HeaderPlusPlus
+#ifndef chesspp_Exception_HeaderPlusPlus
+#define chesspp_Exception_HeaderPlusPlus
 
 #include "util/Utilities.hpp"
 

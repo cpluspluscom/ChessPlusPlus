@@ -1,5 +1,5 @@
-#ifndef ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
-#define ChessPlusPlus_App_StartMenuState_HeaderPlusPlus
+#ifndef chesspp_app_StartMenuState_HeaderPlusPlus
+#define chesspp_app_StartMenuState_HeaderPlusPlus
 
 #include "SFML.hpp"
 
@@ -16,7 +16,8 @@ namespace chesspp
          * \brief
          * Handles the start screen/main menu for the game.
          */
-        class StartMenuState : public AppState
+        class StartMenuState
+        : public AppState
         {
             Application &app;
 
